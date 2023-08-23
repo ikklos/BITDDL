@@ -1,6 +1,4 @@
-
-import './collision.js'
-
+import { HitTest, CrossTheBoader } from './collision.js'
 //创建app对象，把预览加入DOM,app对象建议开全局
 let app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
 //neko sprite1

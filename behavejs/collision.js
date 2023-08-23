@@ -1,6 +1,5 @@
-
 //矩形碰撞箱检测
-function HitTest(r1, r2) {
+export function HitTest(r1, r2) {
     let hit, combineWidth, combineHeight, vx, vy;
     hit = false;
     r1.CenterX = r1.x + r1.width / 2;
@@ -27,7 +26,7 @@ function HitTest(r1, r2) {
 }
 
 //检测控制角色是否要超出地图边界
-function CrossTheBoader(r) {
+export function CrossTheBoader(r) {
     let over, leftboader, rightboader, upboader, downboader;
     over = true;
     let win = document.getElementById("GameWindow");
