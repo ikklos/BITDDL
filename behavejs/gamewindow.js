@@ -64,17 +64,16 @@ let left = keyboard("ArrowLeft"),
     up = keyboard("ArrowUp"),
     right = keyboard("ArrowRight"),
     down = keyboard("ArrowDown");
-
+//水平和垂直速度
+let hori,vertical;
+hori = 1.5;vertical = 1.0;
+//Left
 left.press = () => {
-    //Change the cat's velocity when the key is pressed
-    neko.vx = -2.0;
+    neko.vx = -hori;
 };
 
-//Left arrow key `release` method
 left.release = () => {
-    //If the left arrow has been released, and the right arrow isn't down,
-    //and the cat isn't moving vertically:
-    //Stop the cat
+    //八向移动，只有在反方向按键未按下时松开此键才会停止
     if (!right.isDown) {
         neko.vx = 0;
     }
@@ -82,7 +81,7 @@ left.release = () => {
 
 //Up
 up.press = () => {
-    neko.vy = -1.5;
+    neko.vy = -vertical;
 };
 up.release = () => {
     if (!down.isDown) {
@@ -92,7 +91,7 @@ up.release = () => {
 
 //Right
 right.press = () => {
-    neko.vx = 2.0;
+    neko.vx = hori;
 };
 right.release = () => {
     if (!left.isDown) {
@@ -102,7 +101,7 @@ right.release = () => {
 
 //Down
 down.press = () => {
-    neko.vy = 1.5;
+    neko.vy = vertical;
 };
 down.release = () => {
     if (!up.isDown) {
@@ -124,7 +123,6 @@ function play(delta) {
     if(CrossTheBoader(neko)){
         neko.y -= neko.vy;
     }
-    
 }
 
 //矩形碰撞箱检测
