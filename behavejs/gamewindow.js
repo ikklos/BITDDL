@@ -4,6 +4,8 @@ import { keyboard } from './keyboard.js';
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
 let app = new PIXI.Application({ width: 960, height: 576, antialias: true });
 
+app.stage.sortableChildren = true;
+
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
@@ -12,7 +14,7 @@ app.stage.addChild(background);
 
 //neko sprite1
 let neko = PIXI.Sprite.from("../sprite/players/Character_test.png");
-neko.collideH = 0.5;
+neko.collideH = 0.5;//0-1内的整数，代表sprite碰撞体积占贴图大小的百分比
 neko.width = 48;
 neko.height = 48;
 neko.x = app.screen.width / 2;
@@ -84,6 +86,13 @@ down.release = () => {
     }
 };
 
+
+
+//对象预排序
+for (let i = 1; i < app.stage.children.length; i++) {
+    app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
+}
+app.stage.sortChildren();
 app.ticker.add((delta) => gameloop(delta));
 
 function gameloop(delta) {//游戏循环
@@ -91,6 +100,10 @@ function gameloop(delta) {//游戏循环
 }
 function play(delta) {
     neko.x += neko.vx;
+    if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
+        neko.zIndex = neko.y + neko.height;
+        app.stage.sortChildren();
+    }
     if (CrossTheBoader(neko) || HitTest(neko, box_test)) {
         neko.x -= neko.vx;
     }
