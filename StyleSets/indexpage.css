@@ -1,8 +1,11 @@
 body {
-    background-image: "url(Background1.png)";
+    background-image: url('../backgrounds/Background1.png');
+    background-repeat: no-repeat;
 }
 
 .game {
+    width: 800px;
+    height: 480px;
     position: absolute;
     left: 50%;
     top: 50%;
