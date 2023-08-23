@@ -1,4 +1,7 @@
 #GameWindow {
     width: 1000px;
     height: 600px;
+    border-style:ridge;
+    border-width:5px;
+    border-color: rgb(63, 45, 152);
 }

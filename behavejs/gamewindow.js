@@ -2,7 +2,7 @@
 //创建app对象，把预览加入DOM,app对象建议开全局
 let app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
 //neko sprite1
-let neko = PIXI.Sprite.from("../sprite/players/neko.jpg");
+let neko = PIXI.Sprite.from("/BITDDL/sprite/players/Character_test.png");
 neko.width = 48;
 neko.height = 48;
 neko.x = app.screen.width / 2;
