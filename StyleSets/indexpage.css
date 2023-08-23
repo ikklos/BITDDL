@@ -4,10 +4,19 @@ body {
 }
 
 .game {
+    visibility: hidden;
     width: 800px;
     height: 480px;
-    position: absolute;
+}
+
+.centre {
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.button {
+    width: 200px;
+    height: 100px;
 }
