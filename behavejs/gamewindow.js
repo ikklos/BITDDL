@@ -1,6 +1,14 @@
 
 //创建app对象，把预览加入DOM,app对象建议开全局
-let app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
+//修改画布 使得人物与背景大小匹配 1000*600 => 960*576
+let app = new PIXI.Application({ width: 960, height: 576, antialias: true });
+
+//background sprite
+const background = PIXI.Sprite.from('/BITDDL/image_temp/TestGameBackground2.png');
+background.width = app.screen.width;
+background.height = app.screen.height;
+app.stage.addChild(background);
+
 //neko sprite1
 let neko = PIXI.Sprite.from("/BITDDL/sprite/players/Character_test.png");
 neko.width = 48;
@@ -10,7 +18,19 @@ neko.y = app.screen.height / 2;
 neko.vx = 0; neko.vy = 0;
 document.getElementById("GameWindow").appendChild(app.view);
 app.stage.addChild(neko);
+
+//生成随机整数
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 //box sprite2
+const box_test = PIXI.Sprite.from('/BITDDL/image_temp/barrier.png');
+box_test.width = 48;
+box_test.height = 48;
+box_test.x = getRandomInt(960-48);
+box_test.y = getRandomInt(576-48);//在窗口随机位置生成
+app.stage.addChild(box_test);
 
 //键盘监听
 function keyboard(value) {

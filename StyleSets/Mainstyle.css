@@ -1,6 +1,7 @@
 #GameWindow {
-    width: 1000px;
-    height: 600px;
+    width: 960px;
+    height: 576px;
+    /* 边框样式 */
     border-style:ridge;
     border-width:5px;
     border-color: rgb(63, 45, 152);
