@@ -4,13 +4,13 @@
 let app = new PIXI.Application({ width: 960, height: 576, antialias: true });
 
 //background sprite
-const background = PIXI.Sprite.from('/BITDDL/image_temp/TestGameBackground2.png');
+const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
 
 //neko sprite1
-let neko = PIXI.Sprite.from("/BITDDL/sprite/players/Character_test.png");
+let neko = PIXI.Sprite.from("../sprite/players/Character_test.png");
 neko.width = 48;
 neko.height = 48;
 neko.x = app.screen.width / 2;
@@ -25,11 +25,11 @@ function getRandomInt(max) {
 }
 
 //box sprite2
-const box_test = PIXI.Sprite.from('/BITDDL/image_temp/barrier.png');
+const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
 box_test.width = 48;
 box_test.height = 48;
-box_test.x = getRandomInt(960-48);
-box_test.y = getRandomInt(576-48);//在窗口随机位置生成
+box_test.x = getRandomInt(960 - 48);
+box_test.y = getRandomInt(576 - 48);//在窗口随机位置生成
 app.stage.addChild(box_test);
 
 //键盘监听
