@@ -1,0 +1,42 @@
+.gamescene {
+    width: 1025px;
+    height: 615px;
+}
+
+.game {
+    width: 1050px;
+    height: 650px;
+}
+
+.centre {
+    margin: 0 auto;
+}
+
+.toolbar {
+    width: 1000px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.avator {
+    width: 200px;
+    height: 200px;
+}
+
+.text_area {
+    width: 600px;
+    height: 200px;
+    background-color: burlywood;
+}
+
+.button_box {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
