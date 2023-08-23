@@ -1,70 +1,89 @@
 import { HitTest, CrossTheBoader } from './collision.js'
 import { keyboard } from './keyboard.js';
 //创建app对象，把预览加入DOM,app对象建议开全局
-var app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
+let app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
 //neko sprite1
-let neko = PIXI.Sprite.from('../sprite/players/Character_test.png');
-console.log(neko);
-neko.width = 48;
-neko.height = 48;
-neko.x = app.screen.width / 2;
-neko.y = app.screen.height / 2;
-neko.vx = 0; neko.vy = 0;
-document.getElementById("GameWindow").appendChild(app.view);
-app.stage.addChild(neko);
-//box sprite2
+const texturePromise = PIXI.Assets.load('../sprite/players/Character_test.png');
+let neko;
+texturePromise.then((resolvedTexture) => {
+    neko = PIXI.Sprite.from(resolvedTexture);
+    neko.width = 48;
+    neko.height = 48;
+    neko.x = app.screen.width / 2;
+    neko.y = app.screen.height / 2;
+    neko.vx = 0; neko.vy = 0;
+    document.getElementById("GameWindow").appendChild(app.view);
+    app.stage.addChild(neko);
+    
+    setup();
+});
 
-//
-let left = keyboard("ArrowLeft"),
-    up = keyboard("ArrowUp"),
-    right = keyboard("ArrowRight"),
-    down = keyboard("ArrowDown");
-//水平和垂直速度
-let hori, vertical;
-hori = 1.5; vertical = 1.0;
-//Left
-left.press = () => {
-    neko.vx = -hori;
-};
 
-left.release = () => {
-    //八向移动，只有在反方向按键未按下时松开此键才会停止
-    if (!right.isDown) {
-        neko.vx = 0;
-    }
-};
 
-//Up
-up.press = () => {
-    neko.vy = -vertical;
-};
-up.release = () => {
-    if (!down.isDown) {
-        neko.vy = 0;
-    }
-};
 
-//Right
-right.press = () => {
-    neko.vx = hori;
-};
-right.release = () => {
-    if (!left.isDown) {
-        neko.vx = 0;
-    }
-};
 
-//Down
-down.press = () => {
-    neko.vy = vertical;
-};
-down.release = () => {
-    if (!up.isDown) {
-        neko.vy = 0;
-    }
-};
+function setup() {
+    neko.width = 48;
+    neko.height = 48;
+    neko.x = app.screen.width / 2;
+    neko.y = app.screen.height / 2;
+    neko.vx = 0; neko.vy = 0;
+    document.getElementById("GameWindow").appendChild(app.view);
+    app.stage.addChild(neko);
+    //box sprite2
 
-app.ticker.add((delta) => gameloop(delta));
+    //
+    let left = keyboard("ArrowLeft"),
+        up = keyboard("ArrowUp"),
+        right = keyboard("ArrowRight"),
+        down = keyboard("ArrowDown");
+    //水平和垂直速度
+    let hori, vertical;
+    hori = 1.5; vertical = 1.0;
+    //Left
+    left.press = () => {
+        neko.vx = -hori;
+    };
+
+    left.release = () => {
+        //八向移动，只有在反方向按键未按下时松开此键才会停止
+        if (!right.isDown) {
+            neko.vx = 0;
+        }
+    };
+
+    //Up
+    up.press = () => {
+        neko.vy = -vertical;
+    };
+    up.release = () => {
+        if (!down.isDown) {
+            neko.vy = 0;
+        }
+    };
+
+    //Right
+    right.press = () => {
+        neko.vx = hori;
+    };
+    right.release = () => {
+        if (!left.isDown) {
+            neko.vx = 0;
+        }
+    };
+
+    //Down
+    down.press = () => {
+        neko.vy = vertical;
+    };
+    down.release = () => {
+        if (!up.isDown) {
+            neko.vy = 0;
+        }
+    };
+
+    app.ticker.add((delta) => gameloop(delta));
+}
 
 function gameloop(delta) {//游戏循环
     play(delta);
