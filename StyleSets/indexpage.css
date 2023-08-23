@@ -1,6 +1,7 @@
 body {
     background-image: url('../backgrounds/Background1.png');
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .game {
