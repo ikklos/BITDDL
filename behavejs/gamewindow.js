@@ -1,6 +1,6 @@
 
 //创建app对象，把预览加入DOM,app对象建议开全局
-let app = new PIXI.Application({ width: 800, height: 480, antialias: true });
+let app = new PIXI.Application({ width: 1000, height: 600, antialias: true });
 //neko sprite1
 let neko = PIXI.Sprite.from("../sprite/players/neko.jpg");
 neko.width = 48;
@@ -65,8 +65,8 @@ let left = keyboard("ArrowLeft"),
     right = keyboard("ArrowRight"),
     down = keyboard("ArrowDown");
 //水平和垂直速度
-let hori,vertical;
-hori = 1.5;vertical = 1.0;
+let hori, vertical;
+hori = 1.5; vertical = 1.0;
 //Left
 left.press = () => {
     neko.vx = -hori;
@@ -116,24 +116,24 @@ function gameloop(delta) {//游戏循环
 }
 function play(delta) {
     neko.x += neko.vx;
-    if(CrossTheBoader(neko)){
+    if (CrossTheBoader(neko)) {
         neko.x -= neko.vx;
     }
     neko.y += neko.vy;
-    if(CrossTheBoader(neko)){
+    if (CrossTheBoader(neko)) {
         neko.y -= neko.vy;
     }
 }
 
 //矩形碰撞箱检测
-function HitTest(r1, r2){
-    let hit,combineWidth,combineHeight,vx,vy;
+function HitTest(r1, r2) {
+    let hit, combineWidth, combineHeight, vx, vy;
     hit = false;
     r1.CenterX = r1.x + r1.width / 2;
     r1.CenterY = r1.y + r1.height / 2;
     r2.CenterX = r2.x + r2.width / 2;
     r2.CenterY = r2.y + r2.height / 2;
-    
+
     r1.halfwidth = r1.width / 2;
     r1.halfheight = r1.height / 2;
     r2.halfwidth = r2.width / 2;
@@ -145,7 +145,7 @@ function HitTest(r1, r2){
     combineWidth = r1.halfwidth + r2.halfwidth;
     combineHeight = r1.halfheight + r2.halfheight;
 
-    if(vx < combineWidth && vy < combineHeight){
+    if (vx < combineWidth && vy < combineHeight) {
         hit = true;
     }
 
@@ -153,8 +153,8 @@ function HitTest(r1, r2){
 }
 
 //检测控制角色是否要超出地图边界
-function CrossTheBoader(r){
-    let over,leftboader,rightboader,upboader,downboader;
+function CrossTheBoader(r) {
+    let over, leftboader, rightboader, upboader, downboader;
     over = true;
     let win = document.getElementById("GameWindow");
     leftboader = 0;
@@ -167,11 +167,11 @@ function CrossTheBoader(r){
     r.secondnodeX = r.x + r.width;
     r.secondnodeY = r.y + r.height;
     //alert(r.firstnodeX);
-    if(r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
-        &&r.firstnodeY >= upboader && r.firstnodeY <= downboader
-        &&r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
-        &&r.secondnodeY >= upboader && r.secondnodeY <= downboader){
-            over = false;
+    if (r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
+        && r.firstnodeY >= upboader && r.firstnodeY <= downboader
+        && r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
+        && r.secondnodeY >= upboader && r.secondnodeY <= downboader) {
+        over = false;
     }
     return over;
 }
