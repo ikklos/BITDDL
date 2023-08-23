@@ -1,0 +1,10 @@
+body {
+    background-image: "url(Background1.png)";
+}
+
+.game {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

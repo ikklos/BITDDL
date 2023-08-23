@@ -1,9 +1,4 @@
 #GameWindow {
     width: 800px;
     height: 480px;
-    /*游戏窗口居中对齐*/
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
