@@ -1,0 +1,20 @@
+{
+    "bgms":[{
+        "loop":"",
+        "preload":"auto",
+        "type": "audio/mpeg",
+        "src": "/BGM/駛向水平線的彼方.mp3"
+
+    },{
+        "loop":"",
+        "preload":"auto",
+        "type": "audio/mpeg",
+        "src": "/BGM/Mapleisland.mp3"
+    },{
+        "loop":"",
+        "preload":"auto",
+        "type": "audio/mpeg",
+        "src":"/BGM/メインテーマ.mp3"
+    }]
+    
+}

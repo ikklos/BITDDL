@@ -49,7 +49,7 @@ async function AfterLoad() {
     document.getElementById("GameWindow").appendChild(app.view);
     app.stage.addChild(neko);
     neko.animationSpeed = 0.1;
-    
+
     //生成随机整数
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
@@ -121,15 +121,14 @@ async function AfterLoad() {
     }
     app.stage.sortChildren();
     app.ticker.add((delta) => gameloop(delta));
-
     function gameloop(delta) {//游戏循环
         play(delta);
     }
     function play(delta) {
-        if(neko.vx != 0 || neko.vy != 0){
-            if(!neko.playing)neko.play();
-        }else{
-            if(neko.playing) neko.stop();
+        if (neko.vx != 0 || neko.vy != 0) {
+            if (!neko.playing) neko.play();
+        } else {
+            if (neko.playing) neko.stop();
         }
         neko.x += neko.vx;
         if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
@@ -145,4 +144,5 @@ async function AfterLoad() {
         }
     }
 }
+
 AfterLoad();
