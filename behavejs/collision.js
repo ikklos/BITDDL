@@ -3,14 +3,14 @@ export function HitTest(r1, r2) {
     let hit, combineWidth, combineHeight, vx, vy;
     hit = false;
     r1.CenterX = r1.x + r1.width / 2;
-    r1.CenterY = r1.y + r1.height / 2;
+    r1.CenterY = r1.y + r1.height * (1 - r1.collideH) / 2;
     r2.CenterX = r2.x + r2.width / 2;
-    r2.CenterY = r2.y + r2.height / 2;
+    r2.CenterY = r2.y + r2.height * (1 - r2.collideH) / 2;
 
     r1.halfwidth = r1.width / 2;
-    r1.halfheight = r1.height / 2;
+    r1.halfheight = r1.height * r1.collideH / 2;
     r2.halfwidth = r2.width / 2;
-    r2.halfheight = r2.height / 2;
+    r2.halfheight = r2.height * r2.collideH / 2;
 
     vx = Math.abs(r1.CenterX - r2.CenterX);
     vy = Math.abs(r1.CenterY - r2.CenterY);
