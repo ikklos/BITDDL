@@ -58,9 +58,9 @@ async function AfterLoad() {
 
     //box sprite2
     const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
-    box_test.hitbox = getPartHitBox(box_test, 0.6);
     box_test.width = 48;
     box_test.height = 48;
+    box_test.hitbox = getPartHitBox(box_test, 0.6);
     box_test.x = getRandomInt(960 - 48);
     box_test.y = getRandomInt(576 - 48);//在窗口随机位置生成
     app.stage.addChild(box_test);
