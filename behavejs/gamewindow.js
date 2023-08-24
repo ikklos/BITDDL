@@ -1,7 +1,6 @@
-import { CrossTheBoader, HitTest } from "./collision.js";
+import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 
-// import {changeBGM} from './indexpage.js';
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
 var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
@@ -97,14 +96,10 @@ app.stage.addChild(background);
 // }
 //neko sprite1
 async function AfterLoad() {
-    // console.log(bgms[0]);
-    //changeBGM(1);
-    // console.log("in_gamewindo2w");
     const sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
     // console.log("in_gamew7indow");
     let neko = new PIXI.AnimatedSprite(sheet.animations['Character_test']);
-    // console.log("in_ga6mewindow");
-    neko.collideH = 0.5;//0-1内的整数，代表sprite碰撞体积占贴图大小的百分比
+    neko.hitbox = getHitBox(12, 24, 24, 24);
     neko.width = 48;
     neko.height = 48;
     // console.log("in_gamewind5ow");
@@ -122,9 +117,9 @@ async function AfterLoad() {
 
     //box sprite2
     const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
-    box_test.collideH = 0.5;
     box_test.width = 48;
     box_test.height = 48;
+    box_test.hitbox = getPartHitBox(box_test, 0.6);
     box_test.x = getRandomInt(960 - 48);
     box_test.y = getRandomInt(576 - 48);//在窗口随机位置生成
     app.stage.addChild(box_test);
