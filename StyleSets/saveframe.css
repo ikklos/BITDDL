@@ -1,38 +1,12 @@
-body {
-    background-image: url('../backgrounds/Background1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.button_box {
-    width: 300px;
-    height: 300px;
+.save_list {
+    visibility: hidden;
+    background-color: aqua;
+    width: 400px;
+    height: 550px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-}
-
-.save_list_frame {
-    visibility: hidden;
-    width: 400px;
-    height: 700px;
-    background-color: burlywood;
-}
-
-.game {
-    visibility: hidden;
-    width: 1050px;
-    height: 825px;
-}
-
-.centre {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
 }
 
 .push_button {
@@ -45,7 +19,7 @@ body {
     line-height: 43px;
     font-family: 'Oswald', Helvetica;
     display: block;
-    margin: 30px;
+    margin: 20px auto;
 }
 
 .push_button:before {

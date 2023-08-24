@@ -4,7 +4,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="StyleSets/indexpage.css">
     <script src="Lib/rc.2_pixi.js"></script>
-    
+    <script src="Lib/sweetalert2.all.js"></script>
+
     <link rel="icon" href="image_temp/Test_ico.ico">
 </head>
 
@@ -13,9 +14,10 @@
 <body>
     <div class="centre button_box">
         <a onclick="startgame()" class="push_button red" href="#" id="startgamebutton">Start</a>
-        <!--a onclick="startgame()" class="push_button blue" href="#" id="startgamebutton">Start</a!-->
+        <a onclick="checksaves()" class="push_button blue" href="#" id="loadsavebutton">Saves</a>
     </div>
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
+    <iframe src="SaveFrame.html" id="savelistframe" class="centre save_list_frame"></iframe>
 </body>
 
 <script src="behavejs/indexpage.js"></script>

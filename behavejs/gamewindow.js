@@ -34,7 +34,7 @@ function loadbgms(bgmpack) {
     return bgms;
 }
 let bgmStarted = false, bgmNum = 0;
-
+let currentBGM = 0;
 const startPlayBGM = () => {
     if (bgmStarted) {
         return true;
@@ -55,6 +55,7 @@ function changeBGM(num) {
             console.log("change");
             bgms[num].volume = 0.2;
             audio.play();
+            currentBGM = num;
         }
         if (num !== index) {
             audio.volume = 0;
@@ -64,6 +65,12 @@ function changeBGM(num) {
 
 document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
+
+let volume_sele = document.querySelector(".volume");
+volume_sele.oninput = function (){
+    bgms[currentBGM].volume = this.value;
+    console.log("设置的音量大小为：", bgms[currentBGM].volume);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
