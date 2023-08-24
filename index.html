@@ -11,8 +11,6 @@
 
 
 <body>
-
-    
     <div class="centre button_box">
         <a onclick="startgame()" class="push_button red" href="#" id="startgamebutton">Start</a>
         <!--a onclick="startgame()" class="push_button blue" href="#" id="startgamebutton">Start</a!-->
@@ -20,6 +18,10 @@
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
 </body>
 
-<script src="behavejs/indexpage.js"></script>
+<script type = "module" src="behavejs/indexpage.js"></script>
+<script>function startgame() {
+    document.getElementById("startgamebutton").style.visibility = 'hidden';
+    document.getElementById("maingameframe").style.visibility = 'visible';
+}</script>
 
 </html>

@@ -1,7 +1,3 @@
-function startgame() {
-    document.getElementById("startgamebutton").style.visibility = 'hidden';
-    document.getElementById("maingameframe").style.visibility = 'visible';
-}
 
 //BGM播放和切换
 var bgms = [];
@@ -11,8 +7,8 @@ fetch('../BGM/bgmdata.json')
 
 function loadbgms(bgmpack){
     
-    Array = bgmpack.bgms;
-    len = Array.length;
+    let Array = bgmpack.bgms;
+    let len = Array.length;
     bgms = [len];
     for(let i = 0; i < len; i++){
         console.log(Array[i]);
@@ -39,7 +35,7 @@ const startPlayBGM = () => {
     document.removeEventListener('keydown', startPlayBGM);
     return false;
 };
-function changeBGM (num) {
+function changeBGM(num,bgms) {
     bgms.forEach((audio, index) => {
         if (num === index) { 
             bgms[num].volume = 0.2;
@@ -53,6 +49,4 @@ function changeBGM (num) {
 
 document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
-
-
-
+export {bgms,changeBGM};
