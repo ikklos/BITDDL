@@ -129,3 +129,8 @@ body {
     background-image: -o-linear-gradient(top, #3EACBA, #48C6D4);
     background-image: linear-gradient(top, #3EACBA, #48C6D4);
 }
+
+/* 音量播放调整  */
+.volume {
+    /* appearance: slider-vertical; */
+  }
