@@ -6,12 +6,12 @@ import { bgms, changeBGM } from './indexpage.js';
 var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
 
 app.stage.sortableChildren = true;
-
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
+document.getElementById("GameWindow").appendChild(app.view);
 // async function init() {/////////////////////////尝试把贴图捆成bundles，这样比较方便调用（？而且这b还能后台运行，可以提高运行效率
 //     const alltex = {
 //         Bundles: [{
@@ -36,18 +36,16 @@ app.stage.addChild(background);
 //     await PIXI.Assets.init({manifest: alltex});
 //     AfterLoad();
 // }
-//neko sprite1
 async function AfterLoad() {
     changeBGM(2, bgms);
     const sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
     let neko = new PIXI.AnimatedSprite(sheet.animations['Character_test']);
-    neko.hitbox = getHitBox(12, 24, 24, 24);
     neko.width = 48;
     neko.height = 48;
+    neko.hitbox = getHitBox(12, 24, 24, 24);
     neko.x = app.screen.width / 2;
     neko.y = app.screen.height / 2;
     neko.vx = 0; neko.vy = 0;
-    document.getElementById("GameWindow").appendChild(app.view);
     app.stage.addChild(neko);
     neko.animationSpeed = 0.1;
 
@@ -121,15 +119,17 @@ async function AfterLoad() {
         app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
     }
     app.stage.sortChildren();
+
+    //游戏循环
     app.ticker.add((delta) => gameloop(delta));
-    function gameloop(delta) {//游戏循环
+    function gameloop(delta) {
         play(delta);
     }
     function play(delta) {
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
         } else {
-            if (neko.playing) neko.stop();
+            neko.gotoAndStop(0);
         }
         neko.x += neko.vx;
         if (neko.zIndex != neko.y + neko.height) {//改变高度时排序

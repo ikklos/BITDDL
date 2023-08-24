@@ -5,13 +5,12 @@ fetch('../BGM/bgmdata.json')
     .then((response) => response.json())
     .then((json) => loadbgms(json));
 
-function loadbgms(bgmpack){
-    
+function loadbgms(bgmpack) {
+
     let Array = bgmpack.bgms;
     let len = Array.length;
     bgms = [len];
-    for(let i = 0; i < len; i++){
-        console.log(Array[i]);
+    for (let i = 0; i < len; i++) {
         bgms[i] = document.createElement("audio");
         bgms[i].setAttribute("loop", Array[i].loop);
         bgms[i].setAttribute("preload", Array[i].preload);
@@ -23,7 +22,7 @@ function loadbgms(bgmpack){
 }
 let bgmStarted = false, bgmNum = 0;
 const startPlayBGM = () => {
-    if (bgmStarted){
+    if (bgmStarted) {
         return true;
     }
     bgms[0].volume = 0.2;
@@ -35,12 +34,12 @@ const startPlayBGM = () => {
     document.removeEventListener('keydown', startPlayBGM);
     return false;
 };
-function changeBGM(num,bgms) {
+function changeBGM(num, bgms) {
     bgms.forEach((audio, index) => {
-        if (num === index) { 
+        if (num === index) {
             bgms[num].volume = 0.2;
             audio.play();
-        } 
+        }
         if (num !== index) {
             audio.volume = 0;
         }
@@ -49,4 +48,4 @@ function changeBGM(num,bgms) {
 
 document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
-export {bgms,changeBGM};
+export { bgms, changeBGM };
