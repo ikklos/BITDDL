@@ -1,4 +1,3 @@
-import Swal from '../Lib/sweetalert2.all.js';
 /**
  * playersave{
  * name savedate
@@ -6,7 +5,7 @@ import Swal from '../Lib/sweetalert2.all.js';
  * }
  */
 
-const defaultSave = {
+export const defaultSave = {
     playerName: 'tav',
     saveDate: '2077-8-20-23-55',
     password: '123'
@@ -24,11 +23,11 @@ export function getSaveString(saveList) {
 }
 
 export function readSaveString(str) {
-    saveList = null;
+    let saveList = null;
     try {
         saveList = JSON.parse(decodeURIComponent(atob(str)));
     } catch (e) {
-        Swal.fire('Save Load Failed', e, 'error');
+        Swal.fire('Save Load Failed', e.toString(), 'error');
     }
     return saveList;
 }

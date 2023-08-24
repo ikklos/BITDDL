@@ -1,3 +1,6 @@
+var saveList = [];
+var currentSaveIndex;
+
 function startgame() {
     document.getElementById("startgamebutton").style.visibility = 'hidden';
     document.getElementById("loadsavebutton").style.visibility = 'hidden';
