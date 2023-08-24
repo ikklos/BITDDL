@@ -1,0 +1,23 @@
+{
+    "banaries":[
+        {
+            "name":"Banary 1",
+            "x": 200,
+            "y": 233,
+            "width": 100,
+            "height": 100,
+            "type": "banary",
+            "collideH":0.2
+        },
+        {
+            "name":"Banary 2",
+            "x": 500,
+            "y": 100,
+            "width": 100,
+            "height": 100,
+            "type": "banary",
+            "collideH":0.2
+        }
+
+    ]
+}
