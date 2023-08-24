@@ -1,5 +1,11 @@
+/* 定义字体 */
+@font-face {
+    font-family: "PressStart2P";
+    src: url("./Font/PressStart2P.woff") format('woff');
+}
+
 html {
-    font-family: sans-serif; 
+    font-family: PressStart2P; 
     font-size: 100%; 
     -ms-text-size-adjust: 100%; 
     -webkit-text-size-adjust: 100%; 
@@ -59,7 +65,7 @@ body {
     color: #FFF;
     text-decoration: none;
     line-height: 43px;
-    font-family: 'Oswald', Helvetica;
+    font-family: 'PressStart2P','Oswald', Helvetica;
     display: block;
     margin: 30px;
 }
