@@ -65,11 +65,26 @@ function changeBGM(num) {
 document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
 
+//音量控件
+
 let volume_sele = document.querySelector(".volume");
 volume_sele.oninput = function () {
     bgms[currentBGM].volume = this.value;
     console.log("设置的音量大小为：", bgms[currentBGM].volume);
 }
+
+// async function initButton(){
+//     let texture = await PIXI.Assets.load("../icon/MenuButton.json");
+//     const volButton = PIXI.Sprite.from("MenuButtons8.png");
+//     volButton.width = 32;
+//     volButton.height = 32;
+//     volButton.x = volButton.width / 2;
+//     volButton.y = volButton.height / 2;
+//     app.stage.addChild(volButton);
+// }
+// initButton();
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -131,8 +146,8 @@ async function AfterLoad() {
     box_test.width = 48;
     box_test.height = 48;
     box_test.hitbox = getPartHitBox(box_test, 0.6);
-    box_test.x = getRandomInt(960 - 48);
-    box_test.y = getRandomInt(576 - 48);//在窗口随机位置生成
+    box_test.x = getRandomInt(19)*48;
+    box_test.y = getRandomInt(11)*48;//在窗口随机位置生成
     app.stage.addChild(box_test);
 
     let left = keyboard("ArrowLeft"),

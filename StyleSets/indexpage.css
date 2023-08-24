@@ -1,7 +1,23 @@
+html {
+    font-family: sans-serif; 
+    font-size: 100%; 
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%; 
+    cursor: url("../icon/cursor_1.png"),auto;
+}
+
+a{
+    cursor: url("../icon/cursor_2.png") 14 0,auto;
+}
+
 body {
-    background-image: url('../backgrounds/Background1.png');
+    background-image: url('../backgrounds/Background2.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    
 }
 
 .button_box {
