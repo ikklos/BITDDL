@@ -26,6 +26,7 @@ export function readSaveString(str) {
     let saveList = null;
     try {
         saveList = JSON.parse(decodeURIComponent(atob(str)));
+        Swal.fire('Success', saveList.length + ' save(s) loaded!', 'success');
     } catch (e) {
         Swal.fire('Save Load Failed', e.toString(), 'error');
     }

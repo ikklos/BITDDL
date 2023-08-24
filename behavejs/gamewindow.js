@@ -22,7 +22,6 @@ function loadbgms(bgmpack) {
     let len = Array.length;
     bgms = [len];
     for (let i = 0; i < len; i++) {
-        console.log(Array[i]);
         bgms[i] = document.createElement("audio");
         bgms[i].setAttribute("loop", Array[i].loop);
         bgms[i].setAttribute("preload", Array[i].preload);
@@ -67,7 +66,7 @@ document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
 
 let volume_sele = document.querySelector(".volume");
-volume_sele.oninput = function (){
+volume_sele.oninput = function () {
     bgms[currentBGM].volume = this.value;
     console.log("设置的音量大小为：", bgms[currentBGM].volume);
 }
@@ -218,11 +217,10 @@ async function AfterLoad() {
     }
 }
 
-function HitMap(r){
-    for(let i = 0; i < BanariesPool.length; i++){
-        BanariesPool[i].hitbox = getPartHitBox(BanariesPool[i],BanariesPool[i].collideH);
-        console.log(BanariesPool[i]);
-        if(HitTest(r, BanariesPool[i])){
+function HitMap(r) {
+    for (let i = 0; i < BanariesPool.length; i++) {
+        BanariesPool[i].hitbox = getPartHitBox(BanariesPool[i], BanariesPool[i].collideH);
+        if (HitTest(r, BanariesPool[i])) {
             return true;
         }
     }
