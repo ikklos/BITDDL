@@ -1,24 +1,26 @@
 //键盘监听
-export function keyboard(value) {
+export function keyboard(value1,value2) {
     let key = {};
-    key.value = value;
+    key.value1 = value1;
+    key.value2 = value2;
     key.isDown = false;
     key.isUp = true;
     key.press = undefined;
     key.release = undefined;
     //The `downHandler`
     key.downHandler = event => {
-        if (event.key === key.value) {
+        if (event.key === key.value1 || event.key === key.value2) {
             if (key.isUp && key.press) key.press();
             key.isDown = true;
             key.isUp = false;
+            console.log("pressed",value);
             event.preventDefault();
         }
     };
 
     //The `upHandler`
     key.upHandler = event => {
-        if (event.key === key.value) {
+        if (event.key === key.value1 || event.key === key.value2) {
             if (key.isDown && key.release) key.release();
             key.isDown = false;
             key.isUp = true;

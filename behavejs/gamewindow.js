@@ -150,11 +150,11 @@ async function AfterLoad() {
     box_test.y = getRandomInt(11)*48;//在窗口随机位置生成
     app.stage.addChild(box_test);
 
-    let left = keyboard("ArrowLeft"),
-        up = keyboard("ArrowUp"),
-        right = keyboard("ArrowRight"),
-        down = keyboard("ArrowDown");
-    // console.log("in_gamewindo3w");
+    let left = keyboard("ArrowLeft","a"),
+        up = keyboard("ArrowUp","w"),
+        right = keyboard("ArrowRight","d"),
+        down = keyboard("ArrowDown","s");
+    
     //水平和垂直速度
     let hori, vertical;
     hori = 1.5; vertical = 1.0;
@@ -168,6 +168,9 @@ async function AfterLoad() {
         if (!right.isDown) {
             neko.vx = 0;
         }
+        if (right.isDown) {
+            neko.vx = hori;
+        }
     };
 
     //Up
@@ -177,6 +180,9 @@ async function AfterLoad() {
     up.release = () => {
         if (!down.isDown) {
             neko.vy = 0;
+        }
+        if (down.isDown) {
+            neko.vy = vertical;
         }
     };
 
@@ -188,6 +194,9 @@ async function AfterLoad() {
         if (!left.isDown) {
             neko.vx = 0;
         }
+        if (left.isDown) {
+            neko.vx = -hori;
+        }
     };
 
     //Down
@@ -197,6 +206,9 @@ async function AfterLoad() {
     down.release = () => {
         if (!up.isDown) {
             neko.vy = 0;
+        }
+        if (up.isDown) {
+            neko.vy = -vertical;
         }
     };
 
