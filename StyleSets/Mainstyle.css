@@ -10,9 +10,14 @@ html {
     width: 960px;
     height: 576px;
     /* 边框样式 */
-    border-style:ridge;
-    border-width:5px;
-    border-color: rgb(63, 45, 152);
+    border-image-slice: 2;
+    border-image-repeat:stretch;
+    /* 这里有一张奇怪的矢量图 */
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-width: 2;
+    border-width: 10px;
+    border-image-outset: 1;
+    border-style: solid;
 
 }
 

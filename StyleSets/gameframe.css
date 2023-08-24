@@ -13,44 +13,43 @@ html {
 }
 
 .gamescene {
-    width: 985px;
-    height: 600px;
+    display: flex;
+    flex-flow: column;
 }
 
-.game {
-    width: 1050px;
-    height: 650px;
+#maingameframe{
+    flex: 1000px;
 }
-
 .centre {
     margin: 0 auto;
 }
 
 .toolbar {
-    width: 1000px;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .avator {
-    width: 200px;
-    height: 200px;
+    
 }
 
 .text_area {
-    width: 600px;
-    height: 200px;
+    
+    border-image-slice: 3;
+    border-image-width: 3;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-outset: 2;
+    border-style: solid;
+    border-width: 4px;
+    padding: 1rem 1.5rem;
+    margin: 10px;
     background-color: burlywood;
+    order: 1;
 }
 
 .button_box {
-    width: 200px;
+    /* width: 200px;
     height: 200px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
