@@ -4,6 +4,7 @@ import { keyboard } from './keyboard.js';
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
 var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
+document.getElementById("GameWindow").appendChild(app.view);
 
 app.stage.sortableChildren = true;
 
@@ -15,11 +16,11 @@ var bgms = [];
 fetch('../BGM/bgmdata.json')
     .then((response) => response.json())
     .then((json) => loadbgms(json));
-function loadbgms(bgmpack){
+function loadbgms(bgmpack) {
     let Array = bgmpack.bgms;
     let len = Array.length;
     bgms = [len];
-    for(let i = 0; i < len; i++){
+    for (let i = 0; i < len; i++) {
         console.log(Array[i]);
         bgms[i] = document.createElement("audio");
         bgms[i].setAttribute("loop", Array[i].loop);
@@ -34,7 +35,7 @@ function loadbgms(bgmpack){
 let bgmStarted = false, bgmNum = 0;
 
 const startPlayBGM = () => {
-    if (bgmStarted){
+    if (bgmStarted) {
         return true;
     }
     console.log("start!");
@@ -49,11 +50,11 @@ const startPlayBGM = () => {
 };
 function changeBGM(num) {
     bgms.forEach((audio, index) => {
-        if (num === index) { 
+        if (num === index) {
             console.log("change");
             bgms[num].volume = 0.2;
             audio.play();
-        } 
+        }
         if (num !== index) {
             audio.volume = 0;
         }
@@ -99,14 +100,13 @@ async function AfterLoad() {
     const sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
     // console.log("in_gamew7indow");
     let neko = new PIXI.AnimatedSprite(sheet.animations['Character_test']);
-    neko.hitbox = getHitBox(12, 24, 24, 24);
     neko.width = 48;
     neko.height = 48;
+    neko.hitbox = getHitBox(12, 24, 24, 24);
     // console.log("in_gamewind5ow");
     neko.x = app.screen.width / 2;
     neko.y = app.screen.height / 2;
     neko.vx = 0; neko.vy = 0;
-    document.getElementById("GameWindow").appendChild(app.view);
     app.stage.addChild(neko);
     neko.animationSpeed = 0.1;
     // console.log("in_gamewind4ow");
@@ -128,7 +128,7 @@ async function AfterLoad() {
         up = keyboard("ArrowUp"),
         right = keyboard("ArrowRight"),
         down = keyboard("ArrowDown");
-        // console.log("in_gamewindo3w");
+    // console.log("in_gamewindo3w");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.5; vertical = 1.0;
@@ -189,7 +189,7 @@ async function AfterLoad() {
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
         } else {
-            if (neko.playing) neko.stop();
+            neko.gotoAndStop(0);
         }
         neko.x += neko.vx;
         if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
