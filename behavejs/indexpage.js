@@ -30,9 +30,9 @@ const startPlayBGM = () => {
     if (bgmStarted){
         return true;
     }
-    bgms[0].volume = 0.5;
-    bgms[1].volume = 0.5;
-    bgms[2].volume = 0.5;
+    bgms[0].volume = 0.2;
+    bgms[1].volume = 0.2;
+    bgms[2].volume = 0.2;
     bgmStarted = true;
     bgms[0].play();
     document.removeEventListener('click', startPlayBGM);
@@ -42,10 +42,11 @@ const startPlayBGM = () => {
 function changeBGM (num) {
     bgms.forEach((audio, index) => {
         if (num === index) { 
+            bgms[num].volume = 0.2;
             audio.play();
         } 
         if (num !== index) {
-            audio.pause();
+            audio.volume = 0;
         }
     });
 };
