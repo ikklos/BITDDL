@@ -11,7 +11,9 @@ function checksaves() {
     document.getElementById("savelistframe").style.visibility = 'visible';
 }
 
-if (document.getElementById('startgamebutton'))
-    document.getElementById('startgamebutton').onclick = startgame;
-if (document.getElementById('loadsavebutton'))
-    document.getElementById('loadsavebutton').onclick = checksaves;
+function showMainMenu() {
+    document.getElementById("startgamebutton").style.visibility = 'visible';
+    document.getElementById("loadsavebutton").style.visibility = 'visible';
+    document.getElementById("maingameframe").style.visibility = 'hidden';
+    document.getElementById("savelistframe").style.visibility = 'hidden';
+}

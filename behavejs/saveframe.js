@@ -1,5 +1,20 @@
-import { getSaveString, readSaveString } from "./playerSaves.js";
+import { getSaveString, readSaveString, defaultSave } from "./playerSaves.js";
 
+function updateList() {
+    console.log(window.parent.saveList);
+    let slist = document.getElementById('savelist');
+    slist.innerHTML = '';
+    for (let i = 0; i < window.parent.saveList.length; i++) {
+        let temp = document.createElement("button");
+        let text = window.parent.saveList[i].playerName + ':' + window.parent.saveList[i].saveDate;
+        temp.innerHTML = text;
+        temp.onclick = () => {
+            window.parent.currentSaveIndex = i;
+            Swal.fire("Loaded Save", text, "info");
+        };
+        slist.appendChild(temp);
+    }
+}
 
 function loadfromfile() {
     let input = document.createElement("input");
@@ -12,6 +27,7 @@ function loadfromfile() {
             reader.readAsText(file);
             reader.addEventListener("load", (event) => {
                 window.parent.saveList = readSaveString(reader.result);
+                updateList();
             });
         } else {
             Swal.fire("Fail to load", "No such file!", "error");
@@ -32,6 +48,18 @@ function savefordownload() {
     URL.revokeObjectURL(url);
 }
 
+function addNewSave() {
+    let temp = {};
+    Object.assign(temp, defaultSave);
+    window.parent.saveList.push(temp);
+    updateList();
+}
+
+function exitFrame() {
+    window.parent.showMainMenu();
+}
 
 document.getElementById('uploadbutton').onclick = loadfromfile;
 document.getElementById('downloadbutton').onclick = savefordownload;
+document.getElementById('addsavebutton').onclick = addNewSave;
+document.getElementById('closeframebutton').onclick = exitFrame;

@@ -1,5 +1,4 @@
 .save_list {
-    visibility: hidden;
     background-color: aqua;
     width: 400px;
     height: 550px;
@@ -7,6 +6,18 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+
+.little_button {
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+
+.button_box {
+    width: 400px;
+    height: 10px;
+    background-color: fuchsia;
 }
 
 .push_button {
