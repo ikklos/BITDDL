@@ -4,7 +4,7 @@ function startgame() {
 }
 
 //BGM播放和切换
-bgms = [];
+var bgms = [];
 fetch('../BGM/bgmdata.json')
     .then((response) => response.json())
     .then((json) => loadbgms(json));

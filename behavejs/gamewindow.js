@@ -3,7 +3,7 @@ import { keyboard } from './keyboard.js';
 
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
-let app = new PIXI.Application({ width: 960, height: 576, antialias: true });
+var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
 
 app.stage.sortableChildren = true;
 
