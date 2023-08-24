@@ -1,4 +1,4 @@
-import { CrossTheBoader, HitTest } from "./collision.js";
+import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
@@ -14,9 +14,9 @@ app.stage.addChild(background);
 
 //neko sprite1
 let neko = PIXI.Sprite.from("../sprite/players/Character_test.png");
-neko.collideH = 0.5;//0-1内的整数，代表sprite碰撞体积占贴图大小的百分比
 neko.width = 48;
 neko.height = 48;
+neko.hitbox = getHitBox(12, 24, 24, 24);
 neko.x = app.screen.width / 2;
 neko.y = app.screen.height / 2;
 neko.vx = 0; neko.vy = 0;
@@ -30,9 +30,9 @@ function getRandomInt(max) {
 
 //box sprite2
 const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
-box_test.collideH = 0.5;
 box_test.width = 48;
 box_test.height = 48;
+box_test.hitbox = getPartHitBox(box_test, 0.7);
 box_test.x = getRandomInt(960 - 48);
 box_test.y = getRandomInt(576 - 48);//在窗口随机位置生成
 app.stage.addChild(box_test);
