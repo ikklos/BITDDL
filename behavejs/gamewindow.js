@@ -1,5 +1,6 @@
 import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
+import { SetMap } from "./MapSet.js";
 
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
@@ -71,6 +72,10 @@ const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
+//加载地图障碍
+var BanariesPool = [];
+BanariesPool = SetMap("../scene/testscene.json");
+console.log(BanariesPool);
 // async function init() {/////////////////////////尝试把贴图捆成bundles，这样比较方便调用（？而且这b还能后台运行，可以提高运行效率
 //     const alltex = {
 //         Bundles: [{
@@ -196,14 +201,26 @@ async function AfterLoad() {
             neko.zIndex = neko.y + neko.height;
             app.stage.sortChildren();
         }
-        if (CrossTheBoader(neko) || HitTest(neko, box_test)) {
+        if (CrossTheBoader(neko) || HitTest(neko, box_test) || HitMap(neko)) {
             neko.x -= neko.vx;
         }
         neko.y += neko.vy;
-        if (CrossTheBoader(neko) || HitTest(neko, box_test)) {
+        if (CrossTheBoader(neko) || HitTest(neko, box_test) || HitMap(neko)) {
             neko.y -= neko.vy;
         }
     }
+}
+
+function HitMap(r){
+    for(let i = 0; i < BanariesPool.length; i++){
+        BanariesPool[i].hitbox = getPartHitBox(BanariesPool[i],BanariesPool[i].collideH);
+        console.log(BanariesPool[i]);
+        if(HitTest(r, BanariesPool[i])){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 AfterLoad();
