@@ -58,7 +58,7 @@ async function AfterLoad() {
 
     //box sprite2
     const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
-    box_test.collideH = 0.5;
+    box_test.hitbox = getPartHitBox(box_test, 0.6);
     box_test.width = 48;
     box_test.height = 48;
     box_test.x = getRandomInt(960 - 48);
