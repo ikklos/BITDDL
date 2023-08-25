@@ -93,6 +93,21 @@ const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
+// //加载地图
+// async function initMap(map){
+//         let texture = await PIXI.Assets.load("../backgrounds/bedroom.png");
+//         const volButton = PIXI.Sprite.from("bedroom.png");
+//         volButton.width = 32;
+//         volButton.height = 32;
+//         volButton.x = volButton.width / 2;
+//         volButton.y = volButton.height / 2;
+//         app.stage.addChild(volButton);
+// }
+//     initButton();
+// const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
+// background.width = app.screen.width;
+// background.height = app.screen.height;
+// app.stage.addChild(background);
 //加载地图障碍
 var BanariesPool = [];
 BanariesPool = SetMap("../scene/testscene.json");

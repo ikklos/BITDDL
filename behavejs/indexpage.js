@@ -17,3 +17,12 @@ function showMainMenu() {
     document.getElementById("maingameframe").style.visibility = 'hidden';
     document.getElementById("savelistframe").style.visibility = 'hidden';
 }
+function iframeAutoFit(iframeObj){
+    setTimeout(
+        function(){if(!iframeObj) return;iframeObj.height=(iframeObj.Document?iframeObj.Document.body.scrollHeight:iframeObj.contentDocument.body.offsetHeight);}
+    ,200)
+}
+
+window.onload = function () {
+    iframeAutoFit(document.getElementById('maingameframe'));
+};

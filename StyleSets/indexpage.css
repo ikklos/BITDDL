@@ -15,7 +15,7 @@ html {
 
 
 body {
-    background-image: url('../backgrounds/Background2.jpg');
+    background-image: url('../image_temp/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -40,7 +40,8 @@ body {
 .game {
     visibility: hidden;
     width: 1050px;
-    height: 900px;
+    align-self: center;
+    /* 高度自适应 */
 }
 
 .centre {

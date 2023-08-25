@@ -21,9 +21,10 @@ body{
 }
 
 #maingameframe{
-    width: 1050px;
+    width: 1000px;
     height: 600px;
     margin-top: 0;
+    align-self: center;
 }
 
 
@@ -39,9 +40,12 @@ body{
 
 .avator {
     flex: 1 150px;
+    margin: 5px 0 0 5px;
+    padding: 0.5%;
 }
 
 .text_area {
+    padding: 10;
     flex: 8;
     border-image-slice: 3;
     border-image-width: 3;
