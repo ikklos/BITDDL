@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="StyleSets/indexpage.css">
+    <link rel="stylesheet" type="text/css" href="StyleSets/universial.css">
     <script src="Lib/rc.2_pixi.js"></script>
     <script src="Lib/sweetalert2.all.js"></script>
     <link rel="icon" href="image_temp/Test_ico.ico">
@@ -13,18 +14,17 @@
 </script>
 
 <body>
-    <div class="title">
+    <div class="title border_s mainmenu " id="gametitle">
         <h1>
             BITDDL
         </h1>
     </div>
     <div class="centre button_box">
-        
-        <a class="push_button red" onclick="startgame()" href="#" id="startgamebutton">开始游戏</a>
-        <a class="push_button blue" onclick="checksaves()" href="#" id="loadsavebutton">加载存档</a>
+        <a class="mainmenu button_s" onclick="startgame()" href="#" id="startgamebutton">开始游戏</a>
+        <a class="mainmenu button_s" onclick="checksaves()" href="#" id="loadsavebutton">加载存档</a>
     </div>
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
-    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame"></iframe>
+    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame border_s"></iframe>
 </body>
 
 <script src="behavejs/indexpage.js"></script>
