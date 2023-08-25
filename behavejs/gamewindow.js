@@ -67,11 +67,11 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 //音量控件
 
-let volume_sele = document.querySelector(".volume");
-volume_sele.oninput = function () {
-    bgms[currentBGM].volume = this.value;
-    console.log("设置的音量大小为：", bgms[currentBGM].volume);
-}
+// let volume_sele = document.querySelector(".volume");
+// volume_sele.oninput = function () {
+//     bgms[currentBGM].volume = this.value;
+//     console.log("设置的音量大小为：", bgms[currentBGM].volume);
+// }
 
 // async function initButton(){
 //     let texture = await PIXI.Assets.load("../icon/MenuButton.json");
