@@ -25,4 +25,5 @@ function iframeAutoFit(iframeObj){
 
 window.onload = function () {
     iframeAutoFit(document.getElementById('maingameframe'));
+    iframeAutoFit(document.getElementById('savelistframe'));
 };
