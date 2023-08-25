@@ -48,6 +48,22 @@ function savefordownload() {
     URL.revokeObjectURL(url);
 }
 
+function saveToCloud() {
+    let str = getSaveString(window.parent.saveList);
+    return fetch(`../cloudSaves/writeSave.php?userid=${window.parent.userName}&save=${str}`)
+        .then(respon => {
+            if (!respon.ok) {
+                throw new Error(respon.statusText)
+            } else
+                Swal.fire("Success", "Saved to Cloud", "success");
+        })
+        .catch(error => {
+            Swal.showValidationMessage(
+                `Request failed: ${error}`
+            );
+        });
+}
+
 function addNewSave() {
     let temp = {};
     Object.assign(temp, defaultSave);
@@ -56,6 +72,7 @@ function addNewSave() {
 }
 
 function exitFrame() {
+    console.log(window.parent);
     window.parent.showMainMenu();
 }
 
@@ -63,3 +80,5 @@ document.getElementById('uploadbutton').onclick = loadfromfile;
 document.getElementById('downloadbutton').onclick = savefordownload;
 document.getElementById('addsavebutton').onclick = addNewSave;
 document.getElementById('closeframebutton').onclick = exitFrame;
+document.getElementById('cloudsavebutton').onclick = saveToCloud;
+document.getElementById('refreshbutton').onclick = updateList;

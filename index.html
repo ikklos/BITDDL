@@ -9,18 +9,27 @@
 </head>
 <script>
     window.saveList = [];
-    window.currentSaveIndex = '123123';
+    window.currentSaveIndex = -1;
+    window.userName = null;
+    function showMainMenu() {
+        document.getElementById("startgamebutton").style.visibility = 'visible';
+        document.getElementById("loadsavebutton").style.visibility = 'visible';
+        document.getElementById("maingameframe").style.visibility = 'hidden';
+        document.getElementById("savelistframe").style.visibility = 'hidden';
+    }
 </script>
 
+<script src="behavejs/indexpage.js" type="module"></script>
+
 <body>
+    <button id="loginbutton">test</button>
     <div class="centre button_box">
-        <a class="push_button red" onclick="startgame()" href="#" id="startgamebutton">Start</a>
-        <a class="push_button blue" onclick="checksaves()" href="#" id="loadsavebutton">Saves</a>
+        <a class="push_button red" href="#" id="startgamebutton">Start</a>
+        <a class="push_button blue" href="#" id="loadsavebutton">Saves</a>
     </div>
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame"></iframe>
 </body>
 
-<script src="behavejs/indexpage.js"></script>
 
 </html>
