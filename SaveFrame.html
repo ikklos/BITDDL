@@ -7,10 +7,14 @@
     <script src="Lib/sweetalert2.all.js"></script>
 </head>
 
+<script src="behavejs/saveframe.js" type="module"></script>
+
 <body>
     <div class="button_box">
         <img src="icon/menuButton/MenuButtons43.png" id="addsavebutton">
         <img src="icon/menuButton/MenuButtons38.png" id="closeframebutton">
+        <img src="icon/menuButton/MenuButtons66.png" id="cloudsavebutton">
+        <img src="icon/menuButton/MenuButtons31.png" id="refreshbutton">
     </div>
     <div class="save_list" id="savelist">
     </div>
@@ -18,6 +22,10 @@
     <button type="button" class="push_button red" id="downloadbutton">Save</button>
 </body>
 
-<script src="behavejs/saveframe.js" type="module"></script>
+<script>
+    function onSaveFrameOpen() {
+        document.getElementById('refreshbutton').click();
+    }
+</script>
 
 </html>
