@@ -13,7 +13,6 @@ export function keyboard(value1,value2) {
             if (key.isUp && key.press) key.press();
             key.isDown = true;
             key.isUp = false;
-            console.log("pressed",value);
             event.preventDefault();
         }
     };

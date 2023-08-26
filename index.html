@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="StyleSets/indexpage.css">
+    <link rel="stylesheet" type="text/css" href="StyleSets/universial.css">
     <script src="Lib/rc.2_pixi.js"></script>
     <script src="Lib/sweetalert2.all.js"></script>
     <link rel="icon" href="image_temp/Test_ico.ico">
@@ -22,13 +23,22 @@
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
+    <div class="tab ">
+        <a class="button_s tab_button"  href="#" id="logbutton">登录</a>
+        <a class="button_s tab_button"  href="#" id="regbutton">注册</a>
+    </div>
+    <div class="title border_s mainmenu " id="gametitle">
+        <h1>
+            BITDDL
+        </h1>
+    </div>
     <button id="loginbutton">test</button>
     <div class="centre button_box">
-        <a class="push_button red" href="#" id="startgamebutton">Start</a>
-        <a class="push_button blue" href="#" id="loadsavebutton">Saves</a>
+        <a class="mainmenu button_s"  href="#" id="startgamebutton">开始游戏</a>
+        <a class="mainmenu button_s"  href="#" id="loadsavebutton">加载存档</a>
     </div>
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
-    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame"></iframe>
+    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame border_s"></iframe>
 </body>
 
 

@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="StyleSets/saveframe.css">
+    <link rel="stylesheet" type="text/css" href="StyleSets/universial.css">
     <script src="Lib/rc.2_pixi.js"></script>
     <script src="Lib/sweetalert2.all.js"></script>
 </head>
@@ -11,15 +12,17 @@
 
 <body>
     <div class="button_box">
-        <img src="icon/menuButton/MenuButtons43.png" id="addsavebutton">
-        <img src="icon/menuButton/MenuButtons38.png" id="closeframebutton">
-        <img src="icon/menuButton/MenuButtons66.png" id="cloudsavebutton">
+        <!-- 图标在css中实现 -->
+    <button type="button" id="closeframebutton" class="img_button button_s" title="返回主页"></button>
+    <button type="button" id="addsavebutton" class="img_button button_s" title="保存存档"></button>
+    <button type="button" id="uploadbutton" class="img_button button_s" title="上传存档"></button>
+    <button type="button" id="downloadbutton" class="img_button button_s" title="下载存档"></button>
+    <img src="icon/menuButton/MenuButtons66.png" id="cloudsavebutton">
         <img src="icon/menuButton/MenuButtons31.png" id="refreshbutton">
     </div>
-    <div class="save_list" id="savelist">
+    <div class="save_list" id="savelist"> 
     </div>
-    <button type="button" class="push_button red" id="uploadbutton">Upload</button>
-    <button type="button" class="push_button red" id="downloadbutton">Save</button>
+    
 </body>
 
 <script>

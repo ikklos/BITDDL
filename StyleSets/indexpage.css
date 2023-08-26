@@ -1,62 +1,86 @@
-/* 定义字体 */
-@font-face {
-    font-family: "PressStart2P";
-    src: url("./Font/PressStart2P.woff") format('woff');
+
+.title{
+    font-size: 150%;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    background-color:rgb(0, 170, 255);
+    border-image-slice: 2;
+    border-image-width: 2;
+    border-image-repeat: space;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-outset: 2;
+    display: inline-block;
+    padding: 6px 8px;
+    align-self: center;
+    text-align: center;
+    vertical-align: middle;
 }
 
-html {
-    font-family: PressStart2P; 
-    font-size: 100%; 
-    -ms-text-size-adjust: 100%; 
-    -webkit-text-size-adjust: 100%; 
-    cursor: url("../icon/cursor_1.png"),auto;
-}
-
-a{
-    cursor: url("../icon/cursor_2.png") 14 0,auto;
+h1{
+    color:aquamarine;
 }
 
 body {
-    background-image: url('../backgrounds/Background2.jpg');
+    background-image: url('../image_temp/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0; 
-    padding: 0; 
-    border: 0; 
     
+}
+.tab{
+    display: flex;
+    /* backdrop-filter: bulr(5px); */
+    background-color: transparent;
+    margin: 0;
+    align-items: start;
+}
+.tab_button{
+    flex: 0 0 50px ;
+    width: 50px;
+    height: 1.5em;
+    padding: 0;
+    margin: 5px 0 ;
 }
 
 .button_box {
-    width: 300px;
-    height: 300px;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.centre{
+    position: fixed;
+}
 
 .save_list_frame {
     visibility: hidden;
-    width: 400px;
-    height: 700px;
-    background-color: burlywood;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(255,255,255,0.5);
+    backdrop-filter: blur(25px);
 }
 
 .game {
     visibility: hidden;
     width: 1050px;
-    height: 825px;
-}
-
-.centre {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    padding: 0;
     margin: auto;
+    /* 高度自适应 */
 }
 
+a:not(.tab_button){
+    flex: 0 0 auto;
+    height: 50px;
+    margin: 20px;
+    font-size: 24px;
+    padding: 12px 50px 0px 50px;
+}
+/* 
 .push_button {
     position: relative;
     width: 220px;
@@ -157,4 +181,4 @@ body {
     background-image: -ms-linear-gradient(top, #3EACBA, #48C6D4);
     background-image: -o-linear-gradient(top, #3EACBA, #48C6D4);
     background-image: linear-gradient(top, #3EACBA, #48C6D4);
-}
+}  */
