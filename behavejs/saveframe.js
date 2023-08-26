@@ -9,8 +9,24 @@ function updateList() {
         let text = window.parent.saveList[i].playerName + ':' + window.parent.saveList[i].saveDate;
         temp.innerHTML = text;
         temp.onclick = () => {
-            window.parent.currentSaveIndex = i;
-            Swal.fire("Loaded Save", text, "info");
+            Swal.fire({
+                title: 'Input Save Password',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Check',
+                showLoaderOnConfirm: true,
+                preConfirm: (txt) => {
+                    if (window.parent.saveList[i].password == txt) {
+                        window.parent.currentSaveIndex = i;
+                        Swal.fire("Loaded Save", text, "info");
+                    } else {
+                        Swal.fire("Failed", "Wrong Password", "error");
+                    }
+                }
+            });
         };
         slist.appendChild(temp);
     }
@@ -49,6 +65,7 @@ function savefordownload() {
 }
 
 function saveToCloud() {
+    console.log("1");
     let str = getSaveString(window.parent.saveList);
     return fetch(`../cloudSaves/writeSave.php?userid=${window.parent.userName}&save=${str}`)
         .then(respon => {
@@ -67,8 +84,23 @@ function saveToCloud() {
 function addNewSave() {
     let temp = {};
     Object.assign(temp, defaultSave);
-    window.parent.saveList.push(temp);
-    updateList();
+    let date = new Date();
+    temp.saveDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + "-" + date.getHours() + "-" + date.getMinutes();
+    Swal.fire({
+        title: "Input New Save's Password",
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Ok',
+        showLoaderOnConfirm: true,
+        preConfirm: (txt) => {
+            temp.password = txt;
+            window.parent.saveList.push(temp);
+            updateList();
+        }
+    });
 }
 
 function exitFrame() {

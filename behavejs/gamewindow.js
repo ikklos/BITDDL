@@ -69,11 +69,11 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 //音量控件
 
-let volume_sele = document.querySelector(".volume");
-volume_sele.oninput = function () {
-    bgms[currentBGM].volume = this.value;
-    console.log("设置的音量大小为：", bgms[currentBGM].volume);
-}
+// let volume_sele = document.querySelector(".volume");
+// volume_sele.oninput = function () {
+//     bgms[currentBGM].volume = this.value;
+//     console.log("设置的音量大小为：", bgms[currentBGM].volume);
+// }
 
 // async function initButton(){
 //     let texture = await PIXI.Assets.load("../icon/MenuButton.json");
@@ -104,6 +104,21 @@ const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
+// //加载地图
+// async function initMap(map){
+//         let texture = await PIXI.Assets.load("../backgrounds/bedroom.png");
+//         const volButton = PIXI.Sprite.from("bedroom.png");
+//         volButton.width = 32;
+//         volButton.height = 32;
+//         volButton.x = volButton.width / 2;
+//         volButton.y = volButton.height / 2;
+//         app.stage.addChild(volButton);
+// }
+//     initButton();
+// const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
+// background.width = app.screen.width;
+// background.height = app.screen.height;
+// app.stage.addChild(background);
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //console.log(npc_pool);
