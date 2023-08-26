@@ -24,9 +24,10 @@ function checksaves() {
 }
 
 function passwordCheck() {
+    function isValid(str) { return /^\w+$/.test(str); }
     Swal.fire({
         title: 'Login/Register',
-        html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
+        html: `<p>Input your username and password</p><input type="text" id="login" class="swal2-input" placeholder="Username">
   <input type="password" id="password" class="swal2-input" placeholder="Password">`,
         focusConfirm: false,
         showCancelButton: true,
@@ -35,73 +36,76 @@ function passwordCheck() {
         preConfirm: () => {
             const login = Swal.getPopup().querySelector('#login').value;
             const password = Swal.getPopup().querySelector('#password').value;
-            return fetch(`../cloudSaves/checkPasswd.php?userid=${login}&userpasswd=${password}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    }
-                    response.text().then((text) => {
-                        if (text == "Verified") {
-                            window.userName = login;
-                            Swal.fire({
-                                title: "Login Success",
-                                text: "Loading your cloud saves",
-                                icon: "success",
-                                preConfirm: () => {
-                                    return fetch(`../cloudSaves/getSave.php?userid=${login}`)
-                                        .then(respon => {
-                                            window.saveList = [];
-                                            if (respon.status == 404) {
-                                                Swal.fire("No Cloud Save", "Why not upload/create one?~", "info");
-                                            } else if (!respon.ok) {
-                                                throw new Error(respon.statusText)
-                                            } else
-                                                respon.text().then((txt) => {
-                                                    window.saveList = readSaveString(txt);
-                                                });
-                                        })
-                                        .catch(error => {
-                                            Swal.showValidationMessage(
-                                                `Request failed: ${error}`
-                                            );
-                                        });
-                                }
-                            });
-                        } else if (text == "Unknown") {
-                            Swal.fire({
-                                title: "Unknown UserId",
-                                text: "Do you want to register?",
-                                showCancelButton: true,
-                                icon: "question",
-                                preConfirm: () => {
-                                    window.userName = login;
-                                    return fetch(`../cloudSaves/addUser.php?userid=${login}&userpasswd=${password}`)
-                                        .then(respon => {
-                                            if (!respon.ok) {
-                                                throw new Error(respon.statusText)
-                                            }
-                                            Swal.fire("Register Success", "Welcome to BITDDL!", "success");
-                                        })
-                                        .catch(error => {
-                                            Swal.showValidationMessage(
-                                                `Request failed: ${error}`
-                                            );
-                                        });
-                                }
-                            });
-                        } else if (text == "Wrong") {
-                            Swal.fire("Login Failed", "Wrong Password", "error");
-                        } else {
-                            Swal.fire("Illegal Response", "The PHP Service may not be running.\nPlease Contact Website Manager", "error");
+            if (!isValid(login) || !isValid(password)) {
+                Swal.fire("Illegal Input", "The input should consist of numbers, letters, and underscores", "error");
+            } else
+                return fetch(`../cloudSaves/checkPasswd.php?userid=${login}&userpasswd=${password}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
                         }
+                        response.text().then((text) => {
+                            if (text == "Verified") {
+                                window.userName = login;
+                                Swal.fire({
+                                    title: "Login Success",
+                                    text: "Loading your cloud saves",
+                                    icon: "success",
+                                    preConfirm: () => {
+                                        return fetch(`../cloudSaves/getSave.php?userid=${login}`)
+                                            .then(respon => {
+                                                window.saveList = [];
+                                                if (respon.status == 404) {
+                                                    Swal.fire("No Cloud Save", "Why not upload/create one?~", "info");
+                                                } else if (!respon.ok) {
+                                                    throw new Error(respon.statusText)
+                                                } else
+                                                    respon.text().then((txt) => {
+                                                        window.saveList = readSaveString(txt);
+                                                    });
+                                            })
+                                            .catch(error => {
+                                                Swal.showValidationMessage(
+                                                    `Request failed: ${error}`
+                                                );
+                                            });
+                                    }
+                                });
+                            } else if (text == "Unknown") {
+                                Swal.fire({
+                                    title: "Unknown UserId",
+                                    text: "Do you want to register?",
+                                    showCancelButton: true,
+                                    icon: "question",
+                                    preConfirm: () => {
+                                        window.userName = login;
+                                        return fetch(`../cloudSaves/addUser.php?userid=${login}&userpasswd=${password}`)
+                                            .then(respon => {
+                                                if (!respon.ok) {
+                                                    throw new Error(respon.statusText)
+                                                }
+                                                Swal.fire("Register Success", "Welcome to BITDDL!", "success");
+                                            })
+                                            .catch(error => {
+                                                Swal.showValidationMessage(
+                                                    `Request failed: ${error}`
+                                                );
+                                            });
+                                    }
+                                });
+                            } else if (text == "Wrong") {
+                                Swal.fire("Login Failed", "Wrong Password", "error");
+                            } else {
+                                Swal.fire("Illegal Response", "The PHP Service may not be running.\nPlease Contact Website Manager", "error");
+                            }
+                        });
+                        return response;
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(
+                            `Request failed: ${error}`
+                        );
                     });
-                    return response;
-                })
-                .catch(error => {
-                    Swal.showValidationMessage(
-                        `Request failed: ${error}`
-                    );
-                });
         },
         allowOutsideClick: () => !Swal.isLoading()
     });
