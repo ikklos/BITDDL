@@ -19,5 +19,25 @@
             "collideH":0.2
         }
 
+    ],
+    "npcs":[
+        {
+            "img":"../sprite/players/Character_test.png",
+            "name":"NPC 1",
+            "x": 200,
+            "y": 233,
+            "width": 48,
+            "height": 48,
+            "type": "npc",
+            "fstory": 0,
+            "collideH":1.0,
+            "nextmap":null,
+            "text":[
+                {
+                    "content":"什么，你问我是谁，你不觉得我跟你长得很像吗",
+                    "fstory" : 0
+                }
+            ]
+        }
     ]
 }
