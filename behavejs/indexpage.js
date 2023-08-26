@@ -7,6 +7,7 @@ function startgame() {
     }
     document.getElementById("startgamebutton").style.visibility = 'hidden';
     document.getElementById("loadsavebutton").style.visibility = 'hidden';
+    document.getElementById("gametitle").style.visibility = 'hidden';
     document.getElementById("maingameframe").style.visibility = 'visible';
 }
 
@@ -17,6 +18,7 @@ function checksaves() {
     }
     document.getElementById("startgamebutton").style.visibility = 'hidden';
     document.getElementById("loadsavebutton").style.visibility = 'hidden';
+    document.getElementById("gametitle").style.visibility = 'hidden';
     document.getElementById("savelistframe").style.visibility = 'visible';
     document.getElementById("savelistframe").contentWindow.onSaveFrameOpen();
 }
@@ -114,3 +116,25 @@ if (document.getElementById("loadsavebutton")) {
 if (document.getElementById("loginbutton")) {
     document.getElementById("loginbutton").onclick = passwordCheck;
 }
+
+function iframeAutoFit(iframeObj){
+    setTimeout(
+        function(){
+            if(!iframeObj) {
+                return;
+            }
+            console.log("auto fit height");
+            iframeObj.height=(
+                iframeObj.Document?
+                    iframeObj.Document.body.scrollHeight
+                    :iframeObj.contentDocument.body.offsetHeight
+            );
+            window.height = iframeObj.height;
+        }
+    ,200)
+}
+//调整iframe大小
+window.onload = function () {
+    iframeAutoFit(document.getElementById('maingameframe'));
+    iframeAutoFit(document.getElementById('savelistframe'));
+};
