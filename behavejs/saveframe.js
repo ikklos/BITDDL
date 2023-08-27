@@ -1,30 +1,106 @@
-// function loadSave() {
-//     Swal.fire({
-//         title: "确认要读取这个存档吗？",
-//         icon:"info"
-//     });
-// }
-// function addNewSave() {
-//     Swal.fire({
-//         title: "确认要加载这个存档吗？",
-//         icon:"info"
-//     });
-// }
 function exitFrame() {
     console.log(window.parent);
     window.parent.showMainMenu();
 }
-
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
 
 Array.from(document.getElementsByClassName('load')).forEach(function(element, index) {
-    element.addEventListener("click", function(e) {
-        alert('something');
+    // console.log("index = ",index);
+    element.addEventListener("click", function(index) {
+        // console.log("element = ",element);
+        
+        Swal.fire({
+            title: "确认要读取这个存档吗？",
+            icon:"info"
+        }).then((result) => {
+            if(result.isConfirmed) {
+                if(localStorage.getItem(window.userName + "_"+ element.id.replace('loadbutton','save_')) == null){
+                    Toast.fire( {
+                        title:"这个地方还没有存档哦，快去存一个吧",
+                        icon:"error"
+                    })
+                }
+                else{
+                    window.parent.currentSave = localStorage.getItem(window.userName + "_"+ element.id.replace('loadbutton','save_'));
+                    Toast.fire( {
+                        title:"读档成功！",
+                        icon:"success"
+                    })
+
+                }
+            }
+        })
     }, false);
 });
-// Array.from(document.getElementsByClassName('save_button')).forEach(function(element, index) {
-//     element.onclick = loadSave;
-// });
+Array.from(document.getElementsByClassName('save')).forEach(function(element, index) {
+    element.addEventListener("click", function(index) {
+        // console.log(element.id.replace('save','sl_'));
+        // console.log(window.parent.userName);
+        
+        Swal.fire({
+            title: "确认要保存存档到这里吗？",
+            icon:"info",
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let date = new Date,
+                saveDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+                if(localStorage.getItem(window.userName + "_"+ element.id.replace('button','_')) !== null ) {
+                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
+                    document.getElementById(element.id.replace('button','text')).innerHTML = saveDate;
+                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
+                    console.log(element.id.replace('button','_'));
+                    Toast.fire( {
+                        title:"已覆盖旧存档!",
+                        icon:"success"
+                    })
+                }
+                else{
+                    document.getElementById(element.id.replace('button','text')).innerHTML = saveDate;
+                    
+                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
+                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
+                    console.log(element.id.replace('button','_'));
+                    Toast.fire( {
+                        title:"保存成功！",
+                        icon:"success"
+                    })
+            }
+            }
+        })
+    }, false);
+});
 document.getElementById('closeframebutton').onclick = exitFrame;
+//监听用户是否登录
+let intervalID = setInterval(function(){
+    // console.log(window.parent.userName);
+    if (window.parent.userName !== null){
+        Array.from(document.getElementsByClassName('savetext')).forEach(function(element, index) {
+            
+            if(localStorage.getItem(window.userName + "_"+ element.id.replace('text','_')) !== null ) {
+                console.log(element.id.replace('text','_'));
+                document.getElementById(element.id).innerHTML = localStorage.getItem(window.userName + "_"+ element.id.replace('text','_') + "saveDate");
+            }
+        });
+        clearInterval(intervalID);
+    }
+}
+, 100)
+
+
+    
+
 // document.getElementById('uploadbutton').onclick = loadfromfile;
 // document.getElementById('downloadbutton').onclick = savefordownload;
 
