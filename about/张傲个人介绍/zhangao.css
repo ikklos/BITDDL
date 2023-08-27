@@ -1,0 +1,11 @@
+.alltitle{
+    background-color:rgba(0, 221, 255, 0.74);
+    text-align: center;
+    
+}
+h2{
+    background-color: rgba(0, 255, 157, 0.322);
+}
+.photo{
+    max-height: 400px;
+}

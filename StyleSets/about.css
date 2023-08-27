@@ -1,0 +1,63 @@
+/* 参考滚动贴合效果 */
+*{
+    overflow-x:hidden;
+}
+.container{
+    scroll-snap-type: y mandatory;
+    overflow: scroll;
+    height: 100vh;
+    background-image: url('../backgrounds/about_bg.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    text-align: center;
+    margin: auto;
+}
+.contain{
+    scroll-snap-align: center;
+    border-radius: 15px;
+    margin: 10vh 0vw 10vh 15vw;
+    height: 80vh;
+    width: 80vw; 
+    background-color: rgba(255, 255, 255, 0.829);
+    backdrop-filter: blur(10px);
+
+
+    border-image-slice: 3;
+    border-image-width: 5;
+    border-image-repeat:stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version=\"1.0\" encoding=\"UTF-8\" ?><svg version=\"1.1\" width=\"8\" height=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z\" fill=\"rgb(33,37,41)\" /></svg>');
+    border-image-outset: 3;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(0, 0, 0);
+}
+.tab{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 9%;
+    left: 4%;
+    height: 80%;
+    width: 5%;
+    background-color: rgba(255, 255, 255, 0.682);
+    justify-items: center;
+}
+.name{
+    flex: 1 13vh;
+    align-items: center;
+    align-self: center;
+    padding: 2% 0;
+    margin: 5px;
+    justify-self: center;
+    background-color: rgba(255, 255, 255, 0.682);
+}
+.changepage{
+    padding: 3px;
+}
+img{
+    max-height: 60vh;
+}
+h1{
+    font-size: 5vh;
+    margin: 5px;
+}

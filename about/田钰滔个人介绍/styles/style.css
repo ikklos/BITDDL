@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'font-en';
+    src: url('font-en.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'font-ch';
+    src: url('font-ch.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+.left {
+    margin: 30px;
+    width: 700px;
+    /* height: 300px; */
+    background-color: rgba(255, 0, 0, 0);
+    float: left;
+}
+
+.right {
+    height: 300px;
+    background-color: rgba(0, 0, 255, 0);
+    margin-left: 700px;
+}
+
+h1 {
+    font-family: font-ch;
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+    color: #00539f;
+    text-shadow: 3px 3px 1px black;
+}
+
+p,
+li {
+    font-family: font-ch;
+    font-size: 24px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+img {
+    
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+}
+
+
+html {
+    background-color: #00539f;
+}
+
+body {
+    width: 1600px;
+    height: 900px;
+    margin: 0 auto;
+    background-color: #adcfcf84;
+    padding: 0 20px 20px 20px;
+    border: 5px solid rgba(42, 42, 42, 0.386);
+}
