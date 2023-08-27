@@ -9,21 +9,77 @@
     <link rel="icon" href="image_temp/Test_ico.ico">
 </head>
 <script>
-    window.currentSave = {};
-    window.userName = null;
-    window.currentBGM = 0;
+        window.currentSave = {};
+        window.userName = null;
+        window.currentBGM = 0;
+        window.myfun = {};
+        //游戏元素切换
+        function showMainMenu() {
+            Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+                element.style.visibility = 'visible'
+            })
+            Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+        }
+        function showGameFrame(){
+            Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+                element.style.visibility = 'visible'
+            })
+            Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+        }
+        function showSaveFrame(){
+            Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+                element.style.visibility = 'visible'
+            })
+            Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+        }
+        function showAbout(){
+            Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+                element.style.visibility = 'hidden'
+            })
+            Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+                element.style.visibility = 'visible'
+            })
+        }
 </script>
-
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
-    
+
     <div class="tab">
-        <a class="button_s tab_button"  href="#" id="logbutton">登录</a>
-        <a class="button_s tab_button"  href="#" id="regbutton">注册</a>
-        <p class="logged border_s" id="logged" style="visibility: hidden;" >
-            
-        </p>
+        <a class="button_s tab_button_l visible_topmenu_unlog"  href="#" id="logbutton">登录</a>
+        <a class="button_s tab_button_l visible_topmenu_unlog"  href="#" id="regbutton">注册</a>
+        <p class="logged border_s visible_topmenu_logged" id="logged" style="visibility: hidden;" ></p>
+        <a class="button_s tab_button_r"  href="#" id="home">主页</a>    
     </div>
     <!-- 音量控件 -->
     <div class = "audio">
@@ -31,19 +87,19 @@
         <!-- <input type="range"  class="volume" min="0" max="1" step="0.01" value="0.2" /> -->
     </div>
    
-    <div class="title border_s mainmenu " id="gametitle">
+    <div class="title border_s mainmenu visible_mainmenu " id="gametitle">
         <h1>
             BITDDL
         </h1>
     </div>
     <div class="centre button_box">
-        <a class="mainmenu button_s"  href="#" id="startgamebutton">开始游戏</a>
-        <a class="mainmenu button_s"  href="#" id="loadsavebutton">读取存档</a>
-        <a class="mainmenu button_s"  href="about.html" >关于我们</a>
+        <a class="mainmenu button_s visible_mainmenu"  href="#" id="startgamebutton">开始游戏</a>
+        <a class="mainmenu button_s visible_mainmenu"  href="#" id="loadsavebutton">读取存档</a>
+        <a class="mainmenu button_s visible_mainmenu"  href="#" id="aboutbutton" >关于我们</a>
     </div>
-    <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
-    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame border_s"></iframe>
+    <iframe src="GameFrame.html" class="game centre visible_gameframe" scrolling="no" frameborder="0" id="maingameframe"></iframe>
+    <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame border_s visible_saveframe"></iframe>
+    <iframe src="about.html" class="visible_about" id="aboutpage" ></iframe>
 </body>
-
 
 </html>

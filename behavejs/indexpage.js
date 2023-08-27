@@ -25,10 +25,15 @@ function startgame() {
         })
         return;
     }
-    document.getElementById("startgamebutton").style.visibility = 'hidden';
-    document.getElementById("loadsavebutton").style.visibility = 'hidden';
-    document.getElementById("gametitle").style.visibility = 'hidden';
-    document.getElementById("maingameframe").style.visibility = 'visible';
+    Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+        element.style.visibility = 'hidden'
+    })
+    Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+        element.style.visibility = 'visible'
+    })
+    Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+        element.style.visibility = 'hidden'
+    })
 }
 
 function checksaves() {
@@ -42,10 +47,16 @@ function checksaves() {
         })
         return;
     }
-    document.getElementById("startgamebutton").style.visibility = 'hidden';
-    document.getElementById("loadsavebutton").style.visibility = 'hidden';
-    document.getElementById("gametitle").style.visibility = 'hidden';
-    document.getElementById("savelistframe").style.visibility = 'visible';
+    
+    Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+        element.style.visibility = 'hidden'
+    })
+    Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+        element.style.visibility = 'hidden'
+    })
+    Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+        element.style.visibility = 'visible'
+    })
 }
 
 function passwordCheck_log() {
@@ -196,14 +207,7 @@ function passwordCheck_reg(){
     })()
 }
 
-//游戏元素切换
-function showMainMenu() {
-    document.getElementById("startgamebutton").style.visibility = 'visible';
-    document.getElementById("loadsavebutton").style.visibility = 'visible';
-    document.getElementById("gametitle").style.visibility = 'visible';
-    document.getElementById("maingameframe").style.visibility = 'hidden';
-    document.getElementById("savelistframe").style.visibility = 'hidden';
-}
+
 
 
 
@@ -275,5 +279,11 @@ if (document.getElementById("logbutton")) {
 }
 if (document.getElementById("regbutton")) {
     document.getElementById("regbutton").onclick = passwordCheck_reg;
+}
+if (document.getElementById("aboutbutton")) {
+    document.getElementById("aboutbutton").onclick = window.showAbout;
+}
+if (document.getElementById("home")) {
+    document.getElementById("home").onclick = window.showMainMenu;
 }
 

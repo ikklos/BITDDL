@@ -23,8 +23,7 @@ iframe{
     top: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
-    width: 90%;
-    height: 80%;
+    
 }
 
 h1{
@@ -41,15 +40,28 @@ body {
     display: flex;
     backdrop-filter: bulr(5px);
     margin: 10px;
+    /* background-color: aliceblue; */
     align-items: start;
 }
-.tab_button{
+.tab_button_l{
+    align-self: flex-start;
     flex: 0 0 50px ;
     width: 80px;
     height: 1em;
     padding: 5px;
     margin: 5px 0 ;
     font-size: 16px;
+    z-index: 100;
+}
+.tab_button_r{
+    align-self: flex-end;
+    flex: 0 0 50px ;
+    width: 160px;
+    height: 1em;
+    padding: 5px;
+    margin: 5px 0 ;
+    font-size: 16px;
+    z-index: 100;
 }
 #logged{
     position: absolute;
@@ -85,6 +97,8 @@ body {
 
 .game {
     visibility: hidden;
+    width: 90%;
+    height: 80%;
     /* 高度自适应 */
 }
 
@@ -94,4 +108,9 @@ a{
     margin: 20px;
     font-size: 24px;
     padding: 12px 50px 0px 50px;
+}
+#aboutpage{
+    visibility: hidden;
+    width: 100vw;
+    height: 100vh;
 }
