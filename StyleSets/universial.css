@@ -9,13 +9,19 @@
     src: url("./Font/zpix.ttf") format('truetype');
 }
 
-html {
+html,body {
     font-family: 'PressStart2P','Zpix';
     font-size: 100%; 
     -ms-text-size-adjust: 100%; 
     -webkit-text-size-adjust: 100%; 
     cursor: url("../icon/cursor_1.png"),auto;
-    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    scroll-behavior: auto;
+    overflow: hidden ;
+    margin: 0;
+    padding:0;
+    vertical-align:baseline
 }
 /* 定义按钮样式 */
 button{

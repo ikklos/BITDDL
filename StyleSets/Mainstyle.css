@@ -3,7 +3,19 @@
 #GameWindow {
     width: 960px;
     height: 576px;
+    position: fixed;
+    z-index: 98;
     /* 边框样式 */
+    
+
+}
+#GameWindow > * {
+    width: 960px;
+    height: 576px;
+    left: 50%; 
+    top: 0;
+    transform: translateX(-50%);
+    position: fixed;
     border-image-slice: 2;
     border-image-repeat:stretch;
     /* 这里有一张奇怪的矢量图 */
@@ -12,7 +24,7 @@
     border-width: 10px;
     border-image-outset: 1;
     border-style: solid;
-
+    z-index: 99;
 }
 
 .volume{

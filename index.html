@@ -13,39 +13,48 @@
     window.currentSaveIndex = -1;
     window.userName = null;
     function showMainMenu() {
-        document.getElementById("startgamebutton").style.visibility = 'visible';
-        document.getElementById("loadsavebutton").style.visibility = 'visible';
-        document.getElementById("maingameframe").style.visibility = 'hidden';
-        document.getElementById("savelistframe").style.visibility = 'hidden';
-    }
-    fetch("./phptest.php")
-        .then(response => {
-            if (response.ok) {
-                response.text().then((txt) => {
-                    if (txt != "Hello")
-                        Swal.fire("Warning", "PHP Service is not running,CloudSave Service cannot work!", "error");
-                });
-            } else {
-                Swal.fire("Warning", "PHP Service not found", "error");
-            }
-        })
-        .catch(err => {
+    document.getElementById("startgamebutton").style.visibility = 'visible';
+    document.getElementById("loadsavebutton").style.visibility = 'visible';
+    document.getElementById("gametitle").style.visibility = 'visible';
+    document.getElementById("maingameframe").style.visibility = 'hidden';
+    document.getElementById("savelistframe").style.visibility = 'hidden';
+}
+    // fetch("./phptest.php")
+    //     .then(response => {
+    //         if (response.ok) {
+    //             response.text().then((txt) => {
+    //                 if (txt != "Hello")
+    //                     Swal.fire("Warning", "PHP Service is not running,CloudSave Service cannot work!", "error");
+    //             });
+    //         } else {
+    //             Swal.fire("Warning", "PHP Service not found", "error");
+    //         }
+    //     })
+    //     .catch(err => {
 
-        });
+    //     });
 </script>
 
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
-    <button id="loginbutton">test</button>
+    <div class="tab">
+        <a class="button_s tab_button"  href="#" id="logbutton">登录</a>
+        <a class="button_s tab_button"  href="#" id="regbutton">注册</a>
+        <p class="logged border_s" id="logged" style="visibility: hidden;" >
+            
+        </p>
+    </div>
+   
     <div class="title border_s mainmenu " id="gametitle">
         <h1>
             BITDDL
         </h1>
     </div>
     <div class="centre button_box">
-        <a class="mainmenu button_s" onclick="startgame()" href="#" id="startgamebutton">Start</a>
-        <a class="mainmenu button_s" onclick="checksaves()" href="#" id="loadsavebutton">Saves</a>
+        <a class="mainmenu button_s"  href="#" id="startgamebutton">开始游戏</a>
+        <a class="mainmenu button_s"  href="#" id="loadsavebutton">读取存档</a>
+        <a class="mainmenu button_s"  href="#" id="loadsavebutton">关于我们</a>
     </div>
     <iframe src="GameFrame.html" class="game centre" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <iframe src="SaveFrame.html" id="savelistframe" scrolling="no" class="centre save_list_frame border_s"></iframe>
