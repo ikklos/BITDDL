@@ -25,14 +25,14 @@ Array.from(document.getElementsByClassName('load')).forEach(function(element, in
             icon:"info"
         }).then((result) => {
             if(result.isConfirmed) {
-                if(localStorage.getItem(window.userName + "_"+ element.id.replace('loadbutton','save_')) == null){
+                if(localStorage.getItem(window.parent.userName + "_"+ element.id.replace('loadbutton','save_')) == null){
                     Toast.fire( {
                         title:"这个地方还没有存档哦，快去存一个吧",
                         icon:"error"
                     })
                 }
                 else{
-                    window.parent.currentSave = localStorage.getItem(window.userName + "_"+ element.id.replace('loadbutton','save_'));
+                    window.parent.currentSave = localStorage.getItem(window.parent.userName + "_"+ element.id.replace('loadbutton','save_'));
                     Toast.fire( {
                         title:"读档成功！",
                         icon:"success"
@@ -56,10 +56,10 @@ Array.from(document.getElementsByClassName('save')).forEach(function(element, in
             if (result.isConfirmed) {
                 let date = new Date,
                 saveDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
-                if(localStorage.getItem(window.userName + "_"+ element.id.replace('button','_')) !== null ) {
-                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
+                if(localStorage.getItem(window.parent.userName + "_"+ element.id.replace('button','_')) !== null ) {
+                    localStorage.setItem(window.parent.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
                     document.getElementById(element.id.replace('button','text')).innerHTML = saveDate;
-                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
+                    localStorage.setItem(window.parent.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
                     console.log(element.id.replace('button','_'));
                     Toast.fire( {
                         title:"已覆盖旧存档!",
@@ -69,8 +69,8 @@ Array.from(document.getElementsByClassName('save')).forEach(function(element, in
                 else{
                     document.getElementById(element.id.replace('button','text')).innerHTML = saveDate;
                     
-                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
-                    localStorage.setItem(window.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
+                    localStorage.setItem(window.parent.userName + "_"+ element.id.replace('button','_'),window.parent.currentSave)
+                    localStorage.setItem(window.parent.userName + "_"+ element.id.replace('button','_') + "saveDate",saveDate)
                     console.log(element.id.replace('button','_'));
                     Toast.fire( {
                         title:"保存成功！",
@@ -88,9 +88,9 @@ let intervalID = setInterval(function(){
     if (window.parent.userName !== null){
         Array.from(document.getElementsByClassName('savetext')).forEach(function(element, index) {
             
-            if(localStorage.getItem(window.userName + "_"+ element.id.replace('text','_')) !== null ) {
+            if(localStorage.getItem(window.parent.userName + "_"+ element.id.replace('text','_')) !== null ) {
                 console.log(element.id.replace('text','_'));
-                document.getElementById(element.id).innerHTML = localStorage.getItem(window.userName + "_"+ element.id.replace('text','_') + "saveDate");
+                document.getElementById(element.id).innerHTML = localStorage.getItem(window.parent.userName + "_"+ element.id.replace('text','_') + "saveDate");
             }
         });
         clearInterval(intervalID);
