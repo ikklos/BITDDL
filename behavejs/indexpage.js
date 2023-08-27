@@ -195,78 +195,74 @@ function passwordCheck_reg(){
     }
     })()
 }
-    //     preConfirm: () => {
-    //         const login = Swal.getPopup().querySelector('#login').value;
-    //         const password = Swal.getPopup().querySelector('#password').value;
-    //         return fetch(`../cloudSaves/checkPasswd.php?userid=${login}&userpasswd=${password}`)
-    //             .then(response => {
-    //                 if (!response.ok) {
-    //                     throw new Error(response.statusText)
-    //                 }
-    //                 response.text().then((text) => {
-    //                     if (text == "Verified") {
-    //                         window.userName = login;
-    //                         Swal.fire({
-    //                             title: "Login Success",
-    //                             text: "Loading your cloud saves",
-    //                             icon: "success",
-    //                             preConfirm: () => {
-    //                                 return fetch(`../cloudSaves/getSave.php?userid=${login}`)
-    //                                     .then(respon => {
-    //                                         window.saveList = [];
-    //                                         if (respon.status == 404) {
-    //                                             Swal.fire("No Cloud Save", "Why not upload/create one?~", "info");
-    //                                         } else if (!respon.ok) {
-    //                                             throw new Error(respon.statusText)
-    //                                         } else
-    //                                             respon.text().then((txt) => {
-    //                                                 window.saveList = readSaveString(txt);
-    //                                             });
-    //                                     })
-    //                                     .catch(error => {
-    //                                         Swal.showValidationMessage(
-    //                                             `Request failed: ${error}`
-    //                                         );
-    //                                     });
-    //                             }
-    //                         });
-    //                     } else if (text == "Unknown") {
-    //                         Swal.fire({
-    //                             title: "Unknown UserId",
-    //                             text: "Do you want to register?",
-    //                             showCancelButton: true,
-    //                             icon: "question",
-    //                             preConfirm: () => {
-    //                                 window.userName = login;
-    //                                 return fetch(`../cloudSaves/addUser.php?userid=${login}&userpasswd=${password}`)
-    //                                     .then(respon => {
-    //                                         if (!respon.ok) {
-    //                                             throw new Error(respon.statusText)
-    //                                         }
-    //                                         Swal.fire("Register Success", "Welcome to BITDDL!", "success");
-    //                                     })
-    //                                     .catch(error => {
-    //                                         Swal.showValidationMessage(
-    //                                             `Request failed: ${error}`
-    //                                         );
-    //                                     });
-    //                             }
-    //                         });
-    //                     } else if (text == "Wrong") {
-    //                         Swal.fire("Login Failed", "Wrong Password", "error");
-    //                     } else {
-    //                         Swal.fire("Illegal Response", "The PHP Service may not be running.\nPlease Contact Website Manager", "error");
-    //                     }
-    //                 });
-    //                 return response;
-    //             })
-    //             .catch(error => {
-    //                 Swal.showValidationMessage(
-    //                     `Request failed: ${error}`
-    //                 );
-    //             });
-    //     },
-    //     allowOutsideClick: () => !Swal.isLoading()
+
+//游戏元素切换
+function showMainMenu() {
+    document.getElementById("startgamebutton").style.visibility = 'visible';
+    document.getElementById("loadsavebutton").style.visibility = 'visible';
+    document.getElementById("gametitle").style.visibility = 'visible';
+    document.getElementById("maingameframe").style.visibility = 'hidden';
+    document.getElementById("savelistframe").style.visibility = 'hidden';
+}
+
+
+
+
+//BGM播放和切换
+var bgms = [];
+fetch('../BGM/bgmdata.json')
+    .then((response) => response.json())
+    .then((json) => loadbgms(json));
+    //加载bgm
+function loadbgms(bgmpack) {
+    let Array = bgmpack.bgms;
+    let len = Array.length;
+    bgms = [len];
+    for (let i = 0; i < len; i++) {
+        bgms[i] = document.createElement("audio");
+        bgms[i].setAttribute("loop", Array[i].loop);
+        bgms[i].setAttribute("preload", Array[i].preload);
+        bgms[i].setAttribute("type", Array[i].type);
+        bgms[i].setAttribute("src", Array[i].src);
+        document.body.appendChild(bgms[i]);
+    }
+    // loaded = true;
+    return bgms;
+}
+let bgmStarted = false;
+const startPlayBGM = () => {
+    if (bgmStarted) {
+        return true;
+    }
+    console.log("bgm start!");
+    bgms.forEach(function(element){
+        console.log("init volume");
+        element.volume = 0;
+        element.play();
+    })
+    bgmStarted = true;
+    bgms[0].volume = 0.3;
+    document.removeEventListener('click', startPlayBGM);
+    document.removeEventListener('keydown', startPlayBGM);
+    return false;
+};
+let intervalID = setInterval(
+    function changeBGM() {
+        bgms.forEach((audio, index) => {
+            if (window.currentBGM === index) {
+                console.log("try to change bgm");
+                bgms[window.currentBGM].volume = 0.3;
+            }
+            if (window.currentBGM !== index) {
+                audio.volume = 0;
+            }
+        });
+    }
+, 200)
+
+
+document.body.addEventListener('click', startPlayBGM);
+document.body.addEventListener('keydown', startPlayBGM);
 
 if (document.getElementById("startgamebutton")) {
     document.getElementById("startgamebutton").onclick = startgame;
@@ -281,24 +277,3 @@ if (document.getElementById("regbutton")) {
     document.getElementById("regbutton").onclick = passwordCheck_reg;
 }
 
-
-function iframeAutoFit(iframeObj){
-    setTimeout(
-        function(){
-            if(!iframeObj) {
-                return;
-            }
-            console.log("auto fit height");
-            iframeObj.height=(
-                iframeObj.Document?
-                    iframeObj.Document.body.scrollHeight
-                    :iframeObj.contentDocument.body.offsetHeight
-            );
-        }
-    ,200)
-}
-//调整iframe大小
-window.onload = function () {
-    // iframeAutoFit(document.getElementById('maingameframe'));
-    // iframeAutoFit(document.getElementById('savelistframe'));
-};

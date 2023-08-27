@@ -1,6 +1,10 @@
 /* 参考滚动贴合效果 */
 *{
     overflow-x:hidden;
+    scroll-behavior: smooth;
+}
+*::-webkit-scrollbar{
+    display: none;
 }
 .container{
     scroll-snap-type: y mandatory;
@@ -41,6 +45,7 @@
     width: 5%;
     background-color: rgba(255, 255, 255, 0.682);
     justify-items: center;
+    vertical-align:middle;
 }
 .name{
     flex: 1 13vh;

@@ -11,38 +11,24 @@
 <script>
     window.currentSave = {};
     window.userName = null;
-    function showMainMenu() {
-    document.getElementById("startgamebutton").style.visibility = 'visible';
-    document.getElementById("loadsavebutton").style.visibility = 'visible';
-    document.getElementById("gametitle").style.visibility = 'visible';
-    document.getElementById("maingameframe").style.visibility = 'hidden';
-    document.getElementById("savelistframe").style.visibility = 'hidden';
-}
-    // fetch("./phptest.php")
-    //     .then(response => {
-    //         if (response.ok) {
-    //             response.text().then((txt) => {
-    //                 if (txt != "Hello")
-    //                     Swal.fire("Warning", "PHP Service is not running,CloudSave Service cannot work!", "error");
-    //             });
-    //         } else {
-    //             Swal.fire("Warning", "PHP Service not found", "error");
-    //         }
-    //     })
-    //     .catch(err => {
-
-    //     });
+    window.currentBGM = 0;
 </script>
 
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
+    
     <div class="tab">
         <a class="button_s tab_button"  href="#" id="logbutton">登录</a>
         <a class="button_s tab_button"  href="#" id="regbutton">注册</a>
         <p class="logged border_s" id="logged" style="visibility: hidden;" >
             
         </p>
+    </div>
+    <!-- 音量控件 -->
+    <div class = "audio">
+        <!-- <span class="{MenuButtons1} sprite"></span> -->
+        <!-- <input type="range"  class="volume" min="0" max="1" step="0.01" value="0.2" /> -->
     </div>
    
     <div class="title border_s mainmenu " id="gametitle">
