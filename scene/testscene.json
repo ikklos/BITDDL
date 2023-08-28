@@ -1,7 +1,4 @@
 {
-    "down": "../sjda",
-    "up":"../sjadjsa",
-
     "banaries": [
         {
             "name": "Banary 1",
@@ -10,7 +7,7 @@
             "width": 100,
             "height": 100,
             "type": "banary",
-            "collideH": 1
+            "collideH": 0.2
         },
         {
             "name": "Banary 2",
@@ -48,39 +45,35 @@
                     ]
                 }
             ],
-            "nextmap": "../scene/scene2.json",
-            "text": [
-                {
-                    "content": "什么",
-                    "options": [
-                        {
-                            "name": "to be continue",
-                            "next text": {
-                                "content": "我是谁",
-                                "options": [],
-                                "strike_event": []
-                            }
+            "nextmap": null,
+            "text": {
+                "content": "好巧呀，你也在这里~",
+                "options": [
+                    {
+                        "name": "to be continue",
+                        "content": "你是谁？",
+                        "next_text": {
+                            "content": "我是...你不能忘记的人。",
+                            "options": [],
+                            "strike_event": []
                         }
-                    ],
-                    "strike_event": [
-                        "package add 1",
-                        "package add 2",
-                        "package add 3"
-                    ],
-                    "pre_list": [
-                        {
-                            "type": "event",
-                            "num": 2,
-                            "list": [
-                                1,
-                                2,
-                                3
-                            ]
+                    },
+                    {
+                        "name": "to be continue",
+                        "content": "我为什么在这里？",
+                        "next_text": {
+                            "content": "你来到了未定义的地图。",
+                            "options": [],
+                            "strike_event": []
                         }
-                    ]
-                },
-                {}
-            ]
+                    }
+                ],
+                "strike_event": [
+                    "package add 1",
+                    "package add 2",
+                    "package add 3"
+                ]
+            }
         }
     ]
 }
