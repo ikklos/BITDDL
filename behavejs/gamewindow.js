@@ -91,7 +91,7 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let wait_event = { status: false ,story :null}//此时有没有待处理互动事件
+let wait_event = {"type":"null"};//此时有没有待处理互动事件
 var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
@@ -120,6 +120,8 @@ app.stage.addChild(background);
 story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/testscene.json");
+//进游戏！
+AfterLoad();
 //console.log(npc_pool);
 //console.log(story_status);
 //console.log(BanariesPool);
@@ -181,8 +183,7 @@ async function AfterLoad() {
         up = keyboard("ArrowUp", "w"),
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
-    let keyf = keyboard("f", ""),
-        keyq = keyboard("q", "");
+    let keyf = keyboard("f", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.5; vertical = 1.0;
@@ -243,28 +244,13 @@ async function AfterLoad() {
     keyf.press = () => {
         npc_pool.forEach(npc => {
             if (HitTest(neko, npc)) {
-                console.log(npc.textpool);
-                for (let i = 0; i < npc.textpool.length; i++) {
-                    if (story_status[npc.textpool[i].fstory].status === "touched") {
-                        wait_event.status = true;
-                        wait_event.story = npc.textpool[i].fstory;
-                        wait_event.npc = npc;
-                        wait_event.text = npc.textpool[i];
-                    }
-                    if (story_status[npc.textpool[i].fstory].status === "ready") {
-                        wait_event.status = true;//在此游戏循环中待触发，注意此事件将一定在此循环内play时被解决
-                        wait_event.story = npc.textpool[i].fstory;
-                        wait_event.npc = npc;
-                        wait_event.text = npc.textpool[i];
-                        break;
-                    }
-                }
+                if(npc.type === "npc"){
 
+                }else if(npc.type === "door"){
+
+                }
             }
         });
-    }
-    keyq.press = () => {//按q可以关闭对话框
-        ToRemoveText = ShowingText;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -329,7 +315,7 @@ function HitMap(r) {
     return false;
 }
 
-AfterLoad();
+
 
 async function loadmap(url) {//可以用于实现切换场景，只需要改变url即可
     console.log("loading...");
