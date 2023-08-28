@@ -91,7 +91,8 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let wait_event = { type: null };
+let wait_event = { type: "null" };
+let event_change = false;
 var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
@@ -116,6 +117,7 @@ app.stage.addChild(background);
 // background.width = app.screen.width;
 // background.height = app.screen.height;
 // app.stage.addChild(background);
+story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //进游戏！
@@ -240,15 +242,28 @@ async function AfterLoad() {
         }
     };
     keyf.press = () => {
-        npc_pool.forEach(npc => {
-            if (HitTest(neko, npc)) {
-                if(npc.type === "npc"){
-
-                }else if(npc.type === "door"){
-                    
+        console.log(wait_event.type);
+        if (wait_event.type === "null") {
+            console.log("f pressed!");
+            npc_pool.forEach(npc => {
+                if (HitTest(neko, npc)) {
+                    if (npc.type === "npc") {
+                        wait_event.type = "npc";
+                        for (let i = 0; i < npc.text.length; i++) {
+                            if (CheckPrelist(npc.text[i].pre_list)) {
+                                wait_event.text = npc.text[i];
+                                wait_event.times = 0;
+                                event_change = true;
+                            }
+                        }
+                    } else if (npc.type === "door") {
+                        wait_event.type = "door";
+                        wait_event.nextmap = npc.nextmap;
+                        event_change = ture;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -260,6 +275,7 @@ async function AfterLoad() {
     }
     app.stage.sortChildren();
     console.log("before in loop");
+    app.ticker.speed = 1;
     app.ticker.add((delta) => gameloop(delta));
     function gameloop(delta) {//游戏循环
         //console.log("in loop!");
@@ -282,6 +298,17 @@ async function AfterLoad() {
         //     wait_event.npc = null;
         //     wait_event.story = null;
         // }
+        //console.log(window.parent.dialogResult);
+        //console.log(wait_event);
+        if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {
+            //console.log(wait_event.text);
+            npc_speak(wait_event.text);
+        }
+        if (wait_event.type === "npc" && typeof (wait_event.text.options) === "undefined") {
+            wait_event.type = "null";
+            wait_event.text = null;
+            wait_event.times = 0;
+        }
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
         } else {
@@ -342,11 +369,9 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc.nextmap = npc_raw_data[i].nextmap;
             npc_pool.push(npc);
         }
-        /*for (let i = 0; i < npc_pool.length; i++) {
-            for (let j = 0; j < npc.behave.length; j++) {
-
-            }
-        }*/
+        for (let i = 0; i < npc_pool.length; i++) {
+            solve_npc_behave(npc_pool[i]);
+        }
     }, 200);
 }
 
@@ -399,32 +424,48 @@ function CheckStoryList(id) {
     if (condition <= 0) return story_status[id] = 1;
     return 0;
 }
-
-window.parent.showDialog({
-    "content": "好巧呀，你也在这里~",
-    "options": [
-        {
-            "name": "to be continue",
-            "content": "你是谁？",
-            "next_text": {
-                "content": "我是...你不能忘记的人。",
-                "options": [],
-                "strike_event": []
-            }
-        },
-        {
-            "name": "to be continue",
-            "content": "我为什么在这里？",
-            "next_text": {
-                "content": "你来到了未定义的地图。",
-                "options": [],
-                "strike_event": []
-            }
+function npc_speak(text) {
+    wait_event.times++;
+    window.parent.showDialog(text);
+    if (text.strike_event.length > 0) {
+        for (let i = 0; i < text.strike_event.length; i++) {
+            command(text.strike_event[i]);
         }
-    ],
-    "strike_event": [
-        "package add 1",
-        "package add 2",
-        "package add 3"
-    ]
-});
+    }
+    if (window.parent.dialogResult !== -1) {
+        wait_event.type = "npc"
+        wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
+        window.parent.dialogResult = -1;
+        console.log(wait_event.text); window.parent.showDialog(wait_event.text);
+
+
+    }
+}
+// window.parent.showDialog({
+//     "content": "好巧呀，你也在这里~",
+//     "options": [
+//         {
+//             "name": "to be continue",
+//             "content": "你是谁？",
+//             "next_text": {
+//                 "content": "我是...你不能忘记的人。",
+//                 "options": [],
+//                 "strike_event": []
+//             }
+//         },
+//         {
+//             "name": "to be continue",
+//             "content": "我为什么在这里？",
+//             "next_text": {
+//                 "content": "你来到了未定义的地图。",
+//                 "options": [],
+//                 "strike_event": []
+//             }
+//         }
+//     ],
+//     "strike_event": [
+//         "package add 1",
+//         "package add 2",
+//         "package add 3"
+//     ]
+// });

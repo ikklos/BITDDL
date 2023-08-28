@@ -48,45 +48,67 @@
                 }
             ],
             "nextmap": null,
-            "text": {
-                "content": "好巧呀，你也在这里~",
-                "options": [
-                    {
-                        "name": "to be continue",
-                        "content": "你是谁？",
-                        "next_text": {
-                            "content": "我是...你不能忘记的人。",
-                            "options": [],
-                            "strike_event": []
+            "text": [
+                {
+                    "content": "好巧呀，你也在这里~",
+                    "options": [
+                        {
+                            "name": "to be continue",
+                            "content": "你是谁？",
+                            "next_text": {
+                                "content": "我是...你不能忘记的人。",
+                                "options": [
+                                    {
+                                        "name": "end",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "",
+                                            "strike_event": []
+                                        },
+                                        "strike_event": []
+                                    }
+                                ],
+                                "strike_event": []
+                            }
+                        },
+                        {
+                            "name": "to be continue",
+                            "content": "我为什么在这里？",
+                            "next_text": {
+                                "content": "你来到了未定义的地图。",
+                                "options": [
+                                    {
+                                        "name": "end",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "",
+                                            "strike_event": []
+                                        },
+                                        "strike_event": []
+                                    }
+                                ],
+                                "strike_event": []
+                            }
                         }
-                    },
-                    {
-                        "name": "to be continue",
-                        "content": "我为什么在这里？",
-                        "next_text": {
-                            "content": "你来到了未定义的地图。",
-                            "options": [],
-                            "strike_event": []
+                    ],
+                    "strike_event": [
+                        "package add 1",
+                        "package add 2",
+                        "package add 3"
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                1,
+                                2,
+                                3
+                            ]
                         }
-                    }
-                ],
-                "strike_event": [
-                    "package add 1",
-                    "package add 2",
-                    "package add 3"
-                ],
-                "pre_list": [
-                    {
-                        "type": "event",
-                        "num": 2,
-                        "list": [
-                            1,
-                            2,
-                            3
-                        ]
-                    }
-                ]
-            }
+                    ]
+                }
+            ]
         }
     ]
 }
