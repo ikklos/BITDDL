@@ -13,13 +13,18 @@
         dialogResult = -1;
         let texta = document.getElementById("text_area");
         texta.innerHTML = "";
-        texta.createElement("p").innerHTML = text.content;
+        let maintext = document.createElement("p");
+        maintext.innerHTML = text.content;
+        texta.appendChild(maintext);
         if (typeof text.options != undefined && text.options.length > 0) {
             for (let i = 0; i < text.options.length; i++) {
-                let tmp = texta.createElement("p");
-                tmp.class = "option_text";
-                tmp.innerHTML = text.options[i].name + ':' + text.options[i].content;
-                tmp.onclick = "dialogResult=" + i;
+                let tmp = document.createElement("p");
+                tmp.className = "option_text";
+                tmp.innerHTML = text.options[i].name + '：' + text.options[i].content;
+                tmp.addEventListener("click", function () {
+                    dialogResult = i;
+                });
+                texta.appendChild(tmp);
             }
         }
     }
@@ -30,9 +35,9 @@
     </div>
     <div class="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
-        <p class="text_area border_s" id="text_area">
+        <div class="text_area border_s" id="text_area">
             Example 中文测试
-        </p>
+        </div>
         <div class="button_box">
 
         </div>

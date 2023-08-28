@@ -283,7 +283,6 @@ async function AfterLoad() {
         if (wait_event.status === true) {//结算互动事件
             neko.vx = neko.vy = 0;
 
-            app.stage.addChild(wait_event.text);
             ShowingText = wait_event.text;
 
             if (story_status[wait_event.story].status === "ready") {
@@ -295,11 +294,6 @@ async function AfterLoad() {
             wait_event.text = null;
             wait_event.npc = null;
             wait_event.story = null;
-        }
-        if (ToRemoveText === ShowingText && ToRemoveText !== null) {//移除文字
-            app.stage.removeChild(ShowingText);
-            ToRemoveText = null;
-            ShowingText = null;
         }
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
@@ -394,3 +388,32 @@ function CheckStoryList(id) {
     if (condition <= 0) return 1;
     return 0;
 }
+
+window.parent.showDialog({
+    "content": "好巧呀，你也在这里~",
+    "options": [
+        {
+            "name": "to be continue",
+            "content": "你是谁？",
+            "next_text": {
+                "content": "我是...你不能忘记的人。",
+                "options": [],
+                "strike_event": []
+            }
+        },
+        {
+            "name": "to be continue",
+            "content": "我为什么在这里？",
+            "next_text": {
+                "content": "你来到了未定义的地图。",
+                "options": [],
+                "strike_event": []
+            }
+        }
+    ],
+    "strike_event": [
+        "package add 1",
+        "package add 2",
+        "package add 3"
+    ]
+});
