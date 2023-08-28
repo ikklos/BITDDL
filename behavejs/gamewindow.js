@@ -32,6 +32,7 @@ function loadbgms(bgmpack) {
         document.body.appendChild(bgms[i]);
     }
     // loaded = true;
+    console.log("bgm load completed!");
     return bgms;
 }
 let bgmStarted = false, bgmNum = 0;
@@ -40,7 +41,7 @@ const startPlayBGM = () => {
     if (bgmStarted) {
         return true;
     }
-    console.log("start!");
+    console.log("start play bgm");
     bgms[0].volume = 0.2;
     bgms[1].volume = 0.2;
     bgms[2].volume = 0.2;
@@ -189,6 +190,7 @@ async function AfterLoad() {
     hori = 1.5; vertical = 1.0;
     //Left
     left.press = () => {
+        console.log("left pressed!");
         neko.vx = -hori;
     };
 
@@ -275,8 +277,10 @@ async function AfterLoad() {
         app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
     }
     app.stage.sortChildren();
+    console.log("before in loop");
     app.ticker.add((delta) => gameloop(delta));
     function gameloop(delta) {//游戏循环
+        //console.log("in loop!");
         play(delta);
     }
     function play(delta) {//基本所有的事件结算都在这里写
