@@ -117,7 +117,7 @@ app.stage.addChild(background);
 // background.height = app.screen.height;
 // app.stage.addChild(background);
 //加载故事
-story_status = LoadStories("");
+story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //console.log(npc_pool);
@@ -282,27 +282,22 @@ async function AfterLoad() {
         play(delta);
     }
     function play(delta) {//基本所有的事件结算都在这里写
-        if (wait_event.status === true) {//结算互动事件
-            neko.vx = neko.vy = 0;
+        // if (wait_event.status === true) {//结算互动事件
+        //     neko.vx = neko.vy = 0;
             
-            app.stage.addChild(wait_event.text);
-            ShowingText = wait_event.text;
+        //     app.stage.addChild(wait_event.text);
+        //     ShowingText = wait_event.text;
             
-            if (story_status[wait_event.story].status === "ready") {
-                if (story_status[story_status[wait_event.story].next].status === "unmeet")
-                    story_status[story_status[wait_event.story].next].status = "ready";
-            }
-            story_status[wait_event.story].status = "touched";
-            wait_event.status = false;
-            wait_event.text = null;
-            wait_event.npc = null;
-            wait_event.story = null;
-        }
-        if (ToRemoveText === ShowingText && ToRemoveText !== null) {//移除文字
-            app.stage.removeChild(ShowingText);
-            ToRemoveText = null;
-            ShowingText = null;
-        }
+        //     if (story_status[wait_event.story].status === "ready") {
+        //         if (story_status[story_status[wait_event.story].next].status === "unmeet")
+        //             story_status[story_status[wait_event.story].next].status = "ready";
+        //     }
+        //     story_status[wait_event.story].status = "touched";
+        //     wait_event.status = false;
+        //     wait_event.text = null;
+        //     wait_event.npc = null;
+        //     wait_event.story = null;
+        // }
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
         } else {
@@ -364,9 +359,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc_pool.push(npc);
         }
         for (let i = 0; i < npc_pool.length; i++) {
-            for(let j = 0; j < npc.behave.length; j++){
-                
-            }
+            solve_npc_behave(npc_pool[i]);
         }
     }, 200);
 }
@@ -376,25 +369,27 @@ function command(str){//不用额外判断，直接动行为就行，判断在�
 }
 function solve_npc_behave(npc){//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let Arr = npc.behave;
+    console.log(Arr);
     for(let i = 0; i < Arr.length; i++){
         if(Arr[i].type === "appear"){//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if(CheckPrelist(Arr[i].prelist)){
+            if(CheckPrelist(Arr[i].pre_list)){
                 app.stage.addChild(npc);
             }
         }else if(Arr[i].type === "disappear"){
-            if(CheckPrelist(Arr[i].prelist)){
+            if(CheckPrelist(Arr[i].pre_list)){
                 app.stage.removeChild(npc);
             }
         }
     }
 }
 function CheckPrelist(pre){//event，//multi_package//package, attribute_value
+    console.log(pre);
     for(let i = 0; i < pre.length; i++){
         
         if(pre[i].type === "event"){
             let num = pre[i].num;
             for(let k = 0; k < pre[i].list.length; k++){
-                if(story_status[pre[i].list[k]] === 1)num--;
+                if(CheckStoryList(pre[i].list[k]))num--;
             }
             if(num > 0){
                 return false;
@@ -405,12 +400,11 @@ function CheckPrelist(pre){//event，//multi_package//package, attribute_value
     return true;
 }
 function CheckStoryList(id){
+    let condition = story_status[id].num;
     if(story_status[id] === 1)return 1;
     else{
-        let condition = story_status[id].num;
-
-        for(let i = 0; i < story_status[id].prelist.length; i++){
-            let f = story_status[id].prelist[i];
+        for(let i = 0; i < story_status[id].pre_list.length; i++){
+            let f = story_status[id].pre_list[i];
             if(story_status[f].status === 1){
                 condition--;
             }

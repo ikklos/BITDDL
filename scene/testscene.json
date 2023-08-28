@@ -1,7 +1,7 @@
 {
     "down": "../sjda",
     "up":"../sjadjsa",
-    
+
     "banaries": [
         {
             "name": "Banary 1",
@@ -81,9 +81,6 @@
                 },
                 {}
             ]
-        },
-        {
-            "type":"door"
         }
     ]
 }
