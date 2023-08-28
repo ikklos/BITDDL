@@ -247,7 +247,7 @@ async function AfterLoad() {
                 if(npc.type === "npc"){
 
                 }else if(npc.type === "door"){
-
+                    
                 }
             }
         });
