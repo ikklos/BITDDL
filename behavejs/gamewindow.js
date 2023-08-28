@@ -116,8 +116,6 @@ app.stage.addChild(background);
 // background.width = app.screen.width;
 // background.height = app.screen.height;
 // app.stage.addChild(background);
-//加载故事
-story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //console.log(npc_pool);
@@ -358,9 +356,11 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc.nextmap = npc_raw_data[i].nextmap;
             npc_pool.push(npc);
         }
-        for (let i = 0; i < npc_pool.length; i++) {
-            solve_npc_behave(npc_pool[i]);
-        }
+        /*for (let i = 0; i < npc_pool.length; i++) {
+            for (let j = 0; j < npc.behave.length; j++) {
+
+            }
+        }*/
     }, 200);
 }
 
