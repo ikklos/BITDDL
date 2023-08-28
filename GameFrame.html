@@ -7,22 +7,37 @@
     <script src="Lib/rc.2_pixi.js"></script>
 </head>
 
-<script >
-    var dialogResult=-1;
-    function showDialog(text){
-        dialogResult=-1;
-        document.getElementById("text_area").innerHTML="";
-        alert("jiejiejie");
+<script>
+    var dialogResult = -1;
+    function showDialog(text) {
+        dialogResult = -1;
+        let texta = document.getElementById("text_area");
+        texta.innerHTML = "";
+        let maintext = document.createElement("p");
+        maintext.innerHTML = text.content;
+        texta.appendChild(maintext);
+        if (typeof text.options != undefined && text.options.length > 0) {
+            for (let i = 0; i < text.options.length; i++) {
+                let tmp = document.createElement("p");
+                tmp.className = "option_text";
+                tmp.innerHTML = text.options[i].name + '：' + text.options[i].content;
+                tmp.addEventListener("click", function () {
+                    dialogResult = i;
+                });
+                texta.appendChild(tmp);
+            }
+        }
     }
 </script>
 
 <body>
-    <div class="gamewindow"><iframe src="GameWindow.html"  scrolling="no" frameborder="0" id="maingameframe"></iframe></div>
+    <div class="gamewindow"><iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
+    </div>
     <div class="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
-        <p class="text_area border_s" id="text_area">
-                Example 中文测试
-        </p>
+        <div class="text_area border_s" id="text_area">
+            Example 中文测试
+        </div>
         <div class="button_box">
 
         </div>
