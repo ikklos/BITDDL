@@ -102,6 +102,9 @@ var currentSave = {//玩家状态
     saveDate: '2077-8-20-23-55',
     password: '123'
 };
+let nowmap = {};
+let neko = {};
+let sheet;
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
@@ -124,7 +127,7 @@ app.stage.addChild(background);
 // app.stage.addChild(background);
 story_status = LoadStories("../story/story.json");
 //加载地图障碍
-loadmap("../scene/testscene.json");
+loadmap("../scene/south-1.json");
 //进游戏！
 AfterLoad();
 //console.log(npc_pool);
@@ -156,18 +159,9 @@ AfterLoad();
 // }
 //neko sprite1
 async function AfterLoad() {
-    const sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
+    sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
     // console.log("in_gamew7indow");
-    let neko = new PIXI.AnimatedSprite(sheet.animations['Character_test']);
-    neko.width = 48;
-    neko.height = 48;
-    neko.hitbox = getHitBox(12, 24, 24, 24);
-    // console.log("in_gamewind5ow");
-    neko.x = app.screen.width / 2;
-    neko.y = app.screen.height / 2;
-    neko.vx = 0; neko.vy = 0;
-    app.stage.addChild(neko);
-    neko.animationSpeed = 0.1;
+    loadhero('Character_test', app.stage.width / 2, app.stage.height / 2);
     // console.log("in_gamewind4ow");
     //生成随机整数
     // function getRandomInt(max) {
@@ -191,7 +185,7 @@ async function AfterLoad() {
     let keyf = keyboard("f", "");
     //水平和垂直速度
     let hori, vertical;
-    hori = 1.5; vertical = 1.0;
+    hori = 0.9; vertical = 0.7;
     //Left
     left.press = () => {
         console.log("left pressed!");
@@ -252,6 +246,7 @@ async function AfterLoad() {
             console.log("f pressed!");
             npc_pool.forEach(npc => {
                 if (HitTest(neko, npc)) {
+                    console.log("in keyf", npc);
                     if (npc.type === "npc") {
                         wait_event.type = "npc";
                         for (let i = 0; i < npc.text.length; i++) {
@@ -264,7 +259,8 @@ async function AfterLoad() {
                     } else if (npc.type === "door") {
                         wait_event.type = "door";
                         wait_event.nextmap = npc.nextmap;
-                        event_change = ture;
+                        wait_event.door = npc;
+                        event_change = true;
                     }
                 }
             });
@@ -275,10 +271,7 @@ async function AfterLoad() {
 
 
     //对象预排序
-    for (let i = 1; i < app.stage.children.length; i++) {
-        app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
-    }
-    app.stage.sortChildren();
+    console.log(npc_pool);
     console.log("before in loop");
     app.ticker.speed = 1;
     app.ticker.add((delta) => gameloop(delta));
@@ -287,6 +280,7 @@ async function AfterLoad() {
         play(delta);
     }
     function play(delta) {//基本所有的事件结算都在这里写
+        
         // if (wait_event.status === true) {//结算互动事件
         //     neko.vx = neko.vy = 0;
 
@@ -314,6 +308,17 @@ async function AfterLoad() {
             wait_event.text = null;
             wait_event.times = 0;
         }
+        if(wait_event.type === "door"){
+            app.stage.removeChild(neko);
+            loadhero('Character_test', wait_event.door.nextx,wait_event.door.nexty);
+            console.log(neko);
+            
+            loadmap(wait_event.nextmap);
+            
+            
+            wait_event.type = "null";
+            wait_event.nextmap = null;
+        }
         if (neko.vx != 0 || neko.vy != 0) {
             if (!neko.playing) neko.play();
         } else {
@@ -331,6 +336,7 @@ async function AfterLoad() {
         if (CrossTheBoader(neko) || HitMap(neko)) {
             neko.y -= neko.vy;
         }
+        //console.log(neko.x,neko.y);
     }
 }
 
@@ -349,20 +355,45 @@ function HitMap(r) {
 
 async function loadmap(url) {//可以用于实现切换场景，只需要改变url即可
     console.log("loading...");
-    npc_pool = [];
-    BanariesPool = [];
-    npc_raw_data = [];
-    BanariesPool = SetMap(url);
+    for(let i = 0; i < npc_pool.length; i++){
+        console.log("removed 1");
+        app.stage.removeChild(npc_pool[i]);
+    }
+    npc_pool.length = 0;
+    BanariesPool.length = 0;
+    npc_raw_data.length = 0;
+    if(typeof(nowmap.up) !== "undefined" && typeof(nowmap.down) !== "undefined"){
+        app.stage.removeChild(nowmap.down);
+        app.stage.removeChild(nowmap.up);
+    }
+    nowmap = SetMap(url);
+    console.log(nowmap);
+    
+    console.log(nowmap.down);
+
     npc_raw_data = SetNPCs(url);
+    
     //story_status = LoadStories(url);
     console.log("set completed");
     setTimeout(() => {
+        console.log(nowmap);
+        app.stage.addChild(neko);
+        console.log("add neko completed!");
+        console.log(neko.x);
+        console.log(neko.y);
+        BanariesPool = nowmap.banaries;
+        nowmap.down = PIXI.Sprite.from(nowmap.down);
+        nowmap.down.name = "down";
+        nowmap.up = PIXI.Sprite.from(nowmap.up);
+        nowmap.up.name = "up";
+        app.stage.addChild(nowmap.down);
+        app.stage.addChild(nowmap.up);
         console.log(npc_raw_data);
         for (let i = 0; i < npc_raw_data.length; i++) {
             console.log("loading...");
             let npc = PIXI.Sprite.from(npc_raw_data[i].img);
             console.log("success!");
-            npc.HitBox = getPartHitBox(npc, npc_raw_data[i].collideH);
+            npc.hitbox = getPartHitBox(npc_raw_data[i], npc_raw_data[i].collideH);
             npc.behave = npc_raw_data[i].behave;
             npc.text = npc_raw_data[i].text;
             npc.name = npc_raw_data[i].name;
@@ -372,12 +403,31 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc.height = npc_raw_data[i].height;
             npc.width = npc_raw_data[i].width;
             npc.nextmap = npc_raw_data[i].nextmap;
+            console.log(npc.x);
+             if(npc.type === "door"){
+                npc.nextx = npc_raw_data[i].nextx;
+                npc.nexty = npc_raw_data[i].nexty;
+                npc.hitbox = getHitBox(-10,-10,npc_raw_data[i].width + 20,npc_raw_data[i].height + 20);
+            }
             npc_pool.push(npc);
         }
         for (let i = 0; i < npc_pool.length; i++) {
-            solve_npc_behave(npc_pool[i]);
+            if (npc_pool[i].type === "npc") solve_npc_behave(npc_pool[i]);
+            else if (npc_pool[i].type === "door") {
+                app.stage.addChild(npc_pool[i]);
+            }
         }
-    }, 200);
+        for (let i = 1; i < app.stage.children.length; i++) {
+            app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
+        }
+        console.log(app.stage.getChildByName(nowmap.down));
+        app.stage.getChildByName("up").zIndex = 10086;
+        app.stage.getChildByName("down").zIndex = 0;
+        app.stage.sortChildren();
+        console.log("sort end");
+        console.log(BanariesPool);
+    }, 300);
+    
 }
 /*commands
 attribute|attr,name,change,xx     修改属性为xx
@@ -385,7 +435,7 @@ attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
-    strs = str.split(',');
+    let strs = str.split(',');
     switch (strs[0]) {
         case 'attr':
         case 'attribute':
@@ -491,8 +541,6 @@ function npc_speak(text) {
         wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
         window.parent.dialogResult = -1;
         console.log(wait_event.text); window.parent.showDialog(wait_event.text);
-
-
     }
 }
 // window.parent.showDialog({
@@ -523,3 +571,16 @@ function npc_speak(text) {
 //         "package add 3"
 //     ]
 // });
+
+function loadhero(url, x, y){
+    neko = new PIXI.AnimatedSprite(sheet.animations[url]);
+    neko.name = "hero";
+    neko.width = 24;
+    neko.height = 24;
+    neko.hitbox = getHitBox(6, 12, 12, 12);
+    // console.log("in_gamewind5ow");
+    neko.x = x;
+    neko.y = y;
+    neko.vx = 0; neko.vy = 0;
+    neko.animationSpeed = 0.1;
+}

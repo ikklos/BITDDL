@@ -1,0 +1,148 @@
+{
+    "down":"../scene/images/shop-down.png",
+    "up":"../scene/images/shop-up.png",
+    "banaries": [
+        {
+            "name": "bianjie up",
+            "x": 288,
+            "y": 240,
+            "width": 336,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie up1",
+            "x": 648,
+            "y": 240,
+            "width": 72,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down2",
+            "x": 648,
+            "y": 384,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down1",
+            "x": 648,
+            "y": 360,
+            "width": 72,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down3",
+            "x": 528,
+            "y": 408,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down4",
+            "x": 288,
+            "y": 384,
+            "width": 240,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie left",
+            "x": 264,
+            "y": 264,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie left",
+            "x": 336,
+            "y": 312,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie right",
+            "x": 720,
+            "y": 264,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie up2",
+            "x": 624,
+            "y": 216,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "zhuozi1",
+            "x": 576,
+            "y": 312,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "zhuozi2",
+            "x": 576,
+            "y": 360,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "zhuozi3",
+            "x": 600,
+            "y": 336,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair",
+            "x": 581,
+            "y": 345,
+            "width": 14,
+            "height": 15,
+            "type": "banary",
+            "collideH": 1
+        }
+    ],
+    "npcs": [
+        {   
+            "img":"../scene/images/door-one-out.png",
+            "name": "door 1",
+            "x": 720,
+            "y": 264,
+            "width": 24,
+            "height": 96,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 72,
+            "nexty": 480,
+            "nextmap": "../scene/south-1.json"
+        }
+    ]
+}

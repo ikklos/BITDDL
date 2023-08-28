@@ -24,7 +24,8 @@ function putnpc(json){
         npc.behave = Arr[i].behave;
         npc.nextmap = Arr[i].nextmap;
         npc.text = Arr[i].text;
-        
+        npc.nextx = Arr[i].nextx;
+        npc.nexty = Arr[i].nexty;
         onmap.push(npc);
     }
 }
