@@ -2,7 +2,7 @@ import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.j
 import { keyboard } from './keyboard.js';
 import { SetMap } from "./MapSet.js";
 import { SetNPCs } from "./npcbehave.js";
-import {LoadStories} from "./LoadStoryStatus.js"
+import { LoadStories } from "./LoadStoryStatus.js"
 
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
@@ -91,7 +91,7 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let wait_event = {"type":"null"};//此时有没有待处理互动事件
+let wait_event = { type: null };
 var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
@@ -116,8 +116,6 @@ app.stage.addChild(background);
 // background.width = app.screen.width;
 // background.height = app.screen.height;
 // app.stage.addChild(background);
-//加载故事
-story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //进游戏！
@@ -270,10 +268,10 @@ async function AfterLoad() {
     function play(delta) {//基本所有的事件结算都在这里写
         // if (wait_event.status === true) {//结算互动事件
         //     neko.vx = neko.vy = 0;
-            
+
         //     app.stage.addChild(wait_event.text);
         //     ShowingText = wait_event.text;
-            
+
         //     if (story_status[wait_event.story].status === "ready") {
         //         if (story_status[story_status[wait_event.story].next].status === "unmeet")
         //             story_status[story_status[wait_event.story].next].status = "ready";
@@ -324,7 +322,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     npc_raw_data = [];
     BanariesPool = SetMap(url);
     npc_raw_data = SetNPCs(url);
-    
+    //story_status = LoadStories(url);
     console.log("set completed");
     setTimeout(() => {
         console.log(npc_raw_data);
@@ -344,40 +342,42 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc.nextmap = npc_raw_data[i].nextmap;
             npc_pool.push(npc);
         }
-        for (let i = 0; i < npc_pool.length; i++) {
-            solve_npc_behave(npc_pool[i]);
-        }
+        /*for (let i = 0; i < npc_pool.length; i++) {
+            for (let j = 0; j < npc.behave.length; j++) {
+
+            }
+        }*/
     }, 200);
 }
 
-function command(str){//不用额外判断，直接动行为就行，判断在别的地方
+function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
 
 }
-function solve_npc_behave(npc){//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
+function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let Arr = npc.behave;
     console.log(Arr);
-    for(let i = 0; i < Arr.length; i++){
-        if(Arr[i].type === "appear"){//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if(CheckPrelist(Arr[i].pre_list)){
+    for (let i = 0; i < Arr.length; i++) {
+        if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
+            if (CheckPrelist(Arr[i].pre_list)) {
                 app.stage.addChild(npc);
             }
-        }else if(Arr[i].type === "disappear"){
-            if(CheckPrelist(Arr[i].pre_list)){
+        } else if (Arr[i].type === "disappear") {
+            if (CheckPrelist(Arr[i].pre_list)) {
                 app.stage.removeChild(npc);
             }
         }
     }
 }
-function CheckPrelist(pre){//event，//multi_package//package, attribute_value
+function CheckPrelist(pre) {//event，//multi_package//package, attribute_value
     console.log(pre);
-    for(let i = 0; i < pre.length; i++){
-        
-        if(pre[i].type === "event"){
+    for (let i = 0; i < pre.length; i++) {
+
+        if (pre[i].type === "event") {
             let num = pre[i].num;
-            for(let k = 0; k < pre[i].list.length; k++){
-                if(CheckStoryList(pre[i].list[k]))num--;
+            for (let k = 0; k < pre[i].list.length; k++) {
+                if (CheckStoryList(pre[i].list[k])) num--;
             }
-            if(num > 0){
+            if (num > 0) {
                 return false;
             }
         }
@@ -385,17 +385,46 @@ function CheckPrelist(pre){//event，//multi_package//package, attribute_value
 
     return true;
 }
-function CheckStoryList(id){
+function CheckStoryList(id) {
     let condition = story_status[id].num;
-    if(story_status[id] === 1)return 1;
-    else{
-        for(let i = 0; i < story_status[id].pre_list.length; i++){
+    if (story_status[id] === 1) return 1;
+    else {
+        for (let i = 0; i < story_status[id].pre_list.length; i++) {
             let f = story_status[id].pre_list[i];
-            if(story_status[f].status === 1){
+            if (story_status[f].status === 1) {
                 condition--;
             }
         }
     }
-    if(condition <= 0)return story_status[id] = 1;
+    if (condition <= 0) return story_status[id] = 1;
     return 0;
 }
+
+window.parent.showDialog({
+    "content": "好巧呀，你也在这里~",
+    "options": [
+        {
+            "name": "to be continue",
+            "content": "你是谁？",
+            "next_text": {
+                "content": "我是...你不能忘记的人。",
+                "options": [],
+                "strike_event": []
+            }
+        },
+        {
+            "name": "to be continue",
+            "content": "我为什么在这里？",
+            "next_text": {
+                "content": "你来到了未定义的地图。",
+                "options": [],
+                "strike_event": []
+            }
+        }
+    ],
+    "strike_event": [
+        "package add 1",
+        "package add 2",
+        "package add 3"
+    ]
+});
