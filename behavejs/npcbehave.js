@@ -13,17 +13,18 @@ function putnpc(json){
     for(let i = 0; i < Arr.length; i++){
         let npc = {};
         npc.img = Arr[i].img;
+        npc.name = Arr[i].name;
         npc.x = Arr[i].x;
         npc.y = Arr[i].y;
         npc.height = Arr[i].height;
         npc.width = Arr[i].width;
         npc.collideH = Arr[i].collideH;
         npc.hitbox = {};
-        npc.fstory = Arr[i].fstory;
-        npc.text = Arr[i].text;
-        npc.name = Arr[i].name;
         npc.type = Arr[i].type;
+        npc.behave = Arr[i].behave;
         npc.nextmap = Arr[i].nextmap;
+        npc.text = Arr[i].text;
+        
         onmap.push(npc);
     }
 }

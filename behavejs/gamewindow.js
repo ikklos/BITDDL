@@ -2,6 +2,7 @@ import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.j
 import { keyboard } from './keyboard.js';
 import { SetMap } from "./MapSet.js";
 import { SetNPCs } from "./npcbehave.js";
+import {LoadStories} from "./LoadStoryStatus.js"
 
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
@@ -91,15 +92,10 @@ document.body.addEventListener('keydown', startPlayBGM);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let wait_event = { status: false ,story :null}//此时有没有待处理互动事件
-var story_status = [{
-    "story": "test",
-    "status": 1,
-    "next": 2//下一个剧情的编号
-},{},{}];
+var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
-let ShowingText, ToRemoveText;//正在显示的对话，需要关闭的对话
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
@@ -345,6 +341,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     npc_raw_data = [];
     BanariesPool = SetMap(url);
     npc_raw_data = SetNPCs(url);
+    story_status = LoadStories(url);
     console.log("set completed");
     setTimeout(() => {
         console.log(npc_raw_data);
@@ -353,10 +350,10 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             let npc = PIXI.Sprite.from(npc_raw_data[i].img);
             console.log("success!");
             npc.HitBox = getPartHitBox(npc, npc_raw_data[i].collideH);
-            npc.fstory = npc_raw_data[i].fstory;
-            npc.textpool = loadtexts(npc_raw_data[i].text);
+            npc.behave = npc_raw_data[i].behave;
+            npc.text = npc_raw_data[i].text;
             npc.name = npc_raw_data[i].name;
-            npc.npctype = npc_raw_data[i].type;
+            npc.type = npc_raw_data[i].type;
             npc.x = npc_raw_data[i].x;
             npc.y = npc_raw_data[i].y;
             npc.height = npc_raw_data[i].height;
@@ -365,21 +362,35 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc_pool.push(npc);
         }
         for (let i = 0; i < npc_pool.length; i++) {
-            if (story_status[npc_pool[i].fstory].status !== "unmeet") { app.stage.addChild(npc_pool[i]); console.log("add!") }
+            for(let j = 0; j < npc.behave.length; j++){
+                
+            }
         }
     }, 200);
+}
+
+function command(str){//npc出现消失也得写这里，不用额外判断，直接动行为就行，判断在别的地方
 
 }
-function loadtexts(text_array) {//只被loadmap调用
-    console.log(text_array.length);
-    let texts = [];
-    for (let i = 0; i < text_array.length; i++) {
-        console.log("loading text");
-        let text = new PIXI.Text(text_array[i].content);
-        text.x = 50;
-        text.y = 500;
-        text.fstory = text_array[i].fstory;
-        texts.push(text);
+function solve_npc_behave(behave){
+
+}
+function CheckPrelist(pre){
+
+    return true;
+}
+function CheckStoryList(id){
+    if(story_status[id] === 1)return 1;
+    else{
+        let condition = story_status[id].num;
+
+        for(let i = 0; i < story_status[id].prelist.length; i++){
+            let f = story_status[id].prelist[i];
+            if(story_status[f].status === 1){
+                condition--;
+            }
+        }
     }
-    return texts;
+    if(condition <= 0)return 1;
+    return 0;
 }
