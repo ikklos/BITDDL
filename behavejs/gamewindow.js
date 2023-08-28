@@ -97,6 +97,11 @@ var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
+var currentSave = {//玩家状态
+    playerName: 'tav',
+    saveDate: '2077-8-20-23-55',
+    password: '123'
+};
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
@@ -374,9 +379,58 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         }
     }, 200);
 }
-
+/*commands
+attribute|attr,name,change,xx     修改属性为xx
+attribute|attr,name,delta,xx      属性增加xx
+package|pkg,add|remove,id,num     增添背包物品
+ */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
+    strs = str.split(',');
+    switch (strs[0]) {
+        case 'attr':
+        case 'attribute':
+            if (typeof currentSave[strs[1]] === undefined) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an avaliable attribute!`);
+                break;
+            }
+            if (strs[2] != "delta" && strs[2] != "change") {
+                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not an option!`);
+                break;
+            }
+            if (typeof currentSave[strs[1]] == "number") {
+                let num = Number(strs[3]);
+                if (num == "NaN") {
+                    console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a number!`);
+                    break;
+                }
+                if (strs[2] == "delta")
+                    currentSave[strs[1]] += num;
+                else
+                    currentSave[strs[1]] = num;
+            } else if (typeof currentSave[strs[1]] == "boolean") {
+                if (strs[3] != "true" && strs[3] != "false") {
+                    console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a boolean value!`);
+                    break;
+                }
+                currentSave[strs[1]] = strs[3] == "true";
+            } else if (typeof currentSave[strs[1]] == "object") {
+                try {
+                    let obj = JSON.parse(strs[3]);
+                    currentSave[strs[1]] = obj;
+                } catch (e) {
+                    console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an object!`);
+                }
+            } else if (typeof currentSave[strs[1]] == "string") {
+                currentSave[strs[1]] = strs[3];
+            } else console.log(`command "${str}" cannot be invoked."${strs[1]}" has exceptional type!`);
+            break;
+        case 'pkg':
+        case 'package':
 
+            break;
+        default:
+            console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
+    }
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let Arr = npc.behave;

@@ -27,6 +27,14 @@
                 });
                 texta.appendChild(tmp);
             }
+        } else {
+            let tmp = document.createElement("p");
+            tmp.className = "option_text";
+            tmp.innerHTML = "离开";
+            tmp.addEventListener("click", function () {
+                dialogResult = 0;
+            });
+            texta.appendChild(tmp);
         }
         
     }
