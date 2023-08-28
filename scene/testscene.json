@@ -1,43 +1,69 @@
 {
-    "banaries":[
+    "banaries": [
         {
-            "name":"Banary 1",
+            "name": "Banary 1",
             "x": 200,
             "y": 233,
             "width": 100,
             "height": 100,
             "type": "banary",
-            "collideH":0.2
+            "collideH": 0.2
         },
         {
-            "name":"Banary 2",
+            "name": "Banary 2",
             "x": 500,
             "y": 100,
             "width": 100,
             "height": 100,
             "type": "banary",
-            "collideH":0.2
+            "collideH": 0.2
         }
-
     ],
-    "npcs":[
+    "npcs": [
         {
-            "img":"../sprite/players/Character_test.png",
-            "name":"NPC 1",
+            "img": "../sprite/players/Character_test.png",
+            "name": "NPC 1",
             "x": 200,
             "y": 233,
             "width": 48,
             "height": 48,
+            "collideH": 1.0,
             "type": "npc",
-            "fstory": 0,
-            "collideH":1.0,
-            "nextmap":null,
-            "text":[
+            "behave": [
                 {
-                    "content":"什么，你问我是谁，你不觉得我跟你长得很像吗",
-                    "fstory" : 0
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                1,
+                                2,
+                                3
+                            ]
+                        }
+                    ]
                 }
-            ]
+            ],
+            "nextmap": null,
+            "text": {
+                "content": "什么",
+                "options": [
+                    {
+                        "name": "to be continue",
+                        "next text": {
+                            "content": "我是谁",
+                            "options": [],
+                            "strike_event": []
+                        }
+                    }
+                ],
+                "strike_event": [
+                    "package add 1",
+                    "package add 2",
+                    "package add 3"
+                ]
+            }
         }
     ]
 }

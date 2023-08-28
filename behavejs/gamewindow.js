@@ -93,7 +93,7 @@ document.body.addEventListener('keydown', startPlayBGM);
 let wait_event = { status: false ,story :null}//此时有没有待处理互动事件
 var story_status = [{
     "story": "test",
-    "status": "ready",//剧情完成情况，分为unmeet，ready，touched
+    "status": 1,
     "next": 2//下一个剧情的编号
 },{},{}];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
