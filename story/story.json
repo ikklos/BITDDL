@@ -1,9 +1,27 @@
 {
-    "story":[
+    "story": [
+        {
+            "id": 0,
+            "num": 0,
+            "pre_list": [],
+            "status":0
+        },
         {
             "id": 1,
             "num": 0,
             "pre_list": [],
+            "status": 0
+        },
+        {
+            "id": 2,
+            "num": 0,
+            "pre_list": [],
+            "status": 0
+        },
+        {
+            "id":3,
+            "num":0,
+            "pre_list":[],
             "status": 0
         }
     ]

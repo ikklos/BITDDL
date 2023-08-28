@@ -116,6 +116,8 @@ app.stage.addChild(background);
 // background.width = app.screen.width;
 // background.height = app.screen.height;
 // app.stage.addChild(background);
+//加载故事
+story_status = LoadStories("");
 //加载地图障碍
 loadmap("../scene/testscene.json");
 //console.log(npc_pool);
@@ -341,7 +343,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     npc_raw_data = [];
     BanariesPool = SetMap(url);
     npc_raw_data = SetNPCs(url);
-    story_status = LoadStories(url);
+    
     console.log("set completed");
     setTimeout(() => {
         console.log(npc_raw_data);
@@ -369,13 +371,36 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     }, 200);
 }
 
-function command(str){//npc出现消失也得写这里，不用额外判断，直接动行为就行，判断在别的地方
+function command(str){//不用额外判断，直接动行为就行，判断在别的地方
 
 }
-function solve_npc_behave(behave){
-
+function solve_npc_behave(npc){//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
+    let Arr = npc.behave;
+    for(let i = 0; i < Arr.length; i++){
+        if(Arr[i].type === "appear"){//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
+            if(CheckPrelist(Arr[i].prelist)){
+                app.stage.addChild(npc);
+            }
+        }else if(Arr[i].type === "disappear"){
+            if(CheckPrelist(Arr[i].prelist)){
+                app.stage.removeChild(npc);
+            }
+        }
+    }
 }
-function CheckPrelist(pre){
+function CheckPrelist(pre){//event，//multi_package//package, attribute_value
+    for(let i = 0; i < pre.length; i++){
+        
+        if(pre[i].type === "event"){
+            let num = pre[i].num;
+            for(let k = 0; k < pre[i].list.length; k++){
+                if(story_status[pre[i].list[k]] === 1)num--;
+            }
+            if(num > 0){
+                return false;
+            }
+        }
+    }
 
     return true;
 }
@@ -391,6 +416,6 @@ function CheckStoryList(id){
             }
         }
     }
-    if(condition <= 0)return 1;
+    if(condition <= 0)return story_status[id] = 1;
     return 0;
 }

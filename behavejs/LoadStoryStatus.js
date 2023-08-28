@@ -6,7 +6,7 @@ function LoadStories(url){
         .then((response) => response.json())
         .then((json) => {
             for(let i = 0; i < json.story.length; i++){
-                sto[i] = json.story;
+                sto[i] = json.story[i];
             }
         })
 

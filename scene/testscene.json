@@ -1,4 +1,7 @@
 {
+    "down": "../sjda",
+    "up":"../sjadjsa",
+    
     "banaries": [
         {
             "name": "Banary 1",
@@ -7,7 +10,7 @@
             "width": 100,
             "height": 100,
             "type": "banary",
-            "collideH": 0.2
+            "collideH": 1
         },
         {
             "name": "Banary 2",
@@ -45,25 +48,42 @@
                     ]
                 }
             ],
-            "nextmap": null,
-            "text": {
-                "content": "什么",
-                "options": [
-                    {
-                        "name": "to be continue",
-                        "next text": {
-                            "content": "我是谁",
-                            "options": [],
-                            "strike_event": []
+            "nextmap": "../scene/scene2.json",
+            "text": [
+                {
+                    "content": "什么",
+                    "options": [
+                        {
+                            "name": "to be continue",
+                            "next text": {
+                                "content": "我是谁",
+                                "options": [],
+                                "strike_event": []
+                            }
                         }
-                    }
-                ],
-                "strike_event": [
-                    "package add 1",
-                    "package add 2",
-                    "package add 3"
-                ]
-            }
+                    ],
+                    "strike_event": [
+                        "package add 1",
+                        "package add 2",
+                        "package add 3"
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                1,
+                                2,
+                                3
+                            ]
+                        }
+                    ]
+                },
+                {}
+            ]
+        },
+        {
+            "type":"door"
         }
     ]
 }
