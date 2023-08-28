@@ -96,7 +96,7 @@ var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
-var currentSave = {
+var currentSave = {//玩家状态
     playerName: 'tav',
     saveDate: '2077-8-20-23-55',
     password: '123'
@@ -369,7 +369,8 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     }, 200);
 }
 /*commands
-attribute|attr,name,delta|change,xx  修改属性
+attribute|attr,name,change,xx     修改属性为xx
+attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
