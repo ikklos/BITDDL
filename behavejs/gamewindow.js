@@ -522,3 +522,6 @@ function use_item(id, num) {
     }
 }
 
+function hero_face_to(dir){
+    
+}
