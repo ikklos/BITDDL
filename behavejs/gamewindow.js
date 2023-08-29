@@ -60,7 +60,7 @@ background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
 story_status[0].status = 1;
-for(let i = 1; i <= 2000; i++){
+for (let i = 1; i <= 2000; i++) {
     let story = {};
     story.status = 0;
     story_status.push(story);
@@ -77,7 +77,7 @@ if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
 AfterLoad();
 async function AfterLoad() {
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
-    loadhero('neko_down', 336,312);
+    loadhero('neko_down', 336, 312);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
@@ -337,7 +337,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 100);
+    }, 1000);
 
 }
 /*commands
@@ -411,29 +411,29 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
     let Arr = npc.behave;
-    if (typeof (Arr) == "undefined"){
+    if (typeof (Arr) == "undefined") {
         app.stage.addChild(npc);
         return;
     }
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             let num = Arr[i].pre_list.num;
-            for(let k = 0; k < Arr[i].pre_list.length; k++){
-                if(story_status[Arr[i].pre_list.list[k]].status === 1){
+            for (let k = 0; k < Arr[i].pre_list.length; k++) {
+                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
                     num--;
                 }
             }
-            if(num <= 0){
+            if (num <= 0) {
                 fin = true;
             }
         } else if (Arr[i].type === "disappear") {
             let num = Arr[i].pre_list.num;
-            for(let k = 0; k < Arr[i].pre_list.length; k++){
-                if(story_status[Arr[i].pre_list.list[k]].status === 1){
+            for (let k = 0; k < Arr[i].pre_list.length; k++) {
+                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
                     num--;
                 }
             }
-            if(num <= 0){
+            if (num <= 0) {
                 fin = false;
             }
         }
