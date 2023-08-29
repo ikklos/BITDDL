@@ -14,6 +14,7 @@
     }
     function showDialog(text) {
         let texta = document.getElementById("text_area");
+        texta.focus();
         texta.innerHTML = "";
         let maintext = document.createElement("p");
         maintext.innerHTML = text.content;
@@ -36,6 +37,7 @@
             tmp.innerHTML = "*离开*";
             tmp.addEventListener("click", function () {
                 dialogResult = 0;
+                document.getElementById("maingameframe").focus();
             });
             texta.appendChild(tmp);
         }
@@ -44,7 +46,7 @@
 </script>
 
 <body>
-    <iframe src="GameWindow.html"  scrolling="no" frameborder="0" id="maingameframe"></iframe>
+    <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <div class="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
         <div class="text_area border_s" id="text_area">
