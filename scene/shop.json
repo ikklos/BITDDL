@@ -142,6 +142,16 @@
             "nextx": 72,
             "nexty": 480,
             "nextmap": "../scene/south-1.json"
+        },
+        {
+            "img": "../character/seller/seller-normal.png",
+            "name": "seller",
+            "x": 576,
+            "y": 336,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }

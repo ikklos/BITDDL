@@ -127,24 +127,24 @@
             "nextmap": "../scene/shutong-1.json"
         },
         {
-            "img":"../scene/images/friend2.png",
+            "img":"../character/friend2/think.png",
             "name": "friend2",
             "x": 552,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc"
         },
         {
-            "img":"../scene/images/friend3.png",
+            "img":"../character/friend3/talk.png",
             "name": "friend3",
             "x": 504,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc"
         }
     ]
 }

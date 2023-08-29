@@ -221,6 +221,16 @@
             "nextx": 432,
             "nexty": 456,
             "nextmap": "../scene/lijiao-1.json"
+        },
+        {
+            "img": "../character/soccerboy/soccerboy-excited.png",
+            "name": "soccerboy",
+            "x": 336,
+            "y": 192,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }

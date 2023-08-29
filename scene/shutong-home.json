@@ -134,27 +134,17 @@
             "width": 48,
             "height": 48,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc"
         },
         {
-            "img":"../scene/images/clear.png",
-            "name": "bed 2",
-            "x": 600,
-            "y": 288,
-            "width": 48,
-            "height": 48,
-            "collideH": 1.0,
-            "type": "door"
-        },
-        {
-            "img":"../scene/images/friend1.png",
+            "img":"../character/friend1/friend1.png",
             "name": "friend1",
             "x": 552,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc"
         },
         {
             "img":"../scene/images/clear.png",
@@ -164,7 +154,7 @@
             "width": 48,
             "height": 48,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc"
         }
     ]
 }

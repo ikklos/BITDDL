@@ -61,7 +61,7 @@ background.height = app.screen.height;
 app.stage.addChild(background);
 story_status = LoadStories("../story/story.json");
 //加载地图障碍
-loadmap("../scene/south-1.json");
+loadmap("../scene/shutong-home.json");
 if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
     currentSave.savepackage = [];
     for (let i = 0; i < item_list.length; i++) {
@@ -72,7 +72,7 @@ if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
 AfterLoad();
 async function AfterLoad() {
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
-    loadhero('neko_down', app.stage.width / 2, app.stage.height / 2);
+    loadhero('neko_down', 336,312);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
