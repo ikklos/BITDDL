@@ -403,14 +403,29 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
     let Arr = npc.behave;
-    if (typeof (Arr) == "undefined") return;
+    if (typeof (Arr) == "undefined"){
+        app.stage.addChild(npc);
+        return;
+    }
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if (CheckPrelist(Arr[i].pre_list)) {
+            let num = Arr[i].pre_list.num;
+            for(let k = 0; k < Arr[i].pre_list.length; k++){
+                if(story_status[Arr[i].pre_list.list[k]].status === 1){
+                    num--;
+                }
+            }
+            if(num <= 0){
                 fin = true;
             }
         } else if (Arr[i].type === "disappear") {
-            if (CheckPrelist(Arr[i].pre_list)) {
+            let num = Arr[i].pre_list.num;
+            for(let k = 0; k < Arr[i].pre_list.length; k++){
+                if(story_status[Arr[i].pre_list.list[k]].status === 1){
+                    num--;
+                }
+            }
+            if(num <= 0){
                 fin = false;
             }
         }
