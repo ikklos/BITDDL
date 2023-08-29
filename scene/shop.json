@@ -151,7 +151,68 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                22,
+                                27
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "num": 1,
+                            "list": [
+                                25,
+                                26,
+                                27,
+                                28
+                            ]
+                        }
+                    ],
+                    "content": "要买什么东西吗？",
+                    "options": [
+                        {
+                            "name": "文具",
+                            "content": "我需要一只中性笔，一把尺子和一块橡皮。",
+                            "next_text": {
+                                "content": "要被咖啡吗？",
+                                "options": [
+                                    {
+                                        "name": "同意",
+                                        "content": "*你将智慧存放于此*",
+                                        "strike_event": [
+                                            "sf,26"
+                                        ]
+                                    },
+                                    {
+                                        "name": "拒绝",
+                                        "content": "*你将智慧存放于此*",
+                                        "strike_event": [
+                                            "sf,25"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "智慧",
+                            "content": "我需要智慧。",
+                            "next_text": {
+                                "content": "球在等你。",
+                                "strike_event": [
+                                    "pkg,add,1",
+                                    "sf,27"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
