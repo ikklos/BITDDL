@@ -280,7 +280,7 @@ async function AfterLoad() {
         play(delta);
     }
     function play(delta) {//基本所有的事件结算都在这里写
-        
+
         // if (wait_event.status === true) {//结算互动事件
         //     neko.vx = neko.vy = 0;
 
@@ -303,19 +303,14 @@ async function AfterLoad() {
             //console.log(wait_event.text);
             npc_speak(wait_event.text);
         }
-        if (wait_event.type === "npc" && typeof (wait_event.text.options) === "undefined") {
-            wait_event.type = "null";
-            wait_event.text = null;
-            wait_event.times = 0;
-        }
-        if(wait_event.type === "door"){
+        if (wait_event.type === "door") {
             app.stage.removeChild(neko);
-            loadhero('Character_test', wait_event.door.nextx,wait_event.door.nexty);
+            loadhero('Character_test', wait_event.door.nextx, wait_event.door.nexty);
             console.log(neko);
-            
+
             loadmap(wait_event.nextmap);
-            
-            
+
+
             wait_event.type = "null";
             wait_event.nextmap = null;
         }
@@ -355,24 +350,24 @@ function HitMap(r) {
 
 async function loadmap(url) {//可以用于实现切换场景，只需要改变url即可
     console.log("loading...");
-    for(let i = 0; i < npc_pool.length; i++){
+    for (let i = 0; i < npc_pool.length; i++) {
         console.log("removed 1");
         app.stage.removeChild(npc_pool[i]);
     }
     npc_pool.length = 0;
     BanariesPool.length = 0;
     npc_raw_data.length = 0;
-    if(typeof(nowmap.up) !== "undefined" && typeof(nowmap.down) !== "undefined"){
+    if (typeof (nowmap.up) !== "undefined" && typeof (nowmap.down) !== "undefined") {
         app.stage.removeChild(nowmap.down);
         app.stage.removeChild(nowmap.up);
     }
     nowmap = SetMap(url);
     console.log(nowmap);
-    
+
     console.log(nowmap.down);
 
     npc_raw_data = SetNPCs(url);
-    
+
     //story_status = LoadStories(url);
     console.log("set completed");
     setTimeout(() => {
@@ -404,10 +399,10 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             npc.width = npc_raw_data[i].width;
             npc.nextmap = npc_raw_data[i].nextmap;
             console.log(npc.x);
-             if(npc.type === "door"){
+            if (npc.type === "door") {
                 npc.nextx = npc_raw_data[i].nextx;
                 npc.nexty = npc_raw_data[i].nexty;
-                npc.hitbox = getHitBox(-10,-10,npc_raw_data[i].width + 20,npc_raw_data[i].height + 20);
+                npc.hitbox = getHitBox(-10, -10, npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
             }
             npc_pool.push(npc);
         }
@@ -426,8 +421,8 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 300);
-    
+    }, 1000);
+
 }
 /*commands
 attribute|attr,name,change,xx     修改属性为xx
@@ -485,6 +480,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let Arr = npc.behave;
     console.log(Arr);
+    if (typeof (Arr) == "undefined") return;
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             if (CheckPrelist(Arr[i].pre_list)) {
@@ -499,6 +495,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
 }
 function CheckPrelist(pre) {//event，//multi_package//package, attribute_value
     console.log(pre);
+    if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
 
         if (pre[i].type === "event") {
@@ -531,16 +528,24 @@ function CheckStoryList(id) {
 function npc_speak(text) {
     wait_event.times++;
     window.parent.showDialog(text);
-    if (text.strike_event.length > 0) {
+    if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0) {
         for (let i = 0; i < text.strike_event.length; i++) {
             command(text.strike_event[i]);
         }
     }
     if (window.parent.dialogResult !== -1) {
-        wait_event.type = "npc"
-        wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
-        window.parent.dialogResult = -1;
-        console.log(wait_event.text); window.parent.showDialog(wait_event.text);
+        if (typeof (wait_event.text.options) != 'undefined' && window.parent.dialogResult < wait_event.text.options.length) {
+            wait_event.type = "npc"
+            wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
+            window.parent.dialogResult = -1;
+            console.log(wait_event.text);
+            window.parent.showDialog(wait_event.text);
+        } else {
+            wait_event.type = "null";
+            wait_event.text = null;
+            wait_event.times = 0;
+            window.parent.clearTextArea();
+        }
     }
 }
 // window.parent.showDialog({
@@ -572,7 +577,7 @@ function npc_speak(text) {
 //     ]
 // });
 
-function loadhero(url, x, y){
+function loadhero(url, x, y) {
     neko = new PIXI.AnimatedSprite(sheet.animations[url]);
     neko.name = "hero";
     neko.width = 24;

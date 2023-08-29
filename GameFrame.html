@@ -9,34 +9,37 @@
 
 <script>
     var dialogResult = -1;
+    function clearTextArea() {
+        document.getElementById("text_area").innerHTML = "";
+    }
     function showDialog(text) {
         let texta = document.getElementById("text_area");
         texta.innerHTML = "";
         let maintext = document.createElement("p");
         maintext.innerHTML = text.content;
         texta.appendChild(maintext);
-        if (typeof (text.options) !== "undefined") {
-            if(text.options.length > 0)
-            for (let i = 0; i < text.options.length; i++) {
-                let tmp = document.createElement("p");
-                tmp.className = "option_text";
-                tmp.innerHTML = text.options[i].name + '：' + text.options[i].content;
-                tmp.addEventListener("click", function () {
-                    dialogResult = i;
-                    console.log(dialogResult);
-                });
-                texta.appendChild(tmp);
-            }
+        if (typeof (text.options) != "undefined") {
+            if (text.options.length > 0)
+                for (let i = 0; i < text.options.length; i++) {
+                    let tmp = document.createElement("p");
+                    tmp.className = "option_text";
+                    tmp.innerHTML = '[' + text.options[i].name + ']:' + text.options[i].content;
+                    tmp.addEventListener("click", function () {
+                        dialogResult = i;
+                        console.log(dialogResult);
+                    });
+                    texta.appendChild(tmp);
+                }
         } else {
             let tmp = document.createElement("p");
             tmp.className = "option_text";
-            tmp.innerHTML = "离开";
+            tmp.innerHTML = "*离开*";
             tmp.addEventListener("click", function () {
                 dialogResult = 0;
             });
             texta.appendChild(tmp);
         }
-        
+
     }
 </script>
 

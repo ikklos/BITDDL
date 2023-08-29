@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/shop-down.png",
-    "up":"../scene/images/shop-up.png",
+    "down": "../scene/images/shop-down.png",
+    "up": "../scene/images/shop-up.png",
     "banaries": [
         {
             "name": "bianjie up",
@@ -130,8 +130,8 @@
         }
     ],
     "npcs": [
-        {   
-            "img":"../scene/images/door-one-out.png",
+        {
+            "img": "../scene/images/door-one-out.png",
             "name": "door 1",
             "x": 720,
             "y": 264,
@@ -139,10 +139,40 @@
             "height": 96,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 72,
             "nexty": 480,
             "nextmap": "../scene/south-1.json"
+        },
+        {
+            "img": "../sprite/players/Character_test.png",
+            "name": "NPC 1",
+            "x": 300,
+            "y": 250,
+            "width": 24,
+            "height": 24,
+            "type": "npc",
+            "behave": [
+                {
+                    "type": "appear"
+                }
+            ],
+            "collideH": 1.0,
+            "nextmap": null,
+            "text": [
+                {
+                    "pre_list": [],
+                    "content": "工图要的方格纸在哪呀..",
+                    "options": [
+                        {
+                            "name": "保持沉默",
+                            "content": "......",
+                            "next_text": {
+                                "content": "不会要去学服买吧.."
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
