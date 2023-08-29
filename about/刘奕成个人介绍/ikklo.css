@@ -1,17 +1,25 @@
-body{
+body {
     background-color: white;
 }
-.alltitle{
-    background-color:rgba(136, 136, 255, 0.74);
+
+.alltitle {
+    background-color: rgba(136, 136, 255, 0.74);
     text-align: center;
-    
+
 }
-h2{
+
+h2 {
     background-color: rgba(215, 187, 241, 0.322);
 }
-.photo{
+
+.photo {
     height: 200px;
 }
-p{
-    text-indent:2em;
+
+.clue {
+    height: 300px;
+}
+
+p {
+    text-indent: 2em;
 }
