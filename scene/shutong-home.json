@@ -239,7 +239,111 @@
             "width": 48,
             "height": 48,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                2
+                            ]
+                        }
+                    ],
+                    "content": "*书桌上摆着笔、你的日记还有一本数学分析*",
+                    "options": [
+                        {
+                            "name": "笔",
+                            "content": "*拿起笔仔细端详*",
+                            "next_text": {
+                                "content": "*这只是一根普通的中性笔，再怎么看它也不会爬起来攻击你的*",
+                                "strike_event": [
+                                    "sf,10"
+                                ],
+                                "options": []
+                            }
+                        },
+                        {
+                            "name": "日记",
+                            "content": "*翻开日记随意翻看几页*",
+                            "next_text": {
+                                "content": "*日记写得相当流水账，但是也能看出你的学习态度很有问题*",
+                                "strike_event": [
+                                    "sf,9"
+                                ],
+                                "options": []
+                            }
+                        },
+                        {
+                            "name": "数学分析",
+                            "content": "*打开课本缓慢研读*",
+                            "next_text": {
+                                "content": "*研读课本时，你逐渐感到思绪发散开，当你在此凝神时，你发现眼前站着一位面容枯槁的男子*",
+                                "strike_event": [
+                                    "sf,8"
+                                ],
+                                "options": [
+                                    {
+                                        "name": "对话",
+                                        "content": "你是...？",
+                                        "next_text": {
+                                            "content": "波尔查诺：你不用知道我是谁，但是我希望你能好好学习数学。",
+                                            "strike_event": [
+                                                "sf,11"
+                                            ],
+                                            "options": [
+                                                {
+                                                    "name": "继续",
+                                                    "content": "...",
+                                                    "next_text": {
+                                                        "content": "*你来不及反应，幻象就消失了，但是你发现桌上的课本翻到了'波尔查诺-魏尔斯特拉斯定理'这一章。也可能是你自己翻的把。*",
+                                                        "strike_event": [
+                                                            "sf,13"
+                                                        ],
+                                                        "options": []
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "摇头",
+                                        "content": "*你拍了拍脸*我一定是卷疯了，怎么都看到幻觉了。",
+                                        "next_text": {
+                                            "content": "*你学习数学分析一段时间，感觉知识增加了*",
+                                            "strike_event": [
+                                                "sf,12"
+                                            ],
+                                            "options": []
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "num": 1,
+                            "list": [
+                                2
+                            ]
+                        }
+                    ],
+                    "content": "*刚起床有点头晕，先看看舍友在做什么吧*",
+                    "options": []
+                }
+            ]
         }
     ]
 }
