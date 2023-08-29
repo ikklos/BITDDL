@@ -71,8 +71,8 @@ if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
-    sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
-    loadhero('Character_test', app.stage.width / 2, app.stage.height / 2);
+    sheet = await PIXI.Assets.load('sprite/players/neko.json');
+    loadhero('neko_down', app.stage.width / 2, app.stage.height / 2);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
@@ -174,7 +174,7 @@ async function AfterLoad() {
         play(delta);
     }
 }
-
+var vx = 0,vy = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
@@ -203,7 +203,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
     if (wait_event.type === "door") {
         app.stage.removeChild(neko);
-        loadhero('Character_test', wait_event.door.nextx, wait_event.door.nexty);
+        loadhero('neko_down', wait_event.door.nextx, wait_event.door.nexty);
         console.log(neko);
 
         loadmap(wait_event.nextmap);
@@ -211,6 +211,19 @@ function play(delta) {//基本所有的事件结算都在这里写
 
         wait_event.type = "null";
         wait_event.nextmap = null;
+    }
+    if(neko.vx !== vx || neko.vy !== vy){
+        if(neko.vx !== 0){
+            if(neko.vx > 0){hero_face_to("right");}
+            if(neko.vx < 0){hero_face_to("left");}
+        }else if(neko.vy < 0){
+            hero_face_to("up");
+        }else if(neko.vy > 0){
+            hero_face_to("down");
+        }else{
+            hero_face_to("down");
+        }
+        vy = neko.vy;vx = neko.vx;
     }
     if (neko.vx != 0 || neko.vy != 0) {
         if (!neko.playing) neko.play();
@@ -522,6 +535,26 @@ function use_item(id, num) {
     }
 }
 
-function hero_face_to(dir){
-    
+function hero_face_to(dir) {
+    let rec = neko;
+    app.stage.removeChild(neko);
+    if (dir === "left") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_left"]);
+    } else if (dir === "right") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_right"]);
+    } else if (dir === "up") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_up"]);
+    } else if (dir === "down") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_down"]);
+    }
+    neko.name = "hero";
+    neko.width = 24;
+    neko.height = 24;
+    neko.hitbox = rec.hitbox;
+    neko.x = rec.x;
+    neko.y = rec.y;
+    neko.vx = rec.vx; neko.vy = rec.vy;
+    neko.animationSpeed = 0.1;
+    console.log(neko);
+    app.stage.addChild(neko);
 }
