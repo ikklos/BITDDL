@@ -20,6 +20,9 @@ body{
     min-height: max-content;
 }
 /* 1 */
+.title{
+    color: chocolate;
+}
 .main{
     display: flex;
     flex-direction: column;
