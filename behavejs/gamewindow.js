@@ -392,8 +392,11 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
                 break;
             }
-            console.log("strike story");
-            console.log(num);
+            if (typeof (story_status[num]) == "undefined") {
+                console.log(`command "${str}" cannot be invoked.story "${strs[1]}" is not exist!`);
+                break;
+            }
+            console.log("strike story:" + num);
             story_status[num].status = 1;
             break;
         default:
