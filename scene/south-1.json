@@ -259,17 +259,6 @@
                                             "content": "诶嘿，其实角色贴图还没画完",
                                             "strike_event": [
                                                 "sf,2"
-                                            ],
-                                            "options": [
-                                                {
-                                                    "name": "end",
-                                                    "content": "离开",
-                                                    "next_text":{
-
-                                                        "content" : "" 
-
-                                                    }
-                                                }
                                             ]
                                         }
                                     }
@@ -283,17 +272,6 @@
                                 "content": "诶嘿，其实角色贴图还没画完",
                                 "strike_event": [
                                     "sf,2"
-                                ],
-                                "options": [
-                                    {
-                                        "name": "end",
-                                        "content": "离开",
-                                        "next_text":{
-
-                                            "content" : "" 
-
-                                        }
-                                    }
                                 ]
                             }
                         }
@@ -309,18 +287,7 @@
                             ]
                         }
                     ],
-                    "content": "超市里还有个npc哦，去地图左下角看看吧",
-                    "options": [
-                        {
-                            "name": "end",
-                            "content": "离开",
-                            "next_text":{
-
-                                "content" : "" 
-
-                            }
-                        }
-                    ]
+                    "content": "超市里还有个npc哦，去地图左下角看看吧"
                 }
             ]
         }

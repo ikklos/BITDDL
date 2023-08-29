@@ -142,7 +142,6 @@ async function AfterLoad() {
                 if (HitTest(neko, npc)) {
                     console.log("in keyf", npc);
                     if (npc.type === "npc") {
-                        
                         for (let i = 0; i < npc.text.length; i++) {
                             if (CheckPrelist(npc.text[i].pre_list)) {
                                 wait_event.type = "npc";
@@ -174,68 +173,63 @@ async function AfterLoad() {
         //console.log(delta);
         play(delta);
     }
-    function play(delta) {//基本所有的事件结算都在这里写
-        if (wait_event.type !== "null") {
-            neko.vx = neko.vy = 0;
-        }
-        //console.log("1");
-        // if (wait_event.status === true) {//结算互动事件
-        //     neko.vx = neko.vy = 0;
+}
 
-        //     app.stage.addChild(wait_event.text);
-        //     ShowingText = wait_event.text;
-
-        //     if (story_status[wait_event.story].status === "ready") {
-        //         if (story_status[story_status[wait_event.story].next].status === "unmeet")
-        //             story_status[story_status[wait_event.story].next].status = "ready";
-        //     }
-        //     story_status[wait_event.story].status = "touched";
-        //     wait_event.status = false;
-        //     wait_event.text = null;
-        //     wait_event.npc = null;
-        //     wait_event.story = null;
-        // }
-        //console.log(window.parent.dialogResult);
-        //console.log(wait_event);
-        if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
-            //console.log(wait_event.text);
-            npc_speak(wait_event.text);
-        }
-        if (wait_event.type === "npc" && typeof (wait_event.text.options) === "undefined") {
-            wait_event.type = "null";
-            wait_event.text = null;
-            wait_event.times = 0;
-        }
-        if (wait_event.type === "door") {
-            app.stage.removeChild(neko);
-            loadhero('Character_test', wait_event.door.nextx, wait_event.door.nexty);
-            console.log(neko);
-
-            loadmap(wait_event.nextmap);
-
-
-            wait_event.type = "null";
-            wait_event.nextmap = null;
-        }
-        if (neko.vx != 0 || neko.vy != 0) {
-            if (!neko.playing) neko.play();
-        } else {
-            neko.gotoAndStop(0);
-        }
-        neko.x += neko.vx;
-        if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
-            neko.zIndex = neko.y + neko.height;
-            app.stage.sortChildren();
-        }
-        if (CrossTheBoader(neko) || HitMap(neko)) {
-            neko.x -= neko.vx;
-        }
-        neko.y += neko.vy;
-        if (CrossTheBoader(neko) || HitMap(neko)) {
-            neko.y -= neko.vy;
-        }
-        //console.log(neko.x,neko.y);
+function play(delta) {//基本所有的事件结算都在这里写
+    if (wait_event.type !== "null") {
+        neko.vx = neko.vy = 0;
     }
+    //console.log("1");
+    // if (wait_event.status === true) {//结算互动事件
+    //     neko.vx = neko.vy = 0;
+
+    //     app.stage.addChild(wait_event.text);
+    //     ShowingText = wait_event.text;
+
+    //     if (story_status[wait_event.story].status === "ready") {
+    //         if (story_status[story_status[wait_event.story].next].status === "unmeet")
+    //             story_status[story_status[wait_event.story].next].status = "ready";
+    //     }
+    //     story_status[wait_event.story].status = "touched";
+    //     wait_event.status = false;
+    //     wait_event.text = null;
+    //     wait_event.npc = null;
+    //     wait_event.story = null;
+    // }
+    //console.log(window.parent.dialogResult);
+    //console.log(wait_event);
+    if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
+        npc_speak(wait_event.text);
+    }
+    if (wait_event.type === "door") {
+        app.stage.removeChild(neko);
+        loadhero('Character_test', wait_event.door.nextx, wait_event.door.nexty);
+        console.log(neko);
+
+        loadmap(wait_event.nextmap);
+
+
+        wait_event.type = "null";
+        wait_event.nextmap = null;
+    }
+    if (neko.vx != 0 || neko.vy != 0) {
+        if (!neko.playing) neko.play();
+    } else {
+        neko.gotoAndStop(0);
+    }
+    neko.x += neko.vx;
+    if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
+        neko.zIndex = neko.y + neko.height;
+        app.stage.sortChildren();
+    }
+    if (CrossTheBoader(neko) || HitMap(neko)) {
+        neko.x -= neko.vx;
+    }
+    neko.y += neko.vy;
+    if (CrossTheBoader(neko) || HitMap(neko)) {
+        neko.y -= neko.vy;
+    }
+    //console.log(neko.x,neko.y);
 }
 
 function HitMap(r) {
@@ -326,7 +320,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 300);
+    }, 1000);
 
 }
 /*commands
@@ -409,7 +403,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
             }
         }
     }
-    if(fin)app.stage.addChild(npc);
+    if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
 function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
@@ -423,7 +417,7 @@ function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
                 if (story_status[pre[i].list[k]].status === 1) num--;
             }
             console.log(num);
-            
+
             if (num > 0) {
                 return false;
             }
@@ -465,18 +459,19 @@ function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
 // }
 function npc_speak(text) {
     console.log(text);
-    console.log(window.parent.dialogResult);
-    wait_event.times++;
-    window.parent.showDialog(text);
-    if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0) {
-        for (let i = 0; i < text.strike_event.length; i++) {
-            command(text.strike_event[i]);
-        }
+    if (wait_event.times == 0) {
+        window.parent.showDialog(wait_event.text);
+        wait_event.times = 1;
+        return;
     }
-    if (window.parent.dialogResult !== -1) {
-        if (typeof (wait_event.text.options) != 'undefined' && window.parent.dialogResult < wait_event.text.options.length) {
+    wait_event.times++;
+    if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0)
+        for (let i = 0; i < text.strike_event.length; i++)
+            command(text.strike_event[i]);
+    if (window.parent.dialogResult != -1) {
+        if (typeof (text.options) != 'undefined' && window.parent.dialogResult < text.options.length) {
             wait_event.type = "npc"
-            wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
+            wait_event.text = text.options[window.parent.dialogResult].next_text;
             window.parent.showDialog(wait_event.text);
         } else {
             wait_event.type = "null";
