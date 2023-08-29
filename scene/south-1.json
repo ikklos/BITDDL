@@ -231,6 +231,16 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc"
+        },
+        {
+            "img": "../scene/images/soccer.png",
+            "name": "soccer",
+            "x": 312,
+            "y": 192,
+            "width": 18,
+            "height": 18,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }

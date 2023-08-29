@@ -41,7 +41,7 @@ console.log(window.innerHeight, "cilentheights");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let wait_event = { type: "null" };
 let event_change = false;
-var story_status = [];
+var story_status = [{}];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
@@ -59,7 +59,12 @@ const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
-story_status = LoadStories("../story/story.json");
+story_status[0].status = 1;
+for(let i = 1; i <= 2000; i++){
+    let story = {};
+    story.status = 0;
+    story_status.push(story);
+}
 //加载地图障碍
 loadmap("../scene/shutong-home.json");
 if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
@@ -174,7 +179,7 @@ async function AfterLoad() {
         play(delta);
     }
 }
-var vx = 0,vy = 0;
+var vx = 0, vy = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
@@ -212,18 +217,18 @@ function play(delta) {//基本所有的事件结算都在这里写
         wait_event.type = "null";
         wait_event.nextmap = null;
     }
-    if(neko.vx !== vx || neko.vy !== vy){
-        if(neko.vx !== 0){
-            if(neko.vx > 0){hero_face_to("right");}
-            if(neko.vx < 0){hero_face_to("left");}
-        }else if(neko.vy < 0){
+    if (neko.vx !== vx || neko.vy !== vy) {
+        if (neko.vx !== 0) {
+            if (neko.vx > 0) { hero_face_to("right"); }
+            if (neko.vx < 0) { hero_face_to("left"); }
+        } else if (neko.vy < 0) {
             hero_face_to("up");
-        }else if(neko.vy > 0){
+        } else if (neko.vy > 0) {
             hero_face_to("down");
-        }else{
+        } else {
             hero_face_to("down");
         }
-        vy = neko.vy;vx = neko.vx;
+        vy = neko.vy; vx = neko.vx;
     }
     if (neko.vx != 0 || neko.vy != 0) {
         if (!neko.playing) neko.play();
@@ -332,7 +337,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 1000);
+    }, 100);
 
 }
 /*commands
@@ -392,8 +397,11 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
                 break;
             }
-            console.log("strike story");
-            console.log(num);
+            if (typeof (story_status[num]) == "undefined") {
+                console.log(`command "${str}" cannot be invoked.story "${strs[1]}" is not exist!`);
+                break;
+            }
+            console.log("strike story:" + num);
             story_status[num].status = 1;
             break;
         default:
@@ -433,7 +441,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
+function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
@@ -462,6 +470,9 @@ function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
                     return false;
                 }
             }
+        } else if (pre[i].type === "no_event") {
+            for (let k = 0; k < pre[i].list.length; k++)
+                if (story_status[pre[i].list[k]].status === 1) return false;
         }
     }
 

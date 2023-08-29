@@ -155,6 +155,16 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc"
+        },
+        {
+            "img":"../character/bolzano/bolzano-normal.png",
+            "name": "bolzano",
+            "x": 432,
+            "y": 288,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }

@@ -19,7 +19,7 @@
         let maintext = document.createElement("p");
         maintext.innerHTML = text.content;
         texta.appendChild(maintext);
-        if (typeof (text.options) != "undefined") {
+        if (typeof (text.options) != "undefined" && text.options.length != 0) {
             if (text.options.length > 0)
                 for (let i = 0; i < text.options.length; i++) {
                     let tmp = document.createElement("p");
@@ -34,7 +34,7 @@
         } else {
             let tmp = document.createElement("p");
             tmp.className = "option_text";
-            tmp.innerHTML = "*离开*";
+            tmp.innerHTML = "*结束*";
             tmp.addEventListener("click", function () {
                 dialogResult = 0;
                 document.getElementById("maingameframe").focus();
