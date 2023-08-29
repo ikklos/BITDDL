@@ -240,7 +240,7 @@
                             "type": "event",
                             "num": 1,
                             "list": [
-                                1
+                                0
                             ]
                         }
                     ],
@@ -258,7 +258,18 @@
                                         "next_text": {
                                             "content": "诶嘿，其实角色贴图还没画完",
                                             "strike_event": [
-                                                "sf 1"
+                                                "sf,2"
+                                            ],
+                                            "options": [
+                                                {
+                                                    "name": "end",
+                                                    "content": "离开",
+                                                    "next_text":{
+
+                                                        "content" : "" 
+
+                                                    }
+                                                }
                                             ]
                                         }
                                     }
@@ -271,7 +282,18 @@
                             "next_text": {
                                 "content": "诶嘿，其实角色贴图还没画完",
                                 "strike_event": [
-                                    "sf 1"
+                                    "sf,2"
+                                ],
+                                "options": [
+                                    {
+                                        "name": "end",
+                                        "content": "离开",
+                                        "next_text":{
+
+                                            "content" : "" 
+
+                                        }
+                                    }
                                 ]
                             }
                         }
@@ -287,7 +309,18 @@
                             ]
                         }
                     ],
-                    "content": "超市里还有个npc哦，去地图左下角看看吧"
+                    "content": "超市里还有个npc哦，去地图左下角看看吧",
+                    "options": [
+                        {
+                            "name": "end",
+                            "content": "离开",
+                            "next_text":{
+
+                                "content" : "" 
+
+                            }
+                        }
+                    ]
                 }
             ]
         }

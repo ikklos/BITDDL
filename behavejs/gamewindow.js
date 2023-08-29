@@ -3,7 +3,7 @@ import { keyboard } from './keyboard.js';
 import { SetMap } from "./MapSet.js";
 import { SetNPCs } from "./npcbehave.js";
 import { LoadStories } from "./LoadStoryStatus.js"
-
+import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
 var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
@@ -52,78 +52,27 @@ var currentSave = {//玩家状态
 };
 let nowmap = {};
 let neko = {};
+let item_list = LoadItems("../items/items.json");
 let sheet;
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
-// //加载地图
-// async function initMap(map){
-//         let texture = await PIXI.Assets.load("../backgrounds/bedroom.png");
-//         const volButton = PIXI.Sprite.from("bedroom.png");
-//         volButton.width = 32;
-//         volButton.height = 32;
-//         volButton.x = volButton.width / 2;
-//         volButton.y = volButton.height / 2;
-//         app.stage.addChild(volButton);
-// }
-//     initButton();
-// const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
-// background.width = app.screen.width;
-// background.height = app.screen.height;
-// app.stage.addChild(background);
 story_status = LoadStories("../story/story.json");
 //加载地图障碍
 loadmap("../scene/south-1.json");
+if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
+    currentSave.savepackage = [];
+    for (let i = 0; i < item_list.length; i++) {
+        currentSave.savepackage[i] = 0;
+    }
+}
 //进游戏！
 AfterLoad();
-//console.log(npc_pool);
-//console.log(story_status);
-//console.log(BanariesPool);
-// async function init() {/////////////////////////尝试把贴图捆成bundles，这样比较方便调用（？而且这b还能后台运行，可以提高运行效率
-//     const alltex = {
-//         Bundles: [{
-//             name: 'static_sprites',
-//             assets: [
-//                 {
-//                     name: 'static_neko',
-//                     src: '../sprite/players/Character_test.png',
-//                 }
-//             ]
-//         },{
-//             name: 'animation_texture',
-//             assets : [
-//                 {
-//                     name : 'animation_neko',
-//                     src: '../sprite/players/testTexture.json'
-//                 }
-//             ]
-//         }
-//         ],
-//     };
-//     await PIXI.Assets.init({manifest: alltex});
-//     AfterLoad();
-// }
-//neko sprite1
 async function AfterLoad() {
     sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
-    // console.log("in_gamew7indow");
     loadhero('Character_test', app.stage.width / 2, app.stage.height / 2);
-    // console.log("in_gamewind4ow");
-    //生成随机整数
-    // function getRandomInt(max) {
-    //     return Math.floor(Math.random() * max);
-    // }
-
-    // //box sprite2
-    // const box_test = PIXI.Sprite.from('../image_temp/barrier.png');
-    // box_test.width = 48;
-    // box_test.height = 48;
-    // box_test.hitbox = getPartHitBox(box_test, 0.6);
-    // box_test.x = getRandomInt(19)*48;
-    // box_test.y = getRandomInt(11)*48;//在窗口随机位置生成
-    // app.stage.addChild(box_test);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
@@ -193,13 +142,13 @@ async function AfterLoad() {
                 if (HitTest(neko, npc)) {
                     console.log("in keyf", npc);
                     if (npc.type === "npc") {
-                        wait_event.type = "npc";
+                        
                         for (let i = 0; i < npc.text.length; i++) {
                             if (CheckPrelist(npc.text[i].pre_list)) {
+                                wait_event.type = "npc";
                                 wait_event.text = npc.text[i];
                                 wait_event.times = 0;
                                 event_change = true;
-                                break;
                             }
                         }
                     } else if (npc.type === "door") {
@@ -218,14 +167,18 @@ async function AfterLoad() {
 
     //对象预排序
     console.log("before in loop");
-    app.ticker.speed = 1;
-    app.ticker.add((delta) => gameloop(delta));
+    app.ticker.minFPS = 90;
+    app.ticker.maxFPS = 120;
+    app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        //console.log("in loop!");
+        //console.log(delta);
         play(delta);
     }
     function play(delta) {//基本所有的事件结算都在这里写
-
+        if (wait_event.type !== "null") {
+            neko.vx = neko.vy = 0;
+        }
+        //console.log("1");
         // if (wait_event.status === true) {//结算互动事件
         //     neko.vx = neko.vy = 0;
 
@@ -244,9 +197,14 @@ async function AfterLoad() {
         // }
         //console.log(window.parent.dialogResult);
         //console.log(wait_event);
-        if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {
-            console.log(wait_event.text);
+        if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
+            //console.log(wait_event.text);
             npc_speak(wait_event.text);
+        }
+        if (wait_event.type === "npc" && typeof (wait_event.text.options) === "undefined") {
+            wait_event.type = "null";
+            wait_event.text = null;
+            wait_event.times = 0;
         }
         if (wait_event.type === "door") {
             app.stage.removeChild(neko);
@@ -309,9 +267,11 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
     nowmap = SetMap(url);
     console.log(nowmap);
 
+
     console.log(nowmap.down);
 
     npc_raw_data = SetNPCs(url);
+
 
     //story_status = LoadStories(url);
     console.log("set completed");
@@ -366,7 +326,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 400);
+    }, 300);
 
 }
 /*commands
@@ -426,6 +386,8 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
                 break;
             }
+            console.log("strike story");
+            console.log(num);
             story_status[num].status = 1;
             break;
         default:
@@ -433,21 +395,24 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
     }
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
+    let fin = false;
     let Arr = npc.behave;
     if (typeof (Arr) == "undefined") return;
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             if (CheckPrelist(Arr[i].pre_list)) {
-                app.stage.addChild(npc);
+                fin = true;
             }
         } else if (Arr[i].type === "disappear") {
             if (CheckPrelist(Arr[i].pre_list)) {
-                app.stage.removeChild(npc);
+                fin = false;
             }
         }
     }
+    if(fin)app.stage.addChild(npc);
+    else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event，//multi_package//package, attribute_value
+function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
@@ -455,34 +420,52 @@ function CheckPrelist(pre) {//event，//multi_package//package, attribute_value
         if (pre[i].type === "event") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
-                if (CheckStoryList(pre[i].list[k])) num--;
+                if (story_status[pre[i].list[k]].status === 1) num--;
             }
+            console.log(num);
+            
             if (num > 0) {
                 return false;
+            }
+        }
+        else if (pre[i].type === "item") {
+            let num = pre[i].num;
+            for (let k = 0; k < pre[i].list.length; k++) {
+                if (currentSave.savepackage[pre[i].list[k]] > 1) num--;
+            }
+            if (num--) return false;
+        } else if (pre[i].type === "multi_item") {
+            let num = pre[i].num;
+            for (let k = 0; k < pre[i].list.length; k++) {
+                if (currentSave.savepackage[pre[i].list[k]] < num) {
+                    return false;
+                }
             }
         }
     }
 
     return true;
 }
-function CheckStoryList(id) {
-    let condition = story_status[id].num;
-    if (story_status[id].status == 1) return 1;
-    else {
-        for (let i = 0; i < story_status[id].pre_list.length; i++) {
-            let f = story_status[id].pre_list[i];
-            if (story_status[f].status === 1) {
-                condition--;
-            }
-        }
-    }
-    if (condition <= 0) {
-        story_status[id].status = 1;
-        return 1;
-    }
-    return 0;
-}
+// function CheckStoryList(id) {
+//     let condition = story_status[id].num;
+//     if (story_status[id].status == 1) return 1;
+//     else {
+//         for (let i = 0; i < story_status[id].pre_list.length; i++) {
+//             let f = story_status[id].pre_list[i];
+//             if (story_status[f].status === 1) {
+//                 condition--;
+//             }
+//         }
+//     }
+//     if (condition <= 0) {
+//         story_status[id].status = 1;
+//         return 1;
+//     }
+//     return 0;
+// }
 function npc_speak(text) {
+    console.log(text);
+    console.log(window.parent.dialogResult);
     wait_event.times++;
     window.parent.showDialog(text);
     if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0) {
@@ -494,54 +477,54 @@ function npc_speak(text) {
         if (typeof (wait_event.text.options) != 'undefined' && window.parent.dialogResult < wait_event.text.options.length) {
             wait_event.type = "npc"
             wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
-            window.parent.dialogResult = -1;
             window.parent.showDialog(wait_event.text);
         } else {
             wait_event.type = "null";
-            wait_event.text = null;
+            wait_event.text = {};
             wait_event.times = 0;
             window.parent.clearTextArea();
         }
+        window.parent.dialogResult = -1;
     }
 }
-// window.parent.showDialog({
-//     "content": "好巧呀，你也在这里~",
-//     "options": [
-//         {
-//             "name": "to be continue",
-//             "content": "你是谁？",
-//             "next_text": {
-//                 "content": "我是...你不能忘记的人。",
-//                 "options": [],
-//                 "strike_event": []
-//             }
-//         },
-//         {
-//             "name": "to be continue",
-//             "content": "我为什么在这里？",
-//             "next_text": {
-//                 "content": "你来到了未定义的地图。",
-//                 "options": [],
-//                 "strike_event": []
-//             }
-//         }
-//     ],
-//     "strike_event": [
-//         "package add 1",
-//         "package add 2",
-//         "package add 3"
-//     ]
-// });
-
 function loadhero(url, x, y) {
     neko = new PIXI.AnimatedSprite(sheet.animations[url]);
     neko.name = "hero";
     neko.width = 24;
     neko.height = 24;
     neko.hitbox = getHitBox(6, 12, 12, 12);
-    // console.log("in_gamewind5ow");
     neko.x = x;
     neko.y = y;
     neko.vx = 0; neko.vy = 0;
     neko.animationSpeed = 0.1;
 }
+
+function oprate_pakage(id, num, type) {
+    let len = currentSave.savepackage.length;
+    if (len <= id) {
+        return false;
+    }
+    if (type === "add") {
+        currentSave.savepackage[id] += num;
+    }
+
+    if (type === "remove") {
+        currentSave.savepackage[id] -= num;
+    }
+    return true;
+}
+function use_item(id, num) {
+    if (currentSave.savepackage[id] < num) {
+        return false;
+    } else {
+        currentSave.savepackage[id] -= num;
+        for (let i = 0; i < num; i++) {
+            if (item_list[id].type === "change_Attribute") {
+                for (let k = 0; k < item_list[id].effects.length; k++) {
+                    command(item_list[id].effects[k]);
+                }
+            }
+        }
+    }
+}
+
