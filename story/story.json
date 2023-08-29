@@ -4,7 +4,7 @@
             "id": 0,
             "num": 0,
             "pre_list": [],
-            "status":0
+            "status": 1
         },
         {
             "id": 1,
@@ -14,14 +14,16 @@
         },
         {
             "id": 2,
-            "num": 0,
-            "pre_list": [],
+            "num": 1,
+            "pre_list": [
+                1
+            ],
             "status": 0
         },
         {
-            "id":3,
-            "num":0,
-            "pre_list":[],
+            "id": 3,
+            "num": 0,
+            "pre_list": [],
             "status": 0
         }
     ]

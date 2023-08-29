@@ -19,12 +19,7 @@
 }
 iframe{
     position: absolute;
-    left: 50%; 
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    width: 90%;
-    height: 80%;
+    
 }
 
 h1{
@@ -38,23 +33,61 @@ body {
     
 }
 .tab{
-    display: flex;
+    width: 100vw;
+    height: 2em;
     backdrop-filter: bulr(5px);
-    margin: 10px;
-    align-items: start;
+    background-color: rgba(229, 243, 255, 0.639);
+    border-bottom: 2px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-style: solid;
+    position: fixed;
+    z-index: 95;
+    line-height: 2em;
 }
-.tab_button{
-    flex: 0 0 50px ;
-    width: 80px;
-    height: 1em;
-    padding: 5px;
-    margin: 5px 0 ;
-    font-size: 16px;
+.tab > *{
+    margin: 0 1em;
+    padding: 0;
+    color: darkgoldenrod;
+}
+.tab > *:hover{
+    margin: 0 1em;
+    padding: 0;
+    color: rgb(255, 0, 0);
+}
+.tab_button_l{
+    float: left;
+    cursor: url("../icon/cursor_2.png") 14 0,auto;
+    height: 2em;
+    font-size: 1em;
+    z-index: 100;
+    text-decoration: none;
+
+}
+.tab_button_r{
+    float: right;
+    cursor: url("../icon/cursor_2.png") 14 0,auto;
+    height: 2em;
+    font-size: 1em;
+    z-index: 100;
+    text-decoration: none;
+}
+.center_guide{
+    visibility: hidden;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2em;
+    font-size: 1em;
+    z-index: 100;
 }
 #logged{
-    position: absolute;
-    padding: 5px;
-    margin: 5px 0 ;
+    margin: 0;
+    top: 0;
+    position: fixed;
+    padding-left: 0.5em;
+    text-decoration: none;
 }
 .button_box {
     display: flex;
@@ -81,11 +114,20 @@ body {
     margin: auto;
     background-color: rgb(255,255,255,0.5);
     backdrop-filter: blur(25px);
+    left: 50%; 
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 .game {
     visibility: hidden;
-    /* 高度自适应 */
+    width: 90%;
+    height: 90%;
+    left: 50%; 
+    top: 50%;
+    transform: translate(-50%, -45%);
+    -webkit-transform: translate(-50%, -45%);
 }
 
 a{
@@ -94,4 +136,11 @@ a{
     margin: 20px;
     font-size: 24px;
     padding: 12px 50px 0px 50px;
+}
+#aboutpage{
+    
+    transform: translate(-50% -50%);
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
 }

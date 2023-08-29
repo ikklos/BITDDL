@@ -1,17 +1,24 @@
-body {
+
+body{
     display: flex;
     flex-direction: column;
 }
+.option_text {
+    color: aqua;
+}
 
+.option_text:hover {
+    color: blue;
+}
 .gamewindow {
     flex: 1 600px;
     width: 100%;
     height: 80%;
     left: 50%;
+    
     top: 0%;
     margin: 0;
     padding: 0;
-
 }
 
 .option_text {
@@ -21,8 +28,7 @@ body {
 .option_text:hover {
     color: blue;
 }
-
-#maingameframe {
+#maingameframe{
     width: 100%;
     height: 100%;
     left: 50%;
@@ -31,10 +37,17 @@ body {
 }
 
 .toolbar {
-    flex: 20;
-    height: 10%;
+    max-height: 25%;
+    min-height: 20%;
+    width: 1000px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: space-between;
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
     z-index: 99;
@@ -46,4 +59,8 @@ body {
     margin: 10px;
     overflow-y: scroll;
     background-color: burlywood;
+}
+.avator{
+    width: 150px;
+    height: 150px;
 }

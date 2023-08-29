@@ -3,13 +3,17 @@
 #GameWindow {
     width: 960px;
     height: 576px;
-    position: fixed;
+    position: absolute;
     z-index: 98;
+    left: 50%; 
+    top: 0%;
+    transform: translateX(-50%) ;
     /* 边框样式 */
     
 
 }
 #GameWindow > * {
+
     width: 960px;
     height: 576px;
     left: 50%; 

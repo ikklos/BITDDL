@@ -81,7 +81,6 @@ Array.from(document.getElementsByClassName('save')).forEach(function(element, in
         })
     }, false);
 });
-document.getElementById('closeframebutton').onclick = exitFrame;
 //监听用户是否登录
 let intervalID = setInterval(function(){
     // console.log(window.parent.userName);
@@ -89,7 +88,7 @@ let intervalID = setInterval(function(){
         Array.from(document.getElementsByClassName('savetext')).forEach(function(element, index) {
             
             if(localStorage.getItem(window.parent.userName + "_"+ element.id.replace('text','_')) !== null ) {
-                console.log(element.id.replace('text','_'));
+                console.log(element.id.replace('text','_'),"loaded saves!");
                 document.getElementById(element.id).innerHTML = localStorage.getItem(window.parent.userName + "_"+ element.id.replace('text','_') + "saveDate");
             }
         });

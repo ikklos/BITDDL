@@ -21,26 +21,34 @@
     flex-wrap: wrap;
     margin: auto;
     background-color: transparent;
-    display: flex;
+    overflow: auto;
+    height: 100vh;
 }
 
 .save_list > div{
     text-align:center;
     align-self: center;
-    padding: 5px;
-    height: 150px;
-    flex: 1 400px;
+    padding: 0;
+    min-height: 19%;
+    flex: 1 25%;
     flex-wrap: wrap;
-    margin: 15px 10px;
+    margin: 1% 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
 }
 
-.button_box{
-    display: flex;
-    flex-direction: row;
+.save_list > div > button{
+
 }
-.button_box > button{
-    margin: 8px;
+/* .save_list::-webkit-scrollbar-track{
+    background-color: rgb(255, 255, 255);
 }
+.save_list::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    color: black;
+}
+.save_list::-webkit-scrollbar {
+    width: 15px;
+    height: 5px;
+} */
 

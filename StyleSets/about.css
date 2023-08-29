@@ -1,19 +1,25 @@
 /* 参考滚动贴合效果 */
 *{
     overflow-x:hidden;
+    overscroll-behavior-x: none;
+    scroll-behavior: smooth;
+}
+html{
+    background-image: url('../backgrounds/about_bg.png');
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 .container{
     scroll-snap-type: y mandatory;
     overflow: scroll;
     height: 100vh;
-    background-image: url('../backgrounds/about_bg.png');
-    background-repeat: no-repeat;
-    background-size:cover;
+    
     text-align: center;
-    margin: auto;
+    margin: 0;
 }
 .contain{
     scroll-snap-align: center;
+    overflow: hidden;
     border-radius: 15px;
     margin: 10vh 0vw 10vh 15vw;
     height: 80vh;
@@ -34,6 +40,7 @@
 .tab{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     position: fixed;
     top: 9%;
     left: 4%;
@@ -41,23 +48,43 @@
     width: 5%;
     background-color: rgba(255, 255, 255, 0.682);
     justify-items: center;
+    vertical-align:middle;
 }
 .name{
-    flex: 1 13vh;
-    align-items: center;
-    align-self: center;
-    padding: 2% 0;
-    margin: 5px;
-    justify-self: center;
+    flex: 1 12vh;
+    display: block;
+    line-height: 6vh;
+    overflow: hidden;
+    text-align: center;
+    font-size:medium;
+    padding: 0 0;
+    margin: 5%;
+    color: darkgoldenrod;
+    text-decoration: none;
     background-color: rgba(255, 255, 255, 0.682);
+    transition: all 0.4s ease-in-out;
+}
+.name:hover{
+    color: rgb(255, 0, 0);
 }
 .changepage{
-    padding: 3px;
+    position: absolute;
+    padding: 0em 0.5em 0.5em 0.5em;
+}
+hr{
+    margin-bottom: 3%;
 }
 img{
-    max-height: 60vh;
+    max-height: 55vh;
 }
 h1{
     font-size: 5vh;
     margin: 5px;
+}
+.highlight{
+    flex: 5 40vh;
+    line-height: 20vh;
+    color: rgb(0, 0, 0);
+    background-color: orange;
+    text-align: center;
 }

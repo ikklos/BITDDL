@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/south-1-down.png",
-    "up":"../scene/images/south-1-up.png",
+    "down": "../scene/images/south-1-down.png",
+    "up": "../scene/images/south-1-up.png",
     "banaries": [
         {
             "name": "shu tong",
@@ -175,7 +175,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 312,
             "nextmap": "../scene/shutong-1.json"
@@ -189,7 +188,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 288,
             "nextmap": "../scene/shop.json"
@@ -203,9 +201,8 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
-            "nextx":"",
-            "nexty":"",
+            "nextx": "",
+            "nexty": "",
             "nextmap": "../scene/lijiao-1.json"
         },
         {
@@ -217,10 +214,115 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
-            "nextx":"",
-            "nexty":"",
+            "nextx": "",
+            "nexty": "",
             "nextmap": "../scene/lijiao-1.json"
+        },
+        {
+            "img": "../sprite/players/Character_test.png",
+            "name": "NPC 1",
+            "x": 300,
+            "y": 250,
+            "width": 24,
+            "height": 24,
+            "type": "npc",
+            "behave": [
+                {
+                    "type": "appear"
+                }
+            ],
+            "collideH": 0.7,
+            "nextmap": null,
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        }
+                    ],
+                    "content": "有没有好奇我为什么和你长得一样？",
+                    "options": [
+                        {
+                            "name": "保持沉默",
+                            "content": "......",
+                            "next_text": {
+                                "content": "喂喂，你不能是哑巴吧",
+                                "options": [
+                                    {
+                                        "name": "询问",
+                                        "content": "为什么呢？",
+                                        "next_text": {
+                                            "content": "诶嘿，其实角色贴图还没画完",
+                                            "strike_event": [
+                                                "sf,2"
+                                            ],
+                                            "options": [
+                                                {
+                                                    "name": "end",
+                                                    "content": "离开",
+                                                    "next_text":{
+
+                                                        "content" : "" 
+
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "询问",
+                            "content": "为什么呢？",
+                            "next_text": {
+                                "content": "诶嘿，其实角色贴图还没画完",
+                                "strike_event": [
+                                    "sf,2"
+                                ],
+                                "options": [
+                                    {
+                                        "name": "end",
+                                        "content": "离开",
+                                        "next_text":{
+
+                                            "content" : "" 
+
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                2
+                            ]
+                        }
+                    ],
+                    "content": "超市里还有个npc哦，去地图左下角看看吧",
+                    "options": [
+                        {
+                            "name": "end",
+                            "content": "离开",
+                            "next_text":{
+
+                                "content" : "" 
+
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
