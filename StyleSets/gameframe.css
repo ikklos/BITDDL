@@ -55,10 +55,13 @@ body{
 
 .text_area {
     flex: 8;
-    padding: 1rem 1.5rem;
+    padding: 0rem 1rem;
     margin: 10px;
     overflow-y: scroll;
     background-color: burlywood;
+}
+.text_area > p:not(.option_text){
+    font-size: large;
 }
 .avator{
     width: 150px;

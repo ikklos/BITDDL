@@ -41,6 +41,9 @@
             Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
                 element.style.visibility = 'hidden'
             })
+            document.body.focus();
+            document.getElementById("maingameframe").focus();
+            document.getElementById("maingameframe").contentWindow.focusMainGame();
         }
         function showSaveFrame(){
             Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
