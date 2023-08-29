@@ -560,7 +560,15 @@ function use_item(id, num) {
         }
     }
 }
-
+//控制游戏窗口自动缩放
+function bodyScale() {
+    let devicewidth = document.documentElement.clientwidth;
+    let deviceheight = document.documentElement.clientHeight;
+    var scalex = devicewidth / 1400;
+    var scaley = deviceheight / 800;
+    scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
+} 
+bodyScale();
 function hero_face_to(dir) {
     let rec = neko;
     app.stage.removeChild(neko);
