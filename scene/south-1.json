@@ -235,7 +235,15 @@
             "nextmap": null,
             "text": [
                 {
-                    "pre_list": [],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1
+                            ]
+                        }
+                    ],
                     "content": "有没有好奇我为什么和你长得一样？",
                     "options": [
                         {
@@ -248,7 +256,10 @@
                                         "name": "询问",
                                         "content": "为什么呢？",
                                         "next_text": {
-                                            "content": "诶嘿，其实角色贴图还没画完"
+                                            "content": "诶嘿，其实角色贴图还没画完",
+                                            "strike_event": [
+                                                "sf 1"
+                                            ]
                                         }
                                     }
                                 ]
@@ -258,7 +269,10 @@
                             "name": "询问",
                             "content": "为什么呢？",
                             "next_text": {
-                                "content": "诶嘿，其实角色贴图还没画完"
+                                "content": "诶嘿，其实角色贴图还没画完",
+                                "strike_event": [
+                                    "sf 1"
+                                ]
                             }
                         }
                     ]
@@ -269,7 +283,7 @@
                             "type": "event",
                             "num": 1,
                             "list": [
-                                1
+                                2
                             ]
                         }
                     ],

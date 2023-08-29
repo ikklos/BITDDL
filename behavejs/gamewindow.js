@@ -136,7 +136,6 @@ async function AfterLoad() {
     hori = 0.9; vertical = 0.7;
     //Left
     left.press = () => {
-        console.log("left pressed!");
         neko.vx = -hori;
     };
 
@@ -189,9 +188,7 @@ async function AfterLoad() {
         }
     };
     keyf.press = () => {
-        console.log(wait_event.type);
         if (wait_event.type === "null") {
-            console.log("f pressed!");
             npc_pool.forEach(npc => {
                 if (HitTest(neko, npc)) {
                     console.log("in keyf", npc);
@@ -202,6 +199,7 @@ async function AfterLoad() {
                                 wait_event.text = npc.text[i];
                                 wait_event.times = 0;
                                 event_change = true;
+                                break;
                             }
                         }
                     } else if (npc.type === "door") {
@@ -219,7 +217,6 @@ async function AfterLoad() {
 
 
     //对象预排序
-    console.log(npc_pool);
     console.log("before in loop");
     app.ticker.speed = 1;
     app.ticker.add((delta) => gameloop(delta));
@@ -376,7 +373,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
-story_status|ss,id,0|1        修改故事状态
+story_finish|sf,id                标记故事完成
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -422,23 +419,14 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
         case 'package':
 
             break;
-        case 'ss':
-        case 'story_status':
+        case 'sf':
+        case 'story_finish':
             let num = Number(strs[1]);
-            let num1 = Number(strs[2]);
             if (num == "NaN") {
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
                 break;
             }
-            if (num1 == "NaN") {
-                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not a number!`);
-                break;
-            }
-            if (num1 != 0 && num1 != 1) {
-                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not an option!`);
-                break;
-            }
-            story_status[num] = num1;
+            story_status[num].status = 1;
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -446,7 +434,6 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let Arr = npc.behave;
-    console.log(Arr);
     if (typeof (Arr) == "undefined") return;
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
@@ -480,7 +467,7 @@ function CheckPrelist(pre) {//event，//multi_package//package, attribute_value
 }
 function CheckStoryList(id) {
     let condition = story_status[id].num;
-    if (story_status[id] === 1) return 1;
+    if (story_status[id].status == 1) return 1;
     else {
         for (let i = 0; i < story_status[id].pre_list.length; i++) {
             let f = story_status[id].pre_list[i];
@@ -489,7 +476,10 @@ function CheckStoryList(id) {
             }
         }
     }
-    if (condition <= 0) return story_status[id] = 1;
+    if (condition <= 0) {
+        story_status[id].status = 1;
+        return 1;
+    }
     return 0;
 }
 function npc_speak(text) {
@@ -505,7 +495,6 @@ function npc_speak(text) {
             wait_event.type = "npc"
             wait_event.text = wait_event.text.options[window.parent.dialogResult].next_text;
             window.parent.dialogResult = -1;
-            console.log(wait_event.text);
             window.parent.showDialog(wait_event.text);
         } else {
             wait_event.type = "null";
