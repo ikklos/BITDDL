@@ -248,10 +248,7 @@
                                         "name": "询问",
                                         "content": "为什么呢？",
                                         "next_text": {
-                                            "content": "诶嘿，其实角色贴图还没画完",
-                                            "strike_event": [
-                                                "story_status 1 1"
-                                            ]
+                                            "content": "诶嘿，其实角色贴图还没画完"
                                         }
                                     }
                                 ]
@@ -261,10 +258,7 @@
                             "name": "询问",
                             "content": "为什么呢？",
                             "next_text": {
-                                "content": "诶嘿，其实角色贴图还没画完",
-                                "strike_event": [
-                                    "story_status 1 1"
-                                ]
+                                "content": "诶嘿，其实角色贴图还没画完"
                             }
                         }
                     ]
