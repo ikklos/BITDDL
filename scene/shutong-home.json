@@ -1,0 +1,170 @@
+{
+    "down":"../scene/images/shutong-home-down.png",
+    "up":"../scene/images/shutong-home-up.png",
+    "banaries": [
+        {
+            "name": "bianjie up",
+            "x": 312,
+            "y": 264,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie up1",
+            "x": 432,
+            "y": 240,
+            "width": 96,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie up2",
+            "x": 528,
+            "y": 264,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie right1",
+            "x": 624,
+            "y": 288,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down1",
+            "x": 504,
+            "y": 384,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down2",
+            "x": 504,
+            "y": 408,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down3",
+            "x": 432,
+            "y": 432,
+            "width": 96,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down4",
+            "x": 432,
+            "y": 408,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie down5",
+            "x": 336,
+            "y": 384,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "bianjie left",
+            "x": 312,
+            "y": 288,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair1",
+            "x": 365,
+            "y": 297,
+            "width": 14,
+            "height": 15,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair2",
+            "x": 581,
+            "y": 297,
+            "width": 14,
+            "height": 15,
+            "type": "banary",
+            "collideH": 1
+        }
+    ],
+    "npcs": [
+        {
+            "img":"../scene/images/clear.png",
+            "name": "door 1",
+            "x": 456,
+            "y": 408,
+            "width": 48,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 456,
+            "nexty": 288,
+            "nextmap": "../scene/shutong-1.json"
+        },
+        {
+            "img":"../scene/images/clear.png",
+            "name": "bed 1",
+            "x": 312,
+            "y": 288,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door"
+        },
+        {
+            "img":"../scene/images/clear.png",
+            "name": "bed 2",
+            "x": 600,
+            "y": 288,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door"
+        },
+        {
+            "img":"../scene/images/friend1.png",
+            "name": "friend1",
+            "x": 552,
+            "y": 312,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "door"
+        },
+        {
+            "img":"../scene/images/clear.png",
+            "name": "table1",
+            "x": 360,
+            "y": 264,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door"
+        }
+    ]
+}

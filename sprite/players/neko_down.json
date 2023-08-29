@@ -1,0 +1,55 @@
+{"frames": {
+
+"neko_down0.png":
+{
+	"frame": {"x":1,"y":1,"w":35,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":1,"w":35,"h":47},
+	"sourceSize": {"w":48,"h":48}
+},
+"neko_down1.png":
+{
+	"frame": {"x":38,"y":1,"w":35,"h":46},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":2,"w":35,"h":46},
+	"sourceSize": {"w":48,"h":48}
+},
+"neko_down2.png":
+{
+	"frame": {"x":1,"y":1,"w":35,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":1,"w":35,"h":47},
+	"sourceSize": {"w":48,"h":48}
+},
+"neko_down3.png":
+{
+	"frame": {"x":75,"y":1,"w":34,"h":46},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":2,"w":34,"h":46},
+	"sourceSize": {"w":48,"h":48}
+},
+"neko_down4.png":
+{
+	"frame": {"x":1,"y":1,"w":35,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":1,"w":35,"h":47},
+	"sourceSize": {"w":48,"h":48}
+}},
+"animations": {
+	"neko_down": ["neko_down0.png","neko_down1.png","neko_down2.png","neko_down3.png","neko_down4.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "neko_down.png",
+	"format": "RGBA8888",
+	"size": {"w":110,"h":49},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:876cad25d7c9934c51828828eb2094b5:624d96146ecf5eb9dfdfbf9cd7f4518d:e572ecb715316164a448b6fa70199be7$"
+}
+}

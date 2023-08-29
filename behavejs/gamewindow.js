@@ -301,7 +301,6 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             if (npc.type === "door") {
                 npc.nextx = npc_raw_data[i].nextx;
                 npc.nexty = npc_raw_data[i].nexty;
-                npc.hitbox = getHitBox(-10, -10, npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
             }
             npc_pool.push(npc);
         }

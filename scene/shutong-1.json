@@ -41,18 +41,46 @@
     ],
     "npcs": [
         {
-            "img": "../scene/images/door-one-shutong.png",
+            "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
             "y": 264,
             "width": 24,
-            "height": 24,
+            "height": 48,
             "collideH": 1.0,
             "type": "door",
             
-            "nextx": ,
-            "nexty": ,
-            "nextmap": "../scene/shutong-1.json"
+            "nextx": 456,
+            "nexty": 408,
+            "nextmap": "../scene/shutong-home.json"
+        },
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door 2",
+            "x": 528,
+            "y": 264,
+            "width": 24,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 456,
+            "nexty": 408,
+            "nextmap": "../scene/shutong-besidehome.json"
+        },
+        {
+            "img":"../scene/images/clear.png",
+            "name": "outsidedoor",
+            "x": 696,
+            "y": 288,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 48,
+            "nexty": 360,
+            "nextmap": "../scene/south-1.json"
         }
     ]
 }
