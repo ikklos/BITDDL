@@ -90,3 +90,78 @@ button{
     position:relative;
     text-align: center
 }
+.speak_text_l{
+    border-style: solid;
+    border-width: 4px;
+    border-image-slice: 3;
+    border-image-width: 3;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-outset: 2;
+    position: relative;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 20px;
+    background-color: #fff
+}
+.speak_text_l::after,
+.speak_text_l::before{
+    position: absolute;
+    content: "";
+    left: 2rem
+}
+.speak_text_l::before{
+    bottom: -14px;
+    width: 20px;
+    height: 10px;
+    background-color: #fff;
+    border-right: 4px solid #212529;
+    border-left: 4px solid #212529
+}
+.speak_text_l::after{
+    bottom: -18px;
+    width: 18px;
+    height: 4px;
+    margin-right: 8px;
+    color: #212529;
+    background-color: #fff;
+    box-shadow: -4px 0, 4px 0, -4px 4px #fff, 0 4px, -8px 4px, -4px 8px, -8px 8px
+}
+
+.speak_text_r{
+    border-style: solid;
+    border-width: 4px;
+    border-image-slice: 3;
+    border-image-width: 3;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-outset: 2;
+    position: relative;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    margin-bottom: 20px;
+    background-color: #fff
+}
+.speak_text_r::after,
+.speak_text_r::before{
+    position: absolute;
+    content: "";
+    right: 2rem
+}
+.speak_text_r::before{
+    bottom: -14px;
+    width: 20px;
+    height: 10px;
+    background-color: #fff;
+    border-right: 4px solid #212529;
+    border-left: 4px solid #212529
+}
+.speak_text_r::after{
+    bottom: -18px;
+    width: 18px;
+    height: 4px;
+    margin-left: 8px;
+    background-color: #fff;
+    box-shadow: -4px 0, 4px 0, 4px 4px #fff, 0 4px, 8px 4px, 4px 8px, 8px 8px
+}
+

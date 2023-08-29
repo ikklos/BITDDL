@@ -16,30 +16,36 @@
         let texta = document.getElementById("text_area");
         texta.focus();
         texta.innerHTML = "";
-        let maintext = document.createElement("p");
+        let maintextContainer = document.createElement("div");
+        let optionsContainer = document.createElement("div");
+        let maintext = document.createElement("div");
+        maintextContainer.className = "maintextContainer speak_text_l";
+        optionsContainer.className = "optionsContainer speak_text_r"
+        texta.appendChild(maintextContainer);
+        texta.appendChild(optionsContainer);
         maintext.innerHTML = text.content;
-        texta.appendChild(maintext);
+        maintextContainer.appendChild(maintext);
         if (typeof (text.options) != "undefined") {
             if (text.options.length > 0)
                 for (let i = 0; i < text.options.length; i++) {
-                    let tmp = document.createElement("p");
+                    let tmp = document.createElement("div");
                     tmp.className = "option_text";
                     tmp.innerHTML = '[' + text.options[i].name + ']:' + text.options[i].content;
                     tmp.addEventListener("click", function () {
                         dialogResult = i;
                         console.log(dialogResult);
                     });
-                    texta.appendChild(tmp);
+                    optionsContainer.appendChild(tmp);
                 }
         } else {
-            let tmp = document.createElement("p");
+            let tmp = document.createElement("div");
             tmp.className = "option_text";
             tmp.innerHTML = "*离开*";
             tmp.addEventListener("click", function () {
                 dialogResult = 0;
                 document.getElementById("maingameframe").focus();
             });
-            texta.appendChild(tmp);
+            optionsContainer.appendChild(tmp);
         }
 
     }
@@ -53,7 +59,7 @@
     <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <div class="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
-        <div class="text_area border_s" id="text_area">
+        <div class="text_area" id="text_area">
 
         </div>
         <div class="button_box">
@@ -62,6 +68,16 @@
     </div>
 </body>
 
-<!-- <script type = "module"src="behavejs/indexpage.js"></script> -->
+<script>
+    //auto zoom tool bar
+    function bodyScale() {
+    let devicewidth = document.documentElement.clientwidth;
+    let deviceheight = document.documentElement.clientHeight;
+    var scalex = devicewidth / 1400;
+    var scaley = deviceheight / 800;
+    scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
+    } 
+    bodyScale();    
+</script>
 
 </html>
