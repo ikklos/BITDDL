@@ -167,12 +167,12 @@
     ],
     "npcs": [
         {
-            "img": "../scene/images/door-one-out.png",
+            "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 48,
             "y": 336,
             "width": 24,
-            "height": 24,
+            "height": 48,
             "collideH": 1.0,
             "type": "door",
             "nextx": 696,
@@ -180,12 +180,12 @@
             "nextmap": "../scene/shutong-1.json"
         },
         {
-            "img": "../scene/images/door-one-out.png",
+            "img": "../scene/images/clear.png",
             "name": "door 2",
             "x": 72,
             "y": 456,
             "width": 24,
-            "height": 24,
+            "height": 48,
             "collideH": 1.0,
             "type": "door",
             "nextx": 696,
@@ -193,46 +193,40 @@
             "nextmap": "../scene/shop.json"
         },
         {
-            "img": "../scene/images/door-one-out.png",
+            "img": "../scene/images/clear.png",
             "name": "door 3",
             "x": 696,
             "y": 192,
             "width": 24,
-            "height": 24,
+            "height": 48,
             "collideH": 1.0,
             "type": "door",
-            "nextx": "",
-            "nexty": "",
+            "nextx": 144,
+            "nexty": 312,
             "nextmap": "../scene/lijiao-1.json"
         },
         {
-            "img": "../scene/images/door-one-out.png",
+            "img": "../scene/images/clear.png",
             "name": "door 4",
             "x": 840,
             "y": 288,
             "width": 24,
-            "height": 24,
+            "height": 48,
             "collideH": 1.0,
             "type": "door",
-            "nextx": "",
-            "nexty": "",
+            "nextx": 432,
+            "nexty": 456,
             "nextmap": "../scene/lijiao-1.json"
         },
         {
-            "img": "../sprite/players/Character_test.png",
-            "name": "NPC 1",
-            "x": 300,
-            "y": 250,
+            "img": "../character/soccerboy/soccerboy-excited.png",
+            "name": "soccerboy",
+            "x": 336,
+            "y": 192,
             "width": 24,
             "height": 24,
+            "collideH": 1.0,
             "type": "npc",
-            "behave": [
-                {
-                    "type": "appear"
-                }
-            ],
-            "collideH": 0.7,
-            "nextmap": null,
             "text": [
                 {
                     "pre_list": [
@@ -242,36 +236,56 @@
                             "list": [
                                 0
                             ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                14,
+                                15,
+                                16,
+                                17
+                            ]
                         }
                     ],
-                    "content": "有没有好奇我为什么和你长得一样？",
+                    "content": "踢球少年：快来一起踢球呀！",
                     "options": [
                         {
-                            "name": "保持沉默",
-                            "content": "......",
+                            "name": "拒绝",
+                            "content": "不了不了，我要好好学习啦！",
                             "next_text": {
-                                "content": "喂喂，你不能是哑巴吧",
-                                "options": [
-                                    {
-                                        "name": "询问",
-                                        "content": "为什么呢？",
-                                        "next_text": {
-                                            "content": "诶嘿，其实角色贴图还没画完",
-                                            "strike_event": [
-                                                "sf,2"
-                                            ]
-                                        }
-                                    }
+                                "content": "踢球少年：那好吧~*继续踢球*",
+                                "strike_event": [
+                                    "sf,14"
                                 ]
                             }
                         },
                         {
-                            "name": "询问",
-                            "content": "为什么呢？",
+                            "name": "踢球",
+                            "content": "*你给了球一脚*",
                             "next_text": {
-                                "content": "诶嘿，其实角色贴图还没画完",
+                                "content": "*球纹丝不动*",
                                 "strike_event": [
-                                    "sf,2"
+                                    "sf,15"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "？",
+                            "content": "*悄悄搬开球*",
+                            "next_text": {
+                                "content": "踢球少年疑惑地看了你一眼*",
+                                "strike_event": [
+                                    "sf,16"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "我是去超市的，你们要干什么？",
+                            "next_text": {
+                                "content": "*你啊的一声扑向超市，离开了*",
+                                "strike_event": [
+                                    "sf,17"
                                 ]
                             }
                         }
@@ -283,11 +297,173 @@
                             "type": "event",
                             "num": 1,
                             "list": [
-                                2
+                                18
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                20
                             ]
                         }
                     ],
-                    "content": "超市里还有个npc哦，去地图左下角看看吧"
+                    "content": "踢球少年：额...你好像不太聪明的样子，这个给你吧。",
+                    "strike_event": [
+                        "pkg,add,1"
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                14
+                            ]
+                        }
+                    ],
+                    "content": "踢球少年：要回来和我踢球吗！",
+                    "options": [
+                        {
+                            "name": "离开",
+                            "content": "还是算了吧~",
+                            "next_text": {
+                                "content": "踢球少年：那好吧。*继续踢球*",
+                                "strike_event": [
+                                    "sf,22"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "劝解",
+                            "content": "已经考试周了，还是好好学习吧。",
+                            "next_text": {
+                                "content": "踢球少年：及时行乐啦~",
+                                "strike_event": [
+                                    "sf,21"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "img": "../scene/images/soccer.png",
+            "name": "soccer",
+            "x": 312,
+            "y": 192,
+            "width": 18,
+            "height": 18,
+            "collideH": 1.0,
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                22,
+                                27
+                            ]
+                        }
+                    ],
+                    "content": "看起来就是一个普通的足球。",
+                    "options": [
+                        {
+                            "name": "搬开",
+                            "content": "*你用力搬开足球*",
+                            "next_text": {
+                                "content": "你也是来存放智慧的吗？",
+                                "options": [
+                                    {
+                                        "name": "同意",
+                                        "content": "*你将智慧存放于此*",
+                                        "strike_event": [
+                                            "sf,30"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "*你离开了*",
+                            "next_text": {
+                                "content": "*球静静等待*"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                22
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                30
+                            ]
+                        }
+                    ],
+                    "content": "无论怎么看都是一个普通的足球。",
+                    "options": [
+                        {
+                            "name": "搬开",
+                            "content": "*你用力搬开足球*",
+                            "next_text": {
+                                "content": "你或许也有这样的智慧"
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "*你离开了*",
+                            "next_text": {
+                                "content": "*球继续等待*"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                16,
+                                17
+                            ]
+                        }
+                    ],
+                    "content": "是一个普通的足球。",
+                    "options": [
+                        {
+                            "name": "搬开",
+                            "content": "*你用力搬开足球*",
+                            "next_text": {
+                                "content": "踢球少年：你是在做什么？",
+                                "strike_event": [
+                                    "sf,18"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "*你离开了*",
+                            "next_text": {
+                                "content": "*球一言不发*",
+                                "strike_event": [
+                                    "sf,19"
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         }

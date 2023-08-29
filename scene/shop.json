@@ -66,7 +66,7 @@
             "collideH": 1
         },
         {
-            "name": "bianjie left",
+            "name": "bianjie left1",
             "x": 336,
             "y": 312,
             "width": 192,
@@ -131,9 +131,9 @@
     ],
     "npcs": [
         {
-            "img": "../scene/images/door-one-out.png",
+            "img": "../scene/images/clear.png",
             "name": "door 1",
-            "x": 720,
+            "x": 696,
             "y": 264,
             "width": 24,
             "height": 96,
@@ -144,30 +144,69 @@
             "nextmap": "../scene/south-1.json"
         },
         {
-            "img": "../sprite/players/Character_test.png",
-            "name": "NPC 1",
-            "x": 300,
-            "y": 250,
+            "img": "../character/seller/seller-normal.png",
+            "name": "seller",
+            "x": 576,
+            "y": 336,
             "width": 24,
             "height": 24,
+            "collideH": 1.0,
             "type": "npc",
-            "behave": [
-                {
-                    "type": "appear"
-                }
-            ],
-            "collideH": 0.7,
-            "nextmap": null,
             "text": [
                 {
-                    "pre_list": [],
-                    "content": "工图要的方格纸在哪呀..",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                17
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "num": 1,
+                            "list": [
+                                25,
+                                26,
+                                27,
+                                28
+                            ]
+                        }
+                    ],
+                    "content": "要买什么东西吗？",
                     "options": [
                         {
-                            "name": "保持沉默",
-                            "content": "......",
+                            "name": "文具",
+                            "content": "我需要一只中性笔，一把尺子和一块橡皮。",
                             "next_text": {
-                                "content": "不会要去学服买吧.."
+                                "content": "要被咖啡吗？",
+                                "options": [
+                                    {
+                                        "name": "同意",
+                                        "content": "*你将智慧存放于此*",
+                                        "strike_event": [
+                                            "sf,26"
+                                        ]
+                                    },
+                                    {
+                                        "name": "拒绝",
+                                        "content": "*你将智慧存放于此*",
+                                        "strike_event": [
+                                            "sf,25"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "智慧",
+                            "content": "我需要智慧。",
+                            "next_text": {
+                                "content": "球在等你。",
+                                "strike_event": [
+                                    "pkg,add,1",
+                                    "sf,27"
+                                ]
                             }
                         }
                     ]

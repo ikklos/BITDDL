@@ -41,7 +41,7 @@ console.log(window.innerHeight, "cilentheights");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let wait_event = { type: "null" };
 let event_change = false;
-var story_status = [];
+var story_status = [{}];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
@@ -59,9 +59,14 @@ const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
-story_status = LoadStories("../story/story.json");
+story_status[0].status = 1;
+for (let i = 1; i <= 2000; i++) {
+    let story = {};
+    story.status = 0;
+    story_status.push(story);
+}
 //加载地图障碍
-loadmap("../scene/south-1.json");
+loadmap("../scene/shutong-home.json");
 if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
     currentSave.savepackage = [];
     for (let i = 0; i < item_list.length; i++) {
@@ -71,8 +76,8 @@ if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
-    sheet = await PIXI.Assets.load('../sprite/players/testTexture.json');
-    loadhero('Character_test', app.stage.width / 2, app.stage.height / 2);
+    sheet = await PIXI.Assets.load('sprite/players/neko.json');
+    loadhero('neko_down', 336, 312);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
@@ -174,7 +179,7 @@ async function AfterLoad() {
         play(delta);
     }
 }
-
+var vx = 0, vy = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
@@ -203,7 +208,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
     if (wait_event.type === "door") {
         app.stage.removeChild(neko);
-        loadhero('Character_test', wait_event.door.nextx, wait_event.door.nexty);
+        loadhero('neko_down', wait_event.door.nextx, wait_event.door.nexty);
         console.log(neko);
 
         loadmap(wait_event.nextmap);
@@ -211,6 +216,19 @@ function play(delta) {//基本所有的事件结算都在这里写
 
         wait_event.type = "null";
         wait_event.nextmap = null;
+    }
+    if (neko.vx !== vx || neko.vy !== vy) {
+        if (neko.vx !== 0) {
+            if (neko.vx > 0) { hero_face_to("right"); }
+            if (neko.vx < 0) { hero_face_to("left"); }
+        } else if (neko.vy < 0) {
+            hero_face_to("up");
+        } else if (neko.vy > 0) {
+            hero_face_to("down");
+        } else {
+            hero_face_to("down");
+        }
+        vy = neko.vy; vx = neko.vx;
     }
     if (neko.vx != 0 || neko.vy != 0) {
         if (!neko.playing) neko.play();
@@ -301,7 +319,6 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             if (npc.type === "door") {
                 npc.nextx = npc_raw_data[i].nextx;
                 npc.nexty = npc_raw_data[i].nexty;
-                npc.hitbox = getHitBox(-10, -10, npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
             }
             npc_pool.push(npc);
         }
@@ -380,8 +397,11 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
                 break;
             }
-            console.log("strike story");
-            console.log(num);
+            if (typeof (story_status[num]) == "undefined") {
+                console.log(`command "${str}" cannot be invoked.story "${strs[1]}" is not exist!`);
+                break;
+            }
+            console.log("strike story:" + num);
             story_status[num].status = 1;
             break;
         default:
@@ -391,14 +411,29 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
     let Arr = npc.behave;
-    if (typeof (Arr) == "undefined") return;
+    if (typeof (Arr) == "undefined") {
+        app.stage.addChild(npc);
+        return;
+    }
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if (CheckPrelist(Arr[i].pre_list)) {
+            let num = Arr[i].pre_list.num;
+            for (let k = 0; k < Arr[i].pre_list.length; k++) {
+                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
+                    num--;
+                }
+            }
+            if (num <= 0) {
                 fin = true;
             }
         } else if (Arr[i].type === "disappear") {
-            if (CheckPrelist(Arr[i].pre_list)) {
+            let num = Arr[i].pre_list.num;
+            for (let k = 0; k < Arr[i].pre_list.length; k++) {
+                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
+                    num--;
+                }
+            }
+            if (num <= 0) {
                 fin = false;
             }
         }
@@ -406,7 +441,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
+function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
@@ -435,6 +470,9 @@ function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
                     return false;
                 }
             }
+        } else if (pre[i].type === "no_event") {
+            for (let k = 0; k < pre[i].list.length; k++)
+                if (story_status[pre[i].list[k]].status === 1) return false;
         }
     }
 
@@ -531,3 +569,26 @@ function bodyScale() {
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
 } 
 bodyScale();
+function hero_face_to(dir) {
+    let rec = neko;
+    app.stage.removeChild(neko);
+    if (dir === "left") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_left"]);
+    } else if (dir === "right") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_right"]);
+    } else if (dir === "up") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_up"]);
+    } else if (dir === "down") {
+        neko = new PIXI.AnimatedSprite(sheet.animations["neko_down"]);
+    }
+    neko.name = "hero";
+    neko.width = 24;
+    neko.height = 24;
+    neko.hitbox = rec.hitbox;
+    neko.x = rec.x;
+    neko.y = rec.y;
+    neko.vx = rec.vx; neko.vy = rec.vy;
+    neko.animationSpeed = 0.1;
+    console.log(neko);
+    app.stage.addChild(neko);
+}
