@@ -305,7 +305,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             console.log("loading...");
             let npc = PIXI.Sprite.from(npc_raw_data[i].img);
             console.log("success!");
-            npc.hitbox = getPartHitBox(npc_raw_data[i], npc_raw_data[i].collideH);
+            npc.hitbox = getHitBox(-10,-10,npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
             npc.behave = npc_raw_data[i].behave;
             npc.text = npc_raw_data[i].text;
             npc.name = npc_raw_data[i].name;
