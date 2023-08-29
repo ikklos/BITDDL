@@ -16,5 +16,5 @@ container.addEventListener('scroll', function () {
 				document.getElementById(ele.id.replace("contain","name")).classList.remove('highlight');
 			}
 		});
-	}, 100);	
+	}, 200);	
 });

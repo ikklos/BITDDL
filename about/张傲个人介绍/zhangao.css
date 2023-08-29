@@ -1,17 +1,131 @@
-*{
-    border-radius: 15px;
+*:not(html){
+    border-radius: 20px;
+    margin: 10px;
+    padding: 0;
 }
-.alltitle{
-    background-color:rgba(0, 221, 255, 0.74);
-    text-align: center;
+/* 0 */
+html{
     
-}
-h2{
-    background-color: rgba(0, 255, 157, 0.322);
-}
-.photo{
-    max-height: 400px;
+    /* background-position: center 0; */
+    padding: 5%;
+    margin: 0;
+    height: 100%;
+    font-size: 100%; 
+    -ms-text-size-adjust: 80%; 
+    -webkit-text-size-adjust: 100%; 
 }
 body{
-    background-color: rgba(255, 255, 255, 0.799);
+    background: url("./bg.jpg") no-repeat center center;
+    background-size:auto;
+    min-height: max-content;
+}
+/* 1 */
+.main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.con_int{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    margin: 10px;
+}
+.pro_hob{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.up{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+.down{
+
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+/* 2 */
+.info{
+    flex: 1 ;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+
+    background-color: rgba(240, 248, 255, 0.614);
+    backdrop-filter: blur(5px);
+}
+.contact{
+    flex: 1 ;
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(240, 248, 255, 0.614);
+    backdrop-filter: blur(5px);
+}
+.introduct{
+    flex: 3 ;
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(240, 248, 255, 0.614);
+    backdrop-filter: blur(5px);
+}
+.program{
+    flex: 1;
+    margin-right: 10px;
+    background-color: rgba(240, 248, 255, 0.614);
+    backdrop-filter: blur(5px);
+}
+.hobby{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(240, 248, 255, 0.614);
+    backdrop-filter: blur(5px);
+}
+
+/* 3 */
+.title{
+    background-color: rgb(255, 255, 255);
+}
+.inner{
+    display: flex;
+    flex-wrap: wrap;
+}
+.hobby > .inner {
+    flex-direction: column;
+}
+/* 4 */
+.text{
+    flex: 1 ;
+}
+
+.inner{
+    display: flex;
+    flex-direction: row;
+}
+img{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 0;
+    max-height: 25vh;
+    margin: auto;
+}
+
+h3,h4{
+    color: rgb(38, 38, 38);
+}
+h5{
+    color: rgb(75, 75, 75);
+}
+h6{
+    color: rgba(54, 54, 54, 0.656);
 }

@@ -1,6 +1,7 @@
 /* 定义字体 */
 @font-face {
     font-family: "PressStart2P";
+    src: url("./Font/PressStart2P.ttf") format("truetype");
     src: url("./Font/PressStart2P.woff") format('woff');
 }
 @font-face {
@@ -10,7 +11,7 @@
 }
 
 html,body {
-    font-family: 'PressStart2P','Zpix';
+    font-family: 'Zpix';
     font-size: 100%; 
     -ms-text-size-adjust: 100%; 
     -webkit-text-size-adjust: 100%; 
@@ -21,7 +22,6 @@ html,body {
     overflow: hidden ;
     margin: 0;
     padding:0;
-    vertical-align:baseline;
     /* zoom: 0.8; */
 }
 /* 定义按钮样式 */
