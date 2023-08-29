@@ -10,6 +10,7 @@ document.getElementById("GameWindow").appendChild(app.view);
 
 
 app.stage.sortableChildren = true;
+console.log(window.innerHeight,"cilentheights");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

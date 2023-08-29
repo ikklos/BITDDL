@@ -1,5 +1,5 @@
+
 body{
-    display: flex;
     flex-direction: column;
 }
 .gamewindow{
@@ -7,10 +7,11 @@ body{
     width: 100%;
     height: 80%;
     left: 50%; 
+    
     top: 0%;
     margin: 0;
     padding: 0;
-
+    /* translate: scale(0.5); */
 }
 #maingameframe{
     width: 100%;
@@ -21,10 +22,17 @@ body{
 }
 
 .toolbar {
-    flex: 20;
-    height: 10%;
+    max-height: 25%;
+    min-height: 20%;
+    width: 1000px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: space-between;
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
 }
@@ -34,4 +42,8 @@ body{
     padding: 1rem 1.5rem;
     margin: 10px;
     background-color: burlywood;
+}
+.avator{
+    width: 150px;
+    height: 150px;
 }

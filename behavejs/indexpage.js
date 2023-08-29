@@ -25,15 +25,7 @@ function startgame() {
         })
         return;
     }
-    Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
-        element.style.visibility = 'hidden'
-    })
-    Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
-        element.style.visibility = 'visible'
-    })
-    Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
-        element.style.visibility = 'hidden'
-    })
+    window.parent.showGameFrame();
 }
 
 function checksaves() {
@@ -47,16 +39,7 @@ function checksaves() {
         })
         return;
     }
-    
-    Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
-        element.style.visibility = 'hidden'
-    })
-    Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
-        element.style.visibility = 'hidden'
-    })
-    Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
-        element.style.visibility = 'visible'
-    })
+    window.parent.showSaveFrame();
 }
 
 function passwordCheck_log() {
@@ -122,7 +105,7 @@ function passwordCheck_log() {
         document.getElementById("logbutton").style.visibility = 'hidden';
         document.getElementById("regbutton").style.visibility = 'hidden';
         document.getElementById("logged").style.visibility = 'visible';
-        document.getElementById("logged").innerHTML = "已登录" + "<br><br>" + "用户名：" + userValues[0];
+        document.getElementById("logged").innerHTML = "已登录" + " " + "用户名：" + userValues[0];
         Toast.fire({
             title: "登录成功！",
             icon:'info'
@@ -271,8 +254,14 @@ document.body.addEventListener('keydown', startPlayBGM);
 if (document.getElementById("startgamebutton")) {
     document.getElementById("startgamebutton").onclick = startgame;
 }
+if (document.getElementById("tab_game")) {
+    document.getElementById("tab_game").onclick = startgame;
+}
 if (document.getElementById("loadsavebutton")) {
     document.getElementById("loadsavebutton").onclick = checksaves;
+}
+if (document.getElementById("tab_loadsave")) {
+    document.getElementById("tab_loadsave").onclick = checksaves;
 }
 if (document.getElementById("logbutton")) {
     document.getElementById("logbutton").onclick = passwordCheck_log;
@@ -283,7 +272,10 @@ if (document.getElementById("regbutton")) {
 if (document.getElementById("aboutbutton")) {
     document.getElementById("aboutbutton").onclick = window.showAbout;
 }
-if (document.getElementById("home")) {
-    document.getElementById("home").onclick = window.showMainMenu;
+if (document.getElementById("tab_about")) {
+    document.getElementById("tab_about").onclick = window.showAbout;
+}
+if (document.getElementById("tab_home")) {
+    document.getElementById("tab_home").onclick = window.showMainMenu;
 }
 
