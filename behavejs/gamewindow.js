@@ -11,7 +11,7 @@ document.getElementById("GameWindow").appendChild(app.view);
 
 
 app.stage.sortableChildren = true;
-console.log(window.innerHeight,"cilentheights");
+console.log(window.innerHeight, "cilentheights");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -248,7 +248,7 @@ async function AfterLoad() {
         //console.log(window.parent.dialogResult);
         //console.log(wait_event);
         if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {
-            //console.log(wait_event.text);
+            console.log(wait_event.text);
             npc_speak(wait_event.text);
         }
         if (wait_event.type === "door") {
@@ -376,6 +376,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
+story_status|ss,id,0|1        修改故事状态
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -420,6 +421,24 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
         case 'pkg':
         case 'package':
 
+            break;
+        case 'ss':
+        case 'story_status':
+            let num = Number(strs[1]);
+            let num1 = Number(strs[2]);
+            if (num == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
+                break;
+            }
+            if (num1 == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not a number!`);
+                break;
+            }
+            if (num1 != 0 && num1 != 1) {
+                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not an option!`);
+                break;
+            }
+            story_status[num] = num1;
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);

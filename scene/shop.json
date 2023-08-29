@@ -156,7 +156,7 @@
                     "type": "appear"
                 }
             ],
-            "collideH": 1.0,
+            "collideH": 0.7,
             "nextmap": null,
             "text": [
                 {
