@@ -319,7 +319,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 1000);
+    }, 5000);
 
 }
 /*commands
@@ -405,7 +405,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
+function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
@@ -434,6 +434,10 @@ function CheckPrelist(pre) {//event，//multi_item//item, attribute_value
                     return false;
                 }
             }
+        } else if (pre[i].type === "no_event") {
+            let num = pre[i].num;
+            for (let k = 0; k < pre[i].list.length; k++)
+                if (story_status[pre[i].list[k]].status === 1) return false;
         }
     }
 
@@ -522,6 +526,6 @@ function use_item(id, num) {
     }
 }
 
-function hero_face_to(dir){
-    
+function hero_face_to(dir) {
+
 }

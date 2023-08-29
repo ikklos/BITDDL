@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/shutong-home-down.png",
-    "up":"../scene/images/shutong-home-up.png",
+    "down": "../scene/images/shutong-home-down.png",
+    "up": "../scene/images/shutong-home-up.png",
     "banaries": [
         {
             "name": "bianjie up",
@@ -113,7 +113,7 @@
     ],
     "npcs": [
         {
-            "img":"../scene/images/clear.png",
+            "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
             "y": 408,
@@ -121,43 +121,118 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 456,
             "nexty": 288,
             "nextmap": "../scene/shutong-1.json"
         },
         {
-            "img":"../scene/images/clear.png",
+            "img": "../scene/images/clear.png",
             "name": "bed 1",
             "x": 312,
             "y": 288,
             "width": 48,
             "height": 48,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        }
+                    ],
+                    "content": "*你刚刚从床上起来，真的要躺回去吗*",
+                    "options": [
+                        {
+                            "name": "睡觉",
+                            "content": "*呼呼，还是睡觉比较爽吧~*",
+                            "next_text": {
+                                "content": "*你睡了个回笼觉*",
+                                "strike_event": [
+                                    "sf,2",
+                                    "sf,3"
+                                ],
+                                "options": []
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "*还是不要睡回笼觉了吧*",
+                            "strike_event": [
+                                "sf,2"
+                            ],
+                            "options": []
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "img":"../scene/images/clear.png",
+            "img": "../scene/images/clear.png",
             "name": "bed 2",
             "x": 600,
             "y": 288,
             "width": 48,
             "height": 48,
             "collideH": 1.0,
-            "type": "door"
+            "type": "null"
         },
         {
-            "img":"../scene/images/friend1.png",
+            "img": "../scene/images/friend1.png",
             "name": "friend1",
             "x": 552,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "door"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        }
+                    ],
+                    "content": "*你发现这位舍友正在玩一款二次元开放世界游戏*",
+                    "options": [
+                        {
+                            "name": "加入",
+                            "content": "原神，启动！",
+                            "next_text": {
+                                "content": "*你玩了一上午的原神*",
+                                "strike_event": [
+                                    "sf,2",
+                                    "sf,3"
+                                ],
+                                "options": []
+                            }
+                        },
+                        {
+                            "name": "离开",
+                            "content": "*还是不要打扰他了*",
+                            "next_text": {
+                                "content": "*你安静地离开了*",
+                                "strike_event": [
+                                    "sf,2",
+                                    "sf,4"
+                                ],
+                                "options": []
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "img":"../scene/images/clear.png",
+            "img": "../scene/images/clear.png",
             "name": "table1",
             "x": 360,
             "y": 264,
