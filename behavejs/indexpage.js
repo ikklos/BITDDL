@@ -237,7 +237,7 @@ let intervalID = setInterval(
     function changeBGM() {
         bgms.forEach((audio, index) => {
             if (window.currentBGM === index) {
-                console.log("try to change bgm");
+                // console.log("try to change bgm");
                 bgms[window.currentBGM].volume = 0.3;
             }
             if (window.currentBGM !== index) {
