@@ -369,7 +369,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.sortChildren();
         console.log("sort end");
         console.log(BanariesPool);
-    }, 1000);
+    }, 400);
 
 }
 /*commands

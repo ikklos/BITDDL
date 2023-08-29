@@ -106,7 +106,7 @@ function passwordCheck_log() {
             document.getElementById("logbutton").style.visibility = 'hidden';
             document.getElementById("regbutton").style.visibility = 'hidden';
             document.getElementById("logged").style.visibility = 'visible';
-            document.getElementById("logged").innerHTML = "已登录" + "<br><br>" + "用户名：" + userValues[0];
+            document.getElementById("logged").innerHTML = "已登录" + " " + "用户名：" + userValues[0];
             Toast.fire({
                 title: "登录成功！",
                 icon: 'info'
