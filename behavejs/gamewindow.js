@@ -451,7 +451,6 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
                 }
             }
         } else if (pre[i].type === "no_event") {
-            let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++)
                 if (story_status[pre[i].list[k]].status === 1) return false;
         }
