@@ -1,3 +1,6 @@
+*{
+    border-radius: 15px;
+}
 .alltitle{
     background-color:rgba(0, 221, 255, 0.74);
     text-align: center;
@@ -8,4 +11,7 @@ h2{
 }
 .photo{
     max-height: 400px;
+}
+body{
+    background-color: rgba(255, 255, 255, 0.799);
 }

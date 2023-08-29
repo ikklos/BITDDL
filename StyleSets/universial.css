@@ -21,7 +21,8 @@ html,body {
     overflow: hidden ;
     margin: 0;
     padding:0;
-    vertical-align:baseline
+    vertical-align:baseline;
+    /* zoom: 0.8; */
 }
 /* 定义按钮样式 */
 button{
