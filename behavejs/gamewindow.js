@@ -6,6 +6,9 @@ import { LoadStories } from "./LoadStoryStatus.js"
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
+
+const appwidth = 960, appheight = 576;//for camara
+
 var app = new PIXI.Application({ width: 960, height: 576, antialias: true });
 document.getElementById("GameWindow").appendChild(app.view);
 
@@ -56,9 +59,10 @@ let item_list = LoadItems("../items/items.json");
 let sheet;
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
-background.width = app.screen.width;
-background.height = app.screen.height;
+background.width = appwidth * 0.5;
+background.height = appheight * 0.5;
 app.stage.addChild(background);
+
 story_status[0].status = 1;
 for (let i = 1; i <= 2000; i++) {
     let story = {};
@@ -87,7 +91,7 @@ async function AfterLoad() {
     let keyf = keyboard("f", "");
     //水平和垂直速度
     let hori, vertical;
-    hori = 0.9; vertical = 0.7;
+    hori = 1.8; vertical = 1.4;
     //Left
     left.press = () => {
         neko.vx = -hori;
@@ -179,8 +183,17 @@ async function AfterLoad() {
         play(delta);
     }
 }
+app.stage.scale.set(2);
+
 var vx = 0, vy = 0;
 function play(delta) {//基本所有的事件结算都在这里写
+    app.stage.pivot.x = neko.x - appwidth * 0.25;
+    app.stage.pivot.y = neko.y - appheight * 0.25;
+    background.x = app.stage.pivot.x;
+    background.y = app.stage.pivot.y;
+    neko.vx *= delta, neko.vy *= delta;
+
+
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
     }
@@ -225,8 +238,6 @@ function play(delta) {//基本所有的事件结算都在这里写
             hero_face_to("up");
         } else if (neko.vy > 0) {
             hero_face_to("down");
-        } else {
-            hero_face_to("down");
         }
         vy = neko.vy; vx = neko.vx;
     }
@@ -235,11 +246,11 @@ function play(delta) {//基本所有的事件结算都在这里写
     } else {
         neko.gotoAndStop(0);
     }
-    neko.x += neko.vx;
     if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
         neko.zIndex = neko.y + neko.height;
         app.stage.sortChildren();
     }
+    neko.x += neko.vx;
     if (CrossTheBoader(neko) || HitMap(neko)) {
         neko.x -= neko.vx;
     }
@@ -305,7 +316,7 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
             console.log("loading...");
             let npc = PIXI.Sprite.from(npc_raw_data[i].img);
             console.log("success!");
-            npc.hitbox = getHitBox(-10,-10,npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
+            npc.hitbox = getHitBox(-10, -10, npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
             npc.behave = npc_raw_data[i].behave;
             npc.text = npc_raw_data[i].text;
             npc.name = npc_raw_data[i].name;
@@ -388,7 +399,30 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'pkg':
         case 'package':
-
+            if (strs[1] != "add" && strs[1] != "remove") {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
+                break;
+            }
+            if (typeof currentSave[strs[2]] == "number") {
+                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not an number!`);
+                break;
+            }
+            if (typeof currentSave[strs[3]] == "number") {
+                console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an number!`);
+                break;
+            }
+            let itemid = Number(strs[2]);
+            let itemnum = Number(strs[3]);
+            if (itemid < 0 || itemid >= item_list.length) {
+                console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an item id!`);
+                break;
+            }
+            if (strs[1] == 'add')
+                currentSave.savepackage[itemid] += itemnum;
+            else {
+                if (itemnum > currentSave.savepackage[itemid]) currentSave.savepackage[itemid] = 0;
+                else currentSave.savepackage[itemid] -= itemnum;
+            }
             break;
         case 'sf':
         case 'story_finish':
@@ -441,7 +475,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value
+function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value //random
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
@@ -473,6 +507,9 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
         } else if (pre[i].type === "no_event") {
             for (let k = 0; k < pre[i].list.length; k++)
                 if (story_status[pre[i].list[k]].status === 1) return false;
+        } else if (pre[i].type === "random") {
+            let num = pre[i].possibility;
+            if (Math.random() < num) return true;
         }
     }
 
@@ -567,7 +604,7 @@ function bodyScale() {
     var scalex = devicewidth / 1400;
     var scaley = deviceheight / 800;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
-} 
+}
 bodyScale();
 function hero_face_to(dir) {
     let rec = neko;

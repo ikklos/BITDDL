@@ -50,7 +50,7 @@
         }
 
     }
-    function focusMainGame (){
+    function focusMainGame() {
         document.getElementById("maingameframe").focus();
         console.log("focus!");
     }
@@ -72,12 +72,12 @@
 <script>
     //auto zoom tool bar
     function bodyScale() {
-    let devicewidth = document.documentElement.clientwidth;
-    let deviceheight = document.documentElement.clientHeight;
-    var scalex = devicewidth / 1400;
-    var scaley = deviceheight / 800;
-    scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
-    } 
+        let devicewidth = document.documentElement.clientwidth;
+        let deviceheight = document.documentElement.clientHeight;
+        var scalex = devicewidth / 1400;
+        var scaley = deviceheight / 800;
+        scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
+    }
     bodyScale();    
 </script>
 
