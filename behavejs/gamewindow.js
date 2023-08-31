@@ -179,20 +179,21 @@ async function AfterLoad() {
     app.ticker.maxFPS = 120;
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        //console.log(delta);
+        console.log(delta);
+        neko.vx *= delta;neko.vy *=delta;
         play(delta);
+        neko.vx /= delta; neko.vy /= delta;
     }
 }
 app.stage.scale.set(2);
 
 var vx = 0, vy = 0;
+var nowframe = 0;
+var count = 0;
 function play(delta) {//基本所有的事件结算都在这里写
-    app.stage.pivot.x = neko.x - appwidth * 0.25;
-    app.stage.pivot.y = neko.y - appheight * 0.25;
-    background.x = app.stage.pivot.x;
-    background.y = app.stage.pivot.y;
-    neko.vx *= delta, neko.vy *= delta;
-
+    
+    //console.log("vx",neko.vx);
+    console.log(nowframe);
 
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
@@ -231,6 +232,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         wait_event.nextmap = null;
     }
     if (neko.vx !== vx || neko.vy !== vy) {
+        
         if (neko.vx !== 0) {
             if (neko.vx > 0) { hero_face_to("right"); }
             if (neko.vx < 0) { hero_face_to("left"); }
@@ -241,10 +243,16 @@ function play(delta) {//基本所有的事件结算都在这里写
         }
         vy = neko.vy; vx = neko.vx;
     }
-    if (neko.vx != 0 || neko.vy != 0) {
-        if (!neko.playing) neko.play();
+    if (neko.vx !== 0 || neko.vy !== 0) {
+        count++;
+        if(count > 10){
+            nowframe = (nowframe + 1) % neko.totalFrames;
+            count = 0;
+        }
+        neko.gotoAndPlay(nowframe);
     } else {
         neko.gotoAndStop(0);
+        count = nowframe = 0;
     }
     if (neko.zIndex != neko.y + neko.height) {//改变高度时排序
         neko.zIndex = neko.y + neko.height;
@@ -259,6 +267,11 @@ function play(delta) {//基本所有的事件结算都在这里写
         neko.y -= neko.vy;
     }
     //console.log(neko.x,neko.y);
+    app.stage.pivot.x = neko.x - appwidth * 0.25;
+    app.stage.pivot.y = neko.y - appheight * 0.25;
+    background.x = app.stage.pivot.x;
+    background.y = app.stage.pivot.y;
+    
 }
 
 function HitMap(r) {
@@ -626,6 +639,6 @@ function hero_face_to(dir) {
     neko.y = rec.y;
     neko.vx = rec.vx; neko.vy = rec.vy;
     neko.animationSpeed = 0.1;
-    console.log(neko);
+    //console.log(neko);
     app.stage.addChild(neko);
 }
