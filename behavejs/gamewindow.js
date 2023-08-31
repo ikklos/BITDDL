@@ -564,8 +564,8 @@ function use_item(id, num) {
 function bodyScale() {
     let devicewidth = document.documentElement.clientwidth;
     let deviceheight = document.documentElement.clientHeight;
-    var scalex = devicewidth / 1400;
-    var scaley = deviceheight / 800;
+    var scalex = devicewidth / 1100;
+    var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
 } 
 bodyScale();

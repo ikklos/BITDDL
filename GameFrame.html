@@ -10,21 +10,59 @@
 <script>
     var dialogResult = -1;
     function clearTextArea() {
-        document.getElementById("text_area").innerHTML = "";
+        document.getElementById("maintextContainer").innerHTML = "";
+        document.getElementById("optionsContainer").innerHTML = "";
+        console.log("vistag1");
+        document.getElementById("toolbar").style.visibility = "hidden";
     }
     function showDialog(text) {
+
         let texta = document.getElementById("text_area");
         texta.focus();
-        texta.innerHTML = "";
-        let maintextContainer = document.createElement("div");
-        let optionsContainer = document.createElement("div");
-        let maintext = document.createElement("div");
-        maintextContainer.className = "maintextContainer speak_text_l";
-        optionsContainer.className = "optionsContainer speak_text_r"
-        texta.appendChild(maintextContainer);
-        texta.appendChild(optionsContainer);
-        maintext.innerHTML = text.content;
-        maintextContainer.appendChild(maintext);
+        
+        let text_br = document.createElement("br");
+        let maintextContainer = document.getElementById("maintextContainer");
+        let optionsContainer = document.getElementById("optionsContainer");
+        maintextContainer.innerHTML = "";
+        optionsContainer.innerHTML = "";
+
+        if(text.content.length < 35){
+            // console.log("<<<");
+            
+            let maintextContainer_line1 = document.createElement("div");
+            maintextContainer_line1.className = "maintextContainer_line1";
+            maintextContainer.appendChild(maintextContainer_line1);
+            let maintext_line1 = document.createElement("div");
+            maintext_line1.innerHTML = text.content;
+            maintextContainer_line1.appendChild(maintext_line1);
+        }
+        else{
+            // console.log(">>>");
+            let maintextContainer_line1 = document.createElement("div");
+            let maintextContainer_line2 = document.createElement("div");
+
+            maintextContainer_line1.className = "maintextContainer_line1";
+            maintextContainer_line2.className = "maintextContainer_line2";
+            
+            maintextContainer.appendChild(maintextContainer_line1);
+            maintextContainer.appendChild(maintextContainer_line2);
+
+            let maintext_line1 = document.createElement("div");
+            let maintext_line2 = document.createElement("div");
+
+            maintext_line1.innerHTML = text.content.substr(0, 33);
+            maintext_line2.innerHTML = text.content.substr(33, text.content.length - 33);
+
+            maintextContainer_line1.appendChild(maintext_line1);
+            maintextContainer_line2.appendChild(maintext_line2);
+            setTimeout(() => {
+                // 清除第一行光标
+                maintext_line1.style.animation = "typing 0.8s steps(15,end) forwards";
+            }, 850);
+        }
+        console.log("vistag2");
+        document.getElementById("toolbar").style.visibility = "visible";
+        
         if (typeof (text.options) != "undefined" && text.options.length > 0) {
             if (text.options.length > 0)
                 for (let i = 0; i < text.options.length; i++) {
@@ -33,7 +71,7 @@
                     tmp.innerHTML = '[' + text.options[i].name + ']:' + text.options[i].content;
                     tmp.addEventListener("click", function () {
                         dialogResult = i;
-                        console.log(dialogResult);
+                        console.log(dialogResult, "dialogResult");
                     });
                     optionsContainer.appendChild(tmp);
                 }
@@ -48,7 +86,7 @@
             });
             optionsContainer.appendChild(tmp);
         }
-
+        
     }
     function focusMainGame (){
         document.getElementById("maingameframe").focus();
@@ -58,13 +96,19 @@
 
 <body>
     <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
-    <div class="toolbar">
+    <div class="toolbar" id="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
         <div class="text_area" id="text_area">
+            <div>
+                <div class="maintextContainer speak_text_l" id="maintextContainer">
 
-        </div>
-        <div class="button_box">
+                </div>
+            </div>
+            <div>
+                <div class="optionsContainer speak_text_r" id="optionsContainer">
 
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -74,8 +118,8 @@
     function bodyScale() {
     let devicewidth = document.documentElement.clientwidth;
     let deviceheight = document.documentElement.clientHeight;
-    var scalex = devicewidth / 1400;
-    var scaley = deviceheight / 800;
+    var scalex = devicewidth / 1100;
+    var scaley = deviceheight / 660;
     scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
     } 
     bodyScale();    
