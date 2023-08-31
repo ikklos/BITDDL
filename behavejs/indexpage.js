@@ -4,7 +4,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top',
     showConfirmButton: false,
-    timer: 1500,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -41,14 +41,25 @@ function checksaves() {
     }
     window.parent.showSaveFrame();
 }
-
+let tmp_regusr = "";
+// 用于注册后自动填入登录信息
 function passwordCheck_log() {
+    let inner_html = "";
+    if(tmp_regusr !== null){
+        inner_html = '<input type="text" id="login" class="swal2-input" placeholder="Username" value="' +
+        tmp_regusr +
+        '"> <input type="password" id="password" class="swal2-input" placeholder="Password">'
+    }
+    else{
+        inner_html = `<input type="text" id="login" class="swal2-input" placeholder="Username">
+        <input type="password" id="password" class="swal2-input" placeholder="Password">`
+    }
+    
     (async () => {
+        
         const { value: userValues } = await Swal.fire({
             title: 'Login',
-            html:
-                `<input type="text" id="login" class="swal2-input" placeholder="Username">
-         <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+            html: inner_html,
             focusConfirm: false,
             showDenyButton: true,
             confirmButtonText: '登录',
@@ -64,6 +75,7 @@ function passwordCheck_log() {
                 ]
             }
         })
+        
         if (userValues == 'flag_changepage') {
             return passwordCheck_reg();
         }
@@ -119,6 +131,7 @@ function passwordCheck_log() {
 }
 function passwordCheck_reg() {
     // console.log("注册界面");
+    tmp_regusr = "";
     (async () => {
         const { value: userValues } = await Swal.fire({
             title: 'Register',
@@ -178,8 +191,9 @@ function passwordCheck_reg() {
         else if (userValues[1] === userValues[2]) {
             localStorage.setItem(userValues[0], userValues[1]);
             console.log("saved!");
+            tmp_regusr = userValues[0];
             Toast.fire({
-                title: "注册成功！",
+                title: "注册成功，将自动跳转到登录界面！",
                 icon: 'info',
                 didClose: () => {
                     return passwordCheck_log();

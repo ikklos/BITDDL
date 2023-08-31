@@ -179,7 +179,7 @@ async function AfterLoad() {
     app.ticker.maxFPS = 120;
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        console.log(delta);
+        // console.log(delta); 记得注释 否则会有人看着翻不完的控制台陷入沉思  *控制台滚动条逃走了！*
         neko.vx *= delta;neko.vy *=delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
@@ -193,7 +193,7 @@ var count = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     
     //console.log("vx",neko.vx);
-    console.log(nowframe);
+    // console.log(nowframe);
 
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;

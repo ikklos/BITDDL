@@ -9,6 +9,7 @@
     src: url("./Font/zpix.woff") format('woff');
     src: url("./Font/zpix.ttf") format('truetype');
 }
+/*  已弃用
 @font-face {
     font-family: "Ipix";
     src: url("./Font/ipix_12px.ttf") format('truetype');
@@ -27,7 +28,7 @@
     font-family: "fusion-pix-12";
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.ttf") format('truetype');
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.woff2") format('woff2');
-}
+} */
 
 
 html,body {
