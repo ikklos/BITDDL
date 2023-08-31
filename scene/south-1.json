@@ -380,9 +380,12 @@
                                     {
                                         "name": "同意",
                                         "content": "*你将智慧存放于此*",
-                                        "strike_event": [
-                                            "sf,30"
-                                        ]
+                                        "next_text": {
+                                            "content": "你看到里面还有其他的智慧",
+                                            "strike_event": [
+                                                "sf,30"
+                                            ]
+                                        }
                                     }
                                 ]
                             }

@@ -162,10 +162,14 @@
                         {
                             "name": "离开",
                             "content": "*还是不要睡回笼觉了吧*",
-                            "strike_event": [
-                                "sf,2"
-                            ],
-                            "options": []
+                            
+                            "next_text":{
+                                "content":"或许我应该复习或者出去走走",
+                                "strike_event": [
+                                    "sf,2"
+                                ],
+                                "options":[]
+                            }
                         }
                     ]
                 }
