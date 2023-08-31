@@ -4,7 +4,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top',
     showConfirmButton: false,
-    timer: 1000,
+    timer: 900,//(?)
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -63,7 +63,7 @@ function passwordCheck_log() {
             focusConfirm: false,
             showDenyButton: true,
             confirmButtonText: '登录',
-            denyButtonText: '注册',
+            denyButtonText: '> 注册 <',
             showLoaderOnConfirm: true,
             preDeny: () => {
                 return 'flag_changepage';
@@ -142,7 +142,7 @@ function passwordCheck_reg() {
             focusConfirm: false,
             showDenyButton: true,
             confirmButtonText: '注册',
-            denyButtonText: '登录',
+            denyButtonText: '> 登录 <',
             showLoaderOnConfirm: true,
             preDeny: () => {
                 return 'flag_changepage';
@@ -193,12 +193,19 @@ function passwordCheck_reg() {
             console.log("saved!");
             tmp_regusr = userValues[0];
             Toast.fire({
-                title: "注册成功，将自动跳转到登录界面！",
+                title: "注册成功!",
                 icon: 'info',
                 didClose: () => {
-                    return passwordCheck_log();
+                    Toast.fire({
+                        title: "正在跳转到登录界面！",
+                        icon: 'info',
+                        didClose: () => {
+                            return passwordCheck_log();
+                        }
+                    })
                 }
             })
+            
         }
         else {
             console.log("error");
