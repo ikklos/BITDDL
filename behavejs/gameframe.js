@@ -92,10 +92,38 @@ function showPackageBar(package, itemlist) {
         let tmp = document.createElement('div');
         tmp.innerHTML = itemlist[item.id].name + ':' + item.num;
         tmp.addEventListener("click", function () {
-            document.getElementById('item_img').src = '';
+
+            document.getElementById('item_img').src = '../items/img/backpack.png';
             document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
+            
+             // 更改display属性 和边框长度
+            item_styleChange(1);
         });
         listelem.appendChild(tmp);
     });
     document.getElementById('packagebar').style.visibility = 'visible';
+}
+function item_styleChange(num) {
+    // 更改display属性 和边框长度
+    if(num == 1){
+        
+        
+        document.getElementById("packagebar").style.width = "450px"
+        document.getElementsByClassName("item_button")[0].style.display = "none"
+        document.getElementsByClassName("item_button")[1].style.display = "block"
+        document.getElementById("maingameframe").focus();
+        setTimeout(() => {
+            document.getElementById('item_img').style.display = "block";
+            document.getElementById('item_describe').style.display = "block";
+        }, 500);
+    }
+    else{
+        
+        document.getElementById('item_img').style.display = "none";
+        document.getElementById('item_describe').style.display = "none";
+        document.getElementById("packagebar").style.width = "195px"
+        document.getElementsByClassName("item_button")[0].style.display = "block"
+        document.getElementsByClassName("item_button")[1].style.display = "none"
+        document.getElementById("maingameframe").focus();
+    }
 }

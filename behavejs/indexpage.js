@@ -25,7 +25,7 @@ function startgame() {
         })
         return;
     }
-    window.parent.showGameFrame();
+    window.showGameFrame();
 }
 
 function checksaves() {
@@ -39,7 +39,7 @@ function checksaves() {
         })
         return;
     }
-    window.parent.showSaveFrame();
+    window.showSaveFrame();
 }
 let tmp_regusr = "";
 // 用于注册后自动填入登录信息
