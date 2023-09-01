@@ -22,7 +22,9 @@ Array.from(document.getElementsByClassName('load')).forEach(function(element, in
         
         Swal.fire({
             title: "确认要读取这个存档吗？",
-            icon:"info"
+            icon:"info",
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
         }).then((result) => {
             if(result.isConfirmed) {
                 if(localStorage.getItem(window.parent.userName + "_"+ element.id.replace('loadbutton','save_')) == null){
@@ -52,6 +54,8 @@ Array.from(document.getElementsByClassName('save')).forEach(function(element, in
             title: "确认要保存存档到这里吗？",
             icon:"info",
             showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
         }).then((result) => {
             if (result.isConfirmed) {
                 let date = new Date,

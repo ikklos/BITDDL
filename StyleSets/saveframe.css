@@ -1,5 +1,12 @@
 
-#closeframebutton{
+body{
+    background-color: black;
+    background-image: url("../about/张傲个人介绍/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}
+/* #closeframebutton{
     background-image: url(../icon/symbolButton/buttonSymbols35.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,47 +15,45 @@
     background-image: url(../icon/symbolButton/buttonSymbols65.png);
     background-repeat: no-repeat;
     background-size: cover;
-}
-.load{
+} */
+/* .load{
     background-image: url(../icon/symbolButton/buttonSymbols57.png);
     background-repeat: no-repeat;
     background-size: cover;
-} 
+}  */
 
 .save_list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(50px,1fr));
+    grid-auto-rows: auto;
+    grid-gap: 1px;
+    gap: 1px;
     background-color: transparent;
     overflow: auto;
     height: 100vh;
 }
 
 .save_list > div{
+    border: solid 2px;
     text-align:center;
-    align-self: center;
     padding: 0;
-    min-height: 19%;
-    flex: 1 25%;
-    flex-wrap: wrap;
-    margin: 1% 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.415);
+    border-radius: 2px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: auto;
+    font-size: 2rem;
+    
 }
-
+.save_list > div >p{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
 .save_list > div > button{
-
+    font-family: "Zpix";
+    align-self: flex-end;
+    width: 4rem;
+    height: 2rem;
+    margin: .5rem;
+    margin: auto;
 }
-/* .save_list::-webkit-scrollbar-track{
-    background-color: rgb(255, 255, 255);
-}
-.save_list::-webkit-scrollbar-thumb{
-    border-radius: 20px;
-    color: black;
-}
-.save_list::-webkit-scrollbar {
-    width: 15px;
-    height: 5px;
-} */
-

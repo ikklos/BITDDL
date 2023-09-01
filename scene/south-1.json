@@ -357,6 +357,24 @@
             "height": 18,
             "collideH": 1.0,
             "type": "npc",
+            "behave":[
+                {
+                    "type":"appear",
+                    "pre_list":[
+                        {
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
+                                {
+                                    "type":"equal",
+                                    "attrid": "time",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
             "text": [
                 {
                     "pre_list": [
@@ -366,6 +384,16 @@
                             "list": [
                                 22,
                                 27
+                            ]
+                        },{
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
+                                {
+                                    "type":"equal",
+                                    "attrid": "time",
+                                    "value": 1
+                                }
                             ]
                         }
                     ],
@@ -413,6 +441,16 @@
                             "list": [
                                 30
                             ]
+                        },{
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
+                                {
+                                    "type":"equal",
+                                    "attrid": "time",
+                                    "value": 1
+                                }
+                            ]
                         }
                     ],
                     "content": "无论怎么看都是一个普通的足球。",
@@ -441,6 +479,16 @@
                             "list": [
                                 16,
                                 17
+                            ]
+                        },{
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
+                                {
+                                    "type":"equal",
+                                    "attrid": "time",
+                                    "value": 1
+                                }
                             ]
                         }
                     ],

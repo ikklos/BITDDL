@@ -9,8 +9,8 @@
     src: url("./Font/zpix.woff") format('woff');
     src: url("./Font/zpix.ttf") format('truetype');
 }
-/*  已弃用
-@font-face {
+/*  已弃用 */
+/* @font-face {
     font-family: "Ipix";
     src: url("./Font/ipix_12px.ttf") format('truetype');
 }
@@ -18,17 +18,17 @@
     font-family: "fusion-pix-8";
     src: url("./Font/fusion-pixel-8px-monospaced-zh_hans.ttf") format('truetype');
     src: url("./Font/fusion-pixel-8px-monospaced-zh_hans.woff2") format('woff2');
-}
-@font-face {
+} */
+/* @font-face {
     font-family: "fusion-pix-10";
     src: url("./Font/fusion-pixel-10px-monospaced-zh_hans.ttf") format('truetype');
     src: url("./Font/fusion-pixel-10px-monospaced-zh_hans.woff2") format('woff2');
-}
-@font-face {
+} */
+/* @font-face {
     font-family: "fusion-pix-12";
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.ttf") format('truetype');
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.woff2") format('woff2');
-} */
+}  */
 
 
 html,body {
@@ -48,6 +48,9 @@ html,body {
 /* 定义按钮样式 */
 button{
     cursor: url("../icon/cursor_2.png") 14 0,auto;
+}
+h2{
+    font-family: "Zpix";
 }
 .button_s,.swal2-styled{
     cursor: url("../icon/cursor_2.png") 14 0,auto;
