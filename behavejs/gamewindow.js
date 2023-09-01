@@ -55,7 +55,6 @@ var currentSave = {//玩家状态
 };
 let nowmap = {};
 let neko = {};
-let item_list = LoadItems("../items/items.json");
 let sheet;
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
@@ -71,12 +70,18 @@ for (let i = 1; i <= 2000; i++) {
 }
 //加载地图障碍
 loadmap("../scene/shutong-home.json");
-if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
-    currentSave.savepackage = [];
+//初始化背包
+let item_list = await LoadItems("../items/items.json");
+
+if (typeof (currentSave.savepackage) == "undefined") {
+    let pkg = [1];
     for (let i = 0; i < item_list.length; i++) {
-        currentSave.savepackage[i] = 0;
+        pkg[i] = 1;
     }
+    currentSave.savepackage = pkg;
 }
+
+
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
@@ -123,6 +128,7 @@ async function AfterLoad() {
     //Right
     right.press = () => {
         neko.vx = hori;
+        showPackageBar();
     };
     right.release = () => {
         if (!left.isDown) {
@@ -180,7 +186,7 @@ async function AfterLoad() {
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
         // console.log(delta); 记得注释 否则会有人看着翻不完的控制台陷入沉思  *控制台滚动条逃走了！*
-        neko.vx *= delta;neko.vy *=delta;
+        neko.vx *= delta; neko.vy *= delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
     }
@@ -191,7 +197,7 @@ var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
 function play(delta) {//基本所有的事件结算都在这里写
-    
+
     //console.log("vx",neko.vx);
     // console.log(nowframe);
 
@@ -232,7 +238,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         wait_event.nextmap = null;
     }
     if (neko.vx !== vx || neko.vy !== vy) {
-        
+
         if (neko.vx !== 0) {
             if (neko.vx > 0) { hero_face_to("right"); }
             if (neko.vx < 0) { hero_face_to("left"); }
@@ -245,7 +251,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
     if (neko.vx !== 0 || neko.vy !== 0) {
         count++;
-        if(count > 10){
+        if (count > 10) {
             nowframe = (nowframe + 1) % neko.totalFrames;
             count = 0;
         }
@@ -271,7 +277,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     app.stage.pivot.y = neko.y - appheight * 0.25;
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
-    
+
 }
 
 function HitMap(r) {
@@ -284,8 +290,6 @@ function HitMap(r) {
 
     return false;
 }
-
-
 
 async function loadmap(url) {//可以用于实现切换场景，只需要改变url即可
     console.log("loading...");
@@ -641,4 +645,16 @@ function hero_face_to(dir) {
     neko.animationSpeed = 0.1;
     //console.log(neko);
     app.stage.addChild(neko);
+}
+
+//显示背包
+function showPackageBar() {
+    let pkg = [];
+    /*console.log(currentSave.savepackage);
+    for (let i = 0; i < item_list.length; i++) {
+        if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
+        pkg.push({ id: i, num: currentSave.savepackage[i] });
+    }*/
+    pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
+    window.parent.showPackageBar(pkg, item_list);
 }

@@ -1,21 +1,38 @@
-
-body{
+body {
     display: flex;
     flex-direction: column;
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
 }
+
 @keyframes blink {
-    from { border-color: transparent }
-    to { border-color: rgb(0, 0, 0); }
+    from {
+        border-color: transparent
+    }
+
+    to {
+        border-color: rgb(0, 0, 0);
+    }
 }
+
 @keyframes blink2 {
-    from { color: transparent }
-    to { color: rgb(0, 0, 0); }
+    from {
+        color: transparent
+    }
+
+    to {
+        color: rgb(0, 0, 0);
+    }
 }
+
 .option_text {
     color: aqua;
 }
@@ -24,18 +41,37 @@ body{
     color: blue;
 }
 
+.packagebar {
+    width: 930px;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
 
-#maingameframe{
+    background-color: aqua;
+
+    z-index: 99;
+    display: flex;
+
+    visibility: hidden;
+}
+
+#maingameframe {
     width: 100%;
     height: 100%;
     left: 50%;
     top: 55%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     position: absolute;
 }
 
 .toolbar {
-    
+
     width: 930px;
     bottom: 7%;
     left: 50%;
@@ -50,20 +86,20 @@ body{
     display: flex;
 
     visibility: hidden;
-    
-    
+
+
 }
 
-.avator{
-    flex: 1 ;
-    
+.avator {
+    flex: 1;
+
     height: 175px;
-    border-top-left-radius:12px ;
-    border-bottom-left-radius:12px ;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
 
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-repeat:stretch;
+    border-image-repeat: stretch;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version=\"1.0\" encoding=\"UTF-8\" ?><svg version=\"1.1\" width=\"8\" height=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z\" fill=\"rgb(33,37,41)\" /></svg>');
     border-image-outset: 1;
     border-style: solid;
@@ -72,6 +108,7 @@ body{
 
 
 }
+
 .text_area {
     flex: 8;
     overflow: auto;
@@ -79,12 +116,12 @@ body{
     background-color: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(3px);
 
-    border-top-right-radius:17px ;
-    border-bottom-right-radius:17px ;
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
 
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-repeat:stretch;
+    border-image-repeat: stretch;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version=\"1.0\" encoding=\"UTF-8\" ?><svg version=\"1.1\" width=\"8\" height=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z\" fill=\"rgb(33,37,41)\" /></svg>');
     border-image-outset: 1;
     border-style: solid;
@@ -92,17 +129,19 @@ body{
     border-width: 4px;
 }
 
-.text_area > div:nth-child(1){
+.text_area>div:nth-child(1) {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: start;
 }
-br{
+
+br {
     display: inline;
     line-height: 0;
 }
-.text_area > div:nth-child(2){
+
+.text_area>div:nth-child(2) {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -110,19 +149,21 @@ br{
     justify-content: right;
 }
 
-.maintextContainer{
+.maintextContainer {
     text-align: left;
     display: inline-block;
     text-align: left;
     text-align-last: left;
 }
-.maintextContainer > div{
+
+.maintextContainer>div {
     display: inline-block;
     padding: 0;
     margin: 0;
-    
+
 }
-.maintextContainer > div > div{
+
+.maintextContainer>div>div {
     /* 文字所在div */
     overflow-x: hidden;
     overflow-y: auto;
@@ -133,29 +174,33 @@ br{
     margin-top: 0.2rem;
     width: 0;
 }
-.maintextContainer_line1 > div{
+
+.maintextContainer_line1>div {
     /* 第一行文字 */
-    animation: 
-        typing 0.8s steps(15,end) forwards,
+    animation:
+        typing 0.8s steps(15, end) forwards,
         blink 0.8s infinite;
-    
+
 }
-br{
+
+br {
     line-height: 1px;
 }
-.maintextContainer_line2 > div{
+
+.maintextContainer_line2>div {
     /* 第二行文字 */
-    animation: 
-        typing 0.8s steps(15,end) forwards,
+    animation:
+        typing 0.8s steps(15, end) forwards,
         blink 0.8s infinite;
     animation-delay: 0.8s;
 
 }
 
-.optionsContainer{
+.optionsContainer {
     display: inline-block;
     text-align: right;
 }
+
 .option_text {
     overflow-x: hidden;
     overflow-y: auto;
@@ -169,25 +214,28 @@ br{
 }
 
 .option_text:hover {
-    cursor: url("../icon/cursor_2.png") 14 0,auto;
+    cursor: url("../icon/cursor_2.png") 14 0, auto;
     color: rgb(0, 0, 0);
 }
-.option_text::before{
+
+.option_text::before {
     position: absolute;
     left: 10px;
     content: "";
     width: 2px;
     height: 2px;
-    color: rgb(129,129,129);
+    color: rgb(129, 129, 129);
     box-shadow: 2px 2px, 4px 2px, 2px 4px, 4px 4px, 6px 4px, 8px 4px, 2px 6px, 4px 6px, 6px 6px, 8px 6px, 10px 6px, 2px 8px, 4px 8px, 6px 8px, 8px 8px, 10px 8px, 12px 8px, 2px 10px, 4px 10px, 6px 10px, 8px 10px, 10px 10px, 2px 12px, 4px 12px, 6px 12px, 8px 12px, 2px 14px, 4px 14px;
 }
-.option_text:hover::before{
+
+.option_text:hover::before {
     position: absolute;
     left: 10px;
     content: "";
     width: 2px;
     height: 2px;
     color: #000000;
-    animation: blink2 0.8s infinite;;
+    animation: blink2 0.8s infinite;
+    ;
     box-shadow: 2px 2px, 4px 2px, 2px 4px, 4px 4px, 6px 4px, 8px 4px, 2px 6px, 4px 6px, 6px 6px, 8px 6px, 10px 6px, 2px 8px, 4px 8px, 6px 8px, 8px 8px, 10px 8px, 12px 8px, 2px 10px, 4px 10px, 6px 10px, 8px 10px, 10px 10px, 2px 12px, 4px 12px, 6px 12px, 8px 12px, 2px 14px, 4px 14px;
 }
