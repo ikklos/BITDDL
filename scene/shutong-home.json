@@ -154,7 +154,8 @@
                                 "content": "*你睡了个回笼觉*",
                                 "strike_event": [
                                     "sf,2",
-                                    "sf,3"
+                                    "sf,3",
+                                    "attr,time,delta,1"
                                 ],
                                 "options": []
                             }

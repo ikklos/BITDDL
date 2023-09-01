@@ -1,6 +1,5 @@
 import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
-import { LoadStories } from "./LoadStoryStatus.js"
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
 //修改画布 使得人物与背景大小匹配 1000*600 => 960*576
@@ -38,10 +37,9 @@ console.log(window.innerHeight, "cilentheights");
 // initButton();
 
 
-
+status
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let wait_event = { type: "null" };
-let event_change = false;
 var story_status = [{}];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
@@ -49,12 +47,14 @@ var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
     playerName: 'tav',
     saveDate: '2077-8-20-23-55',
-    password: '123'
+    password: '123',
+    time:0
 };
 let nowmap = {};
 let neko = {};
 let sheet;
 var loaded = true;
+
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = appwidth * 0.5;
@@ -94,7 +94,8 @@ async function AfterLoad() {
         up = keyboard("ArrowUp", "w"),
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
-    let keyf = keyboard("f", "");
+    let keyf = keyboard("f", ""),
+        keyp = keyboard("p","");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -129,7 +130,6 @@ async function AfterLoad() {
     //Right
     right.press = () => {
         neko.vx = hori;
-        showPackageBar();
     };
     right.release = () => {
         if (!left.isDown) {
@@ -164,18 +164,20 @@ async function AfterLoad() {
                                 wait_event.type = "npc";
                                 wait_event.text = npc.text[i];
                                 wait_event.times = 0;
-                                event_change = true;
                             }
                         }
                     } else if (npc.type === "door") {
                         wait_event.type = "door";
                         wait_event.nextmap = npc.nextmap;
                         wait_event.door = npc;
-                        event_change = true;
                     }
                 }
             });
         }
+
+    }
+    keyp.press = () =>{
+        showPackageBar();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -187,7 +189,7 @@ async function AfterLoad() {
     app.ticker.maxFPS = 120;
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        console.log(delta);
+        //console.log(delta);
         neko.vx *= delta;neko.vy *=delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
@@ -406,8 +408,11 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                     console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a number!`);
                     break;
                 }
-                if (strs[2] == "delta")
+                if (strs[2] == "delta"){
                     currentSave[strs[1]] += num;
+                    console.log(strs[1],"delta",num);
+                }
+                   
                 else
                     currentSave[strs[1]] = num;
             } else if (typeof currentSave[strs[1]] == "boolean") {
@@ -481,24 +486,13 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     }
     let Arr = npc.behave;
     for (let i = 0; i < Arr.length; i++) {
+        console.log("check behave...");
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            let num = Arr[i].pre_list.num;
-            for (let k = 0; k < Arr[i].pre_list.length; k++) {
-                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
-                    num--;
-                }
-            }
-            if (num <= 0) {
+            if(CheckPrelist(Arr[i].pre_list)){
                 fin = true;
             }
         } else if (Arr[i].type === "disappear") {
-            let num = Arr[i].pre_list.num;
-            for (let k = 0; k < Arr[i].pre_list.length; k++) {
-                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
-                    num--;
-                }
-            }
-            if (num <= 0) {
+            if(CheckPrelist(Arr[i].pre_list)){
                 fin = false;
             }
         }
@@ -541,6 +535,31 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) return true;
+        }else if(pre[i].type === "attribute"){
+            let num = pre[i].num;
+            for(let k = 0; k < pre[i].list.length; k++){
+
+                switch(pre[i].list[k].type){
+                    case "equal":
+                        if(currentSave[pre[i].list[k].attrid] === pre[i].list[k].value){
+                            num--;
+                        }
+                        break;
+                    case "less than":
+                        if(currentSave[pre[i].list[k].attrid] <= pre[i].list[k].value){
+                            num--;
+                        }
+                        break;
+                    case "more than":
+                        if(currentSave[pre[i].list[k].attrid] >= pre[i].list[k].value){
+                            num--;
+                        }
+                        break;
+                }
+            }
+            if(num > 0){
+                return false;
+            }
         }
     }
 
@@ -600,34 +619,34 @@ function loadhero(url, x, y) {
     neko.animationSpeed = 0.1;
 }
 
-function oprate_pakage(id, num, type) {
-    let len = currentSave.savepackage.length;
-    if (len <= id) {
-        return false;
-    }
-    if (type === "add") {
-        currentSave.savepackage[id] += num;
-    }
+// function oprate_pakage(id, num, type) {
+//     let len = currentSave.savepackage.length;
+//     if (len <= id) {
+//         return false;
+//     }
+//     if (type === "add") {
+//         currentSave.savepackage[id] += num;
+//     }
 
-    if (type === "remove") {
-        currentSave.savepackage[id] -= num;
-    }
-    return true;
-}
-function use_item(id, num) {
-    if (currentSave.savepackage[id] < num) {
-        return false;
-    } else {
-        currentSave.savepackage[id] -= num;
-        for (let i = 0; i < num; i++) {
-            if (item_list[id].type === "change_Attribute") {
-                for (let k = 0; k < item_list[id].effects.length; k++) {
-                    command(item_list[id].effects[k]);
-                }
-            }
-        }
-    }
-}
+//     if (type === "remove") {
+//         currentSave.savepackage[id] -= num;
+//     }
+//     return true;
+// }
+// function use_item(id, num) {
+//     if (currentSave.savepackage[id] < num) {
+//         return false;
+//     } else {
+//         currentSave.savepackage[id] -= num;
+//         for (let i = 0; i < num; i++) {
+//             if (item_list[id].type === "change_Attribute") {
+//                 for (let k = 0; k < item_list[id].effects.length; k++) {
+//                     command(item_list[id].effects[k]);
+//                 }
+//             }
+//         }
+//     }
+// }
 //控制游戏窗口自动缩放
 function bodyScale() {
     let devicewidth = document.documentElement.clientwidth;
