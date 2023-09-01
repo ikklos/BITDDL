@@ -1,7 +1,5 @@
 import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
-import { SetMap } from "./MapSet.js";
-import { SetNPCs } from "./npcbehave.js";
 import { LoadStories } from "./LoadStoryStatus.js"
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
@@ -57,6 +55,7 @@ let nowmap = {};
 let neko = {};
 let item_list = LoadItems("../items/items.json");
 let sheet;
+var loaded = true;
 //background sprite
 const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
 background.width = appwidth * 0.5;
@@ -70,7 +69,7 @@ for (let i = 1; i <= 2000; i++) {
     story_status.push(story);
 }
 //加载地图障碍
-loadmap("../scene/shutong-home.json");
+
 if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
     currentSave.savepackage = [];
     for (let i = 0; i < item_list.length; i++) {
@@ -82,6 +81,8 @@ AfterLoad();
 async function AfterLoad() {
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
+    loadmap("../scene/shutong-home.json");
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let left = keyboard("ArrowLeft", "a"),
@@ -146,6 +147,7 @@ async function AfterLoad() {
         }
     };
     keyf.press = () => {
+        console.log("f pressed!");
         if (wait_event.type === "null") {
             npc_pool.forEach(npc => {
                 if (HitTest(neko, npc)) {
@@ -179,8 +181,8 @@ async function AfterLoad() {
     app.ticker.maxFPS = 120;
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        console.log(delta);
-        neko.vx *= delta;neko.vy *=delta;
+        //console.log(delta);
+        neko.vx *= delta; neko.vy *= delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
     }
@@ -190,11 +192,13 @@ app.stage.scale.set(2);
 var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
-function play(delta) {//基本所有的事件结算都在这里写
-    
+async function play(delta) {//基本所有的事件结算都在这里写
+    //console.log("in loop!");
     //console.log("vx",neko.vx);
-    console.log(nowframe);
-
+    //console.log(nowframe);
+    if (loaded === false) {
+        neko.vx = neko.vy = 0;
+    }
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
     }
@@ -224,7 +228,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         app.stage.removeChild(neko);
         loadhero('neko_down', wait_event.door.nextx, wait_event.door.nexty);
         console.log(neko);
-
+        loaded = false;
         loadmap(wait_event.nextmap);
 
 
@@ -232,7 +236,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         wait_event.nextmap = null;
     }
     if (neko.vx !== vx || neko.vy !== vy) {
-        
+
         if (neko.vx !== 0) {
             if (neko.vx > 0) { hero_face_to("right"); }
             if (neko.vx < 0) { hero_face_to("left"); }
@@ -245,7 +249,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
     if (neko.vx !== 0 || neko.vy !== 0) {
         count++;
-        if(count > 10){
+        if (count > 10) {
             nowframe = (nowframe + 1) % neko.totalFrames;
             count = 0;
         }
@@ -271,7 +275,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     app.stage.pivot.y = neko.y - appheight * 0.25;
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
-    
+
 }
 
 function HitMap(r) {
@@ -286,8 +290,7 @@ function HitMap(r) {
 }
 
 
-
-async function loadmap(url) {//可以用于实现切换场景，只需要改变url即可
+async function loadmap(url) {
     console.log("loading...");
     for (let i = 0; i < npc_pool.length; i++) {
         console.log("removed 1");
@@ -300,70 +303,76 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         app.stage.removeChild(nowmap.down);
         app.stage.removeChild(nowmap.up);
     }
-    nowmap = SetMap(url);
-    console.log(nowmap);
-
-
-    console.log(nowmap.down);
-
-    npc_raw_data = SetNPCs(url);
-
-
-    //story_status = LoadStories(url);
-    console.log("set completed");
-    setTimeout(() => {
-        console.log(nowmap);
-        app.stage.addChild(neko);
-        console.log("add neko completed!");
-        console.log(neko.x);
-        console.log(neko.y);
-        BanariesPool = nowmap.banaries;
-        nowmap.down = PIXI.Sprite.from(nowmap.down);
-        nowmap.down.name = "down";
-        nowmap.up = PIXI.Sprite.from(nowmap.up);
-        nowmap.up.name = "up";
-        app.stage.addChild(nowmap.down);
-        app.stage.addChild(nowmap.up);
-        console.log(npc_raw_data);
-        for (let i = 0; i < npc_raw_data.length; i++) {
-            console.log("loading...");
-            let npc = PIXI.Sprite.from(npc_raw_data[i].img);
-            console.log("success!");
-            npc.hitbox = getHitBox(-10, -10, npc_raw_data[i].width + 20, npc_raw_data[i].height + 20);
-            npc.behave = npc_raw_data[i].behave;
-            npc.text = npc_raw_data[i].text;
-            npc.name = npc_raw_data[i].name;
-            npc.type = npc_raw_data[i].type;
-            npc.x = npc_raw_data[i].x;
-            npc.y = npc_raw_data[i].y;
-            npc.height = npc_raw_data[i].height;
-            npc.width = npc_raw_data[i].width;
-            npc.nextmap = npc_raw_data[i].nextmap;
-            console.log(npc.x);
-            if (npc.type === "door") {
-                npc.nextx = npc_raw_data[i].nextx;
-                npc.nexty = npc_raw_data[i].nexty;
+    fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log("in 1");
+            nowmap = result;
+            return result;
+        }).then((result) => {
+            console.log("in 2");
+            npc_raw_data = result.npcs;
+            return result;
+        }).then((result) => {
+            console.log("return");
+            return result;
+        }).then((result) => {
+            var temp_npc_pool = [];
+            console.log("set completed");
+            console.log(result);
+            app.stage.addChild(neko);
+            console.log("add neko completed!");
+            console.log(neko.x);
+            console.log(neko.y);
+            BanariesPool = result.banaries;
+            nowmap.down = PIXI.Sprite.from(result.down);
+            nowmap.down.name = "down";
+            nowmap.up = PIXI.Sprite.from(result.up);
+            nowmap.up.name = "up";
+            app.stage.addChild(result.down);
+            app.stage.addChild(result.up);
+            console.log(result.npcs);
+            for (let i = 0; i < result.npcs.length; i++) {
+                console.log("loading npc...");
+                let npc = PIXI.Sprite.from(result.npcs[i].img);
+                console.log("success!");
+                npc.hitbox = getHitBox(-10, -10, result.npcs[i].width + 20, result.npcs[i].height + 20);
+                npc.behave = result.npcs[i].behave;
+                npc.text = result.npcs[i].text;
+                npc.name = result.npcs[i].name;
+                npc.type = result.npcs[i].type;
+                npc.x = result.npcs[i].x;
+                npc.y = result.npcs[i].y;
+                npc.height = result.npcs[i].height;
+                npc.width = result.npcs[i].width;
+                npc.nextmap = result.npcs[i].nextmap;
+                console.log(npc.x);
+                if (npc.type === "door") {
+                    npc.nextx = result.npcs[i].nextx;
+                    npc.nexty = result.npcs[i].nexty;
+                }
+                temp_npc_pool.push(npc);
             }
-            npc_pool.push(npc);
-        }
-        for (let i = 0; i < npc_pool.length; i++) {
-            if (npc_pool[i].type === "npc") solve_npc_behave(npc_pool[i]);
-            else if (npc_pool[i].type === "door") {
-                app.stage.addChild(npc_pool[i]);
+            for (let i = 0; i < temp_npc_pool.length; i++) {
+                console.log("aaaa",temp_npc_pool.npcs);
+                if (temp_npc_pool[i].type === "npc") solve_npc_behave(temp_npc_pool[i]);
+                else if (temp_npc_pool[i].type === "door") {
+                    app.stage.addChild(temp_npc_pool[i]);
+                }
             }
-        }
-        for (let i = 1; i < app.stage.children.length; i++) {
-            app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
-        }
-        console.log(app.stage.getChildByName(nowmap.down));
-        app.stage.getChildByName("up").zIndex = 10086;
-        app.stage.getChildByName("down").zIndex = 0;
-        app.stage.sortChildren();
-        console.log("sort end");
-        console.log(BanariesPool);
-    }, 1000);
-
+            for (let i = 1; i < app.stage.children.length; i++) {
+                app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
+            }
+            app.stage.getChildByName("up").zIndex = 10086;
+            app.stage.getChildByName("down").zIndex = 0;
+            app.stage.sortChildren();
+            console.log("sort end");
+            console.log(BanariesPool);
+            loaded = true;
+            npc_pool = temp_npc_pool;
+        });
 }
+
 /*commands
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
@@ -457,11 +466,12 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
-    let Arr = npc.behave;
-    if (typeof (Arr) == "undefined") {
+    
+    if (typeof (npc.behave) == "undefined") {
         app.stage.addChild(npc);
         return;
     }
+    let Arr = npc.behave;
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             let num = Arr[i].pre_list.num;
@@ -547,15 +557,15 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
 // }
 function npc_speak(text) {
     console.log(text);
-    if (wait_event.times == 0) {
-        window.parent.showDialog(wait_event.text);
-        wait_event.times = 1;
-        return;
-    }
     wait_event.times++;
     if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0)
         for (let i = 0; i < text.strike_event.length; i++)
             command(text.strike_event[i]);
+    if (wait_event.times == 1) {
+        window.parent.showDialog(wait_event.text);
+        wait_event.times = 1;
+        return;
+    }
     if (window.parent.dialogResult != -1) {
         if (typeof (text.options) != 'undefined' && window.parent.dialogResult < text.options.length) {
             wait_event.type = "npc"
