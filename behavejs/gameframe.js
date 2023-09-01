@@ -5,6 +5,9 @@ function clearTextArea() {
     console.log("vistag1");
     document.getElementById("toolbar").style.visibility = "hidden";
 }
+function changeAvator(url) {
+    document.getElementById('character_avator').src = url;
+}
 function showDialog(text) {
 
     let texta = document.getElementById("text_area");

@@ -162,13 +162,12 @@
                         {
                             "name": "离开",
                             "content": "*还是不要睡回笼觉了吧*",
-                            
-                            "next_text":{
-                                "content":"或许我应该复习或者出去走走",
+                            "next_text": {
+                                "content": "或许我应该复习或者出去走走",
                                 "strike_event": [
                                     "sf,2"
                                 ],
-                                "options":[]
+                                "options": []
                             }
                         }
                     ]
@@ -335,6 +334,9 @@
                         }
                     ],
                     "content": "*刚起床有点头晕，先看看舍友在做什么吧*",
+                    "strike_event": [
+                        "sav,/character/noname.jpg"
+                    ],
                     "options": []
                 }
             ]

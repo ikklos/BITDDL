@@ -44,14 +44,15 @@ console.log(window.innerHeight, "cilentheights");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let wait_event = { type: "null" };
 let event_change = false;
-var story_status = [{}];
+var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
     playerName: 'tav',
     saveDate: '2077-8-20-23-55',
-    password: '123'
+    password: '123',
+    map: "../scene/shutong-home.json"
 };
 let nowmap = {};
 let neko = {};
@@ -62,11 +63,9 @@ background.width = appwidth * 0.5;
 background.height = appheight * 0.5;
 app.stage.addChild(background);
 
-story_status[0].status = 1;
+story_status[0] = 1;
 for (let i = 1; i <= 2000; i++) {
-    let story = {};
-    story.status = 0;
-    story_status.push(story);
+    story_status.push(0);
 }
 //加载地图障碍
 loadmap("../scene/shutong-home.json");
@@ -128,7 +127,6 @@ async function AfterLoad() {
     //Right
     right.press = () => {
         neko.vx = hori;
-        showPackageBar();
     };
     right.release = () => {
         if (!left.isDown) {
@@ -366,13 +364,14 @@ async function loadmap(url) {//可以用于实现切换场景，只需要改变u
         console.log("sort end");
         console.log(BanariesPool);
     }, 1000);
-
+    uploadSave();
 }
 /*commands
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
 story_finish|sf,id                标记故事完成
+show_avator|sav,url               显示头像图片
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -453,7 +452,12 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 break;
             }
             console.log("strike story:" + num);
-            story_status[num].status = 1;
+            story_status[num] = 1;
+            break;
+        case 'sav':
+        case 'show_avator':
+            console.log('111' + strs[1]);
+            window.parent.changeAvator(strs[1]);
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -470,7 +474,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             let num = Arr[i].pre_list.num;
             for (let k = 0; k < Arr[i].pre_list.length; k++) {
-                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
+                if (story_status[Arr[i].pre_list.list[k]] === 1) {
                     num--;
                 }
             }
@@ -480,7 +484,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
         } else if (Arr[i].type === "disappear") {
             let num = Arr[i].pre_list.num;
             for (let k = 0; k < Arr[i].pre_list.length; k++) {
-                if (story_status[Arr[i].pre_list.list[k]].status === 1) {
+                if (story_status[Arr[i].pre_list.list[k]] === 1) {
                     num--;
                 }
             }
@@ -500,7 +504,7 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
         if (pre[i].type === "event") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
-                if (story_status[pre[i].list[k]].status === 1) num--;
+                if (story_status[pre[i].list[k]] === 1) num--;
             }
             console.log(num);
 
@@ -523,7 +527,7 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
             }
         } else if (pre[i].type === "no_event") {
             for (let k = 0; k < pre[i].list.length; k++)
-                if (story_status[pre[i].list[k]].status === 1) return false;
+                if (story_status[pre[i].list[k]] === 1) return false;
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) return true;
@@ -550,7 +554,6 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
 //     return 0;
 // }
 function npc_speak(text) {
-    console.log(text);
     if (wait_event.times == 0) {
         window.parent.showDialog(wait_event.text);
         wait_event.times = 1;
@@ -657,4 +660,9 @@ function showPackageBar() {
     }*/
     pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
     window.parent.showPackageBar(pkg, item_list);
+}
+
+function uploadSave() {
+    window.top.currentSave.data = currentSave;
+    window.top.currentSave.events = story_status;
 }
