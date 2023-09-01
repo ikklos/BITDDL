@@ -98,19 +98,22 @@ function showPackageBar(package, itemlist) {
 
             document.getElementById('item_img').src = '../items/img/backpack.png';
             document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
-            
-             // 更改display属性 和边框长度
+
+            // 更改display属性 和边框长度
             item_styleChange(1);
         });
         listelem.appendChild(tmp);
     });
-    document.getElementById('packagebar').style.visibility = 'visible';
+    if (document.getElementById('packagebar').style.visibility == 'visible')
+        document.getElementById('packagebar').style.visibility = 'hidden';
+    else
+        document.getElementById('packagebar').style.visibility = 'visible'
 }
 function item_styleChange(num) {
     // 更改display属性 和边框长度
-    if(num == 1){
-        
-        
+    if (num == 1) {
+
+
         document.getElementById("packagebar").style.width = "450px"
         document.getElementsByClassName("item_button")[0].style.display = "none"
         document.getElementsByClassName("item_button")[1].style.display = "block"
@@ -120,8 +123,8 @@ function item_styleChange(num) {
             document.getElementById('item_describe').style.display = "block";
         }, 500);
     }
-    else{
-        
+    else {
+
         document.getElementById('item_img').style.display = "none";
         document.getElementById('item_describe').style.display = "none";
         document.getElementById("packagebar").style.width = "195px"

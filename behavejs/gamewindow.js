@@ -48,7 +48,9 @@ var currentSave = {//玩家状态
     saveDate: '2077-8-20-23-55',
     password: '123',
     map: "../scene/shutong-home.json",
-    time: 0
+    time: 0,
+    nekox: 336,
+    nekoy: 312
 };
 let nowmap = {};
 let neko = {};
@@ -93,7 +95,7 @@ async function AfterLoad() {
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
-        keyp = keyboard("p", "");
+        keyp = keyboard("p", "e");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -210,6 +212,13 @@ function play(delta) {//基本所有的事件结算都在这里写
     if (wait_event.type !== "null") {
         neko.vx = neko.vy = 0;
     }
+    if (checkSaveUpdata()) {
+        app.stage.removeChild(neko);
+        loadhero('neko_down', currentSave.nekox, currentSave.nekoy);
+        console.log(neko);
+        loaded = false;
+        loadmap(currentSave.map);
+    }
     //console.log("1");
     // if (wait_event.status === true) {//结算互动事件
     //     neko.vx = neko.vy = 0;
@@ -238,7 +247,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         console.log(neko);
         loaded = false;
         loadmap(wait_event.nextmap);
-
+        uploadSave();
 
         wait_event.type = "null";
         wait_event.nextmap = null;
@@ -283,6 +292,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     app.stage.pivot.y = neko.y - appheight * 0.25;
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
+    currentSave.nekox = neko.x, currentSave.nekoy = neko.y;
 
 }
 
@@ -299,7 +309,7 @@ function HitMap(r) {
 
 
 async function loadmap(url) {
-    console.log("loading...");
+    console.log("loading map:" + url);
     for (let i = 0; i < npc_pool.length; i++) {
         console.log("removed 1");
         app.stage.removeChild(npc_pool[i]);
@@ -379,7 +389,7 @@ async function loadmap(url) {
             loaded = true;
             npc_pool = temp_npc_pool;
         });
-    uploadSave();
+    currentSave.map = url;
 }
 
 /*commands
@@ -700,4 +710,13 @@ function showPackageBar() {
 function uploadSave() {
     window.top.currentSave.data = currentSave;
     window.top.currentSave.events = story_status;
+}
+
+function checkSaveUpdata() {
+    if (!window.top.saveChanged) return false;
+    currentSave = window.top.currentSave.data;
+    story_status = window.top.currentSave.events;
+    window.top.saveChanged = false;
+    console.log(window.top.currentSave);
+    return true;
 }
