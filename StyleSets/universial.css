@@ -9,6 +9,7 @@
     src: url("./Font/zpix.woff") format('woff');
     src: url("./Font/zpix.ttf") format('truetype');
 }
+/*  已弃用
 @font-face {
     font-family: "Ipix";
     src: url("./Font/ipix_12px.ttf") format('truetype');
@@ -27,7 +28,7 @@
     font-family: "fusion-pix-12";
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.ttf") format('truetype');
     src: url("./Font/fusion-pixel-12px-monospaced-zh_hans.woff2") format('woff2');
-}
+} */
 
 
 html,body {
@@ -48,7 +49,7 @@ html,body {
 button{
     cursor: url("../icon/cursor_2.png") 14 0,auto;
 }
-.button_s{
+.button_s,.swal2-styled{
     cursor: url("../icon/cursor_2.png") 14 0,auto;
     /* 边框 */
     text-decoration: none;
@@ -73,7 +74,7 @@ button{
     background-color: #fff;
 }
 
-.button_s:hover{
+.button_s:hover,.swal2-styled:hover{
     color: #212529;
     text-decoration: none;
     background-color: #e7e7e7;

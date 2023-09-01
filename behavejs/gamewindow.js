@@ -53,7 +53,6 @@ var currentSave = {//玩家状态
 };
 let nowmap = {};
 let neko = {};
-let item_list = LoadItems("../items/items.json");
 let sheet;
 var loaded = true;
 //background sprite
@@ -70,12 +69,18 @@ for (let i = 1; i <= 2000; i++) {
 }
 //加载地图障碍
 
-if (typeof (currentSave.savepackage) === "undefined") {//初始化背包
-    currentSave.savepackage = [];
+//初始化背包
+let item_list = await LoadItems("../items/items.json");
+
+if (typeof (currentSave.savepackage) == "undefined") {
+    let pkg = [1];
     for (let i = 0; i < item_list.length; i++) {
-        currentSave.savepackage[i] = 0;
+        pkg[i] = 1;
     }
+    currentSave.savepackage = pkg;
 }
+
+
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
@@ -124,6 +129,7 @@ async function AfterLoad() {
     //Right
     right.press = () => {
         neko.vx = hori;
+        showPackageBar();
     };
     right.release = () => {
         if (!left.isDown) {
@@ -181,8 +187,8 @@ async function AfterLoad() {
     app.ticker.maxFPS = 120;
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
-        //console.log(delta);
-        neko.vx *= delta; neko.vy *= delta;
+        console.log(delta);
+        neko.vx *= delta;neko.vy *=delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
     }
@@ -192,9 +198,11 @@ app.stage.scale.set(2);
 var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
-async function play(delta) {//基本所有的事件结算都在这里写
-    //console.log("in loop!");
+function play(delta) {//基本所有的事件结算都在这里写
+    
     //console.log("vx",neko.vx);
+    // console.log(nowframe);
+
     //console.log(nowframe);
     if (loaded === false) {
         neko.vx = neko.vy = 0;
@@ -651,4 +659,16 @@ function hero_face_to(dir) {
     neko.animationSpeed = 0.1;
     //console.log(neko);
     app.stage.addChild(neko);
+}
+
+//显示背包
+function showPackageBar() {
+    let pkg = [];
+    /*console.log(currentSave.savepackage);
+    for (let i = 0; i < item_list.length; i++) {
+        if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
+        pkg.push({ id: i, num: currentSave.savepackage[i] });
+    }*/
+    pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
+    window.parent.showPackageBar(pkg, item_list);
 }

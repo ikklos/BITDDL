@@ -7,94 +7,14 @@
     <script src="Lib/rc.2_pixi.js"></script>
 </head>
 
-<script>
-    var dialogResult = -1;
-    function clearTextArea() {
-        document.getElementById("maintextContainer").innerHTML = "";
-        document.getElementById("optionsContainer").innerHTML = "";
-        console.log("vistag1");
-        document.getElementById("toolbar").style.visibility = "hidden";
-    }
-    function showDialog(text) {
-
-        let texta = document.getElementById("text_area");
-        texta.focus();
-        
-        let text_br = document.createElement("br");
-        let maintextContainer = document.getElementById("maintextContainer");
-        let optionsContainer = document.getElementById("optionsContainer");
-        maintextContainer.innerHTML = "";
-        optionsContainer.innerHTML = "";
-
-        if(text.content.length < 35){
-            // console.log("<<<");
-            
-            let maintextContainer_line1 = document.createElement("div");
-            maintextContainer_line1.className = "maintextContainer_line1";
-            maintextContainer.appendChild(maintextContainer_line1);
-            let maintext_line1 = document.createElement("div");
-            maintext_line1.innerHTML = text.content;
-            maintextContainer_line1.appendChild(maintext_line1);
-        }
-        else{
-            // console.log(">>>");
-            let maintextContainer_line1 = document.createElement("div");
-            let maintextContainer_line2 = document.createElement("div");
-
-            maintextContainer_line1.className = "maintextContainer_line1";
-            maintextContainer_line2.className = "maintextContainer_line2";
-            
-            maintextContainer.appendChild(maintextContainer_line1);
-            maintextContainer.appendChild(maintextContainer_line2);
-
-            let maintext_line1 = document.createElement("div");
-            let maintext_line2 = document.createElement("div");
-
-            maintext_line1.innerHTML = text.content.substr(0, 33);
-            maintext_line2.innerHTML = text.content.substr(33, text.content.length - 33);
-
-            maintextContainer_line1.appendChild(maintext_line1);
-            maintextContainer_line2.appendChild(maintext_line2);
-            setTimeout(() => {
-                // 清除第一行光标
-                maintext_line1.style.animation = "typing 0.8s steps(15,end) forwards";
-            }, 850);
-        }
-        console.log("vistag2");
-        document.getElementById("toolbar").style.visibility = "visible";
-        
-        if (typeof (text.options) != "undefined" && text.options.length > 0) {
-            if (text.options.length > 0)
-                for (let i = 0; i < text.options.length; i++) {
-                    let tmp = document.createElement("div");
-                    tmp.className = "option_text";
-                    tmp.innerHTML = '[' + text.options[i].name + ']:' + text.options[i].content;
-                    tmp.addEventListener("click", function () {
-                        dialogResult = i;
-                        console.log(dialogResult, "dialogResult");
-                    });
-                    optionsContainer.appendChild(tmp);
-                }
-        } else {
-            console.log("结束");
-            let tmp = document.createElement("div");
-            tmp.className = "option_text";
-            tmp.innerHTML = "*结束*";
-            tmp.addEventListener("click", function () {
-                dialogResult = 0;
-                document.getElementById("maingameframe").focus();
-            });
-            optionsContainer.appendChild(tmp);
-        }
-        
-    }
-    function focusMainGame() {
-        document.getElementById("maingameframe").focus();
-        console.log("focus!");
-    }
-</script>
+<script src="behavejs/gameframe.js"></script>
 
 <body>
+    <div id="packagebar" class="packagebar">
+        <div id="packagelist"></div>
+        <img src="sprite/players/neko.jpg" id="item_img">
+        <div id="item_describe"></div>
+    </div>
     <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <div class="toolbar" id="toolbar">
         <img src="sprite/players/neko.jpg" id="character_avator" class="avator">
@@ -116,12 +36,12 @@
 <script>
     //auto zoom tool bar
     function bodyScale() {
-    let devicewidth = document.documentElement.clientwidth;
-    let deviceheight = document.documentElement.clientHeight;
-    var scalex = devicewidth / 1100;
-    var scaley = deviceheight / 660;
-    scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
-    } 
+        let devicewidth = document.documentElement.clientwidth;
+        let deviceheight = document.documentElement.clientHeight;
+        var scalex = devicewidth / 1100;
+        var scaley = deviceheight / 660;
+        scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
+    }
     bodyScale();    
 </script>
 
