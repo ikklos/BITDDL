@@ -247,7 +247,6 @@ function play(delta) {//基本所有的事件结算都在这里写
         console.log(neko);
         loaded = false;
         loadmap(wait_event.nextmap);
-        
 
         wait_event.type = "null";
         wait_event.nextmap = null;
@@ -388,6 +387,7 @@ async function loadmap(url) {
             console.log(BanariesPool);
             loaded = true;
             npc_pool = temp_npc_pool;
+            
         });
     currentSave.map = url;
     uploadSave();
