@@ -12,6 +12,7 @@ document.getElementById("minigame").appendChild(app.view);
 let neko, bullets, bullets_num, time_counter = 0;
 let current_bullets_num = 0;
 let ticker,level = 120;
+let score ,button,button_text;
 PIXI.Assets.load([
     './img/bullet_square.png',
     './img/character_square.png'
@@ -45,7 +46,7 @@ PIXI.Assets.load([
     for (let index = 0; index < bullets_num; index++) {
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
-        let random_way = Math.floor(Math.random() * 2);//随机在四版中的一版上生成
+        let random_way = Math.floor(Math.random() * 2);//随机在四版中的一版上生成 制作者迫于压力 改成两边
         // console.log(random_way);
         if (random_way == 0) {
             bullet.x = Math.random() * (app.screen.width);
@@ -55,14 +56,14 @@ PIXI.Assets.load([
             bullet.x = Math.random() * (app.screen.width);
             bullet.y = app.screen.height + app.screen.height / 3;
         } 
-        else if (random_way == 2){
-            bullet.x = app.screen.width;
-            bullet.y = Math.random() * (app.screen.height);
-        }
-        else{
-            bullet.x = app.screen.width + app.screen.width / 3;
-            bullet.y = Math.random() * (app.screen.height);
-        }
+        // else if (random_way == 2){
+        //     bullet.x = app.screen.width;
+        //     bullet.y = Math.random() * (app.screen.height);
+        // }
+        // else{
+        //     bullet.x = app.screen.width + app.screen.width / 3;
+        //     bullet.y = Math.random() * (app.screen.height);
+        // }
 
         bullet.scale.set(1);
         bullet.speed = 2 + Math.random();
@@ -70,6 +71,36 @@ PIXI.Assets.load([
         bullet.hitbox = getHitBox(0, 0, bullet.width, bullet.height);
         bullets.push(bullet);
     }
+
+    score = new PIXI.Text('分数: 0', {
+        fontFamily: 'Zpix',
+        fontSize: 20,
+        fill: 0xffaa00,
+        align: 'right',
+    });
+    score.x = 340;
+    score.y = 10;
+    app.stage.addChild(score);
+
+    button = new PIXI.Graphics();
+    button.beginFill(0xFFaa00);
+    button.lineStyle(2, 0xa9a9a9, 1);
+    button.drawRect(0, 0, 150, 60);
+    button.x = app.screen.width / 2 - 75;
+    button.y = app.screen.height / 2 - 30;
+    button.eventMode = 'static'; 
+    button.buttonMode = true;
+    app.stage.addChild(button);
+
+    button_text = new PIXI.Text('开始', {
+        fontFamily: 'Zpix',
+        fontSize: 20,
+        fill: 0x000000,
+        align: 'center',
+    }); 
+    button_text.x = app.screen.width / 2 -20;  
+    button_text.y = app.screen.height / 2 -10;
+    app.stage.addChild(button_text);
 
 }).then(() => {
 
@@ -136,18 +167,24 @@ down.release = () => {
 
     app.ticker.minFPS = 90;
     app.ticker.maxFPS = 120;
-
-    ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
-
+    // startgame();
+    button.on('pointerdown', startgame); 
 })
 var density_index = 0;
+function startgame() {
+    app.stage.removeChild(button);
+    app.stage.removeChild(button_text);
+    ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
+    
+}
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
-    console.log(time_counter);
-    console.log(density_index);
-    if(time_counter > density_index / 5 * 100 && density_index < 60){
+    // console.log(time_counter);
+    // console.log(density_index);
+    if(time_counter > density_index / 5 * 700 && density_index <= 70){
         density_index += 5;
     }
-
+    // 分数
+    score.text = "分数：" + Math.floor(time_counter / 10);
 
     // 发射弹幕
 
@@ -179,7 +216,7 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
     for (let index = 0; index < current_bullets_num; index++) {
         const bullet = bullets[index];
 
-        // 碰撞检测
+        碰撞检测
         if (HitTest(neko, bullet)) {
             alert("似了！")
             ticker.stop();
