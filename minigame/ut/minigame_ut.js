@@ -46,7 +46,7 @@ PIXI.Assets.load([
     for (let index = 0; index < bullets_num; index++) {
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
-        let random_way = Math.floor(Math.random() * 2);//随机在四版中的一版上生成 制作者迫于压力 改成两边
+        let random_way = Math.floor(Math.random() * 2);//随机在四版中的一版上生成 制作者迫于压力 改成两边 再编辑：改成两边之后反而打不过了悲
         // console.log(random_way);
         if (random_way == 0) {
             bullet.x = Math.random() * (app.screen.width);
@@ -75,7 +75,7 @@ PIXI.Assets.load([
     score = new PIXI.Text('分数: 0', {
         fontFamily: 'Zpix',
         fontSize: 20,
-        fill: 0xffaa00,
+        fill: 0xB8860B,
         align: 'right',
     });
     score.x = 340;
@@ -83,7 +83,7 @@ PIXI.Assets.load([
     app.stage.addChild(score);
 
     button = new PIXI.Graphics();
-    button.beginFill(0xFFaa00);
+    button.beginFill(0xB8860B);
     button.lineStyle(2, 0xa9a9a9, 1);
     button.drawRect(0, 0, 150, 60);
     button.x = app.screen.width / 2 - 75;
@@ -95,7 +95,7 @@ PIXI.Assets.load([
     button_text = new PIXI.Text('开始', {
         fontFamily: 'Zpix',
         fontSize: 20,
-        fill: 0x000000,
+        fill: 0xffffff,
         align: 'center',
     }); 
     button_text.x = app.screen.width / 2 -20;  
@@ -168,16 +168,18 @@ down.release = () => {
     app.ticker.minFPS = 90;
     app.ticker.maxFPS = 120;
     // startgame();
-    button.on('pointerdown', startgame); 
+    button.on('pointerdown', startgame)
+    
 })
 var density_index = 0;
-function startgame() {
+let gameover = false;
+async function startgame() {
     app.stage.removeChild(button);
     app.stage.removeChild(button_text);
-    ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
+    ticker = app.ticker.add(async (deltaTime) => gameloop(deltaTime))
     
 }
-function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
+async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(time_counter);
     // console.log(density_index);
     if(time_counter > density_index / 2 * 100 && density_index < 60){
@@ -218,9 +220,25 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
 
         // 碰撞检测
         if (HitTest(neko, bullet)) {
-            alert("似了！")
             ticker.stop();
-            location.reload();
+            Swal.fire({
+                title: '游戏结束！',
+                text: "是否重新开始？",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '再玩一会',
+                cancelButtonText: '关掉游戏',
+                allowEscapeKey:false,
+                allowOutsideClick:false,
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  location.reload();
+                } else if (result.isDismissed) {
+                    window.parent.changeGameArea();
+                    location.reload();
+                }
+            })
+            
         }
 
 
@@ -250,6 +268,7 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
     time_counter++;
     // console.log(time_counter);
 
+    
 }
 
 
@@ -279,7 +298,14 @@ function CrossTheBoader(r) {
     }
     return over;
 }
-
+function bodyScale() {
+    let devicewidth = document.documentElement.clientwidth;
+    let deviceheight = document.documentElement.clientHeight;
+    var scalex = devicewidth / 480;
+    var scaley = deviceheight / 480;
+    scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
+}
+bodyScale();
 // //切换站立行为
 // function change_to_stand() {
 //     let tmp = neko;

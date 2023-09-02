@@ -654,6 +654,7 @@ function bodyScale() {
     var scalex = devicewidth / 1100;
     var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
+    
 }
 bodyScale();
 function hero_face_to(dir) {
@@ -690,4 +691,17 @@ function showPackageBar() {
     }*/
     pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
     window.parent.showPackageBar(pkg, item_list);
+}
+
+//切换主游戏和小程序
+function changeGameArea(num) {
+    if (num === 0) {
+        document.getElementById("GameWindow").style.visibility = "visible"
+        document.getElementById("minigame_ut").style.visibility = "hidden"
+    }
+    if (num === 1) {
+        document.getElementById("GameWindow").style.visibility = "hidden"
+        document.getElementById("minigame_ut").style.visibility = "visible"
+    }
+    
 }
