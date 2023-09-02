@@ -11,7 +11,7 @@ document.getElementById("minigame").appendChild(app.view);
 // 加载资源
 let neko,bullets,bullets_num,time_counter = 0;
 let current_bullets_num = 0;
-let ticker;
+let ticker,level = 120;
 PIXI.Assets.load([
     './img/bullet_square.png',
     './img/character_square.png'
@@ -44,22 +44,22 @@ PIXI.Assets.load([
     for (let index = 0; index < bullets_num; index++) {
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
-        let random_way = Math.floor(Math.random() * 4);//随机在四版中的一版上生成
+        let random_way = Math.floor(Math.random() * 2);//随机在四版中的一版上生成
         // console.log(random_way);
         if (random_way == 0) {
             bullet.x = Math.random() * (app.screen.width);
-            bullet.y = 0;
+            bullet.y = - app.screen.height / 3;
         }
         else if (random_way == 1) {
             bullet.x = Math.random() * (app.screen.width);
-            bullet.y = app.screen.height;
+            bullet.y = app.screen.height + app.screen.height / 3;
         } 
         else if (random_way == 2){
-            bullet.x = 0;
+            bullet.x = app.screen.width;
             bullet.y = Math.random() * (app.screen.height);
         }
         else{
-            bullet.x = app.screen.width;
+            bullet.x = app.screen.width + app.screen.width / 3;
             bullet.y = Math.random() * (app.screen.height);
         }
         
@@ -81,7 +81,7 @@ let left = keyboard("ArrowLeft", "a"),
 //水平和垂直速度
 {
 let hori, vertical;
-hori = 3; vertical = 3;
+hori = 3.5; vertical = 3.5;
 left.press = () => {
     neko.vx = -hori;
     // neko.scale.x = -2;
@@ -143,14 +143,26 @@ ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
 
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(app.ticker.FPS);
-
-
+    // console.log(time_counter);
+    //增加难度
+    if (time_counter == 1200) {
+        // console.log("60");
+        level = 60;
+    }
+    if (time_counter == 2400) {
+        // console.log("30");
+        level = 30;
+    }
+    if (time_counter == 3000) {
+        // console.log("15");
+        level = 15;
+    }
 
     // 发射弹幕
 
-    if (time_counter % 60 === 0) {
+    if (time_counter % level === 0) {
         // 初始化子弹参数
-        let bullet = bullets[time_counter / 60];
+        let bullet = bullets[current_bullets_num + 1];
         let tan = (bullet.x - neko.x) / (bullet.y - neko.y);
         
         if (bullet.y > neko.y) {
