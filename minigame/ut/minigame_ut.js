@@ -42,7 +42,7 @@ PIXI.Assets.load([
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
         bullet.x = Math.random() * (app.screen.width);
-        bullet.y = - Math.random() * (app.screen.height);
+        bullet.y = 0;
         bullet.scale.set(1);
         bullet.speed = 2 + Math.random() * 4;
         bullet.direction = 0 ;
@@ -116,14 +116,14 @@ down.release = () => {
 
 
 
-app.ticker.minFPS = 120;
-app.ticker.maxFPS = 90;
+app.ticker.minFPS = 90;
+app.ticker.maxFPS =120;
 app.ticker.add((deltaTime) => gameloop(deltaTime));
+var time_counter = 0;
 });
 
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(app.ticker.FPS);
-
 
     // 发射弹幕
     for (let index = 0; index < bullets_num; index++) {
@@ -149,6 +149,9 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
         neko.y -= neko.vy;
     }
     neko.vx /= delta; neko.vy /= delta;
+
+    //时间
+    time_counter++;
 }
 
 
