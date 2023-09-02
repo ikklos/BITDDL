@@ -216,7 +216,7 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
     for (let index = 0; index < current_bullets_num; index++) {
         const bullet = bullets[index];
 
-        碰撞检测
+        // 碰撞检测
         if (HitTest(neko, bullet)) {
             alert("似了！")
             ticker.stop();
