@@ -180,8 +180,8 @@ function startgame() {
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(time_counter);
     // console.log(density_index);
-    if(time_counter > density_index / 5 * 100 && density_index < 70){
-        density_index += 5;
+    if(time_counter > density_index / 2 * 100 && density_index < 60){
+        density_index += 2;
     }
     // 分数
     score.text = "分数：" + Math.floor(time_counter / 10);
