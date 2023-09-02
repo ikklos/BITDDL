@@ -65,7 +65,7 @@ PIXI.Assets.load([
         }
 
         bullet.scale.set(1);
-        bullet.speed = 1 + Math.random() * 2;
+        bullet.speed = 2 + Math.random();
         bullet.direction = 0;
         bullet.hitbox = getHitBox(0, 0, bullet.width, bullet.height);
         bullets.push(bullet);
@@ -144,7 +144,7 @@ var density_index = 0;
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     console.log(time_counter);
     console.log(density_index);
-    if(time_counter > density_index / 5 * 700 && density_index <= 70){
+    if(time_counter > density_index / 5 * 100 && density_index < 60){
         density_index += 5;
     }
 
