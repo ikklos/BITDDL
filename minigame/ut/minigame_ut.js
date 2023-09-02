@@ -1,4 +1,5 @@
 import { keyboard } from '../../behavejs/keyboard.js';
+import {HitTest, getHitBox, getPartHitBox} from '../../behavejs/collision.js';
 // 创建窗口
 var app = new PIXI.Application({ 
     width: 480, 
@@ -9,6 +10,8 @@ var app = new PIXI.Application({
 document.getElementById("minigame").appendChild(app.view);
 // 加载资源
 let neko,bullets,bullets_num,time_counter = 0;
+let current_bullets_num = 0;
+let ticker;
 PIXI.Assets.load([
     './img/bullet_square.png',
     './img/character_square.png'
@@ -37,19 +40,34 @@ PIXI.Assets.load([
 
 
     // 方形子弹 分组
-    bullets = [];bullets_num = 1000;
+    bullets = [];bullets_num = 10000;
     for (let index = 0; index < bullets_num; index++) {
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
-        bullet.x = Math.random() * (app.screen.width);
-        bullet.y = 0;
+        let random_way = Math.floor(Math.random() * 4);//随机在四版中的一版上生成
+        // console.log(random_way);
+        if (random_way == 0) {
+            bullet.x = Math.random() * (app.screen.width);
+            bullet.y = 0;
+        }
+        else if (random_way == 1) {
+            bullet.x = Math.random() * (app.screen.width);
+            bullet.y = app.screen.height;
+        } 
+        else if (random_way == 2){
+            bullet.x = 0;
+            bullet.y = Math.random() * (app.screen.height);
+        }
+        else{
+            bullet.x = app.screen.width;
+            bullet.y = Math.random() * (app.screen.height);
+        }
+        
         bullet.scale.set(1);
-        bullet.speed = 2 + Math.random() * 4;
-        bullet.direction = 0 ;
+        bullet.speed = 1 + Math.random() * 2;
+        bullet.direction = 0;
 
         bullets.push(bullet);
-        app.stage.addChild(bullet);
-        
     }
     
 }).then(()=>
@@ -119,19 +137,53 @@ down.release = () => {
 app.ticker.minFPS = 90;
 app.ticker.maxFPS =120;
 
-app.ticker.add((deltaTime) => gameloop(deltaTime));
+ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
 
-});
+})
 
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(app.ticker.FPS);
-    
-    
+
 
 
     // 发射弹幕
-    for (let index = 0; index < bullets_num; index++) {
+
+    if (time_counter % 60 === 0) {
+        // 初始化子弹参数
+        let bullet = bullets[time_counter / 60];
+        let tan = (bullet.x - neko.x) / (bullet.y - neko.y);
+        
+        if (bullet.y > neko.y) {
+            if (bullet.x < neko.x ) {
+                bullet.direction = Math.atan(tan) + Math.PI;
+            }
+            else {
+                bullet.direction = -Math.atan(-tan) + Math.PI;
+            }
+        }
+        else{
+            if (bullet.x < neko.x) {
+                bullet.direction = Math.atan(tan);
+            }
+            else {
+                bullet.direction = -Math.atan(-tan);
+            }
+        }
+        console.log("add");
+        app.stage.addChild(bullet);
+        current_bullets_num++;
+    }
+    for (let index = 0; index < current_bullets_num; index++) {
         const bullet = bullets[index];
+
+        // 碰撞检测
+        if(HitTest(neko, bullet)){
+            alert("似了！")
+            ticker.stop();
+            location.reload();
+        }
+
+        
         bullet.x += Math.sin(bullet.direction) * bullet.speed;
         bullet.y += Math.cos(bullet.direction) * bullet.speed;
         
@@ -156,7 +208,8 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
 
     //时间
     time_counter++;
-    console.log(time_counter);
+    // console.log(time_counter);
+
 }
 
 
@@ -186,7 +239,6 @@ function CrossTheBoader(r) {
     }
     return over;
 }
-
 
 // //切换站立行为
 // function change_to_stand() {
