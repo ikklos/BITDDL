@@ -1,10 +1,9 @@
 
 body{
     background-color: black;
-    background-image: url("../about/张傲个人介绍/bg.jpg");
+    background-image: url("../backgrounds/savepage_bg.png");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: auto;
-    background-position: center;
 }
 /* #closeframebutton{
     background-image: url(../icon/symbolButton/buttonSymbols35.png);
@@ -37,7 +36,7 @@ body{
     border: solid 2px;
     text-align:center;
     padding: 0;
-    background-color: rgba(255, 255, 255, 0.415);
+    background-color: rgba(255, 255, 255, 0.722);
     border-radius: 2px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -49,6 +48,7 @@ body{
     grid-column-start: 1;
     grid-column-end: 4;
     font-size: 1.7rem;
+    height: 2.7rem;
 }
 .save_list > div > button{
     font-family: "Zpix";

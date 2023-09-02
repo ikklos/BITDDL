@@ -59,31 +59,50 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
             cancelButtonText: '取消',
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(window.parent.currentSave);
-                let date = new Date,
-                saveDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + "<br>" + window.parent.currentSave.data.map;
+                console.log(window.parent.currentSave,"currentsave");
+                (async() => {
+                    var { value: savename } = await Swal.fire({
+                        title: '请输入存档名',
+                        input: 'text',
+                        inputLabel: '存档名',
+                        inputValue: element.id.replace('button', '_'),
+                        inputValidator: (value) => {
+                          if (!value) {
+                            return '你还什么都没有写！'
+                          }
+                          if (value.length > 20) {
+                            return '你要写的也太多了吧！'
+                          }
+                        }
+                    });
                 
-                if (localStorage.getItem(window.parent.userName + "_" + element.id.replace('button', '_')) !== null) {
-                    localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_'), encodeURIComponent(JSON.stringify(window.parent.currentSave)))
-                    document.getElementById(element.id.replace('button', 'text')).innerHTML = saveDate;
-                    localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_') + "saveDate", saveDate)
-                    console.log(element.id.replace('button', '_'));
-                    Toast.fire({
-                        title: "已覆盖旧存档!",
-                        icon: "success"
-                    })
-                }
-                else {
-                    document.getElementById(element.id.replace('button', 'text')).innerHTML = saveDate;
+                
+                    // console.log(savename);
+                    let date = new Date,
+                    saveDate = `${savename}<br><small>${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}</small>`;
+                    
+                    if (localStorage.getItem(window.parent.userName + "_" + element.id.replace('button', '_')) !== null) {
+                        localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_'), encodeURIComponent(JSON.stringify(window.parent.currentSave)))
+                        document.getElementById(element.id.replace('button', 'text')).innerHTML = saveDate;
+                        localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_') + "saveDate", saveDate)
+                        console.log(element.id.replace('button', '_'));
+                        Toast.fire({
+                            title: "已覆盖旧存档!",
+                            icon: "success"
+                        })
+                    }
+                    else {
+                        document.getElementById(element.id.replace('button', 'text')).innerHTML = saveDate;
 
-                    localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_'), encodeURIComponent(JSON.stringify(window.parent.currentSave)));
-                    localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_') + "saveDate", saveDate)
-                    console.log(element.id.replace('button', '_'));
-                    Toast.fire({
-                        title: "保存成功！",
-                        icon: "success"
-                    })
-                }
+                        localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_'), encodeURIComponent(JSON.stringify(window.parent.currentSave)));
+                        localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_') + "saveDate", saveDate)
+                        console.log(element.id.replace('button', '_'));
+                        Toast.fire({
+                            title: "保存成功！",
+                            icon: "success"
+                        })
+                    }
+                })();
             }
         })
     }, false);
@@ -102,7 +121,7 @@ Array.from(document.getElementsByClassName('delete')).forEach(function (element,
                 if (localStorage.getItem(window.parent.userName + "_" + element.id.replace('delete', 'save_')) !== null) {
                     localStorage.removeItem(window.parent.userName + "_" + element.id.replace('delete', 'save_'));
                     localStorage.removeItem(window.parent.userName + "_" + element.id.replace('delete', 'save_') + "saveDate")
-                    document.getElementById(element.id.replace('delete', 'savetext')).innerHTML = '空存档<br>';
+                    document.getElementById(element.id.replace('delete', 'savetext')).innerHTML = '空存档<br> ';
                     Toast.fire({
                         title: "已删除存档！",
                         icon: "success"
@@ -134,18 +153,6 @@ let intervalID = setInterval(function () {
     }
 }
 , 100)
-
-function loadMapName(map_locate) {
-    switch (map_locate) {
-        case value:
-            
-            break;
-    
-        default:
-            break;
-    }
-    
-}
 
 
 
