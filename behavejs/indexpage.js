@@ -257,8 +257,9 @@ const startPlayBGM = () => {
     return false;
 };
 let intervalID = setInterval(
-    function changeBGM() {
+    () =>  {
         bgms.forEach((audio, index) => {
+            console.log(window.currentBGM);
             if (window.currentBGM === index) {
                 // console.log("try to change bgm");
                 bgms[window.currentBGM].volume = 0.3;

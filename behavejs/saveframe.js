@@ -21,8 +21,9 @@ Array.from(document.getElementsByClassName('load')).forEach(function (element, i
         // console.log("element = ",element);
 
         Swal.fire({
-            title: "确认要读取这个存档吗？",
+            title: "要读取这个存档吗？",
             icon: "info",
+            showCancelButton:true,
             confirmButtonText: '确定',
             cancelButtonText: '取消',
         }).then((result) => {
@@ -52,7 +53,7 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
         // console.log(window.parent.userName);
 
         Swal.fire({
-            title: "确认要保存存档到这里吗？",
+            title: "要保存存档到这里吗？",
             icon: "info",
             showCancelButton: true,
             confirmButtonText: '确定',
@@ -110,7 +111,7 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
 Array.from(document.getElementsByClassName('delete')).forEach(function (element, index) {
     element.addEventListener("click", function (index) {
         Swal.fire({
-            title: "确认要删除这个存档吗？",
+            title: "要删除这个存档吗？",
             icon: "info",
             showCancelButton: true,
             confirmButtonText: '确定',

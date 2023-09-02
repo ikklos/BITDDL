@@ -29,6 +29,7 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
         })
+        window.currentBGM = 0;
     }
     function showGameFrame() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
@@ -46,6 +47,7 @@
         document.body.focus();
         document.getElementById("maingameframe").focus();
         document.getElementById("maingameframe").contentWindow.focusMainGame();
+        window.currentBGM = 1;
     }
     function showSaveFrame() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
@@ -60,6 +62,7 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
         })
+        window.currentBGM = 1;
     }
     function showAbout() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
@@ -74,6 +77,7 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'visible'
         })
+        window.currentBGM = 0;
     }
 </script>
 <script src="behavejs/indexpage.js" type="module"></script>
@@ -85,7 +89,7 @@
         <a class="tab_button_l visible_topmenu_unlog" href="#" id="regbutton">注册</a>
         <p class="logged visible_topmenu_logged" id="logged" style="visibility: hidden;"></p>
         <p class="visible_gameframe center_guide">
-            按WASD/↑←↓→键控制人物移动 按F键交互 请输入小写字母
+            按WASD/↑←↓→键控制人物移动 按F键交互 按P键打开背包 请输入小写字母
         </p>
         <a class="tab_button_r" href="#" id="tab_about">关于</a>
         <a class="tab_button_r" href="#" id="tab_loadsave">存档</a>
@@ -93,9 +97,11 @@
         <a class="tab_button_r" href="#" id="tab_home">主页</a>
     </div>
     <!-- 音量控件 未实现-->
-    <div class="audio">
-        <!-- <span class="{MenuButtons1} sprite"></span> -->
-        <!-- <input type="range"  class="volume" min="0" max="1" step="0.01" value="0.2" /> -->
+    <div class="audio visible_mainmenu">
+        <div>这里准备放BGM控件</div>
+        <button type="button">上一首</button>
+        <button type="button">暂停</button>
+        <button type="button">下一首</button>
     </div>
 
     <div class="title border_s mainmenu visible_mainmenu " id="gametitle">
