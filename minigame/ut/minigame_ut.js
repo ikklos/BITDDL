@@ -8,7 +8,7 @@ var app = new PIXI.Application({
 });
 document.getElementById("minigame").appendChild(app.view);
 // 加载资源
-let neko,bullets,bullets_num;
+let neko,bullets,bullets_num,time_counter = 0;
 PIXI.Assets.load([
     './img/bullet_square.png',
     './img/character_square.png'
@@ -118,12 +118,16 @@ down.release = () => {
 
 app.ticker.minFPS = 90;
 app.ticker.maxFPS =120;
+
 app.ticker.add((deltaTime) => gameloop(deltaTime));
-var time_counter = 0;
+
 });
 
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(app.ticker.FPS);
+    
+    
+
 
     // 发射弹幕
     for (let index = 0; index < bullets_num; index++) {
@@ -152,6 +156,7 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
 
     //时间
     time_counter++;
+    console.log(time_counter);
 }
 
 
