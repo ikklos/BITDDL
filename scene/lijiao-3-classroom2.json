@@ -1,0 +1,333 @@
+{
+    "down":"../scene/images/lijiao-1-classroom2-down.png",
+    "up":"../scene/images/lijiao-1-classroom2-up.png",
+    "banaries": [
+        {
+            "name": "up1",
+            "x": 288,
+            "y": 192,
+            "width": 384,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "up2",
+            "x": 600,
+            "y": 216,
+            "width": 144,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "right1",
+            "x": 720,
+            "y": 240,
+            "width": 24,
+            "height": 216,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "down1",
+            "x": 288,
+            "y": 432,
+            "width": 432,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "left1",
+            "x": 288,
+            "y": 216,
+            "width": 24,
+            "height": 216,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "right mid1",
+            "x": 672,
+            "y": 288,
+            "width": 48,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "right mid2",
+            "x": 672,
+            "y": 408,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "zuo shang jiao",
+            "x": 312,
+            "y": 216,
+            "width": 48,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "big table",
+            "x": 409,
+            "y": 234,
+            "width": 22,
+            "height": 25,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk1",
+            "x": 337,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk2",
+            "x": 385,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk3",
+            "x": 433,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk4",
+            "x": 481,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk5",
+            "x": 529,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk6",
+            "x": 577,
+            "y": 294,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk7",
+            "x": 337,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk8",
+            "x": 385,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk9",
+            "x": 433,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk10",
+            "x": 481,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk11",
+            "x": 529,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "desk12",
+            "x": 577,
+            "y": 342,
+            "width": 22,
+            "height": 18,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair1",
+            "x": 341,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair2",
+            "x": 389,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair3",
+            "x": 437,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair4",
+            "x": 485,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair5",
+            "x": 533,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair6",
+            "x": 581,
+            "y": 315,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair7",
+            "x": 341,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair8",
+            "x": 389,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair9",
+            "x": 437,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair10",
+            "x": 485,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair11",
+            "x": 533,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "chair12",
+            "x": 581,
+            "y": 363,
+            "width": 14,
+            "height": 21,
+            "type": "banary",
+            "collideH": 1
+        }
+    ],
+    "npcs": [
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door up",
+            "x": 696,
+            "y": 240,
+            "width": 24,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 576,
+            "nexty": 216,
+            "nextmap": "../scene/lijiao-3.json"
+        },
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door down",
+            "x": 696,
+            "y": 360,
+            "width": 24,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 384,
+            "nexty": 216,
+            "nextmap": "../scene/lijiao-3.json"
+        }
+    ]
+}

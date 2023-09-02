@@ -175,12 +175,13 @@ function startgame() {
     app.stage.removeChild(button);
     app.stage.removeChild(button_text);
     ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
-    
+    ticker.autoStart = false;
+    ticker.start();
 }
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(time_counter);
     // console.log(density_index);
-    if(time_counter > density_index / 5 * 100 && density_index < 70){
+    if(time_counter > density_index / 5 * 100 && density_index < 60){
         density_index += 5;
     }
     // 分数
@@ -218,9 +219,9 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
 
         // 碰撞检测
         if (HitTest(neko, bullet)) {
-            alert("似了！")
+            //alert("似了！")
             ticker.stop();
-            location.reload();
+            
         }
 
 
@@ -249,7 +250,10 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
     //时间
     time_counter++;
     // console.log(time_counter);
-
+    if(ticker.started === false){
+        console.log("你寄了");
+        location.reload();
+    }
 }
 
 

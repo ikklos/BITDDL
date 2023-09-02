@@ -1,0 +1,45 @@
+{
+    "down":"../scene/images/north-2-down.png",
+    "up":"../scene/images/north-2-up.png",
+    "banaries": [
+        {
+            "name": "bei qiang 2",
+            "x": 552,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "type": "banary",
+            "collideH": 1
+        }
+    ],
+    "npcs": [
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door to library",
+            "x": 720,
+            "y": 456,
+            "width": 72,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 480,
+            "nexty": 480,
+            "nextmap": "../scene/library-1.json"
+        },
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door to south",
+            "x": 432,
+            "y": 504,
+            "width": 120,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 480,
+            "nexty": 0,
+            "nextmap": "../scene/south-1.json"
+        }
+    ]
+}

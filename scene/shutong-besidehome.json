@@ -1,6 +1,6 @@
 {
-    "down": "../scene/images/shutong-besidehome-down.png",
-    "up": "../scene/images/shutong-besidehome-up.png",
+    "down":"../scene/images/shutong-besidehome-down.png",
+    "up":"../scene/images/shutong-besidehome-up.png",
     "banaries": [
         {
             "name": "bianjie up",
@@ -113,7 +113,7 @@
     ],
     "npcs": [
         {
-            "img": "../scene/images/clear.png",
+            "img":"../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
             "y": 408,
@@ -121,151 +121,30 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
+            
             "nextx": 528,
             "nexty": 288,
             "nextmap": "../scene/shutong-1.json"
         },
         {
-            "img": "../character/friend2/think.png",
+            "img":"../character/friend2/think.png",
             "name": "friend2",
             "x": 552,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc",
-            "text": [
-                {
-                    "pre_list": [
-                        {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                0
-                            ]
-                        },
-                        {
-                            "type": "no_event",
-                            "num": 3,
-                            "list": [
-                                5,
-                                6,
-                                7
-                            ]
-                        }
-                    ],
-                    "content": "*这两位同学正在讨论题目*",
-                    "options": [
-                        {
-                            "name": "加入",
-                            "content": "啊咧~这道题答案不是42吗？",
-                            "next_text": {
-                                "content": "*你们在数学海洋中畅游了很久*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,5"
-                                ],
-                                "options": []
-                            }
-                        },
-                        {
-                            "name": "离开",
-                            "content": "*我好像也不太懂，还是不要打扰他们了*",
-                            "next_text": {
-                                "content": "*你安静地离开了*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,6"
-                                ],
-                                "options": []
-                            }
-                        },
-                        {
-                            "name": "谴责",
-                            "content": "别卷了，你卷****呢？",
-                            "next_text": {
-                                "content": "*某位同学突然回头，重重一拳打在你的脸上，你体力不支，昏迷到了第二天早上*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,7"
-                                ],
-                                "options": []
-                            }
-                        }
-                    ]
-                }
-            ]
+            "type": "npc"
         },
         {
-            "img": "../character/friend3/talk.png",
+            "img":"../character/friend3/talk.png",
             "name": "friend3",
             "x": 504,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc",
-            "text": [
-                {
-                    "pre_list": [
-                        {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                0
-                            ]
-                        },
-                        {
-                            "type": "no_event",
-                            "num": 3,
-                            "list": [
-                                5,
-                                6,
-                                7
-                            ]
-                        }
-                    ],
-                    "content": "*这两位舍友正在讨论题目*",
-                    "options": [
-                        {
-                            "name": "加入",
-                            "content": "啊咧~这道题答案不是42吗？",
-                            "next_text": {
-                                "content": "*你们在数学海洋中畅游了很久*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,5"
-                                ],
-                                "options": []
-                            }
-                        },
-                        {
-                            "name": "离开",
-                            "content": "*我好像也不太懂，还是不要打扰他们了*",
-                            "next_text": {
-                                "content": "*你安静地离开了*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,6"
-                                ],
-                                "options": []
-                            }
-                        },
-                        {
-                            "name": "谴责",
-                            "content": "别卷啦，你卷****呢？",
-                            "next_text": {
-                                "content": "*你的舍友突然回头，重重一拳打在你的脸上。你体力不支，昏迷到了第二天早上*",
-                                "strike_event": [
-                                    "sf,2",
-                                    "sf,7"
-                                ],
-                                "options": []
-                            }
-                        }
-                    ]
-                }
-            ]
+            "type": "npc"
         }
     ]
 }
