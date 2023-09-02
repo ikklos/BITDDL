@@ -44,7 +44,7 @@ PIXI.Assets.load([
         bullet.x = Math.random() * (app.screen.width);
         bullet.y = - Math.random() * (app.screen.height);
         bullet.scale.set(1);
-        bullet.speed = 2 + Math.random() * 4s;
+        bullet.speed = 2 + Math.random() * 4;
         bullet.direction = 0 ;
 
         bullets.push(bullet);
