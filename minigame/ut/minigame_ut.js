@@ -1,15 +1,15 @@
 import { keyboard } from '../../behavejs/keyboard.js';
-import {HitTest, getHitBox, getPartHitBox} from '../../behavejs/collision.js';
+import { HitTest, getHitBox, getPartHitBox } from '../../behavejs/collision.js';
 // 创建窗口
-var app = new PIXI.Application({ 
-    width: 480, 
-    height: 480, 
+var app = new PIXI.Application({
+    width: 480,
+    height: 480,
     antialias: true,
     background: '#ffffff'
 });
 document.getElementById("minigame").appendChild(app.view);
 // 加载资源
-let neko,bullets,bullets_num,time_counter = 0;
+let neko, bullets, bullets_num, time_counter = 0;
 let current_bullets_num = 0;
 let ticker;
 PIXI.Assets.load([
@@ -35,12 +35,13 @@ PIXI.Assets.load([
     neko.y = app.screen.height / 2;
     neko.vx = 0;
     neko.vy = 0;
+    neko.hitbox = getHitBox(neko.width / 2 - 2, neko.height / 2 - 2, 4, 4);
     app.stage.addChild(neko);
 
 
 
     // 方形子弹 分组
-    bullets = [];bullets_num = 10000;
+    bullets = []; bullets_num = 10000;
     for (let index = 0; index < bullets_num; index++) {
         let bullet = PIXI.Sprite.from("./img/bullet_square.png");
         bullet.anchor.set(0.5);
@@ -53,115 +54,117 @@ PIXI.Assets.load([
         else if (random_way == 1) {
             bullet.x = Math.random() * (app.screen.width);
             bullet.y = app.screen.height;
-        } 
-        else if (random_way == 2){
+        }
+        else if (random_way == 2) {
             bullet.x = 0;
             bullet.y = Math.random() * (app.screen.height);
         }
-        else{
+        else {
             bullet.x = app.screen.width;
             bullet.y = Math.random() * (app.screen.height);
         }
-        
+
         bullet.scale.set(1);
         bullet.speed = 1 + Math.random() * 2;
         bullet.direction = 0;
-
+        bullet.hitbox = getHitBox(0, 0, bullet.width, bullet.height);
         bullets.push(bullet);
     }
-    
-}).then(()=>
-{
 
-// 操作
-let left = keyboard("ArrowLeft", "a"),
-    up = keyboard("ArrowUp", "w"),
-    right = keyboard("ArrowRight", "d"),
-    down = keyboard("ArrowDown", "s");
-//水平和垂直速度
-{
-let hori, vertical;
-hori = 3; vertical = 3;
-left.press = () => {
-    neko.vx = -hori;
-    // neko.scale.x = -2;
-};
-left.release = () => {
-    if (!right.isDown) {
-        neko.vx = 0;
-    }
-    if (right.isDown) {
-        neko.vx = hori;
-        // neko.scale.x = 2;
-    }
-};
-up.press = () => {
-    neko.vy = -vertical;
-};
-up.release = () => {
-    if (!down.isDown) {
-        neko.vy = 0;
-    }
-    if (down.isDown) {
-        neko.vy = vertical;
-    }
-};
-right.press = () => {
-    neko.vx = hori;
-    // neko.scale.x = 2;
-};
-right.release = () => {
-    if (!left.isDown) {
-        neko.vx = 0;
-    }
-    if (left.isDown) {
-        neko.vx = -hori;
-        // neko.scale.x = -2;
-    }
-};
-down.press = () => {
-    neko.vy = vertical;
-};
-down.release = () => {
-    if (!up.isDown) {
-        neko.vy = 0;
-    }
-    if (up.isDown) {
-        neko.vy = -vertical;
-    }
-};
-}
+}).then(() => {
 
+    // 操作
+    let left = keyboard("ArrowLeft", "a"),
+        up = keyboard("ArrowUp", "w"),
+        right = keyboard("ArrowRight", "d"),
+        down = keyboard("ArrowDown", "s");
+    //水平和垂直速度
+    {
+        let hori, vertical;
+        hori = 3; vertical = 3;
+        left.press = () => {
+            neko.vx = -hori;
+            // neko.scale.x = -2;
+        };
+        left.release = () => {
+            if (!right.isDown) {
+                neko.vx = 0;
+            }
+            if (right.isDown) {
+                neko.vx = hori;
+                // neko.scale.x = 2;
+            }
+        };
+        up.press = () => {
+            neko.vy = -vertical;
+        };
+        up.release = () => {
+            if (!down.isDown) {
+                neko.vy = 0;
+            }
+            if (down.isDown) {
+                neko.vy = vertical;
+            }
+        };
+        right.press = () => {
+            neko.vx = hori;
+            // neko.scale.x = 2;
+        };
+        right.release = () => {
+            if (!left.isDown) {
+                neko.vx = 0;
+            }
+            if (left.isDown) {
+                neko.vx = -hori;
+                // neko.scale.x = -2;
+            }
+        };
+        down.press = () => {
+            neko.vy = vertical;
+        };
+        down.release = () => {
+            if (!up.isDown) {
+                neko.vy = 0;
+            }
+            if (up.isDown) {
+                neko.vy = -vertical;
+            }
+        };
+    }
 
 
-app.ticker.minFPS = 90;
-app.ticker.maxFPS =120;
 
-ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
+    app.ticker.minFPS = 90;
+    app.ticker.maxFPS = 120;
+
+    ticker = app.ticker.add((deltaTime) => gameloop(deltaTime));
 
 })
-
+var density_index = 0;
 function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
-    // console.log(app.ticker.FPS);
-
+    console.log(time_counter);
+    console.log(density_index);
+    if(time_counter > density_index / 5 * 700 && density_index <= 70){
+        density_index += 5;
+    }
 
 
     // 发射弹幕
 
-    if (time_counter % 60 === 0) {
+    if (time_counter % (80 - density_index) === 0) {
         // 初始化子弹参数
-        let bullet = bullets[time_counter / 60];
+        let bullet = bullets[current_bullets_num];
         let tan = (bullet.x - neko.x) / (bullet.y - neko.y);
-        
+        console.log(bullet);
         if (bullet.y > neko.y) {
-            if (bullet.x < neko.x ) {
+            if (bullet.x < neko.x) {
                 bullet.direction = Math.atan(tan) + Math.PI;
             }
             else {
                 bullet.direction = -Math.atan(-tan) + Math.PI;
             }
         }
-        else{
+        else {
             if (bullet.x < neko.x) {
                 bullet.direction = Math.atan(tan);
             }
@@ -177,24 +180,24 @@ function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooo
         const bullet = bullets[index];
 
         // 碰撞检测
-        if(HitTest(neko, bullet)){
+        if (HitTest(neko, bullet)) {
             alert("似了！")
             ticker.stop();
             location.reload();
         }
 
-        
+
         bullet.x += Math.sin(bullet.direction) * bullet.speed;
         bullet.y += Math.cos(bullet.direction) * bullet.speed;
-        
+
     }
-    
+
 
 
 
 
     // 人物行走
-    neko.vx *= delta;neko.vy *=delta;
+    neko.vx *= delta; neko.vy *= delta;
     // console.log(neko.vx);
     neko.x += neko.vx;
     if (CrossTheBoader(neko)) {
