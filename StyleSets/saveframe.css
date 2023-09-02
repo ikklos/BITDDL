@@ -40,20 +40,81 @@ body{
     background-color: rgba(255, 255, 255, 0.415);
     border-radius: 2px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-auto-rows: auto;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 7fr 3fr;
     font-size: 2rem;
     
 }
 .save_list > div >p{
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
+    font-size: 1.7rem;
 }
 .save_list > div > button{
     font-family: "Zpix";
-    align-self: flex-end;
-    width: 4rem;
+    font-size: 1rem;
+    font-weight: bolder;
     height: 2rem;
-    margin: .5rem;
-    margin: auto;
+    cursor: url("../icon/cursor_2.png") 14 0,auto;
+    /* 边框 */
+    text-decoration: none;
+    
+    border-image-slice: 2;
+    border-image-repeat:stretch;
+    /* 这里有一张奇怪的矢量图 */
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-width: 2;
+    border-width: 4px;
+    border-image-outset: 2;
+    border-style: solid;
+    
+
+    /* 位置 */
+    position: relative;
+    text-align: center;
+    user-select: none;
+
+    /* 颜色 */
+    color: #ffffff;
+}
+
+.save_list > div > button:hover{
+    color: #c7c7c7;
+    text-decoration: none;
+    
+}
+
+.save_list > div > button::after{
+    /* 按钮阴影 */
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    content: "";
+    box-shadow: inset -4px -4px rgba(0, 0, 0, 0.344);
+}
+.save_list > div > button:hover::after  {
+    box-shadow: inset -6px -6px rgba(0, 0, 0, 0.344);
+}
+.save{
+    
+    background-color: #92cc41;
+}
+.save:hover{
+    background-color: #4aa52e;
+}
+.load{
+    margin-left: 0.5rem;
+    background-color: #209cee;
+}
+.load:hover{
+    background-color: #006bb3;
+}
+.delete{
+    margin-right:0.5rem ;
+    background-color: #e76e55;
+}
+.delete:hover{
+    background-color: #8c2022;
 }

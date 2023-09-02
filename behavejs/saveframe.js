@@ -59,8 +59,10 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
             cancelButtonText: '取消',
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log(window.parent.currentSave);
                 let date = new Date,
-                    saveDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+                saveDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + "<br>" + window.parent.currentSave.data.map;
+                
                 if (localStorage.getItem(window.parent.userName + "_" + element.id.replace('button', '_')) !== null) {
                     localStorage.setItem(window.parent.userName + "_" + element.id.replace('button', '_'), encodeURIComponent(JSON.stringify(window.parent.currentSave)))
                     document.getElementById(element.id.replace('button', 'text')).innerHTML = saveDate;
@@ -86,6 +88,37 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
         })
     }, false);
 });
+Array.from(document.getElementsByClassName('delete')).forEach(function (element, index) {
+    element.addEventListener("click", function (index) {
+        Swal.fire({
+            title: "确认要删除这个存档吗？",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(localStorage.getItem(window.parent.userName + "_" + element.id.replace('delete', 'save_')));
+                if (localStorage.getItem(window.parent.userName + "_" + element.id.replace('delete', 'save_')) !== null) {
+                    localStorage.removeItem(window.parent.userName + "_" + element.id.replace('delete', 'save_'));
+                    localStorage.removeItem(window.parent.userName + "_" + element.id.replace('delete', 'save_') + "saveDate")
+                    document.getElementById(element.id.replace('delete', 'savetext')).innerHTML = '空存档<br>';
+                    Toast.fire({
+                        title: "已删除存档！",
+                        icon: "success"
+                    })
+                }
+                else{
+                    Toast.fire({
+                        title: "这个地方还没有存档哦，快去存一个吧",
+                        icon: "error"
+                    })
+                }
+
+            }
+        })
+    }, false);
+});
 //监听用户是否登录
 let intervalID = setInterval(function () {
     // console.log(window.parent.userName);
@@ -100,7 +133,19 @@ let intervalID = setInterval(function () {
         clearInterval(intervalID);
     }
 }
-    , 100)
+, 100)
+
+function loadMapName(map_locate) {
+    switch (map_locate) {
+        case value:
+            
+            break;
+    
+        default:
+            break;
+    }
+    
+}
 
 
 
