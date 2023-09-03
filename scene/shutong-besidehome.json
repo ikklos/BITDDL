@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/shutong-besidehome-down.png",
-    "up":"../scene/images/shutong-besidehome-up.png",
+    "down": "../scene/images/shutong-besidehome-down.png",
+    "up": "../scene/images/shutong-besidehome-up.png",
     "banaries": [
         {
             "name": "bianjie up",
@@ -113,7 +113,7 @@
     ],
     "npcs": [
         {
-            "img":"../scene/images/clear.png",
+            "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
             "y": 408,
@@ -121,30 +121,165 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 528,
             "nexty": 288,
             "nextmap": "../scene/shutong-1.json"
         },
         {
-            "img":"../character/friend2/think.png",
+            "img": "../character/friend2/think.png",
             "name": "friend2",
             "x": 552,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "behave": [
+                {
+                    "type": "disappear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1,
+                                3,
+                                5,
+                                7
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "content": "这道题，我觉得不能这么做，但我觉得，你这么做也对，对吗？不对，啊对的对的",
+                    "options": [
+                        {
+                            "name": "一派胡言",
+                            "content": "我来告诉你怎么做",
+                            "next_text": {
+                                "content": "*你立刻掏出了纸笔，那两个人似乎并不怎么理你，但你还是很快地讲完了自己的思路*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,5"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "没什么意思",
+                            "content": "这两个人的复习真的能有效果吗",
+                            "next_text": {
+                                "content": "*听他们的讨论倒不如自己看会书了，你选择走开*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,6"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "卷？",
+                            "content": "有什么好卷的，你们两个魔怔了？",
+                            "next_text": {
+                                "content": "魔怔的不是你小子？不是来打架的就赶紧走，你什么都会还来跳脸呢",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,7"
+                                ]
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "no_event",
+                            "list": [
+                                1,
+                                3,
+                                5,
+                                7
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "img":"../character/friend3/talk.png",
+            "img": "../character/friend3/talk.png",
             "name": "friend3",
             "x": 504,
             "y": 312,
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "behave": [
+                {
+                    "type": "disappear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1,
+                                3,
+                                5,
+                                7
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "content": "这道题，我觉得不能这么做，但我觉得，你这么做也对，对吗？不对，啊对的对的",
+                    "options": [
+                        {
+                            "name": "一派胡言",
+                            "content": "我来告诉你怎么做",
+                            "next_text": {
+                                "content": "*你立刻掏出了纸笔，那两个人似乎并不怎么理你，但你还是很快地讲完了自己的思路*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,5"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "没什么意思",
+                            "content": "这两个人的复习真的能有效果吗",
+                            "next_text": {
+                                "content": "*听他们的讨论倒不如自己看会书了，你选择走开*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,6"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "卷？",
+                            "content": "有什么好卷的，你们两个魔怔了？",
+                            "next_text": {
+                                "content": "魔怔的不是你小子？不是来打架的就赶紧走，你什么都会还来跳脸呢",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,7"
+                                ]
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "no_event",
+                            "list": [
+                                1,
+                                3,
+                                5,
+                                7
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

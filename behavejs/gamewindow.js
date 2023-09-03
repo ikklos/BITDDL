@@ -481,6 +481,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     let fin = false;
     
     if (typeof (npc.behave) == "undefined") {
+        console.log("什么")
         app.stage.addChild(npc);
         return;
     }
@@ -494,9 +495,12 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
         } else if (Arr[i].type === "disappear") {
             if(CheckPrelist(Arr[i].pre_list)){
                 fin = false;
+            }else{
+                fin = true;
             }
         }
     }
+    console.log(fin);
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
