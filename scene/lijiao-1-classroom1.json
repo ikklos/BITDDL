@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/lijiao-1-classroom1-down.png",
-    "up":"../scene/images/lijiao-1-classroom1-up.png",
+    "down": "../scene/images/lijiao-1-classroom1-down.png",
+    "up": "../scene/images/lijiao-1-classroom1-up.png",
     "banaries": [
         {
             "name": "up1",
@@ -310,7 +310,6 @@
             "height": 48,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 336,
             "nexty": 216,
             "nextmap": "../scene/lijiao-1.json"
@@ -324,7 +323,6 @@
             "height": 48,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 144,
             "nexty": 216,
             "nextmap": "../scene/lijiao-1.json"
@@ -337,17 +335,133 @@
             "width": 24,
             "height": 48,
             "collideH": 1.0,
-            "type": "npc"
-        },
-        {
-            "img": "../character/mathteacher/normal.png",
-            "name": "jian kao teacher ",
-            "x": 552,
-            "y": 240,
-            "width": 24,
-            "height": 24,
-            "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                35
+                            ]
+                        }
+                    ],
+                    "content": "*神奇的是你真的在七天把所有的讲义看完了，而且还做了一些习题*",
+                    "options": [
+                        {
+                            "name": ">>>",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你想起临走时舍友对你说的话*",
+                                "options": [
+                                    {
+                                        "name": ">>>",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "[无论怎么样，你能恢复正常就是好事，别把成绩看的那么重]",
+                                            "options": [
+                                                {
+                                                    "name": ">>>",
+                                                    "content": "",
+                                                    "next_text": {
+                                                        "content": "[比起天才我还是希望你只是一个有那么一点可靠的舍友]",
+                                                        "options": [
+                                                            {
+                                                                "name": ">>>",
+                                                                "content": "",
+                                                                "next_text": {
+                                                                    "content": "*当你坐上椅子，眼前的题目映入眼帘，你再次感到一阵目眩*",
+                                                                    "options": [
+                                                                        {
+                                                                            "name": "不应该,",
+                                                                            "content": "我不应该再害怕，但为什么",
+                                                                            "next_text": {
+                                                                                "content": "*前几天看的讲义在你现在回忆起的东西面前小的像一粒沙尘，但同时还有那失败的丑态和痛苦*",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "name": "我不能再陷于这无尽深渊,",
+                                                                                        "content": "但就像是本能反应一样无法抗拒",
+                                                                                        "next_text": {
+                                                                                            "content": "*你扔掉了笔，疯狂地捶打自己的头，但显然是徒劳的，这回忆像洪水一样不断地涌进来*",
+                                                                                            "options": [
+                                                                                                {
+                                                                                                    "name": "先冷静下来",
+                                                                                                    "content": "",
+                                                                                                    "next_text": {
+                                                                                                        "content": "[没想到这么快，我们又见面了，把这题做完吧小子]",
+                                                                                                        "options": [
+                                                                                                            {
+                                                                                                                "name": "波尔查诺？",
+                                                                                                                "content": "我也没想到居然这么快",
+                                                                                                                "next_text": {
+                                                                                                                    "content": "[在科学面前我们仅仅是初生的婴儿，你渴望那天才的自己，这幻象就会一遍又一遍地出现在你周围]",
+                                                                                                                    "options": [
+                                                                                                                        {
+                                                                                                                            "name": "但",
+                                                                                                                            "content": "正因如此我不能丢掉我的天赋，如果失去它我将寸步难行",
+                                                                                                                            "next_text": {
+                                                                                                                                "content": "你不需要那非人的天赋，放下你那天才的自负，若是失败，无论多少次我都会陪你重来。",
+                                                                                                                                "options": [
+                                                                                                                                    {
+                                                                                                                                        "name": ">>>",
+                                                                                                                                        "content": "",
+                                                                                                                                        "next_text": {
+                                                                                                                                            "content": "*不知道什么时候，那声音不再是波尔查诺的声音，而是你舍友的声音*",
+                                                                                                                                            "options": [
+                                                                                                                                                {
+                                                                                                                                                    "name": ">>>",
+                                                                                                                                                    "content": "",
+                                                                                                                                                    "next_text": {
+                                                                                                                                                        "content": "*你捶打额头的手停了下来，再次握住了被你扔到地下的笔，监考老师也默认你重新开始考试*",
+                                                                                                                                                        "options": [
+                                                                                                                                                            {
+                                                                                                                                                                "name": ">>>",
+                                                                                                                                                                "content": "",
+                                                                                                                                                                "next_text":{
+                                                                                                                                                                    "content":"[这场闹剧终于结束了]",
+                                                                                                                                                                    "options":[],
+                                                                                                                                                                    "strike_event":[
+                                                                                                                                                                        "sf,38"
+                                                                                                                                                                    ]
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        ]
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            ]
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

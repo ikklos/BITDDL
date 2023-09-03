@@ -151,7 +151,100 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                27
+                            ]
+                        }
+                    ],
+                    "content": "你好，买~（怎么好像在哪里听过这句话）",
+                    "options": [
+                        {
+                            "name": "智慧",
+                            "content": "听说可以提高智商？但真的能吃吗",
+                            "next_text": {
+                                "content": "*你突然想起操场上那个一动不动的足球，决定回去看看*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,27"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "笔，尺",
+                            "content": "这些考试用具似乎更有用一点",
+                            "next_text": {
+                                "content": "欢迎光临喵，下次再来喵（这个店员是什么情况）",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,26"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "什么都不买",
+                            "content": "也没有规定说进商店一定要买东西吧",
+                            "next_text": {
+                                "content": "真的不考虑一下吗亲，打五折的捏",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,25",
+                                    "sf,28"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                27
+                            ]
+                        }
+                    ],
+                    "content": "你好，买~（怎么好像在哪里听过这句话）",
+                    "options": [
+                        {
+                            "name": "笔，尺",
+                            "content": "这些考试用具似乎更有用一点",
+                            "next_text": {
+                                "content": "欢迎光临喵，下次再来喵（这个店员是什么情况）",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,26"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "什么都不买",
+                            "content": "也没有规定说进商店一定要买东西吧",
+                            "next_text": {
+                                "content": "真的不考虑一下吗亲，打五折的捏",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,25",
+                                    "sf,28"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
