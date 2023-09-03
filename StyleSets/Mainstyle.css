@@ -52,3 +52,13 @@
     border-image-outset: 2;
     border-style: solid;
 }
+.minigame_ut >*{
+    overflow: hidden;
+    width: 480px;
+    height: 480px;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -45%);
+   
+}

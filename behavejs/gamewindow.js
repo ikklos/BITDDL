@@ -715,7 +715,8 @@ function bodyScale() {
     var scalex = devicewidth / 1100;
     var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
-
+    scalex <= scaley ? window.zoom_formini = scalex : window.zoom_formini = scaley;
+    console.log(window.zoom_formini,"window.zoom_formini");
 }
 bodyScale();
 function hero_face_to(dir) {

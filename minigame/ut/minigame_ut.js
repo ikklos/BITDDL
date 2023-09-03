@@ -304,14 +304,10 @@ function CrossTheBoader(r) {
     }
     return over;
 }
-function bodyScale() {
-    let devicewidth = document.documentElement.clientwidth;
-    let deviceheight = document.documentElement.clientHeight;
-    var scalex = devicewidth / 480;
-    var scaley = deviceheight / 480;
-    scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
-}
-bodyScale();
+setTimeout(() => {
+    console.log(window.parent.zoom_formini,"hikudaiuhodahiu");
+    document.body.style.zoom = window.parent.zoom_formini * 0.9;
+}, 2000);
 // //切换站立行为
 // function change_to_stand() {
 //     let tmp = neko;
