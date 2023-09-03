@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
     "down":"../scene/images/library-1-down.png",
     "up":"../scene/images/library-1-up.png",
@@ -239,47 +239,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
-            "nextx": 744,
-            "nexty": 480,
-            "nextmap": "../scene/north-2.json"
-        },
-        {
-            "img": "../character/mathteacher/normal.png",
-            "name": "math teacher",
-            "x": 192,
-            "y": 216,
-            "width": 24,
-            "height": 24,
-            "collideH": 1.0,
-            "type": "npc"
-        }
-    ]
-=======
-{
-    "down": "../scene/images/library-1-down.png",
-    "up": "../scene/images/library-1-up.png",
-    "banaries": [
-        {
-            "name": "bei qiang 2",
-            "x": 552,
-            "y": 0,
-            "width": 0,
-            "height": 0,
-            "type": "banary",
-            "collideH": 1
-        }
-    ],
-    "npcs": [
-        {
-            "img": "../scene/images/clear.png",
-            "name": "door out",
-            "x": 408,
-            "y": 480,
-            "width": 144,
-            "height": 24,
-            "collideH": 1.0,
-            "type": "door",
             "nextx": 744,
             "nexty": 480,
             "nextmap": "../scene/north-2.json"
@@ -293,6 +252,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/bolzano/face.png",
             "text": [
                 {
                     "pre_list": [
@@ -347,5 +307,4 @@
             ]
         }
     ]
->>>>>>> origin/minigame_ut_div
 }

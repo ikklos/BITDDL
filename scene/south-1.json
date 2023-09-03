@@ -227,6 +227,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/soccerboy/face.png",
             "behave": [
                 {
                     "type": "appear",
@@ -500,6 +501,7 @@
             "height": 18,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/portrait/soccer.png",
             "behave": [
                 {
                     "type": "appear",

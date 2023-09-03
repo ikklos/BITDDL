@@ -336,6 +336,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/portrait/table_temp.png",
             "text": [
                 {
                     "pre_list": [

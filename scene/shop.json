@@ -152,6 +152,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/seller/face.png",
             "text": [
                 {
                     "pre_list": [

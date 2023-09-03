@@ -134,6 +134,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/friend2/face.png",
             "behave": [
                 {
                     "type": "disappear",
@@ -212,6 +213,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/friend3/face.png",
             "behave": [
                 {
                     "type": "disappear",
