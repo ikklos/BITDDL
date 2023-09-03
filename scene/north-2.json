@@ -3,11 +3,281 @@
     "up":"../scene/images/north-2-up.png",
     "banaries": [
         {
-            "name": "bei qiang 2",
-            "x": 552,
+            "name": "1",
+            "x": 0,
+            "y": 72,
+            "width": 168,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "2",
+            "x": 0,
+            "y": 144,
+            "width": 144,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "3",
+            "x": 72,
+            "y": 192,
+            "width": 72,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "4",
+            "x": 0,
+            "y": 228,
+            "width": 48,
+            "height": 33,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "5",
+            "x": 0,
+            "y": 336,
+            "width": 144,
+            "height": 168,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "6",
+            "x": 0,
+            "y": 72,
+            "width": 168,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "7",
+            "x": 192,
+            "y": 312,
+            "width": 1,
+            "height": 192,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "77",
+            "x": 192,
+            "y": 312,
+            "width": 216,
+            "height": 1,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "777",
+            "x": 407,
+            "y": 312,
+            "width": 1,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "8",
+            "x": 240,
+            "y": 360,
+            "width": 168,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "9",
+            "x": 407,
+            "y": 408,
+            "width": 1,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "10",
+            "x": 432,
+            "y": 336,
+            "width": 24,
+            "height": 168,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "11",
+            "x": 216,
+            "y": 144,
+            "width": 216,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "12",
+            "x": 216,
+            "y": 264,
+            "width": 216,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "13",
+            "x": 216,
+            "y": 168,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "14",
+            "x": 216,
+            "y": 240,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "15",
+            "x": 384,
+            "y": 168,
+            "width": 48,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "16",
+            "x": 216,
+            "y": 48,
+            "width": 168,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "17",
+            "x": 384,
             "y": 0,
-            "width": 0,
-            "height": 0,
+            "width": 24,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "18",
+            "x": 384,
+            "y": 96,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "19",
+            "x": 432,
+            "y": 0,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "20",
+            "x": 528,
+            "y": 0,
+            "width": 24,
+            "height": 168,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "21",
+            "x": 528,
+            "y": 264,
+            "width": 24,
+            "height": 240,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "22",
+            "x": 552,
+            "y": 144,
+            "width": 216,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "23",
+            "x": 744,
+            "y": 120,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "24",
+            "x": 840,
+            "y": 144,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "25",
+            "x": 576,
+            "y": 264,
+            "width": 120,
+            "height": 240,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "26",
+            "x": 696,
+            "y": 264,
+            "width": 120,
+            "height": 216,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "27",
+            "x": 816,
+            "y": 264,
+            "width": 120,
+            "height": 240,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "28",
+            "x": 0,
+            "y": 552,
+            "width": 432,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "29",
+            "x": 552,
+            "y": 552,
+            "width": 408,
+            "height": 408,
             "type": "banary",
             "collideH": 1
         }
@@ -31,7 +301,7 @@
             "img": "../scene/images/clear.png",
             "name": "door to south",
             "x": 432,
-            "y": 504,
+            "y": 552,
             "width": 120,
             "height": 24,
             "collideH": 1.0,

@@ -338,6 +338,16 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc"
+        },
+        {
+            "img": "../character/mathteacher/normal.png",
+            "name": "jian kao teacher ",
+            "x": 552,
+            "y": 240,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }

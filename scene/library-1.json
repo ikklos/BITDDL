@@ -3,11 +3,227 @@
     "up":"../scene/images/library-1-up.png",
     "banaries": [
         {
-            "name": "bei qiang 2",
+            "name": "1",
+            "x": 384,
+            "y": 480,
+            "width": 24,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "2",
             "x": 552,
-            "y": 0,
-            "width": 0,
-            "height": 0,
+            "y": 480,
+            "width": 24,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "3",
+            "x": 144,
+            "y": 456,
+            "width": 240,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "4",
+            "x": 144,
+            "y": 192,
+            "width": 24,
+            "height": 264,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "5",
+            "x": 168,
+            "y": 192,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "6",
+            "x": 288,
+            "y": 216,
+            "width": 72,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "7",
+            "x": 360,
+            "y": 192,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "8",
+            "x": 384,
+            "y": 240,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "9",
+            "x": 576,
+            "y": 192,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "10",
+            "x": 600,
+            "y": 168,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "11",
+            "x": 792,
+            "y": 168,
+            "width": 24,
+            "height": 288,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "12",
+            "x": 576,
+            "y": 456,
+            "width": 240,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "13",
+            "x": 168,
+            "y": 312,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "14",
+            "x": 364,
+            "y": 312,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "15",
+            "x": 168,
+            "y": 384,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "16",
+            "x": 264,
+            "y": 384,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "17",
+            "x": 624,
+            "y": 312,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "18",
+            "x": 720,
+            "y": 312,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "19",
+            "x": 624,
+            "y": 384,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "20",
+            "x": 720,
+            "y": 384,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "21",
+            "x": 168,
+            "y": 360,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "22",
+            "x": 264,
+            "y": 360,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "23",
+            "x": 672,
+            "y": 360,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "24",
+            "x": 768,
+            "y": 360,
+            "width": 24,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "25",
+            "x": 408,
+            "y": 504,
+            "width": 144,
+            "height": 24,
             "type": "banary",
             "collideH": 1
         }
@@ -28,7 +244,7 @@
             "nextmap": "../scene/north-2.json"
         },
         {
-            "img": "../character/bolzano/bolzano-happy.png",
+            "img": "../character/mathteacher/normal.png",
             "name": "math teacher",
             "x": 192,
             "y": 216,

@@ -238,7 +238,7 @@
         {
             "name": "huahua4",
             "x": 317,
-            "y": 230,
+            "y": 290,
             "width": 13,
             "height": 20,
             "type": "banary",
@@ -247,7 +247,7 @@
         {
             "name": "huahua5",
             "x": 317,
-            "y": 402,
+            "y": 354,
             "width": 13,
             "height": 20,
             "type": "banary",

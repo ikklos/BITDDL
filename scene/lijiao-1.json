@@ -221,7 +221,7 @@
         {
             "name": "huahua4",
             "x": 317,
-            "y": 230,
+            "y": 290,
             "width": 13,
             "height": 20,
             "type": "banary",
@@ -230,7 +230,7 @@
         {
             "name": "huahua5",
             "x": 317,
-            "y": 402,
+            "y": 354,
             "width": 13,
             "height": 20,
             "type": "banary",
@@ -357,12 +357,12 @@
             "nextmap": "../scene/south-1.json"
         },
         {
-            "img": "../scene/images/clear.png",
+            "img": "../scene/images/hiddendoor.png",
             "name": "hidden downfloor",
-            "x": 456,
-            "y": 312,
-            "width": 72,
-            "height": 96,
+            "x": 450,
+            "y": 302,
+            "width": 86,
+            "height": 99,
             "collideH": 1.0,
             "type": "door",
             
