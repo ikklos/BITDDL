@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/library-1-down.png",
-    "up":"../scene/images/library-1-up.png",
+    "down": "../scene/images/library-1-down.png",
+    "up": "../scene/images/library-1-up.png",
     "banaries": [
         {
             "name": "bei qiang 2",
@@ -22,7 +22,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 744,
             "nexty": 480,
             "nextmap": "../scene/north-2.json"
@@ -35,7 +34,59 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                32
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "num": 1,
+                            "list": [
+                                33
+                            ]
+                        }
+                    ],
+                    "content": "是你……！",
+                    "options": [
+                        {
+                            "name": "嗯",
+                            "content": "我想问一下这段时间的授课内容和讲义",
+                            "next_text": {
+                                "content": "哦……哦，是这样，同学，我们最近的课都是你来讲的啊",
+                                "options": [
+                                    {
+                                        "name": "啊？",
+                                        "content": "不不不，怎么说也不可能是我讲课吧",
+                                        "next_text": {
+                                            "content": "呼，看来你真的有好转了，老师包括校领导都很担心你，这些是这段时间的讲义，好好准备考试吧",
+                                            "options": [
+                                                {
+                                                    "name": "好的",
+                                                    "content": "那就谢谢老师了",
+                                                    "next_text": {
+                                                        "content":"没事，你只要正常了就好，以后注意及时调整心态",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,33"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

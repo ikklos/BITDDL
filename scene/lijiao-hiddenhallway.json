@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/lijiao-hiddenhallway-down.png",
-    "up":"../scene/images/lijiao-hiddenhallway-up.png",
+    "down": "../scene/images/lijiao-hiddenhallway-down.png",
+    "up": "../scene/images/lijiao-hiddenhallway-up.png",
     "banaries": [
         {
             "name": "up1",
@@ -30,7 +30,167 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "behave": [
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                11,
+                                30
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                11,
+                                30
+                            ]
+                        }
+                    ],
+                    "content": "这幻像也是你的杰作吗",
+                    "options": [
+                        {
+                            "name": "什么",
+                            "content": "这个东西怎么可能是幻象，撞上真的会死吧",
+                            "next_text": {
+                                "content": "但我可以将它停下，现在我们有闲工夫聊天了，我们聊聊吧",
+                                "options": [
+                                    {
+                                        "name": "好吧",
+                                        "content": "至少只有你能跟我聊一聊了",
+                                        "next_text": {
+                                            "content": "你对数学是什么看法，或者换个问法，你害怕数学吗",
+                                            "options": [
+                                                {
+                                                    "name": "称不上",
+                                                    "content": "我怎么会害怕",
+                                                    "next_text": {
+                                                        "content": "那让我再问得明确一些，你害怕在数学上收获失败吗",
+                                                        "options": [
+                                                            {
+                                                                "name": "……",
+                                                                "content": "*你想起了很久之前的事*",
+                                                                "next_text": {
+                                                                    "content": "*那时候你还没有像现在这样，也没有遇到波尔查诺这种荒诞得像是幻觉一样的人*",
+                                                                    "options": [
+                                                                        {
+                                                                            "name": "那次",
+                                                                            "content": "你上台解题时，突然断了思路",
+                                                                            "next_text": {
+                                                                                "content": "*对一般人来说可能没什么，但你逐渐积累的情绪导致你当场疯癫起来，那丑态成了当场几乎所有人的笑柄*",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "name": "从来",
+                                                                                        "content": "你都以学者自居，你希望能投身科研",
+                                                                                        "next_text": {
+                                                                                            "content": "*你认为你的境界不应该是那些只求谋生的年轻人能够触及的，渐渐地你变得自负*",
+                                                                                            "options": [
+                                                                                                {
+                                                                                                    "name": "渐渐得你变得不能容忍自己的错误",
+                                                                                                    "content": "也渐渐变得暴躁易怒",
+                                                                                                    "next_text": {
+                                                                                                        "content": "*那次发疯之后，你的女友离开了你，甚至没有表现出基本的关心*",
+                                                                                                        "options": [
+                                                                                                            {
+                                                                                                                "name": "也是从那以后",
+                                                                                                                "content": "你的生活出现了这一堆乱象",
+                                                                                                                "next_text": {
+                                                                                                                    "content": "*包括每次复习都会出现的波尔查诺，突然朝你冲来的怪物，那种叫做[智慧]的商品*",
+                                                                                                                    "options": [
+                                                                                                                        {
+                                                                                                                            "name": "或许",
+                                                                                                                            "content": "我害怕数学",
+                                                                                                                            "next_text": {
+                                                                                                                                "content": "这大概就是原因所在了，这乱象还要在你的生活中纠缠多久，你想过没有",
+                                                                                                                                "options": [
+                                                                                                                                    {
+                                                                                                                                        "name": "所以",
+                                                                                                                                        "content": "这些是幻觉",
+                                                                                                                                        "next_text": {
+                                                                                                                                            "content": "数学能力并不是你们的指标，如果用分数或是能否做出一道题来评判一个人的数学能力，我想会有很多天才被扼杀在摇篮",
+                                                                                                                                            "options": [
+                                                                                                                                                {
+                                                                                                                                                    "name": "我懂",
+                                                                                                                                                    "content": "但似乎已经无法回头了",
+                                                                                                                                                    "next_text": {
+                                                                                                                                                        "content": "你因为他们的嘲笑彻夜无眠直至发狂，而你又进一步地成了小丑成了笑柄了，回头不是为了挽回什么",
+                                                                                                                                                        "options": [
+                                                                                                                                                            {
+                                                                                                                                                                "name": "是为了",
+                                                                                                                                                                "content": "不再失去更多",
+                                                                                                                                                                "next_text": {
+                                                                                                                                                                    "content": "也不尽然，我希望你继续完成你交给自己的使命，这乱象这幻境不能成为你一生的囚笼",
+                                                                                                                                                                    "options": [
+                                                                                                                                                                        {
+                                                                                                                                                                            "name":"*你选择沉默*",
+                                                                                                                                                                            "content":"……",
+                                                                                                                                                                            "next_text":{
+                                                                                                                                                                                "content":"我困于此地，因为我是已死之人，而你还有未竟之事",
+                                                                                                                                                                                "options":[
+                                                                                                                                                                                    {
+                                                                                                                                                                                        "name":"*你看向他*",
+                                                                                                                                                                                        "content":"我们还能再见面吗",
+                                                                                                                                                                                        "next_text":{
+                                                                                                                                                                                            "content":"或许，就在今晚你做梦的时候我们就会再见面，但希望你不要再吃安眠药了*你转身离去*",
+                                                                                                                                                                                            "options":[],
+                                                                                                                                                                                            "strike_event":[
+                                                                                                                                                                                                "sf,31"
+                                                                                                                                                                                            ]
+                                                                                                                                                                                        }
+                                                                                                                                                                                    }
+                                                                                                                                                                                ]
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                    ]
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        ]
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            ]
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "img": "../scene/images/clear.png",
@@ -41,7 +201,6 @@
             "height": 120,
             "collideH": 1.0,
             "type": "door",
-
             "nextx": 480,
             "nexty": 384,
             "nextmap": "../scene/lijiao-1.json"
