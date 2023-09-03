@@ -62,7 +62,7 @@ function showDialog(text) {
             for (let i = 0; i < text.options.length; i++) {
                 let tmp = document.createElement("div");
                 tmp.className = "option_text";
-                tmp.innerHTML = '[' + text.options[i].name + ']:' + text.options[i].content;
+                tmp.innerHTML = text.options[i].name + ' ' + text.options[i].content;
                 tmp.addEventListener("click", function () {
                     dialogResult = i;
                     console.log(dialogResult, "dialogResult");
