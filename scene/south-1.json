@@ -245,10 +245,127 @@
                             ]
                         }
                     ]
+                },{
+                    "type":"disappear",
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                15,
+                                16,
+                                17
+                            ]
+                        }
+                    ]
+                },{
+                    "type":"appear",
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                18
+                            ]
+                        }
+                    ]
                 }
             ],
             "text":[
-                
+                {
+                    "pre_list":[
+                        {
+                            "type":"attribute",
+                            "list":[
+                                {
+                                    "type":"more than",
+                                    "num":1
+                                }
+                            ]
+                        },
+                        {
+                            "type":"no_event",
+                            "list":[
+                                14,
+                                15,
+                                17
+                            ]
+                        }
+                    ],
+                    "content":"哦你好我的朋友，请问您有空陪我来一场炫酷的足球game吗吗吗吗",
+                    "options":[
+                        {
+                            "name":"我要卷",
+                            "content":"你不用复习吗",
+                            "next_text":{
+                                "content":"复习了也没用，你还是自己卷去吧",
+                                "options":[],
+                                "strike_event":[
+                                    "sf,14"
+                                ]
+                            }
+                        },{
+                            "name":"踢",
+                            "content":"你立刻朝球踢了一脚",
+                            "next_text":{
+                                "content":"*球一动不动，少年又拿了一个球出来*来踢这个个个个个",
+                                "options":[
+                                    {
+                                        "name":"好怪",
+                                        "content":"悄悄把这个足球搬开",
+                                        "next_text":{
+                                            "content":"你看到下面藏着什么东西，等少年离开了再来吧",
+                                            "options":[],
+                                            "strike_event":[
+                                                "sf,16"
+                                            ]
+                                        }
+                                    },{
+                                        "name":"我趣",
+                                        "content":"我喜欢踢球",
+                                        "next_text":{
+                                            "content":"*我说真不复习吗*",
+                                            "strike_event":[
+                                                "sf,15"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },{
+                            "name":"算了",
+                            "content":"我打算去趟商店",
+                            "next_text":{
+                                "content":"*你朝着商店走去*",
+                                "strike_event":[
+                                    "sf,17"
+                                ],
+                                "options":[]
+                            }
+                        }
+                    ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                14
+                            ]
+                        }
+                    ],
+                    "content":"你不是要去卷吗，回来干什么",
+                    "options":[
+                        {
+                            "name":"没什么",
+                            "content":"你的复习进度到哪了",
+                            "next_text":{
+                                "content":"先不说那个了，有点其他的事，你想听我说说吗",
+                                
+                            }
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -259,7 +376,45 @@
             "width": 18,
             "height": 18,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "behave":[
+                {
+                    "type":"appear",
+                    "pre_list":[
+                        {
+                            "type":"attribute",
+                            "list":[
+                                {
+                                    "type":"more than",
+                                    "num":1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text":[
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                16,
+                                17
+                            ]
+                        },{
+                            "type":"no_event",
+                            "list":[
+                                18,
+                                19
+                            ]
+                        }
+                    ],
+                    "content":"你来到这个一动不动的足球旁边",
+
+                }
+            ]
         },
         {
             "img": "../scene/images/clear.png",
