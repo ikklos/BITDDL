@@ -1,4 +1,5 @@
 var dialogResult = -1;
+var minigame_output = {};
 function clearTextArea() {
     document.getElementById("maintextContainer").innerHTML = "";
     document.getElementById("optionsContainer").innerHTML = "";
@@ -95,8 +96,8 @@ function showPackageBar(package, itemlist) {
 
             document.getElementById('item_img').src = '../items/img/backpack.png';
             document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
-            
-             // 更改display属性 和边框长度
+
+            // 更改display属性 和边框长度
             item_styleChange(1);
         });
         listelem.appendChild(tmp);
@@ -105,9 +106,9 @@ function showPackageBar(package, itemlist) {
 }
 function item_styleChange(num) {
     // 更改display属性 和边框长度
-    if(num == 1){
-        
-        
+    if (num == 1) {
+
+
         document.getElementById("packagebar").style.width = "450px"
         document.getElementsByClassName("item_button")[0].style.display = "none"
         document.getElementsByClassName("item_button")[1].style.display = "block"
@@ -117,8 +118,8 @@ function item_styleChange(num) {
             document.getElementById('item_describe').style.display = "block";
         }, 500);
     }
-    else{
-        
+    else {
+
         document.getElementById('item_img').style.display = "none";
         document.getElementById('item_describe').style.display = "none";
         document.getElementById("packagebar").style.width = "195px"

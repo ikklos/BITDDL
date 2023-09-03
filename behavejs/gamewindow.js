@@ -48,7 +48,7 @@ var currentSave = {//玩家状态
     playerName: 'tav',
     saveDate: '2077-8-20-23-55',
     password: '123',
-    time:0
+    time: 0
 };
 let nowmap = {};
 let neko = {};
@@ -95,7 +95,7 @@ async function AfterLoad() {
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
-        keyp = keyboard("p","");
+        keyp = keyboard("p", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -176,7 +176,7 @@ async function AfterLoad() {
         }
 
     }
-    keyp.press = () =>{
+    keyp.press = () => {
         showPackageBar();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,7 @@ async function AfterLoad() {
     app.ticker.add((deltaTime) => gameloop(deltaTime));
     function gameloop(delta) {//游戏循环
         //console.log(delta);
-        neko.vx *= delta;neko.vy *=delta;
+        neko.vx *= delta; neko.vy *= delta;
         play(delta);
         neko.vx /= delta; neko.vy /= delta;
     }
@@ -201,7 +201,7 @@ var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
 function play(delta) {//基本所有的事件结算都在这里写
-    
+
     //console.log("vx",neko.vx);
     // console.log(nowframe);
 
@@ -231,6 +231,8 @@ function play(delta) {//基本所有的事件结算都在这里写
     // }
     //console.log(window.parent.dialogResult);
     //console.log(wait_event);
+    //小游戏返回
+    if (window.minigame_result.finished) changeGameArea(1);
     if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
         npc_speak(wait_event.text);
     }
@@ -364,7 +366,7 @@ async function loadmap(url) {
                 temp_npc_pool.push(npc);
             }
             for (let i = 0; i < temp_npc_pool.length; i++) {
-                console.log("aaaa",temp_npc_pool.npcs);
+                console.log("aaaa", temp_npc_pool.npcs);
                 if (temp_npc_pool[i].type === "npc") solve_npc_behave(temp_npc_pool[i]);
                 else if (temp_npc_pool[i].type === "door") {
                     app.stage.addChild(temp_npc_pool[i]);
@@ -387,6 +389,7 @@ async function loadmap(url) {
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
+mini_game|mg,ud                   启动小游戏
 story_finish|sf,id                标记故事完成
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
@@ -408,11 +411,11 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                     console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a number!`);
                     break;
                 }
-                if (strs[2] == "delta"){
+                if (strs[2] == "delta") {
                     currentSave[strs[1]] += num;
-                    console.log(strs[1],"delta",num);
+                    console.log(strs[1], "delta", num);
                 }
-                   
+
                 else
                     currentSave[strs[1]] = num;
             } else if (typeof currentSave[strs[1]] == "boolean") {
@@ -473,13 +476,27 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             console.log("strike story:" + num);
             story_status[num].status = 1;
             break;
+        case 'mg':
+        case 'mini_game':
+            let numi = Number(strs[1]);
+            if (numi == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
+                break;
+            }
+            if (numi < 0 || numi > 3) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
+                break;
+            }
+            console.log("111", numi)
+            changeGameArea(numi);
+            break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
     }
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
-    
+
     if (typeof (npc.behave) == "undefined") {
         app.stage.addChild(npc);
         return;
@@ -488,11 +505,11 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     for (let i = 0; i < Arr.length; i++) {
         console.log("check behave...");
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if(CheckPrelist(Arr[i].pre_list)){
+            if (CheckPrelist(Arr[i].pre_list)) {
                 fin = true;
             }
         } else if (Arr[i].type === "disappear") {
-            if(CheckPrelist(Arr[i].pre_list)){
+            if (CheckPrelist(Arr[i].pre_list)) {
                 fin = false;
             }
         }
@@ -535,29 +552,29 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) return true;
-        }else if(pre[i].type === "attribute"){
+        } else if (pre[i].type === "attribute") {
             let num = pre[i].num;
-            for(let k = 0; k < pre[i].list.length; k++){
+            for (let k = 0; k < pre[i].list.length; k++) {
 
-                switch(pre[i].list[k].type){
+                switch (pre[i].list[k].type) {
                     case "equal":
-                        if(currentSave[pre[i].list[k].attrid] === pre[i].list[k].value){
+                        if (currentSave[pre[i].list[k].attrid] === pre[i].list[k].value) {
                             num--;
                         }
                         break;
                     case "less than":
-                        if(currentSave[pre[i].list[k].attrid] <= pre[i].list[k].value){
+                        if (currentSave[pre[i].list[k].attrid] <= pre[i].list[k].value) {
                             num--;
                         }
                         break;
                     case "more than":
-                        if(currentSave[pre[i].list[k].attrid] >= pre[i].list[k].value){
+                        if (currentSave[pre[i].list[k].attrid] >= pre[i].list[k].value) {
                             num--;
                         }
                         break;
                 }
             }
-            if(num > 0){
+            if (num > 0) {
                 return false;
             }
         }
@@ -654,7 +671,7 @@ function bodyScale() {
     var scalex = devicewidth / 1100;
     var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
-    
+
 }
 bodyScale();
 function hero_face_to(dir) {
@@ -694,14 +711,23 @@ function showPackageBar() {
 }
 
 //切换主游戏和小程序
-function changeGameArea(num) {
-    if (num === 0) {
-        document.getElementById("GameWindow").style.visibility = "visible"
-        document.getElementById("minigame_ut").style.visibility = "hidden"
+/*
+1:maingame
+2:ut
+*/
+
+function changeGameArea(id) {
+    window.minigame_result = { finished: false };
+    document.getElementById("GameWindow").style.display = "none";
+    document.getElementById("minigame_ut").style.display = "none";
+    switch (id) {
+        case 1:
+            document.getElementById("GameWindow").style.display = "block"
+            break;
+        case 2:
+            document.getElementById("minigame_ut").style.display = "block"
+            break;
+        default:
+
     }
-    if (num === 1) {
-        document.getElementById("GameWindow").style.visibility = "hidden"
-        document.getElementById("minigame_ut").style.visibility = "visible"
-    }
-    
 }

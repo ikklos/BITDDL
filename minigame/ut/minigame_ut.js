@@ -11,8 +11,8 @@ document.getElementById("minigame").appendChild(app.view);
 // 加载资源
 let neko, bullets, bullets_num, time_counter = 0;
 let current_bullets_num = 0;
-let ticker,level = 120;
-let score ,button,button_text;
+let ticker, level = 120;
+let score, button, button_text;
 PIXI.Assets.load([
     './img/bullet_square.png',
     './img/character_square.png'
@@ -55,7 +55,7 @@ PIXI.Assets.load([
         else if (random_way == 1) {
             bullet.x = Math.random() * (app.screen.width);
             bullet.y = app.screen.height + app.screen.height / 3;
-        } 
+        }
         // else if (random_way == 2){
         //     bullet.x = app.screen.width;
         //     bullet.y = Math.random() * (app.screen.height);
@@ -88,7 +88,7 @@ PIXI.Assets.load([
     button.drawRect(0, 0, 150, 60);
     button.x = app.screen.width / 2 - 75;
     button.y = app.screen.height / 2 - 30;
-    button.eventMode = 'static'; 
+    button.eventMode = 'static';
     button.buttonMode = true;
     app.stage.addChild(button);
 
@@ -97,71 +97,71 @@ PIXI.Assets.load([
         fontSize: 20,
         fill: 0xffffff,
         align: 'center',
-    }); 
-    button_text.x = app.screen.width / 2 -20;  
-    button_text.y = app.screen.height / 2 -10;
+    });
+    button_text.x = app.screen.width / 2 - 20;
+    button_text.y = app.screen.height / 2 - 10;
     app.stage.addChild(button_text);
 
 }).then(() => {
 
-// 操作
-let left = keyboard("ArrowLeft", "a"),
-    up = keyboard("ArrowUp", "w"),
-    right = keyboard("ArrowRight", "d"),
-    down = keyboard("ArrowDown", "s");
-//水平和垂直速度
-{
-let hori, vertical;
-hori = 3.5; vertical = 3.5;
-left.press = () => {
-    neko.vx = -hori;
-    // neko.scale.x = -2;
-};
-left.release = () => {
-    if (!right.isDown) {
-        neko.vx = 0;
+    // 操作
+    let left = keyboard("ArrowLeft", "a"),
+        up = keyboard("ArrowUp", "w"),
+        right = keyboard("ArrowRight", "d"),
+        down = keyboard("ArrowDown", "s");
+    //水平和垂直速度
+    {
+        let hori, vertical;
+        hori = 3.5; vertical = 3.5;
+        left.press = () => {
+            neko.vx = -hori;
+            // neko.scale.x = -2;
+        };
+        left.release = () => {
+            if (!right.isDown) {
+                neko.vx = 0;
+            }
+            if (right.isDown) {
+                neko.vx = hori;
+                // neko.scale.x = 2;
+            }
+        };
+        up.press = () => {
+            neko.vy = -vertical;
+        };
+        up.release = () => {
+            if (!down.isDown) {
+                neko.vy = 0;
+            }
+            if (down.isDown) {
+                neko.vy = vertical;
+            }
+        };
+        right.press = () => {
+            neko.vx = hori;
+            // neko.scale.x = 2;
+        };
+        right.release = () => {
+            if (!left.isDown) {
+                neko.vx = 0;
+            }
+            if (left.isDown) {
+                neko.vx = -hori;
+                // neko.scale.x = -2;
+            }
+        };
+        down.press = () => {
+            neko.vy = vertical;
+        };
+        down.release = () => {
+            if (!up.isDown) {
+                neko.vy = 0;
+            }
+            if (up.isDown) {
+                neko.vy = -vertical;
+            }
+        };
     }
-    if (right.isDown) {
-        neko.vx = hori;
-        // neko.scale.x = 2;
-    }
-};
-up.press = () => {
-    neko.vy = -vertical;
-};
-up.release = () => {
-    if (!down.isDown) {
-        neko.vy = 0;
-    }
-    if (down.isDown) {
-        neko.vy = vertical;
-    }
-};
-right.press = () => {
-    neko.vx = hori;
-    // neko.scale.x = 2;
-};
-right.release = () => {
-    if (!left.isDown) {
-        neko.vx = 0;
-    }
-    if (left.isDown) {
-        neko.vx = -hori;
-        // neko.scale.x = -2;
-    }
-};
-down.press = () => {
-    neko.vy = vertical;
-};
-down.release = () => {
-    if (!up.isDown) {
-        neko.vy = 0;
-    }
-    if (up.isDown) {
-        neko.vy = -vertical;
-    }
-};
-}
 
 
 
@@ -169,7 +169,7 @@ down.release = () => {
     app.ticker.maxFPS = 120;
     // startgame();
     button.on('pointerdown', startgame)
-    
+
 })
 var density_index = 0;
 let gameover = false;
@@ -177,12 +177,12 @@ async function startgame() {
     app.stage.removeChild(button);
     app.stage.removeChild(button_text);
     ticker = app.ticker.add(async (deltaTime) => gameloop(deltaTime))
-    
+
 }
 async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooop
     // console.log(time_counter);
     // console.log(density_index);
-    if(time_counter > density_index / 2 * 100 && density_index < 60){
+    if (time_counter > density_index / 2 * 100 && density_index < 60) {
         density_index += 2;
     }
     // 分数
@@ -228,17 +228,17 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
                 showCancelButton: true,
                 confirmButtonText: '再玩一会',
                 cancelButtonText: '关掉游戏',
-                allowEscapeKey:false,
-                allowOutsideClick:false,
-                }).then((result) => {
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  location.reload();
+                    location.reload();
                 } else if (result.isDismissed) {
-                    window.parent.changeGameArea();
+                    window.parent.minigame_result = { finished: true, score: Math.floor(time_counter / 10) };
                     location.reload();
                 }
             })
-            
+
         }
 
 
@@ -268,7 +268,7 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
     time_counter++;
     // console.log(time_counter);
 
-    
+
 }
 
 
