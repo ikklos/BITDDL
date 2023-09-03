@@ -268,7 +268,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         changeGameArea(1);
     }
     if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
-        window.parent.changeAvator(npc.portrait);
+        // window.parent.changeAvator(npc.portrait);
         npc_speak(wait_event.text);
     }
     if (wait_event.type === "door") {
