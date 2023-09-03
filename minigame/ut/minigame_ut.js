@@ -234,7 +234,13 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
                 if (result.isConfirmed) {
                     location.reload();
                 } else if (result.isDismissed) {
-                    window.parent.minigame_result = { finished: true, score: Math.floor(time_counter / 10) };
+                    window.parent.minigame_result = {
+                        finished: true,
+                        score: Math.floor(time_counter / 10),
+                        strike_event: [
+                            `st,{"content": "*你获得了${Math.floor(time_counter / 10)}分*"}`
+                        ]
+                    };
                     location.reload();
                 }
             })
