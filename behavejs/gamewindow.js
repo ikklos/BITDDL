@@ -52,6 +52,10 @@ var currentSave = {//玩家状态
     nekox: 336,
     nekoy: 312
 };
+
+let bossfight_flag = 0;
+var boss_sprite = {};
+
 let nowmap = {};
 let neko = {};
 let sheet;
@@ -86,7 +90,9 @@ AfterLoad();
 async function AfterLoad() {
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
-    loadmap("../scene/shutong-home.json");
+
+    //boss test
+    loadmap("../scene/lijiao-hiddenhallway.json");
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,6 +224,21 @@ function play(delta) {//基本所有的事件结算都在这里写
         console.log(neko);
         loaded = false;
         loadmap(currentSave.map);
+    }
+    if (bossfight_flag > 0 && wait_event.type == "null") {
+        console.log(boss_sprite.x)
+        boss_sprite.x -= delta;
+        if (neko.x < 250) {
+            bossfight_flag++, neko.x += 400, boss_sprite.x += 400;
+        }
+        if (bossfight_flag == 5) {
+            app.stage.removeChild(neko);
+            loadhero('neko_down', 336, 312);
+            console.log(neko);
+            bossfight_flag = 0;
+            loadmap("../scene/shutong-home.json");
+            command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
+        }
     }
     //console.log("1");
     // if (wait_event.status === true) {//结算互动事件
@@ -399,6 +420,14 @@ async function loadmap(url) {
         });
     currentSave.map = url;
     uploadSave();
+    if (url == '../scene/lijiao-hiddenhallway.json') {
+        bossfight_flag = 1;
+        boss_sprite = PIXI.Sprite.from('../character/boss_fight/boss.jpg');
+        boss_sprite.x = 936, boss_sprite.y = 150;
+        app.stage.addChild(boss_sprite);
+        command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
+
+    }
 }
 
 /*commands
@@ -443,11 +472,14 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 }
                 currentSave[strs[1]] = strs[3] == "true";
             } else if (typeof currentSave[strs[1]] == "object") {
+                let combstr = strs[3];
                 try {
-                    let obj = JSON.parse(strs[3]);
+                    for (let i = 4; i < strs.length; i++)
+                        combstr += "," + strs[i];
+                    let obj = JSON.parse(combstr);
                     currentSave[strs[1]] = obj;
                 } catch (e) {
-                    console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an object!`);
+                    console.log(`command "${str}" cannot be invoked."${combstr}" is not an object!`);
                 }
             } else if (typeof currentSave[strs[1]] == "string") {
                 currentSave[strs[1]] = strs[3];
@@ -518,15 +550,18 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked.a dialog is showing!`);
                 break;
             }
+            let combstr = strs[1];
             try {
-                let obj = JSON.parse(strs[1]);
+                for (let i = 2; i < strs.length; i++)
+                    combstr += "," + strs[i];
+                let obj = JSON.parse(combstr);
                 if (CheckPrelist(obj.pre_list)) {
                     wait_event.type = "npc";
                     wait_event.text = obj;
                     wait_event.times = 0;
                 }
             } catch (e) {
-                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an illegal text object!`);
+                console.log(`command "${str}" cannot be invoked."${combstr}" is not an illegal text object!`);
                 console.log(e);
             }
             break;
