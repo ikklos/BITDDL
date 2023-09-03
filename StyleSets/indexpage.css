@@ -184,7 +184,7 @@ a{
 .audio_button{
     grid-area: b;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .audio_button > button{
     background-color: transparent;
