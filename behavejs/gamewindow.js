@@ -58,7 +58,7 @@ let sheet;
 var loaded = true;
 
 //background sprite
-const background = PIXI.Sprite.from('../image_temp/TestGameBackground2.png');
+const background = PIXI.Sprite.from('../backgrounds/TestGameBackground2.png');
 background.width = appwidth * 0.5;
 background.height = appheight * 0.5;
 app.stage.addChild(background);

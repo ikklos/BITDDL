@@ -28,13 +28,13 @@ h1{
 }
 
 body {
-    background-image: url('../image_temp/bg.png');
+    background-image: url('../backgrounds/bg.png');
     background-repeat: no-repeat;
     background-size:cover
     
 }
 .tab{
-    width: 100vw;
+    width: 100%;
     height: 2em;
     backdrop-filter: bulr(5px);
     background-color: rgba(229, 243, 255, 0.639);
@@ -75,13 +75,15 @@ body {
     text-decoration: none;
 }
 .center_guide{
-    visibility: hidden;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
     height: 2em;
     font-size: 1em;
     z-index: 100;
+}
+.visible_gameframe{
+    visibility: hidden;
 }
 #logged{
     margin: 0;
@@ -142,4 +144,69 @@ a{
     visibility: hidden;
     width: 100%;
     height: 100%;
+}
+
+.audio{
+    position: absolute;
+    left: 2%;
+    bottom: 3%;
+    height: 10%;
+    width: 20%;
+    background-color: rgb(29, 40, 65);
+
+    
+    border-image-slice: 2;
+    border-image-repeat:stretch;
+    /* 这里有一张奇怪的矢量图 */
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(255,255,255)" /></svg>');
+    border-image-width: 2;
+    border-width: 4px;
+    border-image-outset: 2;
+    border-style: solid;
+    
+
+    /* 位置 */
+    text-align: center;
+    user-select: none;
+
+    /* 颜色 */
+    color: #ffffff;
+
+    display: grid;
+    grid-template: 
+    "n v" 1fr
+    "b v"  2fr
+    "b i"  0.5fr
+    /90% 10%
+
+}
+.audio_name{
+    grid-area: n;
+    margin: auto;
+}
+.audio_button{
+    grid-area: b;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+.audio_button > button{
+    background-color: transparent;
+    color: aliceblue;
+    border-color: transparent;
+    height: 2rem;
+    width: 2rem;
+    
+}
+.audio_button > button > img{
+    scale: 1.5;
+    
+}
+.audio_volume{
+    grid-area: v;
+    -webkit-appearance: slider-vertical;   
+}
+.audio_volume_icon{
+    grid-area: i;
+    margin: auto; 
 }

@@ -1,20 +1,23 @@
 {
     "bgms":[{
-        "loop":"",
+        "loop":"",      
         "preload":"auto",
         "type": "audio/mpeg",
-        "src": "/BGM/駛向水平線的彼方.mp3"
+        "src": "/BGM/駛向水平線的彼方.mp3",
+        "name":"駛向水平線的彼方"
 
     },{
         "loop":"",
         "preload":"auto",
         "type": "audio/mpeg",
-        "src": "/BGM/Mapleisland.mp3"
+        "src": "/BGM/Mapleisland.mp3",
+        "name": "Mapleisland"
     },{
         "loop":"",
         "preload":"auto",
         "type": "audio/mpeg",
-        "src":"/BGM/メインテーマ.mp3"
+        "src":"/BGM/メインテーマ.mp3",
+        "name": "メインテーマ"
     }]
     
 }
