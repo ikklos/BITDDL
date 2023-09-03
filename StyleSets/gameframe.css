@@ -194,6 +194,9 @@ body {
     border-right: 0px;
     border-width: 4px;
 
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(3px);
+
 
 }
 
