@@ -71,12 +71,13 @@ function showDialog(text) {
             }
     } else {
         console.log("结束");
+        console.log(text);
         let tmp = document.createElement("div");
         tmp.className = "option_text";
         tmp.innerHTML = "*结束*";
         tmp.addEventListener("click", function () {
             dialogResult = 0;
-            document.getElementById("maingameframe").focus();
+            focusMainGame();
         });
         optionsContainer.appendChild(tmp);
     }

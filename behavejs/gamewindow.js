@@ -395,7 +395,7 @@ async function loadmap(url) {
             console.log(BanariesPool);
             loaded = true;
             npc_pool = temp_npc_pool;
-            
+
         });
     currentSave.map = url;
     uploadSave();
@@ -530,37 +530,6 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(e);
             }
             break;
-        case 'mg':
-        case 'mini_game':
-            let numi = Number(strs[1]);
-            if (numi == "NaN") {
-                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
-                break;
-            }
-            if (numi < 0 || numi > 3) {
-                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
-                break;
-            }
-            changeGameArea(numi);
-            break;
-        case 'st':
-        case 'show_text':
-            if (wait_event.type == 'npc') {
-                console.log(`command "${str}" cannot be invoked.a dialog is showing!`);
-                break;
-            }
-            try {
-                let obj = JSON.parse(strs[1]);
-                if (CheckPrelist(obj.pre_list)) {
-                    wait_event.type = "npc";
-                    wait_event.text = obj;
-                    wait_event.times = 0;
-                }
-            } catch (e) {
-                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an illegal text object!`);
-                console.log(e);
-            }
-            break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
     }
@@ -583,7 +552,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
         } else if (Arr[i].type === "disappear") {
             if (CheckPrelist(Arr[i].pre_list)) {
                 fin = false;
-            }else{
+            } else {
                 fin = true;
             }
         }

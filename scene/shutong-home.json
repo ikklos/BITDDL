@@ -201,54 +201,56 @@
             "type": "npc",
             "behave": [
                 {
-                    "type":"disappear",
-                    "pre_list":[
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 1
                             ]
                         }
                     ]
                 }
             ],
-            "text":[
+            "text": [
                 {
-                    "content":"原来，你也玩原神",
-                    "pre_list":[
+                    "content": "原来，你也玩原神",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 0
                             ]
-                        },{
-                            "type":"no_event",
-                            "list":[
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
                                 1
                             ]
                         }
                     ],
-                    "options":[
+                    "options": [
                         {
-                            "name":"我超",
-                            "content":"op!",
-                            "next_text":{
-                                "content":"你说得对，但是原神是一款由米哈游自主研发的……(我觉得还是去隔壁看看比较好)",
-                                "options":[],
-                                "strike_event":[
+                            "name": "我超",
+                            "content": "op!",
+                            "next_text": {
+                                "content": "你说得对，但是原神是一款由米哈游自主研发的……(我觉得还是去隔壁看看比较好)",
+                                "options": [],
+                                "strike_event": [
                                     "sf,4"
                                 ]
                             }
-
-                        },{
-                            "name":"原神",
-                            "content":"启动！",
-                            "next_text":{
-                                "content":"*这个原神似乎有些奇怪，但这就是原神给我的自信*",
-                                "options":[],
-                                "strike_event":[
+                        },
+                        {
+                            "name": "原神",
+                            "content": "启动！",
+                            "next_text": {
+                                "content": "*这个原神似乎有些奇怪，但这就是原神给我的自信*",
+                                "options": [],
+                                "strike_event": [
+                                    "mg,2",
                                     "sf,3"
                                 ]
                             }
