@@ -302,7 +302,7 @@ setInterval(
         // console.log(bgms[window.currentBGM].name);
         document.getElementById("audio_name").innerHTML = bgms[window.currentBGM].name;
     }
-, 200)
+, 500)
 document.body.addEventListener('click', startPlayBGM);
 document.body.addEventListener('keydown', startPlayBGM);
 
@@ -349,7 +349,15 @@ if (document.getElementById("audio_next")) {
 
 
 
+function bodyScale() {
+    let devicewidth = document.documentElement.clientwidth;
+    let deviceheight = document.documentElement.clientHeight;
+    var scalex = devicewidth / 1200;
+    var scaley = deviceheight / 880;
+    scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
 
+}
+bodyScale();
 
 
 

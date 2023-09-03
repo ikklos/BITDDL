@@ -34,7 +34,7 @@ body {
     
 }
 .tab{
-    width: 100vw;
+    width: 100%;
     height: 2em;
     backdrop-filter: bulr(5px);
     background-color: rgba(229, 243, 255, 0.639);
@@ -151,7 +151,7 @@ a{
     left: 2%;
     bottom: 3%;
     height: 10%;
-    width: 15%;
+    width: 20%;
     background-color: rgb(29, 40, 65);
 
     
@@ -175,19 +175,20 @@ a{
     display: grid;
     grid-template: 
     "n v" 1fr
-    "b v"  1fr
-    "b i"  1fr
-    /1fr 5%
+    "b v"  2fr
+    "b i"  0.5fr
+    /90% 10%
 
 }
 .audio_name{
     grid-area: n;
-    line-height: 4rem;
+    margin: auto;
 }
 .audio_button{
     grid-area: b;
     display: flex;
     justify-content: space-around;
+    margin: auto;
 }
 .audio_button > button{
     background-color: transparent;
@@ -204,4 +205,8 @@ a{
 .audio_volume{
     grid-area: v;
     -webkit-appearance: slider-vertical;   
+}
+.audio_volume_icon{
+    grid-area: i;
+    margin: auto; 
 }
