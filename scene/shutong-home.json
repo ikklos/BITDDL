@@ -134,6 +134,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/portrait/Bed_Side.png",
             "text": [
                 {
                     "pre_list": [
@@ -199,6 +200,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/friend1/face.png",
             "behave": [
                 {
                     "type": "disappear",
@@ -309,6 +311,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
+            "portrait":"../character/portrait/table_temp.png",
             "text": [
                 {
                     "content": "你来到书桌前，想要翻开一本书看看",
