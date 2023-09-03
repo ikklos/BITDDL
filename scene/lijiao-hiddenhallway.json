@@ -1,0 +1,50 @@
+{
+    "down":"../scene/images/lijiao-hiddenhallway-down.png",
+    "up":"../scene/images/lijiao-hiddenhallway-up.png",
+    "banaries": [
+        {
+            "name": "up1",
+            "x": 0,
+            "y": 240,
+            "width": 960,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "down1",
+            "x": 0,
+            "y": 408,
+            "width": 960,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        }
+    ],
+    "npcs": [
+        {
+            "img": "../character/bolzano/bolzano-normal.png",
+            "name": "bolzano",
+            "x": 936,
+            "y": 312,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
+            "img": "../scene/images/clear.png",
+            "name": "out",
+            "x": 936,
+            "y": 264,
+            "width": 24,
+            "height": 120,
+            "collideH": 1.0,
+            "type": "door",
+
+            "nextx": 480,
+            "nexty": 384,
+            "nextmap": "../scene/lijiao-1.json"
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 var dialogResult = -1;
+var minigame_output = {};
 function clearTextArea() {
     document.getElementById("maintextContainer").innerHTML = "";
     document.getElementById("optionsContainer").innerHTML = "";

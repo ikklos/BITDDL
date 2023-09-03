@@ -238,6 +238,14 @@ function play(delta) {//基本所有的事件结算都在这里写
     // }
     //console.log(window.parent.dialogResult);
     //console.log(wait_event);
+    //小游戏返回
+    if (window.minigame_result.finished) {
+        if (typeof (window.minigame_result.strike_event) != 'undefined')
+            window.minigame_result.strike_event.forEach(element => {
+                command(element);
+            });
+        changeGameArea(1);
+    }
     if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
         npc_speak(wait_event.text);
     }
@@ -397,8 +405,10 @@ async function loadmap(url) {
 attribute|attr,name,change,xx     修改属性为xx
 attribute|attr,name,delta,xx      属性增加xx
 package|pkg,add|remove,id,num     增添背包物品
+mini_game|mg,ud                   启动小游戏
 story_finish|sf,id                标记故事完成
 show_avator|sav,url               显示头像图片
+show_text|st,text_obj             显示对话
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -489,6 +499,68 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             console.log('111' + strs[1]);
             window.parent.changeAvator(strs[1]);
             break;
+        case 'mg':
+        case 'mini_game':
+            let numi = Number(strs[1]);
+            if (numi == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
+                break;
+            }
+            if (numi < 0 || numi > 3) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
+                break;
+            }
+            changeGameArea(numi);
+            break;
+        case 'st':
+        case 'show_text':
+            if (wait_event.type == 'npc') {
+                console.log(`command "${str}" cannot be invoked.a dialog is showing!`);
+                break;
+            }
+            try {
+                let obj = JSON.parse(strs[1]);
+                if (CheckPrelist(obj.pre_list)) {
+                    wait_event.type = "npc";
+                    wait_event.text = obj;
+                    wait_event.times = 0;
+                }
+            } catch (e) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an illegal text object!`);
+                console.log(e);
+            }
+            break;
+        case 'mg':
+        case 'mini_game':
+            let numi = Number(strs[1]);
+            if (numi == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not a number!`);
+                break;
+            }
+            if (numi < 0 || numi > 3) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
+                break;
+            }
+            changeGameArea(numi);
+            break;
+        case 'st':
+        case 'show_text':
+            if (wait_event.type == 'npc') {
+                console.log(`command "${str}" cannot be invoked.a dialog is showing!`);
+                break;
+            }
+            try {
+                let obj = JSON.parse(strs[1]);
+                if (CheckPrelist(obj.pre_list)) {
+                    wait_event.type = "npc";
+                    wait_event.text = obj;
+                    wait_event.times = 0;
+                }
+            } catch (e) {
+                console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an illegal text object!`);
+                console.log(e);
+            }
+            break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
     }
@@ -497,6 +569,7 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     let fin = false;
 
     if (typeof (npc.behave) == "undefined") {
+        console.log("什么")
         app.stage.addChild(npc);
         return;
     }
@@ -510,9 +583,12 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
         } else if (Arr[i].type === "disappear") {
             if (CheckPrelist(Arr[i].pre_list)) {
                 fin = false;
+            }else{
+                fin = true;
             }
         }
     }
+    console.log(fin);
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
@@ -670,6 +746,7 @@ function bodyScale() {
     var scalex = devicewidth / 1100;
     var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
+
 }
 bodyScale();
 function hero_face_to(dir) {
@@ -706,6 +783,28 @@ function showPackageBar() {
     }*/
     pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
     window.parent.showPackageBar(pkg, item_list);
+}
+
+//切换主游戏和小程序
+/*
+1:maingame
+2:ut
+*/
+
+function changeGameArea(id) {
+    window.minigame_result = { finished: false };
+    document.getElementById("GameWindow").style.display = "none";
+    document.getElementById("minigame_ut").style.display = "none";
+    switch (id) {
+        case 1:
+            document.getElementById("GameWindow").style.display = "block"
+            break;
+        case 2:
+            document.getElementById("minigame_ut").style.display = "block"
+            break;
+        default:
+
+    }
 }
 
 function uploadSave() {
