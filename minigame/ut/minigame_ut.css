@@ -1,11 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-}
+
 html,body{
     background-color: bisque;
 }
-div{
+#minigame{
     position: absolute;
     margin: auto;
     left: 50%;

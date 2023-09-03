@@ -6,13 +6,18 @@
   <link rel="stylesheet" type="text/css" href="StyleSets/universial.css">
   <script src="Lib/rc.2_pixi.js"></script>
 </head>
+<script>
+  //finished strike_event
+  minigame_result = { finished: false };
+</script>
 
 <body>
-  
+
   <div id="GameWindow">
     <script src="behavejs/gamewindow.js" type="module"></script>
   </div>
-
+  <iframe style="display: none;" class="minigame_ut " scrolling="no" id="minigame_ut"
+    src="./minigame/ut/minigame_ut.html"></iframe>
 </body>
 
 </html>
