@@ -75,13 +75,15 @@ body {
     text-decoration: none;
 }
 .center_guide{
-    visibility: hidden;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
     height: 2em;
     font-size: 1em;
     z-index: 100;
+}
+.visible_gameframe{
+    visibility: hidden;
 }
 #logged{
     margin: 0;
@@ -149,6 +151,7 @@ a{
     left: 2%;
     bottom: 3%;
     height: 10%;
+    width: 15%;
     background-color: rgb(29, 40, 65);
 
     
