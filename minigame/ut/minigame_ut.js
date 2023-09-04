@@ -238,7 +238,7 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
                         finished: true,
                         score: Math.floor(time_counter / 10),
                         strike_event: [
-                            `st,{"content": "*你获得了${Math.floor(time_counter / 10)}分*"}`
+                            `st,{"content": "*你的高考成绩中有${Math.floor(time_counter / 10)}分是原神成绩！*"}`
                         ]
                     };
                     location.reload();
@@ -305,7 +305,7 @@ function CrossTheBoader(r) {
     return over;
 }
 setTimeout(() => {
-    console.log(window.parent.zoom_formini,"hikudaiuhodahiu");
+    console.log(window.parent.zoom_formini, "hikudaiuhodahiu");
     document.body.style.zoom = window.parent.zoom_formini * 0.9;
 }, 2000);
 // //切换站立行为

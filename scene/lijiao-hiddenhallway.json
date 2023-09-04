@@ -1,6 +1,6 @@
 {
-    "down":"../scene/images/lijiao-hiddenhallway-down.png",
-    "up":"../scene/images/lijiao-hiddenhallway-up.png",
+    "down": "../scene/images/lijiao-hiddenhallway-down.png",
+    "up": "../scene/images/lijiao-hiddenhallway-up.png",
     "banaries": [
         {
             "name": "up1",
@@ -376,7 +376,7 @@
         {
             "img": "../character/bolzano/bolzano-normal.png",
             "name": "bolzano",
-            "x": 3816,
+            "x": 50,
             "y": 312,
             "width": 24,
             "height": 24,
@@ -392,6 +392,17 @@
                             "list": [
                                 11,
                                 30
+                            ]
+                        },
+                        {
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
+                                {
+                                    "attrid": "bossfight_flag",
+                                    "type": "less than",
+                                    "value": 3
+                                }
                             ]
                         }
                     ]
@@ -484,18 +495,18 @@
                                                                                                                                                                     "content": "也不尽然，我希望你继续完成你交给自己的使命，这乱象这幻境不能成为你一生的囚笼",
                                                                                                                                                                     "options": [
                                                                                                                                                                         {
-                                                                                                                                                                            "name":"*你选择沉默*",
-                                                                                                                                                                            "content":"……",
-                                                                                                                                                                            "next_text":{
-                                                                                                                                                                                "content":"我困于此地，因为我是已死之人，而你还有未竟之事",
-                                                                                                                                                                                "options":[
+                                                                                                                                                                            "name": "*你选择沉默*",
+                                                                                                                                                                            "content": "……",
+                                                                                                                                                                            "next_text": {
+                                                                                                                                                                                "content": "我困于此地，因为我是已死之人，而你还有未竟之事",
+                                                                                                                                                                                "options": [
                                                                                                                                                                                     {
-                                                                                                                                                                                        "name":"*你看向他*",
-                                                                                                                                                                                        "content":"我们还能再见面吗",
-                                                                                                                                                                                        "next_text":{
-                                                                                                                                                                                            "content":"或许，就在今晚你做梦的时候我们就会再见面，但希望你不要再吃安眠药了*你转身离去*",
-                                                                                                                                                                                            "options":[],
-                                                                                                                                                                                            "strike_event":[
+                                                                                                                                                                                        "name": "*你看向他*",
+                                                                                                                                                                                        "content": "我们还能再见面吗",
+                                                                                                                                                                                        "next_text": {
+                                                                                                                                                                                            "content": "或许，就在今晚你做梦的时候我们就会再见面，但希望你不要再吃安眠药了*你转身离去*",
+                                                                                                                                                                                            "options": [],
+                                                                                                                                                                                            "strike_event": [
                                                                                                                                                                                                 "sf,31"
                                                                                                                                                                                             ]
                                                                                                                                                                                         }
@@ -552,7 +563,6 @@
             "height": 120,
             "collideH": 1.0,
             "type": "door",
-
             "nextx": 480,
             "nexty": 384,
             "nextmap": "../scene/lijiao-1.json"
