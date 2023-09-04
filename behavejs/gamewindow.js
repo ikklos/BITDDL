@@ -51,7 +51,8 @@ var currentSave = {//玩家状态
     time: 0,
     nekox: 336,
     nekoy: 312,
-    bossfight_flag: 0
+    bossfight_flag: 0,
+    quests: {}
 };
 var boss_sprite = {};
 
@@ -224,6 +225,8 @@ function play(delta) {//基本所有的事件结算都在这里写
         loaded = false;
         loadmap(currentSave.map);
     }
+
+    //boss fight part
     if (wait_event.type == "null") {
         if (currentSave.bossfight_flag == 1) {
             boss_sprite.x -= delta / 3;
@@ -491,6 +494,9 @@ mini_game|mg,ud                   启动小游戏
 story_finish|sf,id                标记故事完成
 show_avator|sav,url               显示头像图片
 show_text|st,text_obj             显示对话
+questchain_create|qcc,uid,name    添加新事件集
+questchain_rename|qcr,uid,name    事件集重命名
+quest_comment|qc,uid,type,text    添加日志项
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -616,6 +622,18 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${combstr}" is not an illegal text object!`);
                 console.log(e);
             }
+            break;
+        case 'qcc':
+        case 'questchain_create':
+            createNewQuestChain(strs[1], strs[2]);
+            break;
+        case 'qcr':
+        case 'questchain_rename':
+            changeQuestChainName(strs[1], strs[2]);
+            break;
+        case 'qc':
+        case 'quest_comment':
+            addQuestComment(strs[1], strs[2], strs[3]);
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -877,4 +895,47 @@ function checkSaveUpdata() {
     window.top.saveChanged = false;
     console.log(window.top.currentSave);
     return true;
+}
+
+//关于日志系统，需要用createNewQuestChain创建新事件集，用addQuestComment添加新记录，changeQuestChainName修改事件集名字
+/*
+currentSave{
+    quests:{
+        xxxx(quest-id):{
+            name:"buy book",
+            list:[
+                {"type":"title","text":"At Shop"},
+                {"type":"word","text":"A student want me to buy book for her."}
+            ]
+        },...
+    }
+}
+*/
+function createNewQuestChain(uid, qstname) {
+    if (typeof (currentSave.quests[uid]) != 'undefined') return;
+    Object.defineProperty(currentSave.quests, uid, {
+        value: { name: qstname, list: [] },
+        enumerable: true
+    });
+}
+function addQuestComment(uid, cmttype, comment) {
+    if (typeof (currentSave.quests[uid]) == 'undefined') {
+        console.log(`cannot add Quest to "${uid}" because it's undefined!`);
+        return;
+    }
+    if (cmttype != 'title' && cmttype != 'word') {
+        console.log(`cannot add "${type}" to "${uid}" because it's not an option!`);
+        return;
+    }
+    currentSave.quests[uid].list.push({
+        type: cmttype,
+        text: comment
+    });
+}
+function changeQuestChainName(uid, qstname) {
+    if (typeof (currentSave.quests[uid]) == 'undefined') {
+        console.log(`cannot change "${uid}"'s name because it's undefined!`);
+        return;
+    }
+    currentSave.quests[uid].name = qstname;
 }

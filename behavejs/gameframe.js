@@ -111,6 +111,30 @@ function showPackageBar(package, itemlist) {
     else
         document.getElementById('packagebar').style.visibility = 'visible'
 }
+//about quest bar
+function triggerQuestBar(quests) {
+    console.log(quests);
+    let qstlist = document.getElementById('diarybar');
+    qstlist.innerHTML = '';
+    for (let item in quests) {
+        let tmp = document.createElement('div');
+        tmp.innerHTML = itemlist[item.id].name + ':' + item.num;
+        tmp.addEventListener("click", function () {
+
+            document.getElementById('item_img').src = '../items/img/backpack.png';
+            document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
+
+            // 更改display属性 和边框长度
+            item_styleChange(1);
+        });
+        listelem.appendChild(tmp);
+    }
+    if (document.getElementById('packagebar').style.visibility == 'visible')
+        document.getElementById('packagebar').style.visibility = 'hidden';
+    else
+        document.getElementById('packagebar').style.visibility = 'visible'
+}
+
 function item_styleChange(num) {
     // 更改display属性 和边框长度
     if (num == 1) {
