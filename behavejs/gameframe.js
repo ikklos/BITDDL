@@ -117,22 +117,31 @@ function triggerQuestBar(quests) {
     let qstlist = document.getElementById('diarybar');
     qstlist.innerHTML = '';
     for (let item in quests) {
-        let tmp = document.createElement('div');
-        tmp.innerHTML = itemlist[item.id].name + ':' + item.num;
-        tmp.addEventListener("click", function () {
-
-            document.getElementById('item_img').src = '../items/img/backpack.png';
-            document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
-
-            // 更改display属性 和边框长度
-            item_styleChange(1);
-        });
-        listelem.appendChild(tmp);
+        item = quests[item];
+        console.log(item);
+        let tmpdiv = document.createElement('div');
+        let title = document.createElement('h1');
+        title.innerHTML = item.name;
+        tmpdiv.appendChild(title);
+        for (let cmt in item.list) {
+            cmt = item.list[cmt];
+            if (cmt.type == 'title') {
+                let tmp = document.createElement('h2');
+                tmp.innerHTML = cmt.text;
+                tmpdiv.appendChild(tmp);
+            }
+            else if (cmt.type == 'word') {
+                let tmp = document.createElement('p');
+                tmp.innerHTML = cmt.text;
+                tmpdiv.appendChild(tmp);
+            }
+        }
+        qstlist.appendChild(tmpdiv);
     }
-    if (document.getElementById('packagebar').style.visibility == 'visible')
-        document.getElementById('packagebar').style.visibility = 'hidden';
+    if (document.getElementById('diarybar').style.visibility == 'visible')
+        document.getElementById('diarybar').style.visibility = 'hidden';
     else
-        document.getElementById('packagebar').style.visibility = 'visible'
+        document.getElementById('diarybar').style.visibility = 'visible'
 }
 
 function item_styleChange(num) {

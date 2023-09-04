@@ -100,7 +100,8 @@ async function AfterLoad() {
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
-        keyp = keyboard("p", "e");
+        keyp = keyboard("p", "e"),
+        keyl = keyboard("l", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -184,6 +185,12 @@ async function AfterLoad() {
     }
     keyp.press = () => {
         showPackageBar();
+    }
+    keyl.press = () => {
+        command('qcc,testqst,Test');
+        command('qc,testqst,title,firstTitle');
+        command('qc,testqst,word,firstWord');
+        window.parent.triggerQuestBar(currentSave.quests);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -912,7 +919,10 @@ currentSave{
 }
 */
 function createNewQuestChain(uid, qstname) {
-    if (typeof (currentSave.quests[uid]) != 'undefined') return;
+    if (typeof (currentSave.quests[uid]) != 'undefined') {
+        console.log(`cannot create Quest "${uid}" because it's already defined!`);
+        return;
+    }
     Object.defineProperty(currentSave.quests, uid, {
         value: { name: qstname, list: [] },
         enumerable: true
