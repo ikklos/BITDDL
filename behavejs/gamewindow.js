@@ -50,10 +50,10 @@ var currentSave = {//玩家状态
     map: "../scene/shutong-home.json",
     time: 0,
     nekox: 336,
-    nekoy: 312
+    nekoy: 312,
+    bossfight_flag: 0,
+    quests: {}
 };
-
-let bossfight_flag = 0;
 var boss_sprite = {};
 
 let nowmap = {};
@@ -91,7 +91,6 @@ async function AfterLoad() {
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
 
-    //boss test
     loadmap("../scene/shutong-home.json");
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +100,8 @@ async function AfterLoad() {
         right = keyboard("ArrowRight", "d"),
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
-        keyp = keyboard("p", "e");
+        keyp = keyboard("p", "e"),
+        keyl = keyboard("l", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -186,6 +186,12 @@ async function AfterLoad() {
     keyp.press = () => {
         showPackageBar();
     }
+    keyl.press = () => {
+        command('qcc,testqst,Test');
+        command('qc,testqst,title,firstTitle');
+        command('qc,testqst,word,firstWord');
+        window.parent.triggerQuestBar(currentSave.quests);
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -226,20 +232,66 @@ function play(delta) {//基本所有的事件结算都在这里写
         loaded = false;
         loadmap(currentSave.map);
     }
-    if (bossfight_flag > 0 && wait_event.type == "null") {
-        console.log(boss_sprite.x)
-        boss_sprite.x -= delta;
-        if (neko.x < 250) {
-            bossfight_flag++, neko.x += 400, boss_sprite.x += 400;
-        }
-        if (bossfight_flag === 5) {
-            app.stage.removeChild(boss_sprite);
-            app.stage.removeChild(neko);
-            loadhero('neko_down', 336, 312);
-            console.log(neko);
-            bossfight_flag = 0;
-            loadmap("../scene/shutong-home.json");
-            command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
+
+    //boss fight part
+    if (wait_event.type == "null") {
+        if (currentSave.bossfight_flag == 1) {
+            boss_sprite.x -= delta / 3;
+            if (neko.x > boss_sprite.x) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 336, 312);
+                console.log(neko);
+                currentSave.bossfight_flag = 0;
+                loadmap("../scene/shutong-home.json");
+                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
+            } else if (neko.x < 20) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 450, 400);
+                currentSave.bossfight_flag = 2;
+                command("sf,30");
+                loadmap("../scene/lijiao-1.json");
+                command('st,{"content": "*你成功逃了出来但是..*<br>墙壁：隆隆隆","options": [{"name": "继续","content": "为什么墙壁里面好像有人的声音呀？","next_text": {"content": "回去看看吧！"}}]}');
+            }
+        } else if (currentSave.bossfight_flag == 3) {
+            boss_sprite.x -= delta;
+            if (neko.x > boss_sprite.x) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 336, 312);
+                console.log(neko);
+                currentSave.bossfight_flag = 2;
+                loadmap("../scene/shutong-home.json");
+                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
+            } else if (neko.x < 20) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 450, 400);
+                console.log(neko);
+                currentSave.bossfight_flag = 4;
+                loadmap("../scene/lijiao-1.json");
+                command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
+            }
+        } else if (currentSave.bossfight_flag == 5) {
+            boss_sprite.x -= delta;
+            if (neko.x > boss_sprite.x) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 336, 312);
+                console.log(neko);
+                currentSave.bossfight_flag = 4;
+                loadmap("../scene/shutong-home.json");
+                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被肉山创晕了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
+            } else if (neko.x < 20) {
+                app.stage.removeChild(boss_sprite);
+                app.stage.removeChild(neko);
+                loadhero('neko_down', 450, 400);
+                console.log(neko);
+                currentSave.bossfight_flag = 4;
+                loadmap("../scene/lijiao-1.json");
+                command('st,{"content": "*我迟早把这段代码删了！*"}');
+            }
         }
     }
     //console.log("1");
@@ -278,9 +330,8 @@ function play(delta) {//基本所有的事件结算都在这里写
         loadhero('neko_down', wait_event.door.nextx, wait_event.door.nexty);
         console.log(neko);
         loaded = false;
-        loadmap(wait_event.nextmap);
-
         wait_event.type = "null";
+        loadmap(wait_event.nextmap);
         wait_event.nextmap = null;
     }
     if (neko.vx !== vx || neko.vy !== vy) {
@@ -443,12 +494,20 @@ async function loadmap(url) {
     currentSave.map = url;
     uploadSave();
     if (url == '../scene/lijiao-hiddenhallway.json') {
-        bossfight_flag = 1;
         boss_sprite = PIXI.Sprite.from('../character/boss_fight/boss.jpg');
-        boss_sprite.x = 936, boss_sprite.y = 150;
+        //boss_sprite.x = 936 * 3, boss_sprite.y = 150;
+        boss_sprite.x = 300, boss_sprite.y = 150;
         app.stage.addChild(boss_sprite);
-        command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
-
+        if (currentSave.bossfight_flag == 0) {
+            currentSave.bossfight_flag = 1;
+            command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
+        } else if (currentSave.bossfight_flag == 2) {
+            currentSave.bossfight_flag = 3;
+            command('st,{"content": "你又来啦，这次跑到头记得和那个家伙对话哦~","options": [{"name": "继续","content": "这次有什么区别吗？","next_text": {"content": "组长说你会跑快点，不过我没写~>w<"}}]}');
+        } else {
+            currentSave.bossfight_flag = 5;
+            command('st,{"content": "喂喂，理论上boss追逐战只用打两次的！","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你就这么喜欢打这个关卡吗~"}}]}');
+        }
     }
 }
 
@@ -460,6 +519,9 @@ mini_game|mg,ud                   启动小游戏
 story_finish|sf,id                标记故事完成
 show_avator|sav,url               显示头像图片
 show_text|st,text_obj             显示对话
+questchain_create|qcc,uid,name    添加新事件集
+questchain_rename|qcr,uid,name    事件集重命名
+quest_comment|qc,uid,type,text    添加日志项
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -568,16 +630,15 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'st':
         case 'show_text':
-            if (wait_event.type == 'npc') {
-                console.log(`command "${str}" cannot be invoked.a dialog is showing!`);
-                break;
-            }
+            if (wait_event.type == 'npc')
+                console.log(`command "${str}" will be invoked replace an other dialog.`);
             let combstr = strs[1];
             try {
                 for (let i = 2; i < strs.length; i++)
                     combstr += "," + strs[i];
                 let obj = JSON.parse(combstr);
                 if (CheckPrelist(obj.pre_list)) {
+                    console.log(obj);
                     wait_event.type = "npc";
                     wait_event.text = obj;
                     wait_event.times = 0;
@@ -586,6 +647,18 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${combstr}" is not an illegal text object!`);
                 console.log(e);
             }
+            break;
+        case 'qcc':
+        case 'questchain_create':
+            createNewQuestChain(strs[1], strs[2]);
+            break;
+        case 'qcr':
+        case 'questchain_rename':
+            changeQuestChainName(strs[1], strs[2]);
+            break;
+        case 'qc':
+        case 'quest_comment':
+            addQuestComment(strs[1], strs[2], strs[3]);
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -622,6 +695,7 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
+
         if (pre[i].type === "event") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -846,4 +920,50 @@ function checkSaveUpdata() {
     window.top.saveChanged = false;
     console.log(window.top.currentSave);
     return true;
+}
+
+//关于日志系统，需要用createNewQuestChain创建新事件集，用addQuestComment添加新记录，changeQuestChainName修改事件集名字
+/*
+currentSave{
+    quests:{
+        xxxx(quest-id):{
+            name:"buy book",
+            list:[
+                {"type":"title","text":"At Shop"},
+                {"type":"word","text":"A student want me to buy book for her."}
+            ]
+        },...
+    }
+}
+*/
+function createNewQuestChain(uid, qstname) {
+    if (typeof (currentSave.quests[uid]) != 'undefined') {
+        console.log(`cannot create Quest "${uid}" because it's already defined!`);
+        return;
+    }
+    Object.defineProperty(currentSave.quests, uid, {
+        value: { name: qstname, list: [] },
+        enumerable: true
+    });
+}
+function addQuestComment(uid, cmttype, comment) {
+    if (typeof (currentSave.quests[uid]) == 'undefined') {
+        console.log(`cannot add Quest to "${uid}" because it's undefined!`);
+        return;
+    }
+    if (cmttype != 'title' && cmttype != 'word') {
+        console.log(`cannot add "${type}" to "${uid}" because it's not an option!`);
+        return;
+    }
+    currentSave.quests[uid].list.push({
+        type: cmttype,
+        text: comment
+    });
+}
+function changeQuestChainName(uid, qstname) {
+    if (typeof (currentSave.quests[uid]) == 'undefined') {
+        console.log(`cannot change "${uid}"'s name because it's undefined!`);
+        return;
+    }
+    currentSave.quests[uid].name = qstname;
 }

@@ -1,4 +1,6 @@
 {
+    "x":240,
+    "y":144,
     "down":"../scene/images/lijiao-1-classroom1-down.png",
     "up":"../scene/images/lijiao-1-classroom1-up.png",
     "banaries": [

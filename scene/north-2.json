@@ -1,4 +1,6 @@
 {
+    "x":0,
+    "y":0,
     "down":"../scene/images/north-2-down.png",
     "up":"../scene/images/north-2-up.png",
     "banaries": [
@@ -49,8 +51,8 @@
         },
         {
             "name": "6",
-            "x": 0,
-            "y": 72,
+            "x": 240,
+            "y": 432,
             "width": 168,
             "height": 72,
             "type": "banary",

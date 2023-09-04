@@ -1,4 +1,6 @@
 {
+    "x":240,
+    "y":144,
     "down": "../scene/images/shop-down.png",
     "up": "../scene/images/shop-up.png",
     "banaries": [

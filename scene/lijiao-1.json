@@ -1,6 +1,8 @@
 {
-    "down":"../scene/images/lijiao-1-down.png",
-    "up":"../scene/images/lijiao-1-up.png",
+    "x": 120,
+    "y": 72,
+    "down": "../scene/images/lijiao-1-down.png",
+    "up": "../scene/images/lijiao-1-up.png",
     "banaries": [
         {
             "name": "left1",
@@ -337,7 +339,6 @@
             "height": 72,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 216,
             "nextmap": "../scene/south-1.json"
@@ -351,7 +352,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 840,
             "nexty": 312,
             "nextmap": "../scene/south-1.json"
@@ -365,8 +365,7 @@
             "height": 99,
             "collideH": 1.0,
             "type": "door",
-            
-            "nextx": 0,
+            "nextx": 100,
             "nexty": 312,
             "nextmap": "../scene/lijiao-hiddenhallway.json"
         },
@@ -379,7 +378,6 @@
             "height": 72,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 384,
             "nexty": 384,
             "nextmap": "../scene/lijiao-2.json"
@@ -393,7 +391,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 360,
             "nextmap": "../scene/lijiao-1-classroom1.json"
@@ -407,7 +404,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 240,
             "nextmap": "../scene/lijiao-1-classroom1.json"
@@ -421,7 +417,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 360,
             "nextmap": "../scene/lijiao-1-classroom2.json"
@@ -435,7 +430,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 696,
             "nexty": 240,
             "nextmap": "../scene/lijiao-1-classroom2.json"
