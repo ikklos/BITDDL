@@ -169,6 +169,7 @@ async function AfterLoad() {
                             if (CheckPrelist(npc.text[i].pre_list)) {
                                 wait_event.type = "npc";
                                 wait_event.text = npc.text[i];
+                                window.parent.changeAvator(npc.portrait);
                                 wait_event.times = 0;
                             }
                         }
@@ -692,6 +693,7 @@ function npc_speak(text) {
             command(text.strike_event[i]);
     if (wait_event.times == 1) {
         window.parent.showDialog(wait_event.text);
+
         wait_event.times = 1;
         return;
     }
