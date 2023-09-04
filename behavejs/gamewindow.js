@@ -369,15 +369,33 @@ function play(delta) {//基本所有的事件结算都在这里写
     if (CrossTheBoader(neko) || HitMap(neko)) {
         neko.y -= neko.vy;
     }
-    console.log(neko.x,neko.y);
-    if (neko.x + appwidth * 0.25 < nowmap.down.width &&neko.x - appwidth * 0.25 > 0) {
-        app.stage.pivot.x = neko.x - appwidth * 0.25;
-        
+    console.log(neko.x, neko.y);
+    if (typeof (nowmap.down) !== "undefined" && typeof (nowmap.up) !== "undefined") {
+        if (neko.x + appwidth * 0.25 < nowmap.down.x + nowmap.down.width && neko.x - appwidth * 0.25 > 0) {
+            app.stage.pivot.x = neko.x - appwidth * 0.25;
+
+        }
+        if (neko.y + appheight * 0.25 < nowmap.down.y + nowmap.down.height && neko.y - appheight * 0.25 > 0) {
+            app.stage.pivot.y = neko.y - appheight * 0.25;
+        }
+        if (nowmap.down.width <= appwidth*0.5) {
+            app.stage.pivot.x = appwidth * 0.25;
+        } else {
+            if (neko.x - appwidth * 0.25 < nowmap.down.x) app.stage.pivot.x = nowmap.down.x;
+            if (neko.x + appwidth * 0.25 > nowmap.down.width + nowmap.down.x) app.stage.pivot.x = nowmap.down.x + nowmap.down.width - appwidth*0.5;
+        }
+        if (nowmap.down.height <= appheight*0.5) {
+            console.log("less than 1/2")
+            app.stage.pivot.y = appheight * 0.25;
+        } else {
+            if (neko.y - appheight * 0.25 < nowmap.down.y) app.stage.pivot.y = nowmap.down.y;
+            if (neko.y + appheight * 0.25 > nowmap.down.height + nowmap.down.y) app.stage.pivot.y = nowmap.down.y + nowmap.down.height - appheight*0.5;
+        }
+
+
     }
-    if(neko.y + appheight * 0.25 < nowmap.down.height && neko.y - appheight * 0.25 > 0){
-        app.stage.pivot.y = neko.y - appheight * 0.25;
-    }
-    
+
+
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
     currentSave.nekox = neko.x, currentSave.nekoy = neko.y;
@@ -432,11 +450,15 @@ async function loadmap(url) {
             console.log(neko.y);
             BanariesPool = result.banaries;
             nowmap.down = PIXI.Sprite.from(result.down);
+            nowmap.down.x = result.down.x = result.x;
+            nowmap.down.y = result.down.y = result.y;
             nowmap.down.name = "down";
             nowmap.up = PIXI.Sprite.from(result.up);
+            nowmap.up.x = result.up.x = result.x;
+            nowmap.up.y = result.up.y = result.y;
             nowmap.up.name = "up";
-            app.stage.addChild(result.down);
-            app.stage.addChild(result.up);
+            app.stage.addChild(nowmap.down);
+            app.stage.addChild(nowmap.up);
             console.log(result.npcs);
             for (let i = 0; i < result.npcs.length; i++) {
                 console.log("loading npc...");
@@ -479,17 +501,9 @@ async function loadmap(url) {
             npc_pool = temp_npc_pool;
             app.stage.pivot.x = neko.x - appwidth * 0.25;
             app.stage.pivot.y = neko.y - appheight * 0.25;
-            console.log("什么",appwidth);
-            if(neko.x - appwidth * 0.25 < 0)app.stage.pivot.x = 0;
-            if(neko.x + appwidth * 0.25 > result.down.width)app.stage.pivot.x = result.down.width;
-            if(neko.y - appheight * 0.25 < 0)app.stage.pivot.y = 0;
-            if(neko.y + appheight * 0.25 > result.down.height)app.stage.pivot.y = result.down.height;
-            if(result.down.width < appwidth){
-                app.stage.pivot.x = appwidth * 0.25;
-            }
-            if(result.down.height < appheight){
-                app.stage.pivot.y = appheight * 0.25;
-            }
+            console.log("什么", appwidth);
+
+
         });
     currentSave.map = url;
     uploadSave();
