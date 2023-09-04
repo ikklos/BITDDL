@@ -231,7 +231,8 @@ function play(delta) {//基本所有的事件结算都在这里写
         if (neko.x < 250) {
             bossfight_flag++, neko.x += 400, boss_sprite.x += 400;
         }
-        if (bossfight_flag == 5) {
+        if (bossfight_flag === 5) {
+            app.stage.removeChild(boss_sprite);
             app.stage.removeChild(neko);
             loadhero('neko_down', 336, 312);
             console.log(neko);
@@ -316,9 +317,12 @@ function play(delta) {//基本所有的事件结算都在这里写
     if (CrossTheBoader(neko) || HitMap(neko)) {
         neko.y -= neko.vy;
     }
-    //console.log(neko.x,neko.y);
-    app.stage.pivot.x = neko.x - appwidth * 0.25;
-    app.stage.pivot.y = neko.y - appheight * 0.25;
+    console.log(neko.x,neko.y);
+    if ((neko.x + appwidth * 0.25 < appwidth || neko.y + appheight*0.25 < appheight) && (neko.x - appwidth * 0.25 > 0 || neko.y - appheight*0.25 > 0)) {
+        app.stage.pivot.x = neko.x - appwidth * 0.25;
+        app.stage.pivot.y = neko.y - appheight * 0.25;
+    }
+
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
     currentSave.nekox = neko.x, currentSave.nekoy = neko.y;
@@ -418,7 +422,8 @@ async function loadmap(url) {
             console.log(BanariesPool);
             loaded = true;
             npc_pool = temp_npc_pool;
-
+            app.stage.pivot.x = neko.x - appwidth * 0.25;
+            app.stage.pivot.y = neko.y - appheight * 0.25;
         });
     currentSave.map = url;
     uploadSave();
@@ -602,7 +607,6 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
     console.log(pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
-
         if (pre[i].type === "event") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -753,7 +757,7 @@ function bodyScale() {
     var scaley = deviceheight / 660;
     scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
     scalex <= scaley ? window.zoom_formini = scalex : window.zoom_formini = scaley;
-    console.log(window.zoom_formini,"window.zoom_formini");
+    console.log(window.zoom_formini, "window.zoom_formini");
 }
 bodyScale();
 function hero_face_to(dir) {
