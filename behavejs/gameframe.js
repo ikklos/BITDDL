@@ -115,7 +115,7 @@ function item_styleChange(num) {
     // 更改display属性 和边框长度
     if (num == 1) {
 
-
+        // document.getElementById("packagebar").style.transform = "translateX(-100%)"
         document.getElementById("packagebar").style.width = "450px"
         document.getElementsByClassName("item_button")[0].style.display = "none"
         document.getElementsByClassName("item_button")[1].style.display = "block"
@@ -126,7 +126,7 @@ function item_styleChange(num) {
         }, 500);
     }
     else {
-
+        // document.getElementById("packagebar").style.transform = "translateX(-230%)"
         document.getElementById('item_img').style.display = "none";
         document.getElementById('item_describe').style.display = "none";
         document.getElementById("packagebar").style.width = "195px"

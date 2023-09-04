@@ -11,16 +11,19 @@
 
 <body>
     <!-- 背包 -->
-    <div id="packagebar" class="packagebar border_s">
-        <a class="item_button" onclick="item_styleChange(1);">展<br>开</a>
-        <a class="item_button" onclick="item_styleChange(0);">收<br>起</a>
-        <h1> 背包 </h1>
-        <div id="packagelist">
-
+    <div class="packagebarContainer">
+        <div id="packagebar" class="packagebar border_s">
+            <a class="item_button" onclick="item_styleChange(1);">展<br>开</a>
+            <a class="item_button" onclick="item_styleChange(0);">收<br>起</a>
+            <h1> 背包 </h1>
+            <div id="packagelist">
+    
+            </div>
+            <img src="./items/img/backpack.png" id="item_img">
+            <div id="item_describe"></div>
         </div>
-        <img src="./items/img/backpack.png" id="item_img">
-        <div id="item_describe"></div>
     </div>
+    
 
     <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <div class="toolbar" id="toolbar">
@@ -47,8 +50,8 @@
         let deviceheight = document.documentElement.clientHeight;
         var scalex = devicewidth / 1100;
         var scaley = deviceheight / 660;
-        scalex <= scaley ? document.getElementsByClassName("toolbar")[0].style.zoom = scalex : document.getElementsByClassName("toolbar")[0].style.zoom = scaley;
-        scalex <= scaley ? document.getElementsByClassName("packagebar")[0].style.zoom = scalex : document.getElementsByClassName("packagebar")[0].style.zoom = scaley;
+        scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
+        console.log(document.body.style.zoom,"framezoom");
     }
     bodyScale();
 </script>
