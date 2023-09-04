@@ -33,20 +33,27 @@ body {
     }
 }
 
+.packagebarContainer{
+    position: absolute;
+    width: 960px;
+    height: 27%;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:transparent;
 
+    z-index: 99;
+}
 
 .packagebar {
     width: 195px;
     min-width: 150px;
     max-width: 450px;
-    height: 27%;
+    height: 100%;
+    margin-left: 20px;
     top: 8%;
-    left: 11%;
-    position: absolute;
+    position: relative;
     justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 0;
     padding: 0;
     background-color: rgba(45, 45, 45, 0.75);
 
@@ -57,7 +64,7 @@ body {
     "l d i b" 6fr
     /4fr 5fr 2fr 0.7fr
     ;
-    transition: all .5s ease;
+    transition:  width 1s ease;
 
     visibility: hidden;
 }
@@ -160,7 +167,7 @@ body {
 
 .toolbar {
 
-    width: 930px;
+    width: 860px;
     bottom: 7%;
     left: 50%;
     transform: translateX(-50%);
