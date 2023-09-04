@@ -1,4 +1,6 @@
 {
+    "x":240,
+    "y":168,
     "down":"../scene/images/shutong-1-down.png",
     "up":"../scene/images/shutong-1-up.png",
     "banaries": [
