@@ -20,7 +20,7 @@ function showDialog(text) {
     maintextContainer.innerHTML = "";
     optionsContainer.innerHTML = "";
 
-    if (text.content.length < 35) {
+    if (text.content.length < 30) {
         // console.log("<<<");
 
         let maintextContainer_line1 = document.createElement("div");
@@ -44,8 +44,8 @@ function showDialog(text) {
         let maintext_line1 = document.createElement("div");
         let maintext_line2 = document.createElement("div");
 
-        maintext_line1.innerHTML = text.content.substr(0, 33);
-        maintext_line2.innerHTML = text.content.substr(33, text.content.length - 33);
+        maintext_line1.innerHTML = text.content.substr(0, 30);
+        maintext_line2.innerHTML = text.content.substr(30, text.content.length - 30);
 
         maintextContainer_line1.appendChild(maintext_line1);
         maintextContainer_line2.appendChild(maintext_line2);

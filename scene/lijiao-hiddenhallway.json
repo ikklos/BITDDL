@@ -1,4 +1,6 @@
 {
+    "x": 0,
+    "y": 144,
     "down": "../scene/images/lijiao-hiddenhallway-down.png",
     "up": "../scene/images/lijiao-hiddenhallway-up.png",
     "banaries": [
@@ -557,7 +559,7 @@
         {
             "img": "../scene/images/clear.png",
             "name": "out",
-            "x": 3816,
+            "x": 0,
             "y": 264,
             "width": 24,
             "height": 120,

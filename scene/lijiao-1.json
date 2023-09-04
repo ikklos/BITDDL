@@ -1,4 +1,6 @@
 {
+    "x": 120,
+    "y": 72,
     "down": "../scene/images/lijiao-1-down.png",
     "up": "../scene/images/lijiao-1-up.png",
     "banaries": [

@@ -1,5 +1,7 @@
 
 {
+    "x":120,
+    "y":72,
     "down":"../scene/images/library-1-down.png",
     "up":"../scene/images/library-1-up.png",
     "banaries": [
