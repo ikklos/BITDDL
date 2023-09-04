@@ -318,11 +318,14 @@ function play(delta) {//基本所有的事件结算都在这里写
         neko.y -= neko.vy;
     }
     console.log(neko.x,neko.y);
-    if ((neko.x + appwidth * 0.25 < appwidth || neko.y + appheight*0.25 < appheight) && (neko.x - appwidth * 0.25 > 0 || neko.y - appheight*0.25 > 0)) {
+    if (neko.x + appwidth * 0.25 < nowmap.down.width &&neko.x - appwidth * 0.25 > 0) {
         app.stage.pivot.x = neko.x - appwidth * 0.25;
+        
+    }
+    if(neko.y + appheight * 0.25 < nowmap.down.height && neko.y - appheight * 0.25 > 0){
         app.stage.pivot.y = neko.y - appheight * 0.25;
     }
-
+    
     background.x = app.stage.pivot.x;
     background.y = app.stage.pivot.y;
     currentSave.nekox = neko.x, currentSave.nekoy = neko.y;
@@ -424,6 +427,17 @@ async function loadmap(url) {
             npc_pool = temp_npc_pool;
             app.stage.pivot.x = neko.x - appwidth * 0.25;
             app.stage.pivot.y = neko.y - appheight * 0.25;
+            console.log("什么",appwidth);
+            if(neko.x - appwidth * 0.25 < 0)app.stage.pivot.x = 0;
+            if(neko.x + appwidth * 0.25 > result.down.width)app.stage.pivot.x = result.down.width;
+            if(neko.y - appheight * 0.25 < 0)app.stage.pivot.y = 0;
+            if(neko.y + appheight * 0.25 > result.down.height)app.stage.pivot.y = result.down.height;
+            if(result.down.width < appwidth){
+                app.stage.pivot.x = appwidth * 0.25;
+            }
+            if(result.down.height < appheight){
+                app.stage.pivot.y = appheight * 0.25;
+            }
         });
     currentSave.map = url;
     uploadSave();
