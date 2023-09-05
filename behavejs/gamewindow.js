@@ -313,13 +313,11 @@ function play(delta) {//基本所有的事件结算都在这里写
 
     //endslide part
     if (endslideshowing > -1) {
-        if (typeof (endslidesprite_last.alpha) == 'number') {
-            endslidesprite_last.alpha -= 0.01 * delta;
-            if (endslidesprite_last.alpha < 0.2)
-                app.stage.removeChild(endslidesprite_last);
-        }
         endslidesprite.alpha += 0.01 * delta;
-        if (endslidesprite.alpha > 1) endslidesprite.alpha -= 0.01 * delta;
+        if (endslidesprite.alpha > 1) {
+            endslidesprite.alpha -= 0.01 * delta;
+            app.stage.removeChild(endslidesprite_last);
+        }
         if (endslideshowing > endslidelist[0].time) {
             endslidelist.shift();
             if (endslidelist.length == 0) {
@@ -340,7 +338,7 @@ function play(delta) {//基本所有的事件结算都在这里写
             } else {
                 endslidesprite_last = endslidesprite;
                 endslidesprite = PIXI.Sprite.from('../endgame_slide/' + endslidelist[0].pic_url);
-                endslidesprite.x = 0, endslidesprite.y = 0, endslidesprite.alpha = 0.3;
+                endslidesprite.x = 0, endslidesprite.y = 0, endslidesprite.alpha = 0;
                 endslidesprite.width = 0.5 * appwidth;
                 endslidesprite.height = 0.5 * appheight;
                 endslidesprite.zIndex = Infinity;
