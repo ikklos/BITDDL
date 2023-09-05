@@ -175,11 +175,14 @@ body {
 }
 
 .diarybar > div{
-
+    border-bottom: rgba(207, 223, 237, 0.724);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: left;
     color: white;
     flex: 0 0 auto;
     padding-top: 10px;
-    line-height: 1.15rem;
+    line-height: 1.2rem;
     font-size: 0.9rem;
 
 }
