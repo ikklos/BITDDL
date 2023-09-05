@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>成就界面喵</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="./StyleSets/achieveframe.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="./StyleSets/universial.css"
+        />
+        <link rel="stylesheet" type="text/css" href="StyleSets/swal2_diy.css" />
+    </head>
+
+    <body>
+        <div class="achieve_list"> 
+            <div class="achievement border_s" id="achievement1">
+                <p class="achievetext_hid"  id="achievetext_hid1">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis1">究极不及格爰好者</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">累计达成5次不及格结局</p>
+            </div>
+            <div class="achievement border_s" id="achievement2">
+                <p class="achievetext_hid"  id="achievetext_hid2">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis2">原神, 启动!</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">在原神小游戏中打到500分</p>
+            </div>
+            <div class="achievement border_s" id="achievement3">
+                <p class="achievetext_hid"  id="achievetext_hid3">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis3">wtm杀杀杀</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">Bad end结局前杀掉场景中的所有怪物</p>
+            </div>
+            <div class="achievement border_s" id="achievement4">
+                <p class="achievetext_hid"  id="achievetext_hid4">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis4">原神一直在启动</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">累计玩超过20次原神小游戏</p>
+            </div>
+            <div class="achievement border_s" id="achievement5">
+                <p class="achievetext_hid"  id="achievetext_hid5">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis5">我失去的或许只有时间</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">达成True end结局</p>
+            </div>
+            <div class="achievement border_s" id="achievement6">
+                <p class="achievetext_hid"  id="achievetext_hid6">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis6">纸笔才是我唯一的武器</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">在商店中买3次纸笔</p>
+            </div>
+            <div class="achievement border_s" id="achievement7">
+                <p class="achievetext_hid"  id="achievetext_hid7">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis7">逃跑菜乌</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">在boss战中死亡超过3次</p>
+            </div>
+            <div class="achievement border_s" id="achievement8">
+                <p class="achievetext_hid"  id="achievetext_hid8">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis8">狂笑着的杀人魔</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">达成Bad end结局</p>
+            </div>
+            <div class="achievement border_s" id="achievement9">
+                <p class="achievetext_hid"  id="achievetext_hid9">尚未达成<br></p>
+                <p class="achievetext_vis"  id="achievetext_vis9">我是仁慈的杀人魔？</p>
+                <p class="achievetext_vis_desc"  id="achievetext_vis_desc9">Bad end线最终只杀掉了最后考场中的一个怪物</p>
+            </div>
+            <!-- <div class="achievement" id="achievement10">
+                <p class="achievetext_hid"  id="achievetext_hid10">尚未达成<br></p>
+                <button type="button" id="loadbutton10" class=" load" title="读取存档">读档</button>
+                <button type="button" id="savebutton10" class=" save" title="保存存档">存档</button>
+                <button type="button"  class=" delete" id="delete10" title="删除存档">删档</button>
+            </div>
+            <div class="achievement" id="achievement11">
+                <p class="achievetext_hid"  id="achievetext_hid11">尚未达成<br></p>
+                <button type="button" id="loadbutton11" class=" load" title="读取存档">读档</button>
+                <button type="button" id="savebutton11" class=" save" title="保存存档">存档</button>
+                <button type="button"  class=" delete" id="delete11" title="删除存档">删档</button>
+            </div>
+            <div class="achievement" id="achievement12">
+                <p class="achievetext_hid" id="achievetext_hid12">尚未达成<br></p>
+                <button type="button" id="loadbutton12" class=" load" title="读取存档">读档</button>
+                <button type="button" id="savebutton12" class=" save" title="保存存档">存档</button>
+                <button type="button"  class=" delete" id="delete12" title="删除存档">删档</button>
+            </div> -->
+    
+        </div>
+
+
+
+
+
+
+    </body>
+
+    <script>
+        //auto zoom tool bar
+        function bodyScale() {
+            let devicewidth = document.documentElement.clientwidth;
+            let deviceheight = document.documentElement.clientHeight;
+            var scalex = devicewidth / 1100;
+            var scaley = deviceheight / 660;
+            scalex <= scaley
+                ? (document.body.style.zoom = scalex)
+                : (document.body.style.zoom = scaley);
+            console.log(document.body.style.zoom, "framezoom");
+        }
+        bodyScale();
+    </script>
+</html>
