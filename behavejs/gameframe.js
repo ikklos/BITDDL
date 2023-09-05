@@ -169,9 +169,18 @@ function item_styleChange(num) {
     }
 }
 
+//for slide
+function hideAllComponents() {
+
+    document.getElementById('packagebar').style.opacity = 0;
+    document.getElementById('diarybar').style.visibility = 'hidden';
+    document.getElementById("maingameframe").focus();
+    clearTextArea();
+}
+
 let endPage = 0;
-function showEndPage(){
-    console.log(endPage,"endendend");
+function showEndPage() {
+    console.log(endPage, "endendend");
     if (endPage === 0) {
         document.getElementById("ending").style.display = "block";
     }
@@ -180,11 +189,11 @@ function showEndPage(){
         let endPage = 0;
         return;
     }
-    Array.from(document.getElementsByClassName("trueEnding_text")).forEach((ele,index) => {
-        if(index === endPage){
+    Array.from(document.getElementsByClassName("trueEnding_text")).forEach((ele, index) => {
+        if (index === endPage) {
             ele.style.opacity = 1;
         }
-        else{
+        else {
             ele.style.opacity = 0;
         }
     })
