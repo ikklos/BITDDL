@@ -111,6 +111,15 @@
             "height": 15,
             "type": "banary",
             "collideH": 1
+        },
+        {
+            "name": "doorrr",
+            "x": 456,
+            "y": 408,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
         }
     ],
     "npcs": [
@@ -118,7 +127,7 @@
             "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
-            "y": 408,
+            "y": 384,
             "width": 48,
             "height": 24,
             "collideH": 1.0,
@@ -534,6 +543,9 @@
                                 "content": "*啊？（作者都震惊了，你当真要在最后放弃）恭喜你喜提不及格*",
                                 "strike_event": [
                                     "sf,36",
+                                    "attr,is_noscore_end,change,true",
+                                    "esc,true_end1,1,100,test.jpg",
+                                    "ess",
                                     "pkg,add,3,1"
                                 ]
                             }

@@ -17,20 +17,22 @@
             <a class="item_button" onclick="item_styleChange(0);">收<br>起</a>
             <h1> 背包 </h1>
             <div id="packagelist">
-    
+
             </div>
             <img src="./items/img/backpack.png" id="item_img">
             <div id="item_describe"></div>
         </div>
         <div id="diarybar" class="diarybar border_s">
-            <h1> 日志 </h1>
+
+
+            <!-- <h1> 日志 </h1>
             <div> 这里准备放日志系统1 </div>
             <div> 这里准备放日志系统2 </div>
-            <div> 这里准备放日志系统3 </div>
+            <div> 这里准备放日志系统3 </div> -->
         </div>
     </div>
-    
-    
+
+
     <iframe src="GameWindow.html" scrolling="no" frameborder="0" id="maingameframe"></iframe>
     <div class="toolbar" id="toolbar">
         <img src="./character/noname.jpg" id="character_avator" class="avator">
@@ -47,30 +49,6 @@
             </div>
         </div>
     </div>
-    <a href="#" class="tempendbutton" id="tempendbutton">
-        我真的只是用来临时召唤结局的按钮！
-    </a>
-    <div class="ending" id="ending">
-        
-
-        <div class="trueEnding" id="trueEnding">
-            <div class="trueEnding_text">
-                主角在考试中取得了满分，这标志着他的复苏和突破。他意识到，过去的失败并不代表他一直会失败下去，而是一个机会去成长和改变。他重新找回了自信，并开始重新评估自己的学习态度和目标。
-            </div>
-            <div class="trueEnding_text">
-                在接下来的日子里，主角努力学习，逐渐恢复了对学习的热情。他积极参加课堂讨论，和同学们进行学术交流，甚至主动向老师请教问题。他开始慢慢建立起对同学和老师的信任，并与他们建立了良好的关系。
-            </div>
-            <div class="trueEnding_text">
-                同时，主角也开始重新审视自己的人际关系和内心的困扰。他开始主动寻求帮助，与朋友和家人进行沟通，表达自己的感受和需求。他学会了放下过去的伤痛，接受自己的不完美，并努力提升自己的心理健康。
-            </div>
-            <div class="trueEnding_text">
-                随着时间的推移，主角不再被过去的阴影所束缚。他逐渐恢复了对自己的信心和对世界的信任。他重新找到了人生的目标和意义，追求自己的兴趣和热爱，成为了一个积极向上的人。
-            </div>
-            <img src="./character/noname.jpg" alt="结局图片">
-            
-        <!-- 本结局文字百分之五十来源于ai 等剧情神帮我改 -->
-        </div>
-    </div>
 </body>
 
 <script src="behavejs/gameframe.js"></script>
@@ -83,7 +61,7 @@
         var scalex = devicewidth / 1100;
         var scaley = deviceheight / 660;
         scalex <= scaley ? document.body.style.zoom = scalex : document.body.style.zoom = scaley;
-        console.log(document.body.style.zoom,"framezoom");
+        console.log(document.body.style.zoom, "framezoom");
     }
     bodyScale();
 </script>

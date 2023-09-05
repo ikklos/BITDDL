@@ -194,7 +194,8 @@
                                 "content": "欢迎光临喵，下次再来喵（这个店员是什么情况）",
                                 "options": [],
                                 "strike_event": [
-                                    "sf,26"
+                                    "sf,26",
+                                    "attr,buy_stationary_count,delta,1"
                                 ]
                             }
                         },
@@ -231,7 +232,8 @@
                                 "content": "欢迎光临喵，下次再来喵（这个店员是什么情况）",
                                 "options": [],
                                 "strike_event": [
-                                    "sf,26"
+                                    "sf,26",
+                                    "attr,buy_stationary_count,delta,1"
                                 ]
                             }
                         },
