@@ -380,6 +380,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     if (CrossTheBoader(neko) || HitMap(neko)) {
         neko.y -= neko.vy;
     }
+    // console.log(neko.x, neko.y);
     if (typeof (nowmap.down) !== "undefined" && typeof (nowmap.up) !== "undefined") {
         if (neko.x + appwidth * 0.25 < nowmap.down.x + nowmap.down.width && neko.x - appwidth * 0.25 > 0) {
             app.stage.pivot.x = neko.x - appwidth * 0.25;
@@ -395,6 +396,7 @@ function play(delta) {//基本所有的事件结算都在这里写
             if (neko.x + appwidth * 0.25 > nowmap.down.width + nowmap.down.x) app.stage.pivot.x = nowmap.down.x + nowmap.down.width - appwidth * 0.5;
         }
         if (nowmap.down.height <= appheight * 0.5) {
+            // console.log("less than 1/2")
             app.stage.pivot.y = appheight * 0.25;
         } else {
             if (neko.y - appheight * 0.25 < nowmap.down.y) app.stage.pivot.y = nowmap.down.y;
