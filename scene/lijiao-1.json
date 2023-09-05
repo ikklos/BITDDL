@@ -365,7 +365,7 @@
             "height": 99,
             "collideH": 1.0,
             "type": "door",
-            "nextx": 100,
+            "nextx": 2708,
             "nexty": 312,
             "nextmap": "../scene/lijiao-hiddenhallway.json"
         },

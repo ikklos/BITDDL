@@ -1,0 +1,28 @@
+.achieve_list{
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.433);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+.achieve_list > div{
+    height: 190px;
+    background-color: rgba(255, 255, 255, 0.47);
+    margin: 10px;
+}
+.achieve_list > div > p{
+    text-align: center;
+}
+.achievetext_hid{
+    display: block;
+    font-size: 2.5rem
+}
+.achievetext_vis{
+    display: none;
+    font-size: 2rem
+}
+.achievetext_vis_desc{
+    display: none;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}

@@ -38,6 +38,9 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
         })
+        Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
         window.currentBGM = 0;
     }
     function showGameFrame() {
@@ -51,6 +54,9 @@
             element.style.visibility = 'hidden'
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
         })
         document.body.focus();
@@ -71,6 +77,27 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
         })
+        Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        window.currentBGM = 1;
+    }
+    function showAchieveFrame() {
+        Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
+        Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
+            element.style.visibility = 'visible'
+        })
         window.currentBGM = 1;
     }
     function showAbout() {
@@ -86,13 +113,23 @@
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'visible'
         })
+        Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
+            element.style.visibility = 'hidden'
+        })
         window.currentBGM = 0;
     }
 </script>
+
+
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
-
+    <script>
+        function flash_ach(){
+            var ifr = window.document.getElementById('achieveframe');
+            ifr.contentWindow.flash_achievement();
+        }
+    </script>
     <div class="tab">
         <a class="tab_button_l visible_topmenu_unlog" href="#" id="logbutton">登录</a>
         <a class="tab_button_l visible_topmenu_unlog" href="#" id="regbutton">注册</a>
@@ -104,6 +141,7 @@
             推荐使用 Chrome 进行游玩 最佳分辨率1920×1080
         </p>
         <a class="tab_button_r" href="#" id="tab_about">关于</a>
+        <a class="tab_button_r" href="#" id="tab_achieve">成就</a>
         <a class="tab_button_r" href="#" id="tab_loadsave">存档</a>
         <a class="tab_button_r" href="#" id="tab_game">游戏</a>
         <a class="tab_button_r" href="#" id="tab_home">主页</a>
@@ -130,10 +168,13 @@
         <a class="mainmenu button_s visible_mainmenu" href="#" id="achievementbutton">查看成就</a>
         <a class="mainmenu button_s visible_mainmenu" href="#" id="aboutbutton">关于我们</a>
     </div>
+    
     <iframe src="GameFrame.html" class="game centre visible_gameframe" scrolling="no" frameborder="0"
         id="maingameframe"></iframe>
     <iframe src="SaveFrame.html" id="savelistframe" scrolling="no"
         class="centre save_list_frame border_s visible_saveframe"></iframe>
+    <iframe src="./AchieveFrame.html" id="achieveframe" scrolling="no"
+        class="centre achieveframe border_s visible_achieveframe"></iframe>
     <iframe src="about.html" class="visible_about" id="aboutpage"></iframe>
 </body>
 

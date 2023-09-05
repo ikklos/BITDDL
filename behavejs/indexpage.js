@@ -41,6 +41,21 @@ function checksaves() {
     }
     window.showSaveFrame();
 }
+function checkachieves() {
+    if (userName == null) {
+        Toast.fire({
+            title: "请先登录！",
+            icon: 'info',
+            didClose: (toast) => {
+                passwordCheck_log();
+            }
+        })
+        return;
+    }
+    window.showAchieveFrame();
+}
+
+
 let tmp_regusr = "";
 // 用于注册后自动填入登录信息
 function passwordCheck_log() {
@@ -384,6 +399,14 @@ if (document.getElementById("loadsavebutton")) {
 if (document.getElementById("tab_loadsave")) {
     document.getElementById("tab_loadsave").onclick = checksaves;
 }
+if (document.getElementById("achievementbutton")) {
+    document.getElementById("achievementbutton").onclick = checkachieves;
+}
+if (document.getElementById("tab_achieve")) {
+    document.getElementById("tab_achieve").onclick = checkachieves;
+}
+
+
 if (document.getElementById("logbutton")) {
     document.getElementById("logbutton").onclick = passwordCheck_log;
 }
@@ -399,5 +422,4 @@ if (document.getElementById("tab_about")) {
 if (document.getElementById("tab_home")) {
     document.getElementById("tab_home").onclick = window.showMainMenu;
 }
-
 
