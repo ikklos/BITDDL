@@ -186,10 +186,12 @@ async function AfterLoad() {
     keyp.press = () => {
         showPackageBar();
     }
-    keyl.press = () => {
+    /*
         command('qcc,testqst,Test');
         command('qc,testqst,title,firstTitle');
         command('qc,testqst,word,firstWord');
+    */
+    keyl.press = () => {
         window.parent.triggerQuestBar(currentSave.quests);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -378,18 +380,18 @@ function play(delta) {//基本所有的事件结算都在这里写
         if (neko.y + appheight * 0.25 < nowmap.down.y + nowmap.down.height && neko.y - appheight * 0.25 > 0) {
             app.stage.pivot.y = neko.y - appheight * 0.25;
         }
-        if (nowmap.down.width <= appwidth*0.5) {
+        if (nowmap.down.width <= appwidth * 0.5) {
             app.stage.pivot.x = appwidth * 0.25;
         } else {
             if (neko.x - appwidth * 0.25 < nowmap.down.x) app.stage.pivot.x = nowmap.down.x;
-            if (neko.x + appwidth * 0.25 > nowmap.down.width + nowmap.down.x) app.stage.pivot.x = nowmap.down.x + nowmap.down.width - appwidth*0.5;
+            if (neko.x + appwidth * 0.25 > nowmap.down.width + nowmap.down.x) app.stage.pivot.x = nowmap.down.x + nowmap.down.width - appwidth * 0.5;
         }
-        if (nowmap.down.height <= appheight*0.5) {
+        if (nowmap.down.height <= appheight * 0.5) {
             console.log("less than 1/2")
             app.stage.pivot.y = appheight * 0.25;
         } else {
             if (neko.y - appheight * 0.25 < nowmap.down.y) app.stage.pivot.y = nowmap.down.y;
-            if (neko.y + appheight * 0.25 > nowmap.down.height + nowmap.down.y) app.stage.pivot.y = nowmap.down.y + nowmap.down.height - appheight*0.5;
+            if (neko.y + appheight * 0.25 > nowmap.down.height + nowmap.down.y) app.stage.pivot.y = nowmap.down.y + nowmap.down.height - appheight * 0.5;
         }
 
 
@@ -891,12 +893,11 @@ function hero_face_to(dir) {
 //显示背包
 function showPackageBar() {
     let pkg = [];
-    /*console.log(currentSave.savepackage);
+    console.log(currentSave.savepackage);
     for (let i = 0; i < item_list.length; i++) {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
-    }*/
-    pkg = [{ id: 1, num: 1 }, { id: 3, num: 3 }]
+    }
     window.parent.showPackageBar(pkg, item_list);
 }
 

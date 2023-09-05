@@ -1,6 +1,6 @@
 {
-    "x":240,
-    "y":144,
+    "x": 240,
+    "y": 144,
     "down": "../scene/images/shop-down.png",
     "up": "../scene/images/shop-up.png",
     "banaries": [
@@ -154,7 +154,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/seller/face.png",
+            "portrait": "../character/seller/face.png",
             "text": [
                 {
                     "pre_list": [
@@ -181,7 +181,9 @@
                                 "content": "*你突然想起操场上那个一动不动的足球，决定回去看看*",
                                 "options": [],
                                 "strike_event": [
-                                    "sf,27"
+                                    "sf,27",
+                                    "qcr,illness_of_witness,智慧之疫",
+                                    "qc,illness_of_witness,word,我获得了一些[智慧]，或许可以拿去操场那个奇怪的足球那里"
                                 ]
                             }
                         },

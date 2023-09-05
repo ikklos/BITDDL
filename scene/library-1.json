@@ -1,9 +1,8 @@
-
 {
-    "x":120,
-    "y":72,
-    "down":"../scene/images/library-1-down.png",
-    "up":"../scene/images/library-1-up.png",
+    "x": 120,
+    "y": 72,
+    "down": "../scene/images/library-1-down.png",
+    "up": "../scene/images/library-1-up.png",
     "banaries": [
         {
             "name": "1",
@@ -254,7 +253,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/bolzano/face.png",
+            "portrait": "../character/bolzano/face.png",
             "text": [
                 {
                     "pre_list": [
@@ -291,10 +290,12 @@
                                                     "name": "好的",
                                                     "content": "那就谢谢老师了",
                                                     "next_text": {
-                                                        "content":"没事，你只要正常了就好，以后注意及时调整心态",
-                                                        "options":[],
-                                                        "strike_event":[
-                                                            "sf,33"
+                                                        "content": "没事，你只要正常了就好，以后注意及时调整心态",
+                                                        "options": [],
+                                                        "strike_event": [
+                                                            "sf,33",
+                                                            "qcr,main_story,我的梦魇",
+                                                            "qc,main_story,word,数学老师很高兴我恢复了"
                                                         ]
                                                     }
                                                 }
