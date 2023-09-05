@@ -619,6 +619,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'pkg':
         case 'package':
+            console.log("已在背包添加物品！");
             if (strs[1] != "add" && strs[1] != "remove") {
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
                 break;
@@ -632,13 +633,21 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 break;
             }
             let itemid = Number(strs[2]);
+            console.log(strs[3],"strs[3]");
             let itemnum = Number(strs[3]);
+            console.log(itemnum,"strs[3]");
             if (itemid < 0 || itemid >= item_list.length) {
                 console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an item id!`);
                 break;
             }
-            if (strs[1] == 'add')
+            if (strs[1] == 'add'){
+                if (currentSave.savepackage[itemid] == undefined) {
+                    // console.log(currentSave.savepackage[itemid],"iddddddddddddddd");
+                    currentSave.savepackage[itemid] = 0;
+                }
                 currentSave.savepackage[itemid] += itemnum;
+            }
+            
             else {
                 if (itemnum > currentSave.savepackage[itemid]) currentSave.savepackage[itemid] = 0;
                 else currentSave.savepackage[itemid] -= itemnum;
@@ -942,7 +951,7 @@ function hero_face_to(dir) {
 //显示背包
 function showPackageBar() {
     let pkg = [];
-    console.log(currentSave.savepackage);
+    console.log(currentSave.savepackage,"currentSave.savepackage");
     for (let i = 0; i < item_list.length; i++) {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
