@@ -3,5 +3,50 @@
         "name": "测试",
         "icon": "test_achievement.png",
         "text": "参与测试可以奖励一瓶伊利哦~"
+    },
+    "究极不及格爰好者": {
+        "name": "究极不及格爰好者",
+        "icon": "test_achievement.png",
+        "text": "累计达成5次不及格结局"
+    },
+    "原神, 启动!": {
+        "name": "原神, 启动!",
+        "icon": "test_achievement.png",
+        "text": "在原神小游戏中打到500分"
+    },
+    "wtm杀杀杀": {
+        "name": "wtm杀杀杀",
+        "icon": "test_achievement.png",
+        "text": "Bad end结局前杀掉场景中的所有怪物"
+    },
+    "原神一直在启动": {
+        "name": "原神一直在启动",
+        "icon": "test_achievement.png",
+        "text": "累计玩超过20次原神小游戏"
+    },
+    "我失去的或许只有时间": {
+        "name": "我失去的或许只有时间",
+        "icon": "test_achievement.png",
+        "text": "达成True end结局"
+    },
+    "纸笔才是我唯一的武器": {
+        "name": "纸笔才是我唯一的武器",
+        "icon": "test_achievement.png",
+        "text": "在商店中买3次纸笔"
+    },
+    "逃跑菜鸟": {
+        "name": "逃跑菜鸟",
+        "icon": "test_achievement.png",
+        "text": "在boss战中死亡超过3次"
+    },
+    "狂笑着的杀人魔": {
+        "name": "狂笑着的杀人魔",
+        "icon": "test_achievement.png",
+        "text": "达成Bad end结局"
+    },
+    "我是仁慈的杀人魔？": {
+        "name": "我是仁慈的杀人魔？",
+        "icon": "test_achievement.png",
+        "text": "Bad end线最终只杀掉了最后考场中的一个怪物"
     }
 }
