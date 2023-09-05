@@ -53,7 +53,11 @@ var currentSave = {//玩家状态
     nekoy: 312,
     bossfight_flag: 0,
     quests: {},
-    endslide: {}
+    endslide: {},
+    is_noscore_end: false,
+    is_true_end: false,
+    buy_stationary_count: 0,
+    boss_fight_death: 0
 };
 var boss_sprite = {};
 
@@ -221,6 +225,7 @@ app.stage.scale.set(2);
 var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
+var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
 
     //console.log("vx",neko.vx);
@@ -251,6 +256,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 loadhero('neko_down', 336, 312);
                 console.log(neko);
                 currentSave.bossfight_flag = 0;
+                currentSave.boss_fight_death++;
                 loadmap("../scene/shutong-home.json");
                 command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
             } else if (neko.x < 20) {
@@ -270,6 +276,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 loadhero('neko_down', 336, 312);
                 console.log(neko);
                 currentSave.bossfight_flag = 2;
+                currentSave.boss_fight_death++;
                 loadmap("../scene/shutong-home.json");
                 command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
             } else if (neko.x < 20) {
@@ -309,6 +316,17 @@ function play(delta) {//基本所有的事件结算都在这里写
             endslidelist.shift();
             app.stage.removeChild(endslidesprite);
             if (endslidelist.length == 0) {
+                //end conclusions
+                if (currentSave.is_noscore_end) {//不及格成就计数
+                    if (typeof (window.top.achievements.noscore_end_count) != 'number') window.top.achievements.noscore_end_count = 0;
+                    window.top.achievements.noscore_end_count++;
+                }
+                if (window.top.achievements.noscore_end_count == 5) window.top.makeAchievement("badscore_lover");
+
+                if (currentSave.is_true_end) {//TE成就
+                    window.top.makeAchievement("true_end");
+                }
+
                 endslideshowing = -100;
             } else {
                 endslidesprite = PIXI.Sprite.from('../endgame_slide/' + endslidelist[0].pic_url);
@@ -324,6 +342,14 @@ function play(delta) {//基本所有的事件结算都在这里写
         endslidesprite.y = app.stage.pivot.y;
         endslideshowing += delta;
     }
+
+    //lazy conclusions
+    if (lazycount > 100) {
+        lazycount = 0;
+        if (currentSave.buy_stationary_count == 5) window.top.makeAchievement("just_buy_stationeries");
+        if (currentSave.boss_fight_death == 3) window.top.makeAchievement("noob_to_run");
+    }
+    lazycount += delta;
 
     //console.log("1");
     // if (wait_event.status === true) {//结算互动事件
@@ -568,7 +594,7 @@ questchain_create|qcc,uid,name    添加新事件集
 questchain_rename|qcr,uid,name    事件集重命名
 quest_comment|qc,uid,type,text    添加日志项
 achievement|achv,id               激活成就
-endslide_change|esc,id,time,url   结局幻灯片修改
+endslide_change|esc,id,pri,tim,url结局幻灯片修改
 endslide_show|ess                 展示结局幻灯片
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
@@ -633,21 +659,21 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 break;
             }
             let itemid = Number(strs[2]);
-            console.log(strs[3],"strs[3]");
+            console.log(strs[3], "strs[3]");
             let itemnum = Number(strs[3]);
-            console.log(itemnum,"strs[3]");
+            console.log(itemnum, "strs[3]");
             if (itemid < 0 || itemid >= item_list.length) {
                 console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an item id!`);
                 break;
             }
-            if (strs[1] == 'add'){
+            if (strs[1] == 'add') {
                 if (currentSave.savepackage[itemid] == undefined) {
                     // console.log(currentSave.savepackage[itemid],"iddddddddddddddd");
                     currentSave.savepackage[itemid] = 0;
                 }
                 currentSave.savepackage[itemid] += itemnum;
             }
-            
+
             else {
                 if (itemnum > currentSave.savepackage[itemid]) currentSave.savepackage[itemid] = 0;
                 else currentSave.savepackage[itemid] -= itemnum;
@@ -719,7 +745,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'achv':
         case 'achievement':
-            makeAchievement(strs[1]);
+            window.top.makeAchievement(strs[1]);
             break;
         case 'esc':
         case 'endslide_change':
@@ -728,7 +754,12 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[2]}" is not a number!`);
                 break;
             }
-            changeEndSlide(strs[1], numj, strs[3]);
+            let numk = Number(strs[3]);
+            if (numk == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a number!`);
+                break;
+            }
+            changeEndSlide(strs[1], numj, numk, strs[4]);
             break;
         case 'ess':
         case 'endslide_show':
@@ -951,7 +982,7 @@ function hero_face_to(dir) {
 //显示背包
 function showPackageBar() {
     let pkg = [];
-    console.log(currentSave.savepackage,"currentSave.savepackage");
+    console.log(currentSave.savepackage, "currentSave.savepackage");
     for (let i = 0; i < item_list.length; i++) {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
@@ -1041,30 +1072,8 @@ function changeQuestChainName(uid, qstname) {
     currentSave.quests[uid].name = qstname;
 }
 
-//成就
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
-function makeAchievement(id) {
-    console.log(window.top.achievements);
-    if (typeof (window.top.achievements[id]) == 'undefined' || window.top.achievements[id] == false) {
-        Toast.fire({
-            title: "获得成就:" + window.top.achievements_list[id].name,
-            text: window.top.achievements_list[id].text,
-            imageUrl: '../achievements/icons/' + window.top.achievements_list[id].icon
-        })
-        window.top.achievements[id] = true;
-        localStorage.setItem(window.top.userName + "_achv", encodeURIComponent(JSON.stringify(window.top.achievements)))
-    }
-}
+//成就改到index去了
+
 
 //结局播片
 /*

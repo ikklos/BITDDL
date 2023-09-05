@@ -24,6 +24,29 @@
     window.userName = null;
     window.currentBGM = 0;
     window.myfun = {};
+
+    function makeAchievement(id) {
+        console.log(window.achievements);
+        if (typeof (window.achievements[id]) == 'undefined' || window.achievements[id] == false) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                title: "获得成就:" + window.achievements_list[id].name,
+                text: window.achievements_list[id].text,
+                imageUrl: '../achievements/icons/' + window.achievements_list[id].icon
+            })
+            window.achievements[id] = true;
+            localStorage.setItem(window.userName + "_achv", encodeURIComponent(JSON.stringify(window.achievements)))
+        }
+    }
+
     //游戏元素切换
     function showMainMenu() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
