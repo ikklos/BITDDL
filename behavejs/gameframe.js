@@ -177,28 +177,3 @@ function hideAllComponents() {
     document.getElementById("maingameframe").focus();
     clearTextArea();
 }
-
-let endPage = 0;
-function showEndPage() {
-    console.log(endPage, "endendend");
-    if (endPage === 0) {
-        document.getElementById("ending").style.display = "block";
-    }
-    if (endPage === 5) {
-        document.getElementById("ending").style.display = "none";
-        let endPage = 0;
-        return;
-    }
-    Array.from(document.getElementsByClassName("trueEnding_text")).forEach((ele, index) => {
-        if (index === endPage) {
-            ele.style.opacity = 1;
-        }
-        else {
-            ele.style.opacity = 0;
-        }
-    })
-    endPage++;
-};
-document.getElementById('trueEnding').onclick = showEndPage;
-document.getElementById('tempendbutton').onclick = showEndPage;
-

@@ -582,7 +582,10 @@
                             "next_text": {
                                 "content": "*啊？（作者都震惊了，你当真要在最后放弃）恭喜你喜提不及格*",
                                 "strike_event": [
-                                    "sf,36"
+                                    "sf,36",
+                                    "attr,is_noscore_end,change,true",
+                                    "esc,true_end1,1,100,test.jpg",
+                                    "ess"
                                 ]
                             }
                         }
