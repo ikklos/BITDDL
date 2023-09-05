@@ -44,9 +44,9 @@ var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
-    playerName: 'tav',
-    saveDate: '2077-8-20-23-55',
-    password: '123',
+    playerName: '',
+    saveDate:'',
+    password: '',
     map: "../scene/shutong-home.json",
     time: 0,
     nekox: 336,
@@ -61,6 +61,7 @@ let nowmap = {};
 let neko = {};
 let sheet;
 var loaded = true;
+var nowdate = new Date();
 
 //background sprite
 const background = PIXI.Sprite.from('../backgrounds/TestGameBackground2.png');
