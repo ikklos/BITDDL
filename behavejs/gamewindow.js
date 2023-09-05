@@ -62,6 +62,7 @@ var currentSave = {//玩家状态
 var boss_sprite = {};
 
 var endslidesprite = {};
+var endslidesprite_last = {};
 var endslidelist = [];
 var endslideshowing = -1;
 
@@ -312,11 +313,17 @@ function play(delta) {//基本所有的事件结算都在这里写
 
     //endslide part
     if (endslideshowing > -1) {
+        endslidesprite.alpha += 0.01 * delta;
+        if (endslidesprite.alpha > 1) {
+            endslidesprite.alpha -= 0.01 * delta;
+            app.stage.removeChild(endslidesprite_last);
+        }
         if (endslideshowing > endslidelist[0].time) {
             endslidelist.shift();
-            app.stage.removeChild(endslidesprite);
             if (endslidelist.length == 0) {
                 //end conclusions
+                app.stage.removeChild(endslidesprite_last);
+                app.stage.removeChild(endslidesprite);
                 if (currentSave.is_noscore_end) {//不及格成就计数
                     if (typeof (window.top.achievements.noscore_end_count) != 'number') window.top.achievements.noscore_end_count = 0;
                     window.top.achievements.noscore_end_count++;
@@ -329,8 +336,9 @@ function play(delta) {//基本所有的事件结算都在这里写
 
                 endslideshowing = -100;
             } else {
+                endslidesprite_last = endslidesprite;
                 endslidesprite = PIXI.Sprite.from('../endgame_slide/' + endslidelist[0].pic_url);
-                endslidesprite.x = 0, endslidesprite.y = 0;
+                endslidesprite.x = 0, endslidesprite.y = 0, endslidesprite.alpha = 0;
                 endslidesprite.width = 0.5 * appwidth;
                 endslidesprite.height = 0.5 * appheight;
                 endslidesprite.zIndex = Infinity;
