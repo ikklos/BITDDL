@@ -52,7 +52,8 @@ var currentSave = {//玩家状态
     nekox: 336,
     nekoy: 312,
     bossfight_flag: 0,
-    quests: {}
+    quests: {},
+    achievements:[]//成就数组用01数组存储
 };
 var boss_sprite = {};
 
@@ -70,6 +71,11 @@ app.stage.addChild(background);
 story_status[0] = 1;
 for (let i = 1; i <= 2000; i++) {
     story_status.push(0);
+}
+if(currentSave.achievements.length == 0){
+    for(let i = 1; i <= 2000; i++){
+        currentSave.achievements.push(0);
+    }
 }
 //加载地图障碍
 

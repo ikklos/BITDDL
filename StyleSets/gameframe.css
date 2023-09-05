@@ -170,7 +170,8 @@ body {
     justify-content: space-between;
     padding: 0;
     background-color: rgba(45, 45, 45, 0.75);
-
+    overflow: auto;
+    visibility: hidden;
     /* z-index: 99;
     display: grid;
     grid-template: 
