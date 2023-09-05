@@ -88,6 +88,9 @@ if (typeof (currentSave.savepackage) == "undefined") {
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
+    command('qcc,Default,从床上醒来');
+    command('qc,Default,title,（与床互动）考虑再睡会');
+    command('qc,Default,word,你刚从床上醒来，真的不再睡会吗');
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
 
@@ -187,9 +190,9 @@ async function AfterLoad() {
         showPackageBar();
     }
     keyl.press = () => {
-        command('qcc,testqst,Test');
-        command('qc,testqst,title,firstTitle');
-        command('qc,testqst,word,firstWord');
+        // command('qcc,testqst,Test');
+        // command('qc,testqst,title,firstTitle');
+        // command('qc,testqst,word,firstWord');
         window.parent.triggerQuestBar(currentSave.quests);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
