@@ -111,6 +111,15 @@
             "height": 15,
             "type": "banary",
             "collideH": 1
+        },
+        {
+            "name": "doorrr",
+            "x": 456,
+            "y": 408,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
         }
     ],
     "npcs": [
@@ -118,7 +127,7 @@
             "img": "../scene/images/clear.png",
             "name": "door 1",
             "x": 456,
-            "y": 408,
+            "y": 384,
             "width": 48,
             "height": 24,
             "collideH": 1.0,

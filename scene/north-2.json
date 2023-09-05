@@ -312,6 +312,20 @@
             "nextx": 480,
             "nexty": 0,
             "nextmap": "../scene/south-1.json"
+        },
+        {
+            "img": "../scene/images/clear.png",
+            "name": "door to beihu",
+            "x": 456,
+            "y": 0,
+            "width": 72,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "door",
+            
+            "nextx": 480,
+            "nexty": 552,
+            "nextmap": "../scene/north-1.json"
         }
     ]
 }
