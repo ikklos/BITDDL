@@ -538,6 +538,7 @@ show_text|st,text_obj             显示对话
 questchain_create|qcc,uid,name    添加新事件集
 questchain_rename|qcr,uid,name    事件集重命名
 quest_comment|qc,uid,type,text    添加日志项
+achievement|achv,id               激活成就
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -675,6 +676,10 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
         case 'qc':
         case 'quest_comment':
             addQuestComment(strs[1], strs[2], strs[3]);
+            break;
+        case 'achv':
+        case 'achievement':
+            makeAchievement(strs[1]);
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -981,4 +986,29 @@ function changeQuestChainName(uid, qstname) {
         return;
     }
     currentSave.quests[uid].name = qstname;
+}
+
+//成就
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+function makeAchievement(id) {
+    console.log(window.top.achievements);
+    if (typeof (window.top.achievements[id]) == 'undefined' || window.top.achievements[id] == false) {
+        Toast.fire({
+            title: "获得成就:" + window.top.achievements_list[id].name,
+            text: window.top.achievements_list[id].text,
+            imageUrl: '../achievements/icons/' + window.top.achievements_list[id].icon
+        })
+        window.top.achievements[id] = true;
+        localStorage.setItem(window.top.userName + "_achv", encodeURIComponent(JSON.stringify(window.top.achievements)))
+    }
 }

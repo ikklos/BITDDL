@@ -45,18 +45,18 @@ let tmp_regusr = "";
 // 用于注册后自动填入登录信息
 function passwordCheck_log() {
     let inner_html = "";
-    if(tmp_regusr !== null){
+    if (tmp_regusr !== null) {
         inner_html = '<input type="text" id="login" class="swal2-input" placeholder="Username" value="' +
-        tmp_regusr +
-        '"> <input type="password" id="password" class="swal2-input" placeholder="Password">'
+            tmp_regusr +
+            '"> <input type="password" id="password" class="swal2-input" placeholder="Password">'
     }
-    else{
+    else {
         inner_html = `<input type="text" id="login" class="swal2-input" placeholder="Username">
         <input type="password" id="password" class="swal2-input" placeholder="Password">`
     }
-    
+
     (async () => {
-        
+
         const { value: userValues } = await Swal.fire({
             title: 'Login',
             html: inner_html,
@@ -75,7 +75,7 @@ function passwordCheck_log() {
                 ]
             }
         })
-        
+
         if (userValues == 'flag_changepage') {
             return passwordCheck_reg();
         }
@@ -115,6 +115,10 @@ function passwordCheck_log() {
         }
         else if (localStorage.getItem(userValues[0]) == userValues[1]) {
             window.userName = userValues[0];
+            window.achievements = JSON.parse(decodeURIComponent(localStorage.getItem(window.userName + "_achv")));
+            if (typeof (window.achievements) != 'object' || window.achievements == null) window.achievements = {};
+            console.log('achvs', window.achievements);
+            console.log(typeof (window.achievements));
             document.getElementById("logbutton").style.visibility = 'hidden';
             document.getElementById("regbutton").style.visibility = 'hidden';
             document.getElementById("logged").style.visibility = 'visible';
@@ -205,7 +209,7 @@ function passwordCheck_reg() {
                     })
                 }
             })
-            
+
         }
         else {
             console.log("error");
@@ -254,97 +258,99 @@ function loadbgms(bgmpack) {
 
 fetch('../BGM/bgmdata.json')
     .then((response) => response.json())
-    .then((json) => loadbgms(json)).then(() =>{
-    //加载bgm
+    .then((json) => loadbgms(json)).then(() => {
+        //加载bgm
 
-let bgmStarted = false;
-const startPlayBGM = () => {
-    if (bgmStarted) {
-        return true;
-    }
-    console.log("bgm start!");
-    bgms.forEach(function(element){
-        console.log("init volume");
-        element.volume = 0;
-        element.play();
-    })
-    bgmStarted = true;
-    bgms[0].volume = currentVolume;
-    document.removeEventListener('click', startPlayBGM);
-    document.removeEventListener('keydown', startPlayBGM);
-    return false;
-};
+        let bgmStarted = false;
+        const startPlayBGM = () => {
+            if (bgmStarted) {
+                return true;
+            }
+            console.log("bgm start!");
+            bgms.forEach(function (element) {
+                console.log("init volume");
+                element.volume = 0;
+                element.play();
+            })
+            bgmStarted = true;
+            bgms[0].volume = currentVolume;
+            document.removeEventListener('click', startPlayBGM);
+            document.removeEventListener('keydown', startPlayBGM);
+            return false;
+        };
 
-setInterval(
-    () =>  {
-        
-        // 切换bgm
-        if (window.currentBGM !== currentBGM_played) {
-            bgms.forEach((audio, index) => {
-                // console.log(window.currentBGM);
-                if (window.currentBGM === index) {
-                    console.log("try to change bgm");
-                    bgms[window.currentBGM].volume = currentVolume;
-                    bgms[window.currentBGM].play();
+        setInterval(
+            () => {
+
+                // 切换bgm
+                if (window.currentBGM !== currentBGM_played) {
+                    bgms.forEach((audio, index) => {
+                        // console.log(window.currentBGM);
+                        if (window.currentBGM === index) {
+                            console.log("try to change bgm");
+                            bgms[window.currentBGM].volume = currentVolume;
+                            bgms[window.currentBGM].play();
+                        }
+                        if (window.currentBGM !== index) {
+                            audio.volume = 0;
+                        }
+                    });
+                    currentBGM_played = window.currentBGM;
                 }
-                if (window.currentBGM !== index) {
-                    audio.volume = 0;
+                if (bgms[window.currentBGM].paused) {
+                    document.getElementById("audio_pause").innerHTML = `<img src="./icon/symbolButton/buttonSymbols76.png">`
                 }
-            });
-            currentBGM_played = window.currentBGM;
-        }
-        if(bgms[window.currentBGM].paused){
-            document.getElementById("audio_pause").innerHTML = `<img src="./icon/symbolButton/buttonSymbols76.png">`
-        }
-        else{
-            document.getElementById("audio_pause").innerHTML = `<img src="./icon/symbolButton/buttonSymbols81.png">`
-        }
-        // console.log(bgms[window.currentBGM].name);
-        document.getElementById("audio_name").innerHTML = bgms[window.currentBGM].name;
-    }
-, 500)
-document.body.addEventListener('click', startPlayBGM);
-document.body.addEventListener('keydown', startPlayBGM);
+                else {
+                    document.getElementById("audio_pause").innerHTML = `<img src="./icon/symbolButton/buttonSymbols81.png">`
+                }
+                // console.log(bgms[window.currentBGM].name);
+                document.getElementById("audio_name").innerHTML = bgms[window.currentBGM].name;
+            }
+            , 500)
+        document.body.addEventListener('click', startPlayBGM);
+        document.body.addEventListener('keydown', startPlayBGM);
 
-let bgm_volume = document.querySelector(".audio_volume");
-console.log("add");
-console.log(bgm_num);
-bgm_volume.addEventListener("input", changeVoice);
-function changeVoice(e) {
-    bgms[window.currentBGM].volume = e.srcElement.value;
-    currentVolume = e.srcElement.value;
-}
-// 音量控件按钮
-if (document.getElementById("audio_last")) {
-    document.getElementById("audio_last").onclick = () => {
-        if (window.currentBGM == 0) {
-            window.currentBGM = bgm_num - 1;
+        let bgm_volume = document.querySelector(".audio_volume");
+        console.log("add");
+        console.log(bgm_num);
+        bgm_volume.addEventListener("input", changeVoice);
+        function changeVoice(e) {
+            bgms[window.currentBGM].volume = e.srcElement.value;
+            currentVolume = e.srcElement.value;
         }
-        else{
-            window.currentBGM--;
+        // 音量控件按钮
+        if (document.getElementById("audio_last")) {
+            document.getElementById("audio_last").onclick = () => {
+                if (window.currentBGM == 0) {
+                    window.currentBGM = bgm_num - 1;
+                }
+                else {
+                    window.currentBGM--;
+                }
+            };
         }
-};}
-if (document.getElementById("audio_pause")) {
-    document.getElementById("audio_pause").onclick = async () => {
-        if (bgms[window.currentBGM].paused) {
-            await bgms[window.currentBGM].play();
+        if (document.getElementById("audio_pause")) {
+            document.getElementById("audio_pause").onclick = async () => {
+                if (bgms[window.currentBGM].paused) {
+                    await bgms[window.currentBGM].play();
+                }
+                else if (bgms[window.currentBGM].played) {
+                    await bgms[window.currentBGM].pause();
+                }
+            };
         }
-        else if(bgms[window.currentBGM].played){
-            await bgms[window.currentBGM].pause();
+        if (document.getElementById("audio_next")) {
+            document.getElementById("audio_next").onclick = () => {
+                console.log(window.currentBGM);
+                if (window.currentBGM == bgm_num - 1) {
+                    window.currentBGM = 0;
+                }
+                else {
+                    window.currentBGM++;
+                }
+            }
         }
-};}
-if (document.getElementById("audio_next")) {
-    document.getElementById("audio_next").onclick = () => {
-        console.log(window.currentBGM);
-        if (window.currentBGM == bgm_num - 1) {
-            window.currentBGM = 0;
-        }
-        else{
-            window.currentBGM++;
-        }
-    }
-}
-});
+    });
 
 
 

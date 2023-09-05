@@ -33,14 +33,14 @@ body {
     }
 }
 
-.upperbarContainer{
+.upperbarContainer {
     position: absolute;
     width: 960px;
     height: 27%;
     top: 8%;
     left: 50%;
     transform: translateX(-50%);
-    background-color:transparent;
+    background-color: transparent;
     display: grid;
     grid-template-columns: 1fr 1fr;
     z-index: 99;
@@ -60,29 +60,31 @@ body {
 
     z-index: 99;
     display: grid;
-    grid-template: 
-    "t d i b" 1fr
-    "l d i b" 6fr
-    /4fr 5fr 2fr 0.7fr
+    grid-template:
+        "t d i b" 1fr
+        "l d i b" 6fr
+        /4fr 5fr 2fr 0.7fr
     ;
-    transition:  all .5s ease;
+    transition: all .5s ease;
 
     opacity: 0;
 }
-#packagelist{
+
+#packagelist {
     grid-area: l;
     width: 170px;
-    
+
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: start;
     overflow-y: auto;
     overflow-x: hidden;
-    
+
 }
-#packagebar > h1{
-    grid-area: t ;
+
+#packagebar>h1 {
+    grid-area: t;
     /* 标题 */
     font-size: 1.5rem;
     text-align: center;
@@ -92,8 +94,9 @@ body {
     color: white;
     padding-bottom: 10px;
 }
-.item_button{
-    cursor: url("../icon/cursor_2.png") 14 0,auto;
+
+.item_button {
+    cursor: url("../icon/cursor_2.png") 14 0, auto;
     grid-area: b;
     line-height: 1.5rem;
     padding: 0.2rem;
@@ -105,13 +108,16 @@ body {
     color: whitesmoke;
     border-style: solid;
 }
-.item_button:nth-child(1){
+
+.item_button:nth-child(1) {
     display: block;
 }
-.item_button:nth-child(2){
+
+.item_button:nth-child(2) {
     display: none;
 }
-.item_button:nth-child(1):before{
+
+.item_button:nth-child(1):before {
     position: absolute;
     left: -10;
     bottom: 20px;
@@ -121,7 +127,8 @@ body {
     color: #ffffff;
     box-shadow: 2px 2px, 4px 2px, 2px 4px, 4px 4px, 6px 4px, 8px 4px, 2px 6px, 4px 6px, 6px 6px, 8px 6px, 10px 6px, 2px 8px, 4px 8px, 6px 8px, 8px 8px, 10px 8px, 12px 8px, 2px 10px, 4px 10px, 6px 10px, 8px 10px, 10px 10px, 2px 12px, 4px 12px, 6px 12px, 8px 12px, 2px 14px, 4px 14px;
 }
-.item_button:nth-child(2):before{
+
+.item_button:nth-child(2):before {
     position: absolute;
     left: -10;
     bottom: 20px;
@@ -132,22 +139,24 @@ body {
     box-shadow: 14px 2px, 12px 2px, 14px 4px, 12px 4px, 10px 4px, 8px 4px, 14px 6px, 12px 6px, 10px 6px, 8px 6px, 6px 6px, 14px 8px, 12px 8px, 10px 8px, 8px 8px, 6px 8px, 4px 8px, 14px 10px, 12px 10px, 10px 10px, 8px 10px, 6px 10px, 14px 12px, 12px 12px, 10px 12px, 8px 12px, 14px 14px, 12px 14px;
 }
 
-#packagelist > div{
+#packagelist>div {
     color: white;
     flex: 0 0 auto;
     padding-top: 10px;
     line-height: 1.15rem;
     font-size: 0.9rem;
-    cursor: url("../icon/cursor_2.png") 14 0,auto;
+    cursor: url("../icon/cursor_2.png") 14 0, auto;
 }
-#item_img{
+
+#item_img {
     grid-area: i;
-    width:100px ;
+    width: 100px;
     height: 100px;
     margin: 10px;
     display: none;
 }
-#item_describe{
+
+#item_describe {
     grid-area: d;
     background-color: white;
     border-radius: 10px;
@@ -156,8 +165,12 @@ body {
     max-width: 135px;
     line-height: 1.3rem;
 }
+
 /* 日志 */
 .diarybar {
+
+    visibility: hidden;
+
     width: 195px;
     min-width: 150px;
     max-width: 450px;
@@ -174,7 +187,7 @@ body {
 
 }
 
-.diarybar > div{
+.diarybar>div {
     border-bottom: rgba(207, 223, 237, 0.724);
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -186,8 +199,9 @@ body {
     font-size: 0.9rem;
 
 }
-.diarybar > h1{
-    grid-area: t ;
+
+.diarybar>h1 {
+    grid-area: t;
     /* 标题 */
     font-size: 1.5rem;
     text-align: center;
