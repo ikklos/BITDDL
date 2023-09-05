@@ -41,7 +41,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     background-color:transparent;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     z-index: 99;
 }
 
@@ -163,6 +164,8 @@ body {
     height: 100%;
     margin-left: 20px;
     top: 8%;
+    align-self: right;
+    justify-self: end;
     position: relative;
     justify-content: space-between;
     padding: 0;
