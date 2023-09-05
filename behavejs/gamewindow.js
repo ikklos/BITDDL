@@ -1104,5 +1104,5 @@ function showEndSlide() {
         console.log('cannot show endslide as it is empty');
 }
 
-changeEndSlide('test', 1, 50, 'test.jpg');
-changeEndSlide('test1', 2, 100, 'test1.png');
+//changeEndSlide('test', 1, 50, 'test.jpg');
+//changeEndSlide('test1', 2, 100, 'test1.png');
