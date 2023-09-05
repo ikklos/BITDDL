@@ -168,3 +168,14 @@ function item_styleChange(num) {
         document.getElementById("maingameframe").focus();
     }
 }
+
+//for slide
+function hideAllComponents() {
+
+    document.getElementById('packagebar').style.opacity = 0;
+    document.getElementById('diarybar').style.visibility = 'hidden';
+    document.getElementById("maingameframe").focus();
+    clearTextArea();
+}
+
+

@@ -52,9 +52,14 @@ var currentSave = {//玩家状态
     nekox: 336,
     nekoy: 312,
     bossfight_flag: 0,
-    quests: {}
+    quests: {},
+    endslide: {}
 };
 var boss_sprite = {};
+
+var endslidesprite = {};
+var endslidelist = [];
+var endslideshowing = -1;
 
 let nowmap = {};
 let neko = {};
@@ -192,7 +197,8 @@ async function AfterLoad() {
         command('qc,testqst,word,firstWord');
     */
     keyl.press = () => {
-        window.parent.triggerQuestBar(currentSave.quests);
+        //window.parent.triggerQuestBar(currentSave.quests);
+        showEndSlide();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,6 +302,29 @@ function play(delta) {//基本所有的事件结算都在这里写
             }
         }
     }
+
+    //endslide part
+    if (endslideshowing > -1) {
+        if (endslideshowing > endslidelist[0].time) {
+            endslidelist.shift();
+            app.stage.removeChild(endslidesprite);
+            if (endslidelist.length == 0) {
+                endslideshowing = -100;
+            } else {
+                endslidesprite = PIXI.Sprite.from('../endgame_slide/' + endslidelist[0].pic_url);
+                endslidesprite.x = 0, endslidesprite.y = 0;
+                endslidesprite.width = 0.5 * appwidth;
+                endslidesprite.height = 0.5 * appheight;
+                endslidesprite.zIndex = Infinity;
+                app.stage.addChild(endslidesprite);
+                endslideshowing = 0;
+            }
+        }
+        endslidesprite.x = app.stage.pivot.x;
+        endslidesprite.y = app.stage.pivot.y;
+        endslideshowing += delta;
+    }
+
     //console.log("1");
     // if (wait_event.status === true) {//结算互动事件
     //     neko.vx = neko.vy = 0;
@@ -537,6 +566,8 @@ questchain_create|qcc,uid,name    添加新事件集
 questchain_rename|qcr,uid,name    事件集重命名
 quest_comment|qc,uid,type,text    添加日志项
 achievement|achv,id               激活成就
+endslide_change|esc,id,time,url   结局幻灯片修改
+endslide_show|ess                 展示结局幻灯片
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
     let strs = str.split(',');
@@ -678,6 +709,19 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
         case 'achv':
         case 'achievement':
             makeAchievement(strs[1]);
+            break;
+        case 'esc':
+        case 'endslide_change':
+            let numj = Number(strs[2]);
+            if (numj == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[2]}" is not a number!`);
+                break;
+            }
+            changeEndSlide(strs[1], numj, strs[3]);
+            break;
+        case 'ess':
+        case 'endslide_show':
+            showEndSlide();
             break;
         default:
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
@@ -1010,3 +1054,53 @@ function makeAchievement(id) {
         localStorage.setItem(window.top.userName + "_achv", encodeURIComponent(JSON.stringify(window.top.achievements)))
     }
 }
+
+//结局播片
+/*
+currentSave{
+    endslide:{
+        xxxx(slide-id):{
+            priority:1,
+            time:1,
+            pic_url:'test.jpg'
+        },...
+    }
+}
+*/
+function changeEndSlide(id, pri, tim, url) {
+    currentSave.endslide[id] = {};
+    currentSave.endslide[id].priority = pri, currentSave.endslide[id].time = tim, currentSave.endslide[id].pic_url = url;
+}
+
+function showEndSlide() {
+    let tmpendslidelist = [];
+    console.log(currentSave.endslide)
+    for (let i = 0; i < Object.keys(currentSave.endslide).length; i++) {
+        let maxp = -1;
+        Object.getOwnPropertyNames(currentSave.endslide).forEach(function (key) {
+            if ((typeof (currentSave.endslide[key].used) == 'undefined' || currentSave.endslide[key].used == false) && currentSave.endslide[key].priority > maxp) {
+                maxp = currentSave.endslide[key].priority, tmpendslidelist[tmpendslidelist.length] = currentSave.endslide[key];
+                currentSave.endslide[key].used = true;
+            }
+        });
+    }
+    Object.getOwnPropertyNames(currentSave.endslide).forEach(function (key) {
+        currentSave.endslide[key].used = false;
+    });
+    if (tmpendslidelist.length != 0) {
+        endslidesprite = PIXI.Sprite.from('../endgame_slide/' + tmpendslidelist[0].pic_url);
+        endslidesprite.x = 0, endslidesprite.y = 0;
+        endslidesprite.width = 0.5 * appwidth;
+        endslidesprite.height = 0.5 * appheight;
+        endslidesprite.zIndex = Infinity;
+        app.stage.addChild(endslidesprite);
+        endslideshowing = 0;
+        endslidelist = tmpendslidelist;
+        window.parent.hideAllComponents();
+        wait_event.type = 'null';
+    } else
+        console.log('cannot show endslide as it is empty');
+}
+
+changeEndSlide('test', 1, 50, 'test.jpg');
+changeEndSlide('test1', 2, 100, 'test1.png');
