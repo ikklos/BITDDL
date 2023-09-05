@@ -305,8 +305,8 @@ function CrossTheBoader(r) {
     return over;
 }
 // setTimeout(() => {
-console.log(window.parent.zoom_formini, "hikudaiuhodahiu");
-document.body.style.zoom = window.parent.zoom_formini * 0.9;
+// console.log(window.parent.zoom_formini, "hikudaiuhodahiu");
+// document.body.style.zoom = window.parent.zoom_formini * 0.9;
 // }, 0);
 // //切换站立行为
 // function change_to_stand() {
