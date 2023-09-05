@@ -221,9 +221,11 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
         // 碰撞检测
         if (HitTest(neko, bullet)) {
             ticker.stop();
+            time_counter = 100000
             if (typeof (window.top.genshin_count) != 'number') window.top.genshin_count = 0;//原神成就计数
             window.top.genshin_count++;
-            if (Math.floor(time_counter / 10) == 20) window.top.makeAchievement('genshin_lover');//原神高手
+            if (window.top.genshin_count == 20) window.top.makeAchievement('genshin_lover');//原神苦手
+            if (Math.floor(time_counter / 10) > 500) window.top.makeAchievement("openworld_player");//原神高手
             Swal.fire({
                 title: '游戏结束！',
                 text: "是否重新开始？",
