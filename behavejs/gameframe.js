@@ -106,10 +106,10 @@ function showPackageBar(package, itemlist) {
         });
         listelem.appendChild(tmp);
     });
-    if (document.getElementById('packagebar').style.visibility == 'visible')
-        document.getElementById('packagebar').style.visibility = 'hidden';
+    if (document.getElementById('packagebar').style.opacity == 1)
+        document.getElementById('packagebar').style.opacity = 0;
     else
-        document.getElementById('packagebar').style.visibility = 'visible'
+        document.getElementById('packagebar').style.opacity = 1;
 }
 //about quest bar
 function triggerQuestBar(quests) {

@@ -1,6 +1,6 @@
 {
-    "x":240,
-    "y":144,
+    "x": 240,
+    "y": 144,
     "down": "../scene/images/lijiao-1-classroom1-down.png",
     "up": "../scene/images/lijiao-1-classroom1-up.png",
     "banaries": [
@@ -338,7 +338,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/portrait/table_temp.png",
+            "portrait": "../character/portrait/table_temp.png",
             "text": [
                 {
                     "pre_list": [
@@ -421,11 +421,16 @@
                                                                                                                                                             {
                                                                                                                                                                 "name": ">>>",
                                                                                                                                                                 "content": "",
-                                                                                                                                                                "next_text":{
-                                                                                                                                                                    "content":"[这场闹剧终于结束了]",
-                                                                                                                                                                    "options":[],
-                                                                                                                                                                    "strike_event":[
-                                                                                                                                                                        "sf,38"
+                                                                                                                                                                "next_text": {
+                                                                                                                                                                    "content": "[这场闹剧终于结束了]",
+                                                                                                                                                                    "options": [],
+                                                                                                                                                                    "strike_event": [
+                                                                                                                                                                        "sf,38",
+                                                                                                                                                                        "qcr,main_story_side,我的过去（结束）",
+                                                                                                                                                                        "qc,main_story_side,word,我和我糟糕的过去分离了",
+                                                                                                                                                                        "qcr,main_story,我（结束）",
+                                                                                                                                                                        "qc,main_story,word,我在考场上再次犯病了，但是我战胜了我的梦魇",
+                                                                                                                                                                        "qc,main_story,word,我的舍友帮助了我，果然原友都是大大的好人"
                                                                                                                                                                     ]
                                                                                                                                                                 }
                                                                                                                                                             }

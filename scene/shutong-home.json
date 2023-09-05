@@ -1,6 +1,6 @@
 {
-    "x":264,
-    "y":168,
+    "x": 264,
+    "y": 168,
     "down": "../scene/images/shutong-home-down.png",
     "up": "../scene/images/shutong-home-up.png",
     "banaries": [
@@ -136,7 +136,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/portrait/Bed_Side.png",
+            "portrait": "../character/portrait/Bed_Side.png",
             "text": [
                 {
                     "pre_list": [
@@ -202,7 +202,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/friend1/face.png",
+            "portrait": "../character/friend1/face.png",
             "behave": [
                 {
                     "type": "disappear",
@@ -215,13 +215,14 @@
                             ]
                         }
                     ]
-                },{
-                    "type":"appear",
-                    "pre_list":[
+                },
+                {
+                    "type": "appear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 31
                             ]
                         }
@@ -271,30 +272,31 @@
                             }
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 31
                             ]
                         }
                     ],
-                    "content":"*你问舍友今天是几月几号*  明天就考试了，你不是有那个什么波尔查诺帮你复习吗？",
-                    "options":[
+                    "content": "*你问舍友今天是几月几号*  明天就考试了，你不是有那个什么波尔查诺帮你复习吗？",
+                    "options": [
                         {
-                            "name":"这次没有了",
-                            "content":"还有，那个安眠药我扔掉了",
-                            "next_text":{
-                                "content":"那最好，你每天晚上说的梦话那么吓人……等等，你恢复正常了？",
-                                "options":[
+                            "name": "这次没有了",
+                            "content": "还有，那个安眠药我扔掉了",
+                            "next_text": {
+                                "content": "那最好，你每天晚上说的梦话那么吓人……等等，你恢复正常了？",
+                                "options": [
                                     {
-                                        "name":"……",
-                                        "content":"",
-                                        "next_text":{
-                                            "content":"*还是去看看书吧*",
-                                            "options":[]
+                                        "name": "……",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "*还是去看看书吧*",
+                                            "options": []
                                         }
                                     }
                                 ]
@@ -313,7 +315,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
-            "portrait":"../character/portrait/table_temp.png",
+            "portrait": "../character/portrait/table_temp.png",
             "text": [
                 {
                     "content": "你来到书桌前，想要翻开一本书看看",
@@ -351,7 +353,10 @@
                                                     "next_text": {
                                                         "content": "你发现桌上还有一本数学分析的练习题，或许你可以翻开看看",
                                                         "strike_event": [
-                                                            "sf,11"
+                                                            "sf,11",
+                                                            "qcc,main_story,我的病症",
+                                                            "qc,main_story,title,波尔查诺",
+                                                            "qc,main_story,word,我在宿舍再次看到了幻觉中的波尔查诺，他帮助了我"
                                                         ],
                                                         "options": []
                                                     }
@@ -362,7 +367,10 @@
                                                     "next_text": {
                                                         "content": "看来我这老头子就没什么用了，那我可以继续歇着了",
                                                         "strike_event": [
-                                                            "sf,12"
+                                                            "sf,12",
+                                                            "qcc,main_story,我的病症",
+                                                            "qc,main_story,title,波尔查诺",
+                                                            "qc,main_story,word,我在宿舍再次看到了幻觉中的波尔查诺，我没有理会"
                                                         ],
                                                         "options": []
                                                     }
@@ -380,7 +388,10 @@
                                 "content": "突然你的头疼了一下，有个声音一直叫你去理教地下室",
                                 "options": [],
                                 "strike_event": [
-                                    "sf,8"
+                                    "sf,8",
+                                    "qcc,main_story_side,我的过去",
+                                    "qc,main_story_side,title,探查理教地下室",
+                                    "qc,main_story_side,word,某种直觉驱使我前往理教地下室"
                                 ]
                             }
                         },
@@ -409,7 +420,10 @@
                                                                     "content": "你决定去找找，先去图书馆吧",
                                                                     "options": [],
                                                                     "strike_event": [
-                                                                        "sf,9"
+                                                                        "sf,9",
+                                                                        "qcc,main_story_side,我的过去",
+                                                                        "qc,main_story_side,title,寻找我的女友",
+                                                                        "qc,main_story_side,word,我要去图书馆寻找我的前女友"
                                                                     ]
                                                                 }
                                                             }
@@ -426,7 +440,9 @@
                                             "content": "*你终究还是没有翻开*",
                                             "options": [],
                                             "strike_event": [
-                                                "sf,13"
+                                                "sf,13",
+                                                "qcc,main_story_side,我的过去",
+                                                "qc,main_story,word,我的桌上有一本未知的日记，我没有打开它"
                                             ]
                                         }
                                     }
@@ -445,51 +461,53 @@
                             }
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 31
                             ]
                         }
                     ],
-                    "content":"*你翻开桌上的书*",
-                    "options":[
+                    "content": "*你翻开桌上的书*",
+                    "options": [
                         {
-                            "name":"这是啥",
-                            "content":"这不完（）犊子了吗",
-                            "next_text":{
-                                "content":"*看来那天才的自己随着幻象一起消失了，但无论是不是挂科你都会坚守初心，所以无所谓（？）*",
-                                "options":[
+                            "name": "这是啥",
+                            "content": "这不完（）犊子了吗",
+                            "next_text": {
+                                "content": "*看来那天才的自己随着幻象一起消失了，但无论是不是挂科你都会坚守初心，所以无所谓（？）*",
+                                "options": [
                                     {
-                                        "name":"但这真能吗？",
-                                        "content":"这这不能啊",
-                                        "next_text":{
-                                            "content":"我说真能挂科吗，这真不能挂科吧",
-                                            "options":[
+                                        "name": "但这真能吗？",
+                                        "content": "这这不能啊",
+                                        "next_text": {
+                                            "content": "我说真能挂科吗，这真不能挂科吧",
+                                            "options": [
                                                 {
-                                                    "name":"*你回头望向一边*",
-                                                    "content":"这不完犊子了吗",
-                                                    "next_text":{
-                                                        "content":"*你的舍友突然笑起来*逗你的，考试在一周之后呢，比起这个，你能这么正常真是太好了",
-                                                        "options":[
+                                                    "name": "*你回头望向一边*",
+                                                    "content": "这不完犊子了吗",
+                                                    "next_text": {
+                                                        "content": "*你的舍友突然笑起来*逗你的，考试在一周之后呢，比起这个，你能这么正常真是太好了",
+                                                        "options": [
                                                             {
-                                                                "name":"即使在一周以后",
-                                                                "content":"也有点太紧急了",
-                                                                "next_text":{
-                                                                    "content":"*你决定去图书馆碰碰运气，你记得那次是你最后碰到数学老师的地方*",
-                                                                    "options":[],
-                                                                    "strike_event":[
-                                                                        "sf,32"
+                                                                "name": "即使在一周以后",
+                                                                "content": "也有点太紧急了",
+                                                                "next_text": {
+                                                                    "content": "*你决定去图书馆碰碰运气，你记得那次是你最后碰到数学老师的地方*",
+                                                                    "options": [],
+                                                                    "strike_event": [
+                                                                        "sf,32",
+                                                                        "qc,main_story,title,康复",
+                                                                        "qc,main_story,word,我要去图书馆寻找数学老师"
                                                                     ]
                                                                 }
                                                             }
                                                         ]
                                                     }
                                                 }
-                                                
                                             ]
                                         }
                                     }
@@ -497,64 +515,64 @@
                             }
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 33
                             ]
                         }
                     ],
-                    "content":"*你看着这一大堆讲义，你的头又开始痛了，但并不是那种幻象出现的预兆*",
-                    "options":[
+                    "content": "*你看着这一大堆讲义，你的头又开始痛了，但并不是那种幻象出现的预兆*",
+                    "options": [
                         {
-                            "name":"这也太多了",
-                            "content":"但是必须看",
-                            "next_text":{
-                                "content":"*但对于一个正常人来讲，这些真是不可能的吧，你决定去问问室友*",
-                                "options":[
+                            "name": "这也太多了",
+                            "content": "但是必须看",
+                            "next_text": {
+                                "content": "*但对于一个正常人来讲，这些真是不可能的吧，你决定去问问室友*",
+                                "options": [
                                     {
-                                        "name":"*你回头看向舍友*",
-                                        "content":"这看不完啊，你是怎么复习的",
-                                        "next_text":{
-                                            "content":"别跟老子讲你看不完，你小子打发疯之前就是数学天才，还来问我&&&%&……￥",
-                                            "options":[
+                                        "name": "*你回头看向舍友*",
+                                        "content": "这看不完啊，你是怎么复习的",
+                                        "next_text": {
+                                            "content": "别跟老子讲你看不完，你小子打发疯之前就是数学天才，还来问我&&&%&……￥",
+                                            "options": [
                                                 {
-                                                    "name":"*你立刻把头转回来*",
-                                                    "content":"舍友破防的样子让你有点想笑",
-                                                    "next_text":{
-                                                        "content":"*但显然你现在不能笑，再怎么说这个确实有点多了*",
-                                                        "options":[
+                                                    "name": "*你立刻把头转回来*",
+                                                    "content": "舍友破防的样子让你有点想笑",
+                                                    "next_text": {
+                                                        "content": "*但显然你现在不能笑，再怎么说这个确实有点多了*",
+                                                        "options": [
                                                             {
-                                                                "name":"硬着头皮看吧",
-                                                                "content":"",
-                                                                "next_text":{
-                                                                    "content":"*你记得你的考试座位是在一楼，东北角的位置*",
-                                                                    "options":[],
-                                                                    "strike_event":[
+                                                                "name": "硬着头皮看吧",
+                                                                "content": "",
+                                                                "next_text": {
+                                                                    "content": "*你记得你的考试座位是在一楼，东北角的位置*",
+                                                                    "options": [],
+                                                                    "strike_event": [
                                                                         "sf,35"
                                                                     ]
                                                                 }
                                                             }
                                                         ]
-                                                        
                                                     }
                                                 }
                                             ]
                                         }
                                     }
                                 ],
-                                "strike_event":[
-                                ]
+                                "strike_event": []
                             }
-                        },{
-                            "name":"这也太多了",
-                            "content":"我不如去原神启动吧",
-                            "next_text":{
-                                "content":"*啊？（作者都震惊了，你当真要在最后放弃）恭喜你喜提不及格*",
-                                "strike_event":[
+                        },
+                        {
+                            "name": "这也太多了",
+                            "content": "我不如去原神启动吧",
+                            "next_text": {
+                                "content": "*啊？（作者都震惊了，你当真要在最后放弃）恭喜你喜提不及格*",
+                                "strike_event": [
                                     "sf,36"
                                 ]
                             }
