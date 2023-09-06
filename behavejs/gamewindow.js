@@ -287,6 +287,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
+                command("sav,../character/boss_fight/bosstext_avator.png");
                 command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
             }
         } else if (currentSave.bossfight_flag == 5) {
@@ -306,6 +307,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
+                command("sav,../character/boss_fight/bosstext_avator.png");
                 command('st,{"content": "*我迟早把这段代码删了！*"}');
             }
         }
@@ -579,12 +581,15 @@ async function loadmap(url) {
         app.stage.addChild(boss_sprite);
         if (currentSave.bossfight_flag == 0) {
             currentSave.bossfight_flag = 1;
+            command("sav,../character/boss_fight/bosstext_avator.png");
             command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
         } else if (currentSave.bossfight_flag == 2) {
             currentSave.bossfight_flag = 3;
+            command("sav,../character/boss_fight/bosstext_avator.png");
             command('st,{"content": "你又来啦，这次跑到头记得和那个家伙对话哦~","options": [{"name": "继续","content": "这次有什么区别吗？","next_text": {"content": "组长说你会跑快点，不过我没写~>w<"}}]}');
         } else {
             currentSave.bossfight_flag = 5;
+            command("sav,../character/boss_fight/bosstext_avator.png");
             command('st,{"content": "喂喂，理论上boss追逐战只用打两次的！","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你就这么喜欢打这个关卡吗~"}}]}');
         }
     }
@@ -703,7 +708,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'sav':
         case 'show_avator':
-            console.log('111' + strs[1]);
+            console.log('avator' + strs[1]);
             window.parent.changeAvator(strs[1]);
             break;
         case 'mg':
