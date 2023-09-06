@@ -1,34 +1,45 @@
 {
-    "itemlist":[
+    "itemlist": [
         {
-            "name" : "绝密考试题",
-            "type" : "story",
-            "text" :"为什么你需要考试题，你觉得这里会有原题吗"
-        },{
-            "name": "一点点智商",
-            "type" : "change_Attribute",
-            "text" : "这东西真的能吃吗，你兴许可以试试，没准真的可以提高智商呢...脑子......啊？什么？", 
-            "effect":""
-        },{
-            "name":"开发者作弊小用具？",
-            "type" : "change_Attribute",
-            "text" : "我说你真要用吗"
-        },{
-            "name":"限定版不及格小标签",
-            "type":"can not use",
-            "text":"用了它就会喜提不及格，所以DGWR组或许也有用过这个物品"
-        },{
-            "name":"某人的钥匙链",
-            "type":"can not use",
-            "text":"我觉得是时候做出改变了"
-        },{
-            "name":"破碎的黑笔",
-            "type":"story",
-            "text":"我用这支破碎的笔，将书写出我自己的传说"
-        },{
-            "name":"刀片",
-            "type":"story",
-            "text":"或许将你杀掉……"
+            "name": "绝密考试题",
+            "type": "can not use",
+            "text": "为什么你需要考试题，你觉得这里会有原题吗",
+            "src": "../items/img/53.png"
+        },
+        {
+            "name": "智慧",
+            "type": "can not use",
+            "text": "这东西真的能吃吗，你兴许可以试试，没准真的可以提高智商呢...脑子......啊？什么？",
+            "src":"../items/img/wisdom.png"
+        },
+        {
+            "name": "开发者作弊小用具？",
+            "type": "can not use",
+            "text": "我说你真要用吗",
+            "src":"../items/img/order.png"
+        },
+        {
+            "name": "限定版不及格小标签",
+            "type": "can not use",
+            "text": "用了它就会喜提不及格，所以DGWR组或许也有用过这个物品",
+            "src":"../items/img/wrong.png"
+        },
+        {
+            "name": "某人的钥匙链",
+            "type": "can not use",
+            "text": "我觉得是时候做出改变了"
+        },
+        {
+            "name": "破碎的黑笔",
+            "type": "can not use",
+            "text": "我用这支破碎的笔，将书写出我自己的传说",
+            "src":"../items/img/pen.png"
+        },
+        {
+            "name": "刀片",
+            "type": "can not use",
+            "text": "或许将你杀掉……",
+            "src":"../items/img/knife.png"
         }
     ]
 }

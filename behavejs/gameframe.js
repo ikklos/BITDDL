@@ -98,7 +98,7 @@ function showPackageBar(package, itemlist) {
         tmp.innerHTML = itemlist[item.id].name + ':' + item.num;
         tmp.addEventListener("click", function () {
 
-            document.getElementById('item_img').src = '../items/img/backpack.png';
+            document.getElementById('item_img').src = itemlist[item.id].src;
             document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
 
             // 更改display属性 和边框长度
