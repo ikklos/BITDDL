@@ -115,7 +115,7 @@ async function AfterLoad() {
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
         keyp = keyboard("p", "e"),
-        keyl = keyboard("l", "");
+        keyl = keyboard("l", "q");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -1030,6 +1030,8 @@ function changeGameArea(id) {
             break;
         case 2:
             document.getElementById("minigame_ut").style.display = "block"
+            // 隐藏背包和日志系统
+            window.parent.hidPackageBarAndDiaryBar();
             break;
         default:
 

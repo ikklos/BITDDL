@@ -50,7 +50,7 @@ body {
     width: 195px;
     min-width: 150px;
     max-width: 450px;
-    height: 90%;
+    height: 60%;
     margin-left: 20px;
     top: 7%;
     position: relative;
@@ -169,14 +169,15 @@ body {
 /* 日志 */
 .diarybar {
 
-    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
 
     width: 195px;
     min-width: 150px;
     max-width: 450px;
-    height: 90%;
+    height: 80%;
     margin-right: 20px;
-    padding: 10px;
+    margin-top: 0;
     top: 7%;
     justify-self: end;
     position: relative;
@@ -184,6 +185,14 @@ body {
     padding: 0;
     background-color: rgba(45, 45, 45, 0.75);
     overflow: auto;
+
+    border-image-slice: 2;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+    border-image-width: 2;
+    border-width: 4px;
+    border-image-outset: 1;
+    border-style: solid;
 
 }
 
@@ -194,22 +203,29 @@ body {
     text-align: left;
     color: white;
     flex: 0 0 auto;
-    padding-top: 10px;
-    line-height: 1.2rem;
-    font-size: 0.9rem;
 
 }
 
-.diarybar>h1 {
-    grid-area: t;
+.diarybar>div>h1 {
     /* 标题 */
     font-size: 1.5rem;
+    line-height: 2rem;
     text-align: center;
-    margin: 0;
-    border-width: 0 0 3px 0;
-    border-style: solid;
-    color: white;
-    padding-bottom: 10px;
+    font-weight: bolder;
+    color: wheat;
+}
+.diarybar>div>h2 {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-left: 5px;
+    line-height: 1.4rem;
+}
+.diarybar>div>p {
+    font-size: 1rem;
+    text-align: left;
+    margin-left: 5px;
+    line-height: 1.2rem;
+    font-weight: lighter;
 }
 
 
