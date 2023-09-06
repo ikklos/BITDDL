@@ -1,9 +1,4 @@
 {
-    "test_achievement": {
-        "name": "测试",
-        "icon": "test_achievement.png",
-        "text": "参与测试可以奖励一瓶伊利哦~"
-    },
     "badscore_lover": {
         "name": "究极不及格爰好者",
         "icon": "test_achievement.png",

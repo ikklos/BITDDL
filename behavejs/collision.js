@@ -44,25 +44,3 @@ export function HitTest(r1, r2) {
 }
 
 //检测控制角色是否要超出地图边界
-export function CrossTheBoader(r) {
-    let over, leftboader, rightboader, upboader, downboader;
-    over = true;
-    let win = document.getElementById("GameWindow");
-    leftboader = 0;
-    upboader = 0;
-    rightboader = win.clientWidth;
-    downboader = win.clientHeight;
-    //对于一个矩形碰撞箱，取第一个点为左上角，第二个点为右下角
-    r.firstnodeX = r.x;
-    r.firstnodeY = r.y;
-    r.secondnodeX = r.x + r.width;
-    r.secondnodeY = r.y + r.height;
-    //alert(r.firstnodeX);
-    if (r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
-        && r.firstnodeY >= upboader && r.firstnodeY <= downboader
-        && r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
-        && r.secondnodeY >= upboader && r.secondnodeY <= downboader) {
-        over = false;
-    }
-    return over;
-}

@@ -1,4 +1,4 @@
-import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
+import { HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
@@ -44,11 +44,13 @@ var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
-    playerName: 'tav',
-    saveDate: '2077-8-20-23-55',
-    password: '123',
+    playerName: '',
+    saveDate: '',
+    password: '',
     map: "../scene/shutong-home.json",
     time: 0,
+    genshintime: 0,
+    genshin_max: 0,
     nekox: 336,
     nekoy: 312,
     bossfight_flag: 0,
@@ -65,7 +67,7 @@ var endslidesprite = {};
 var endslidesprite_last = {};
 var endslidelist = [];
 var endslideshowing = -1;
-
+var ends = [];
 let nowmap = {};
 let neko = {};
 let sheet;
@@ -94,10 +96,12 @@ if (typeof (currentSave.savepackage) == "undefined") {
     currentSave.savepackage = pkg;
 }
 
-
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
+    command('qcc,Default,从床上醒来');
+    command('qc,Default,title,（与床互动）考虑再睡会');
+    command('qc,Default,word,你刚从床上醒来，真的不再睡会吗');
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
 
@@ -111,7 +115,7 @@ async function AfterLoad() {
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
         keyp = keyboard("p", "e"),
-        keyl = keyboard("l", "");
+        keyl = keyboard("l", "q");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -228,6 +232,16 @@ var nowframe = 0;
 var count = 0;
 var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
+    //成就检测部分
+    if (typeof (window.top.achievements) !== 'undefined') {
+        window.top.flash_ach();
+    }
+
+    //原神启动
+    if (currentSave.genshin_max >= 500) {
+        //console.log("原神启动")
+        command("achv,openworld_player");
+    }
 
     //console.log("vx",neko.vx);
     // console.log(nowframe);
@@ -259,7 +273,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 currentSave.bossfight_flag = 0;
                 currentSave.boss_fight_death++;
                 loadmap("../scene/shutong-home.json");
-                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
+                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "无论怎么说这梦也太真实了","next_text": {"content": "*还是再去理教看看吧*"}}]}');
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
@@ -267,7 +281,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 currentSave.bossfight_flag = 2;
                 command("sf,30");
                 loadmap("../scene/lijiao-1.json");
-                command('st,{"content": "*你成功逃了出来但是..*<br>墙壁：隆隆隆","options": [{"name": "继续","content": "为什么墙壁里面好像有人的声音呀？","next_text": {"content": "回去看看吧！"}}]}');
+                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},strike_event:["sf,30"]}]}');
             }
         } else if (currentSave.bossfight_flag == 3) {
             boss_sprite.x -= delta;
@@ -283,12 +297,11 @@ function play(delta) {//基本所有的事件结算都在这里写
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
-                loadhero('neko_down', 450, 400);
+                loadhero('neko_down', 600, 400);
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
-                command("sav,../character/boss_fight/bosstext_avator.png");
-                command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
+                command('st,{"content": "*你又走了出来，刚才的逃亡在你现在想来有些荒诞*","options": [{"name": "继续","content": "但是","next_text": {"content": "*你还是想要再见到他，波尔查诺帮了你太多了*"}}]}');
             }
         } else if (currentSave.bossfight_flag == 5) {
             boss_sprite.x -= delta;
@@ -303,7 +316,7 @@ function play(delta) {//基本所有的事件结算都在这里写
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
-                loadhero('neko_down', 450, 400);
+                loadhero('neko_down', 600, 400);
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
@@ -382,6 +395,9 @@ function play(delta) {//基本所有的事件结算都在这里写
     //console.log(wait_event);
     //小游戏返回
     if (window.minigame_result.finished) {
+        if (window.minigame_result.score + 300 > currentSave.genshin_max) {
+            currentSave.genshin_max = window.minigame_result.score + 300;
+        }
         if (typeof (window.minigame_result.strike_event) != 'undefined')
             window.minigame_result.strike_event.forEach(element => {
                 command(element);
@@ -576,21 +592,17 @@ async function loadmap(url) {
     uploadSave();
     if (url == '../scene/lijiao-hiddenhallway.json') {
         boss_sprite = PIXI.Sprite.from('../character/boss_fight/boss.jpg');
-        //boss_sprite.x = 936 * 3, boss_sprite.y = 150;
-        boss_sprite.x = 300, boss_sprite.y = 150;
+        boss_sprite.x = 936 * 3, boss_sprite.y = 150;
         app.stage.addChild(boss_sprite);
         if (currentSave.bossfight_flag == 0) {
             currentSave.bossfight_flag = 1;
-            command("sav,../character/boss_fight/bosstext_avator.png");
-            command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
+            command('st,{"content": "*你身后的门消失，一个怪物出现在你身后*","options": [{"name": "继续","content": "这是什么","next_text": {"content": "*别管那么多了，先跑*"}}]}');
         } else if (currentSave.bossfight_flag == 2) {
             currentSave.bossfight_flag = 3;
-            command("sav,../character/boss_fight/bosstext_avator.png");
-            command('st,{"content": "你又来啦，这次跑到头记得和那个家伙对话哦~","options": [{"name": "继续","content": "这次有什么区别吗？","next_text": {"content": "组长说你会跑快点，不过我没写~>w<"}}]}');
+            command('st,{"content": "*你模模糊糊地看见长廊尽头有一个人*","options": [{"name": "继续","content": "这个长廊的地形似乎已经摸清了，赶紧冲过去吧","next_text": {"content": "*来不及了*"}}]}');
         } else {
             currentSave.bossfight_flag = 5;
-            command("sav,../character/boss_fight/bosstext_avator.png");
-            command('st,{"content": "喂喂，理论上boss追逐战只用打两次的！","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你就这么喜欢打这个关卡吗~"}}]}');
+            command('st,{"content": "*你又来到了这里，但似乎不会再遇到那个波尔查诺了*","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你或许很喜欢逃亡"}}]}');
         }
     }
 }
@@ -1019,6 +1031,8 @@ function changeGameArea(id) {
             break;
         case 2:
             document.getElementById("minigame_ut").style.display = "block"
+            // 隐藏背包和日志系统
+            window.parent.hidPackageBarAndDiaryBar();
             break;
         default:
 
@@ -1137,3 +1151,29 @@ function showEndSlide() {
 
 //changeEndSlide('test', 1, 50, 'test.jpg');
 //changeEndSlide('test1', 2, 100, 'test1.png');
+function CrossTheBoader(r) {
+    if (typeof (nowmap.down) === "undefined") {
+        return true;
+    }
+    let over, leftboader, rightboader, upboader, downboader;
+    over = true;
+    let win = nowmap.down;
+    leftboader = win.x;
+    upboader = win.y;
+    rightboader = win.x + win.width;
+    downboader = win.y + win.height;
+    //对于一个矩形碰撞箱，取第一个点为左上角，第二个点为右下角
+    r.firstnodeX = r.x;
+    r.firstnodeY = r.y;
+    r.secondnodeX = r.x + r.width;
+    r.secondnodeY = r.y + r.height;
+    //alert(r.firstnodeX);
+    if (r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
+        && r.firstnodeY >= upboader && r.firstnodeY <= downboader
+        && r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
+        && r.secondnodeY >= upboader && r.secondnodeY <= downboader) {
+        over = false;
+    }
+    return over;
+}
+

@@ -53,7 +53,7 @@
             "type": "door",
             
             "nextx": 456,
-            "nexty": 384,
+            "nexty": 358,
             "nextmap": "../scene/shutong-home.json"
         },
         {
@@ -67,7 +67,7 @@
             "type": "door",
             
             "nextx": 456,
-            "nexty": 384,
+            "nexty": 358,
             "nextmap": "../scene/shutong-besidehome.json"
         },
         {

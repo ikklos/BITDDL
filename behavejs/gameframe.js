@@ -98,7 +98,7 @@ function showPackageBar(package, itemlist) {
         tmp.innerHTML = itemlist[item.id].name + ':' + item.num;
         tmp.addEventListener("click", function () {
 
-            document.getElementById('item_img').src = '../items/img/backpack.png';
+            document.getElementById('item_img').src = itemlist[item.id].src;
             document.getElementById('item_describe').innerHTML = itemlist[item.id].text;
 
             // 更改display属性 和边框长度
@@ -110,6 +110,10 @@ function showPackageBar(package, itemlist) {
         document.getElementById('packagebar').style.opacity = 0;
     else
         document.getElementById('packagebar').style.opacity = 1;
+}
+function hidPackageBarAndDiaryBar() {
+    document.getElementById('packagebar').style.opacity = 0;
+    document.getElementById('diarybar').style.opacity = 0;
 }
 //about quest bar
 function triggerQuestBar(quests) {
@@ -138,10 +142,10 @@ function triggerQuestBar(quests) {
         }
         qstlist.appendChild(tmpdiv);
     }
-    if (document.getElementById('diarybar').style.visibility == 'visible')
-        document.getElementById('diarybar').style.visibility = 'hidden';
+    if (document.getElementById('diarybar').style.opacity == 1)
+        document.getElementById('diarybar').style.opacity = 0;
     else
-        document.getElementById('diarybar').style.visibility = 'visible'
+        document.getElementById('diarybar').style.opacity = 1;
 }
 
 function item_styleChange(num) {
