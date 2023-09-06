@@ -66,6 +66,7 @@ PIXI.Assets.load([
         // }
 
         bullet.scale.set(1);
+        bullet.tint = 0xFF0000;
         bullet.speed = 2 + Math.random();
         bullet.direction = 0;
         bullet.hitbox = getHitBox(0, 0, bullet.width, bullet.height);
@@ -213,9 +214,13 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
             }
         }
         // 特殊子弹标记
-        if (time_counter % 250  === 0 && time_counter > 2000) {
+        if (time_counter % 250  === 0 && time_counter >= 2000) {
             bullet.tail = true;
-            bullet.speed = bullet.speed / 2;
+            bullet.tint = 0x00FF00;
+            bullet.speed = bullet.speed / 3;
+            // bullet.scale.x = 1;
+            // bullet.scale.y = 1;
+            // bullet.hitbox = getHitBox(0, 0, 36, 36);
         }
         // console.log("add");
         app.stage.addChild(bullet);
@@ -231,6 +236,10 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
             let bullet_sub = bullets[current_bullets_num];
             bullet_sub.x = bullet.x; 
             bullet_sub.y = bullet.y;
+            bullet_sub.tint = 0x000000;
+            bullet_sub.scale.x = 0.5;
+            bullet_sub.scale.y = 0.5;
+            bullet.hitbox = getHitBox(0, 0, 12, 12);
             bullet_sub.speed = 0.1 + Math.random() / 4;
             bullet_sub.direction = Math.random() * 2 * Math.PI;
             app.stage.addChild(bullet_sub);
