@@ -1,4 +1,4 @@
-import {HitTest, getHitBox, getPartHitBox } from "./collision.js";
+import { HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
@@ -45,7 +45,7 @@ var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，�
 var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
     playerName: '',
-    saveDate:'',
+    saveDate: '',
     password: '',
     map: "../scene/shutong-home.json",
     time: 0,
@@ -233,12 +233,12 @@ var count = 0;
 var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     //成就检测部分
-    if(typeof(window.top.achievements) !== 'undefined'){
+    if (typeof (window.top.achievements) !== 'undefined') {
         window.top.flash_ach();
     }
-    
+
     //原神启动
-    if(currentSave.genshin_max >= 500){
+    if (currentSave.genshin_max >= 500) {
         //console.log("原神启动")
         command("achv,openworld_player");
     }
@@ -281,7 +281,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 currentSave.bossfight_flag = 2;
                 command("sf,30");
                 loadmap("../scene/lijiao-1.json");
-                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},strike_event:["sf,30"]}]}');
+                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},"strike_event":["sf,30"]}]}');
             }
         } else if (currentSave.bossfight_flag == 3) {
             boss_sprite.x -= delta;
@@ -320,6 +320,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
+                command("sav,../character/boss_fight/bosstext_avator.png");
                 command('st,{"content": "*我迟早把这段代码删了！*"}');
             }
         }
@@ -394,7 +395,7 @@ function play(delta) {//基本所有的事件结算都在这里写
     //console.log(wait_event);
     //小游戏返回
     if (window.minigame_result.finished) {
-        if(window.minigame_result.score + 300 > currentSave.genshin_max){
+        if (window.minigame_result.score + 300 > currentSave.genshin_max) {
             currentSave.genshin_max = window.minigame_result.score + 300;
         }
         if (typeof (window.minigame_result.strike_event) != 'undefined')
@@ -719,7 +720,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'sav':
         case 'show_avator':
-            console.log('111' + strs[1]);
+            console.log('avator' + strs[1]);
             window.parent.changeAvator(strs[1]);
             break;
         case 'mg':
@@ -1151,7 +1152,7 @@ function showEndSlide() {
 //changeEndSlide('test', 1, 50, 'test.jpg');
 //changeEndSlide('test1', 2, 100, 'test1.png');
 function CrossTheBoader(r) {
-    if(typeof(nowmap.down) === "undefined"){
+    if (typeof (nowmap.down) === "undefined") {
         return true;
     }
     let over, leftboader, rightboader, upboader, downboader;
