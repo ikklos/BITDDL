@@ -89,8 +89,7 @@ function focusMainGame() {
 }
 
 //package:[{id:xx,num:xx}]
-function showPackageBar(package, itemlist) {
-    console.log(package);
+function uploadPackage(package, itemlist) {
     let listelem = document.getElementById('packagelist');
     listelem.innerHTML = '';
     package.forEach(item => {
@@ -106,6 +105,8 @@ function showPackageBar(package, itemlist) {
         });
         listelem.appendChild(tmp);
     });
+}
+function showPackageBar() {
     if (document.getElementById('packagebar').style.opacity == 1)
         document.getElementById('packagebar').style.opacity = 0;
     else
@@ -116,8 +117,7 @@ function hidPackageBarAndDiaryBar() {
     document.getElementById('diarybar').style.opacity = 0;
 }
 //about quest bar
-function triggerQuestBar(quests) {
-    console.log(quests);
+function uploadQuestBar(quests) {
     let qstlist = document.getElementById('diarybar');
     qstlist.innerHTML = '';
     for (let item in quests) {
@@ -142,6 +142,8 @@ function triggerQuestBar(quests) {
         }
         qstlist.appendChild(tmpdiv);
     }
+}
+function triggerQuestBar() {
     if (document.getElementById('diarybar').style.opacity == 1)
         document.getElementById('diarybar').style.opacity = 0;
     else
@@ -175,9 +177,8 @@ function item_styleChange(num) {
 
 //for slide
 function hideAllComponents() {
-
     document.getElementById('packagebar').style.opacity = 0;
-    document.getElementById('diarybar').style.visibility = 'hidden';
+    document.getElementById('diarybar').style.opacity = 0;
     document.getElementById("maingameframe").focus();
     clearTextArea();
 }

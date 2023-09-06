@@ -206,8 +206,8 @@ async function AfterLoad() {
         command('qc,testqst,word,firstWord');
     */
     keyl.press = () => {
-        window.parent.triggerQuestBar(currentSave.quests);
-        //showEndSlide();
+        window.parent.uploadQuestBar(currentSave.quests);
+        window.parent.triggerQuestBar();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -367,10 +367,21 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
 
     //lazy conclusions
-    if (lazycount > 100) {
+    if (lazycount > 200) {
         lazycount = 0;
         if (currentSave.buy_stationary_count == 5) window.top.makeAchievement("just_buy_stationeries");
         if (currentSave.boss_fight_death == 3) window.top.makeAchievement("noob_to_run");
+        //package
+        let pkg = [];
+        console.log(currentSave.savepackage, "currentSave.savepackage");
+        for (let i = 0; i < item_list.length; i++) {
+            if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
+            pkg.push({ id: i, num: currentSave.savepackage[i] });
+        }
+        window.parent.uploadPackage(pkg, item_list);
+
+        window.parent.uploadQuestBar(currentSave.quests);
+        uploadSave();
     }
     lazycount += delta;
 
@@ -1012,7 +1023,8 @@ function showPackageBar() {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
     }
-    window.parent.showPackageBar(pkg, item_list);
+    window.parent.uploadPackage(pkg, item_list);
+    window.parent.showPackageBar();
 }
 
 //切换主游戏和小程序
