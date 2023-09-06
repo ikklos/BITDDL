@@ -430,7 +430,15 @@
                                                                                                                                                                         "qc,main_story_side,word,我和我糟糕的过去分离了",
                                                                                                                                                                         "qcr,main_story,我（结束）",
                                                                                                                                                                         "qc,main_story,word,我在考场上再次犯病了，但是我战胜了我的梦魇",
-                                                                                                                                                                        "qc,main_story,word,我的舍友帮助了我，果然原友都是大大的好人"
+                                                                                                                                                                        "qc,main_story,word,我的舍友帮助了我，果然原神玩家都是大好人",
+                                                                                                                                                                        "attr,is_true_end,change,true",
+                                                                                                                                                                        "esc,true_end1,1,150,true_end_1.jpg",
+                                                                                                                                                                        "esc,true_end2,1,500,true_end_2.jpg",
+                                                                                                                                                                        "esc,true_end3,1,500,true_end_3.jpg",
+                                                                                                                                                                        "esc,true_end4,1,500,true_end_4.jpg",
+                                                                                                                                                                        "esc,true_end5,1,600,true_end_5.jpg",
+                                                                                                                                                                        "esc,true_end_thx,1,600,thanks.jpg",
+                                                                                                                                                                        "ess"
                                                                                                                                                                     ]
                                                                                                                                                                 }
                                                                                                                                                             }

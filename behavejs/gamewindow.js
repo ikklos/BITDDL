@@ -1,4 +1,4 @@
-import { CrossTheBoader, HitTest, getHitBox, getPartHitBox } from "./collision.js";
+import {HitTest, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
@@ -44,23 +44,30 @@ var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
 var currentSave = {//玩家状态
-    playerName: 'tav',
-    saveDate: '2077-8-20-23-55',
-    password: '123',
+    playerName: '',
+    saveDate:'',
+    password: '',
     map: "../scene/shutong-home.json",
     time: 0,
+    genshintime: 0,
+    genshin_max: 0,
     nekox: 336,
     nekoy: 312,
     bossfight_flag: 0,
     quests: {},
-    endslide: {}
+    endslide: {},
+    is_noscore_end: false,
+    is_true_end: false,
+    buy_stationary_count: 0,
+    boss_fight_death: 0
 };
 var boss_sprite = {};
 
 var endslidesprite = {};
+var endslidesprite_last = {};
 var endslidelist = [];
 var endslideshowing = -1;
-
+var ends = [];
 let nowmap = {};
 let neko = {};
 let sheet;
@@ -89,10 +96,12 @@ if (typeof (currentSave.savepackage) == "undefined") {
     currentSave.savepackage = pkg;
 }
 
-
 //进游戏！
 AfterLoad();
 async function AfterLoad() {
+    command('qcc,Default,从床上醒来');
+    command('qc,Default,title,（与床互动）考虑再睡会');
+    command('qc,Default,word,你刚从床上醒来，真的不再睡会吗');
     sheet = await PIXI.Assets.load('sprite/players/neko.json');
     loadhero('neko_down', 336, 312);
 
@@ -221,7 +230,18 @@ app.stage.scale.set(2);
 var vx = 0, vy = 0;
 var nowframe = 0;
 var count = 0;
+var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
+    //成就检测部分
+    if(typeof(window.top.achievements) !== 'undefined'){
+        window.top.flash_ach();
+    }
+    
+    //原神启动
+    if(currentSave.genshin_max >= 500){
+        //console.log("原神启动")
+        command("achv,openworld_player");
+    }
 
     //console.log("vx",neko.vx);
     // console.log(nowframe);
@@ -251,8 +271,9 @@ function play(delta) {//基本所有的事件结算都在这里写
                 loadhero('neko_down', 336, 312);
                 console.log(neko);
                 currentSave.bossfight_flag = 0;
+                currentSave.boss_fight_death++;
                 loadmap("../scene/shutong-home.json");
-                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
+                command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "无论怎么说这梦也太真实了","next_text": {"content": "*还是再去理教看看吧*"}}]}');
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
@@ -260,7 +281,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 currentSave.bossfight_flag = 2;
                 command("sf,30");
                 loadmap("../scene/lijiao-1.json");
-                command('st,{"content": "*你成功逃了出来但是..*<br>墙壁：隆隆隆","options": [{"name": "继续","content": "为什么墙壁里面好像有人的声音呀？","next_text": {"content": "回去看看吧！"}}]}');
+                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},strike_event:["sf,30"]}]}');
             }
         } else if (currentSave.bossfight_flag == 3) {
             boss_sprite.x -= delta;
@@ -270,16 +291,17 @@ function play(delta) {//基本所有的事件结算都在这里写
                 loadhero('neko_down', 336, 312);
                 console.log(neko);
                 currentSave.bossfight_flag = 2;
+                currentSave.boss_fight_death++;
                 loadmap("../scene/shutong-home.json");
                 command('st,{"content": "*你从床上醒来，满身大汗*","options": [{"name": "继续","content": "我去，梦见我在理教被追杀了。","next_text": {"content": "*应该是做噩梦了吧~*"}}]}');
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
-                loadhero('neko_down', 450, 400);
+                loadhero('neko_down', 600, 400);
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
-                command('st,{"content": "*你成功通过Boss战啦！*","options": [{"name": "继续","content": "怎么这么简单呀？","next_text": {"content": "回头会添加障碍物的，到时候你就等着坐牢吧！"}}]}');
+                command('st,{"content": "*你又走了出来，刚才的逃亡在你现在想来有些荒诞*","options": [{"name": "继续","content": "但是","next_text": {"content": "*你还是想要再见到他，波尔查诺帮了你太多了*"}}]}');
             }
         } else if (currentSave.bossfight_flag == 5) {
             boss_sprite.x -= delta;
@@ -294,7 +316,7 @@ function play(delta) {//基本所有的事件结算都在这里写
             } else if (neko.x < 20) {
                 app.stage.removeChild(boss_sprite);
                 app.stage.removeChild(neko);
-                loadhero('neko_down', 450, 400);
+                loadhero('neko_down', 600, 400);
                 console.log(neko);
                 currentSave.bossfight_flag = 4;
                 loadmap("../scene/lijiao-1.json");
@@ -305,14 +327,32 @@ function play(delta) {//基本所有的事件结算都在这里写
 
     //endslide part
     if (endslideshowing > -1) {
+        endslidesprite.alpha += 0.01 * delta;
+        if (endslidesprite.alpha > 1) {
+            endslidesprite.alpha -= 0.01 * delta;
+            app.stage.removeChild(endslidesprite_last);
+        }
         if (endslideshowing > endslidelist[0].time) {
             endslidelist.shift();
-            app.stage.removeChild(endslidesprite);
             if (endslidelist.length == 0) {
+                //end conclusions
+                app.stage.removeChild(endslidesprite_last);
+                app.stage.removeChild(endslidesprite);
+                if (currentSave.is_noscore_end) {//不及格成就计数
+                    if (typeof (window.top.achievements.noscore_end_count) != 'number') window.top.achievements.noscore_end_count = 0;
+                    window.top.achievements.noscore_end_count++;
+                }
+                if (window.top.achievements.noscore_end_count == 5) window.top.makeAchievement("badscore_lover");
+
+                if (currentSave.is_true_end) {//TE成就
+                    window.top.makeAchievement("true_end");
+                }
+
                 endslideshowing = -100;
             } else {
+                endslidesprite_last = endslidesprite;
                 endslidesprite = PIXI.Sprite.from('../endgame_slide/' + endslidelist[0].pic_url);
-                endslidesprite.x = 0, endslidesprite.y = 0;
+                endslidesprite.x = 0, endslidesprite.y = 0, endslidesprite.alpha = 0;
                 endslidesprite.width = 0.5 * appwidth;
                 endslidesprite.height = 0.5 * appheight;
                 endslidesprite.zIndex = Infinity;
@@ -324,6 +364,14 @@ function play(delta) {//基本所有的事件结算都在这里写
         endslidesprite.y = app.stage.pivot.y;
         endslideshowing += delta;
     }
+
+    //lazy conclusions
+    if (lazycount > 100) {
+        lazycount = 0;
+        if (currentSave.buy_stationary_count == 5) window.top.makeAchievement("just_buy_stationeries");
+        if (currentSave.boss_fight_death == 3) window.top.makeAchievement("noob_to_run");
+    }
+    lazycount += delta;
 
     //console.log("1");
     // if (wait_event.status === true) {//结算互动事件
@@ -346,6 +394,9 @@ function play(delta) {//基本所有的事件结算都在这里写
     //console.log(wait_event);
     //小游戏返回
     if (window.minigame_result.finished) {
+        if(window.minigame_result.score + 300 > currentSave.genshin_max){
+            currentSave.genshin_max = window.minigame_result.score + 300;
+        }
         if (typeof (window.minigame_result.strike_event) != 'undefined')
             window.minigame_result.strike_event.forEach(element => {
                 command(element);
@@ -540,18 +591,17 @@ async function loadmap(url) {
     uploadSave();
     if (url == '../scene/lijiao-hiddenhallway.json') {
         boss_sprite = PIXI.Sprite.from('../character/boss_fight/boss.jpg');
-        //boss_sprite.x = 936 * 3, boss_sprite.y = 150;
-        boss_sprite.x = 300, boss_sprite.y = 150;
+        boss_sprite.x = 936 * 3, boss_sprite.y = 150;
         app.stage.addChild(boss_sprite);
         if (currentSave.bossfight_flag == 0) {
             currentSave.bossfight_flag = 1;
-            command('st,{"content": "你好呀，这里是boss关卡，是追逐战哦。","options": [{"name": "继续","content": "那么应该怎么玩呢？","next_text": {"content": "结束对话之后右边会有个东西追你，一直跑就好啦~"}}]}');
+            command('st,{"content": "*你身后的门消失，一个怪物出现在你身后*","options": [{"name": "继续","content": "这是什么","next_text": {"content": "*别管那么多了，先跑*"}}]}');
         } else if (currentSave.bossfight_flag == 2) {
             currentSave.bossfight_flag = 3;
-            command('st,{"content": "你又来啦，这次跑到头记得和那个家伙对话哦~","options": [{"name": "继续","content": "这次有什么区别吗？","next_text": {"content": "组长说你会跑快点，不过我没写~>w<"}}]}');
+            command('st,{"content": "*你模模糊糊地看见长廊尽头有一个人*","options": [{"name": "继续","content": "这个长廊的地形似乎已经摸清了，赶紧冲过去吧","next_text": {"content": "*来不及了*"}}]}');
         } else {
             currentSave.bossfight_flag = 5;
-            command('st,{"content": "喂喂，理论上boss追逐战只用打两次的！","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你就这么喜欢打这个关卡吗~"}}]}');
+            command('st,{"content": "*你又来到了这里，但似乎不会再遇到那个波尔查诺了*","options": [{"name": "继续","content": "赶紧开始吧。","next_text": {"content": "你或许很喜欢逃亡"}}]}');
         }
     }
 }
@@ -568,7 +618,7 @@ questchain_create|qcc,uid,name    添加新事件集
 questchain_rename|qcr,uid,name    事件集重命名
 quest_comment|qc,uid,type,text    添加日志项
 achievement|achv,id               激活成就
-endslide_change|esc,id,time,url   结局幻灯片修改
+endslide_change|esc,id,pri,tim,url结局幻灯片修改
 endslide_show|ess                 展示结局幻灯片
  */
 function command(str) {//不用额外判断，直接动行为就行，判断在别的地方
@@ -633,21 +683,21 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 break;
             }
             let itemid = Number(strs[2]);
-            console.log(strs[3],"strs[3]");
+            console.log(strs[3], "strs[3]");
             let itemnum = Number(strs[3]);
-            console.log(itemnum,"strs[3]");
+            console.log(itemnum, "strs[3]");
             if (itemid < 0 || itemid >= item_list.length) {
                 console.log(`command "${str}" cannot be invoked."${strs[3]}" is not an item id!`);
                 break;
             }
-            if (strs[1] == 'add'){
+            if (strs[1] == 'add') {
                 if (currentSave.savepackage[itemid] == undefined) {
                     // console.log(currentSave.savepackage[itemid],"iddddddddddddddd");
                     currentSave.savepackage[itemid] = 0;
                 }
                 currentSave.savepackage[itemid] += itemnum;
             }
-            
+
             else {
                 if (itemnum > currentSave.savepackage[itemid]) currentSave.savepackage[itemid] = 0;
                 else currentSave.savepackage[itemid] -= itemnum;
@@ -719,7 +769,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             break;
         case 'achv':
         case 'achievement':
-            makeAchievement(strs[1]);
+            window.top.makeAchievement(strs[1]);
             break;
         case 'esc':
         case 'endslide_change':
@@ -728,7 +778,12 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[2]}" is not a number!`);
                 break;
             }
-            changeEndSlide(strs[1], numj, strs[3]);
+            let numk = Number(strs[3]);
+            if (numk == "NaN") {
+                console.log(`command "${str}" cannot be invoked."${strs[3]}" is not a number!`);
+                break;
+            }
+            changeEndSlide(strs[1], numj, numk, strs[4]);
             break;
         case 'ess':
         case 'endslide_show':
@@ -951,7 +1006,7 @@ function hero_face_to(dir) {
 //显示背包
 function showPackageBar() {
     let pkg = [];
-    console.log(currentSave.savepackage,"currentSave.savepackage");
+    console.log(currentSave.savepackage, "currentSave.savepackage");
     for (let i = 0; i < item_list.length; i++) {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
@@ -1041,30 +1096,8 @@ function changeQuestChainName(uid, qstname) {
     currentSave.quests[uid].name = qstname;
 }
 
-//成就
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
-function makeAchievement(id) {
-    console.log(window.top.achievements);
-    if (typeof (window.top.achievements[id]) == 'undefined' || window.top.achievements[id] == false) {
-        Toast.fire({
-            title: "获得成就:" + window.top.achievements_list[id].name,
-            text: window.top.achievements_list[id].text,
-            imageUrl: '../achievements/icons/' + window.top.achievements_list[id].icon
-        })
-        window.top.achievements[id] = true;
-        localStorage.setItem(window.top.userName + "_achv", encodeURIComponent(JSON.stringify(window.top.achievements)))
-    }
-}
+//成就改到index去了
+
 
 //结局播片
 /*
@@ -1115,3 +1148,29 @@ function showEndSlide() {
 
 //changeEndSlide('test', 1, 50, 'test.jpg');
 //changeEndSlide('test1', 2, 100, 'test1.png');
+function CrossTheBoader(r) {
+    if(typeof(nowmap.down) === "undefined"){
+        return true;
+    }
+    let over, leftboader, rightboader, upboader, downboader;
+    over = true;
+    let win = nowmap.down;
+    leftboader = win.x;
+    upboader = win.y;
+    rightboader = win.x + win.width;
+    downboader = win.y + win.height;
+    //对于一个矩形碰撞箱，取第一个点为左上角，第二个点为右下角
+    r.firstnodeX = r.x;
+    r.firstnodeY = r.y;
+    r.secondnodeX = r.x + r.width;
+    r.secondnodeY = r.y + r.height;
+    //alert(r.firstnodeX);
+    if (r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
+        && r.firstnodeY >= upboader && r.firstnodeY <= downboader
+        && r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
+        && r.secondnodeY >= upboader && r.secondnodeY <= downboader) {
+        over = false;
+    }
+    return over;
+}
+

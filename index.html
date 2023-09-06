@@ -24,6 +24,29 @@
     window.userName = null;
     window.currentBGM = 0;
     window.myfun = {};
+
+    function makeAchievement(id) {
+        console.log(window.achievements);
+        if (typeof (window.achievements[id]) == 'undefined' || window.achievements[id] == false) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                title: "获得成就:" + window.achievements_list[id].name,
+                text: window.achievements_list[id].text,
+                imageUrl: '../achievements/icons/' + window.achievements_list[id].icon
+            })
+            window.achievements[id] = true;
+            localStorage.setItem(window.userName + "_achv", encodeURIComponent(JSON.stringify(window.achievements)))
+        }
+    }
+
     //游戏元素切换
     function showMainMenu() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
@@ -119,19 +142,26 @@
         window.currentBGM = 0;
     }
 </script>
+
+
 <script src="behavejs/indexpage.js" type="module"></script>
 
 <body>
-
+    <script>
+        function flash_ach(){
+            var ifr = window.document.getElementById('achieveframe');
+            ifr.contentWindow.flash_achievement();
+        }
+    </script>
     <div class="tab">
         <a class="tab_button_l visible_topmenu_unlog" href="#" id="logbutton">登录</a>
         <a class="tab_button_l visible_topmenu_unlog" href="#" id="regbutton">注册</a>
         <p class="logged visible_topmenu_logged" id="logged" style="visibility: hidden;"></p>
-        <p class="visible_gameframe center_guide">
-            按WASD/↑←↓→键控制人物移动 按F键交互 按P键打开背包 请输入小写字母
+        <p class="visible_gameframe center_guide" >
+            按WASD/↑←↓→键控制人物移动 按F键交互 按P键打开背包 按L键打开引导日志
         </p>
         <p class="visible_mainmenu center_guide">
-            推荐使用 Chrome 进行游玩
+            推荐使用 Chrome 进行游玩 最佳分辨率1920×1080
         </p>
         <a class="tab_button_r" href="#" id="tab_about">关于</a>
         <a class="tab_button_r" href="#" id="tab_achieve">成就</a>
@@ -161,6 +191,7 @@
         <a class="mainmenu button_s visible_mainmenu" href="#" id="achievementbutton">查看成就</a>
         <a class="mainmenu button_s visible_mainmenu" href="#" id="aboutbutton">关于我们</a>
     </div>
+    
     <iframe src="GameFrame.html" class="game centre visible_gameframe" scrolling="no" frameborder="0"
         id="maingameframe"></iframe>
     <iframe src="SaveFrame.html" id="savelistframe" scrolling="no"

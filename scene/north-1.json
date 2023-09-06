@@ -25,7 +25,7 @@
         {
             "name": "3",
             "x": 600,
-            "y": 24,
+            "y": 48,
             "width": 288,
             "height": 24,
             "type": "banary",
@@ -131,15 +131,6 @@
             "collideH": 1
         },
         {
-            "name": "16",
-            "x": 96,
-            "y": 408,
-            "width": 72,
-            "height": 24,
-            "type": "banary",
-            "collideH": 1
-        },
-        {
             "name": "17",
             "x": 288,
             "y": 144,
@@ -177,7 +168,7 @@
         },
         {
             "name": "21",
-            "x": 522,
+            "x": 552,
             "y": 384,
             "width": 24,
             "height": 24,
@@ -341,8 +332,8 @@
             "name": "39",
             "x": 600,
             "y": 360,
-            "width": 24,
-            "height": 24,
+            "width": 168,
+            "height": 48,
             "type": "banary",
             "collideH": 1
         },
