@@ -281,7 +281,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 currentSave.bossfight_flag = 2;
                 command("sf,30");
                 loadmap("../scene/lijiao-1.json");
-                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},strike_event:["sf,30"]}]}');
+                command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},"strike_event":["sf,30"]}]}');
             }
         } else if (currentSave.bossfight_flag == 3) {
             boss_sprite.x -= delta;
