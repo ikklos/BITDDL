@@ -64,7 +64,8 @@ PIXI.Assets.load([
         //     bullet.x = app.screen.width + app.screen.width / 3;
         //     bullet.y = Math.random() * (app.screen.height);
         // }
-
+        bullet.time = 3000;
+        bullet.remove = false;
         bullet.scale.set(1);
         bullet.tint = 0xFF0000;
         bullet.speed = 2 + Math.random();
@@ -102,6 +103,7 @@ PIXI.Assets.load([
     });
     button_text.x = app.screen.width / 2 - 20;
     button_text.y = app.screen.height / 2 - 10;
+    
     app.stage.addChild(button_text);
 
 }).then(() => {
@@ -239,18 +241,23 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
             bullet_sub.tint = 0x000000;
             bullet_sub.scale.x = 0.5;
             bullet_sub.scale.y = 0.5;
+            bullet_sub.time = 400;
             bullet.hitbox = getHitBox(0, 0, 12, 12);
-            bullet_sub.speed = 0.1 + Math.random() / 4;
-            bullet_sub.direction = Math.random() * 2 * Math.PI;
+            bullet_sub.speed = 0.05 + Math.random() / 4;
+            bullet_sub.direction = bullet.direction + Math.random() * (Math.PI / 2) - (Math.PI / 4);
             app.stage.addChild(bullet_sub);
             current_bullets_num++;
         }
 
-
+        bullet.time--;
+        if (bullet.time < 0) {
+            bullet.remove = true;
+            app.stage.removeChild(bullet);
+        }
 
 
         // 碰撞检测
-        if (HitTest(neko, bullet)) {
+        if (HitTest(neko, bullet) && (!bullet.remove)) {
             ticker.stop();
             if (typeof (window.top.genshin_count) != 'number') window.top.genshin_count = 0;//原神成就计数
             window.top.genshin_count++;
