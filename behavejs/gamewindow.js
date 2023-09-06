@@ -403,6 +403,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 command(element);
             });
         changeGameArea(1);
+        window.top.currentBGM = 1;
     }
     if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
         // window.parent.changeAvator(npc.portrait);
@@ -734,6 +735,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
                 break;
             }
+            window.top.currentBGM = 4;
             changeGameArea(numi);
             break;
         case 'st':
