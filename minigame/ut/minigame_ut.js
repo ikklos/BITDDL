@@ -69,6 +69,7 @@ PIXI.Assets.load([
         bullet.speed = 2 + Math.random();
         bullet.direction = 0;
         bullet.hitbox = getHitBox(0, 0, bullet.width, bullet.height);
+        bullet.tail = false;
         bullets.push(bullet);
     }
 
@@ -194,7 +195,7 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
         // 初始化子弹参数
         let bullet = bullets[current_bullets_num];
         let tan = (bullet.x - neko.x) / (bullet.y - neko.y);
-        console.log(bullet);
+        // console.log(bullet);
         if (bullet.y > neko.y) {
             if (bullet.x < neko.x) {
                 bullet.direction = Math.atan(tan) + Math.PI;
@@ -211,12 +212,33 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
                 bullet.direction = -Math.atan(-tan);
             }
         }
-        console.log("add");
+        // 特殊子弹标记
+        if (time_counter % 250  === 0 && time_counter > 2000) {
+            bullet.tail = true;
+            bullet.speed = bullet.speed / 2;
+        }
+        // console.log("add");
         app.stage.addChild(bullet);
         current_bullets_num++;
     }
     for (let index = 0; index < current_bullets_num; index++) {
         const bullet = bullets[index];
+
+        // console.log(bullet.x);
+        // 拖尾
+        if (bullet.tail === true && time_counter % 70 === 0) {
+
+            let bullet_sub = bullets[current_bullets_num];
+            bullet_sub.x = bullet.x; 
+            bullet_sub.y = bullet.y;
+            bullet_sub.speed = 0.1 + Math.random() / 4;
+            bullet_sub.direction = Math.random() * 2 * Math.PI;
+            app.stage.addChild(bullet_sub);
+            current_bullets_num++;
+        }
+
+
+
 
         // 碰撞检测
         if (HitTest(neko, bullet)) {
