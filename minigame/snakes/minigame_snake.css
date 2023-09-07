@@ -1,0 +1,32 @@
+html,
+body {
+    background-color: bisque;
+    min-width: 1080px;
+    min-height: 960px;
+}
+
+#minigame {
+    display: none;
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ui_div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.start_button {
+    font-size: large;
+    width: 200px;
+    height: 70px;
+    padding-bottom: 20px;
+}
