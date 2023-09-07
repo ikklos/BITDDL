@@ -48,6 +48,7 @@ PIXI.Assets.load([
         if (snake[i].y < app.screen.height / 2)
             snake[i].mov_direction = 'down';
         else snake[i].mov_direction = 'up';
+        snake[i].next_mov_direction = snake[i].mov_direction;
         snake[i].snake_id = i;
         snake[i].hitbox = getFullHitBox(snake[i]);
     }
@@ -55,8 +56,8 @@ PIXI.Assets.load([
 
     food = PIXI.Sprite.from(`./img/food.png`);
     food.anchor.set(0.5);
-    food.x = getRandomNumWithPadding(app.screen.width, 100);
-    food.y = getRandomNumWithPadding(app.screen.height, 100);
+    food.x = getRandomNumWithPadding(app.screen.width, 200);
+    food.y = getRandomNumWithPadding(app.screen.height, 200);
     food.width = size * 4;
     food.height = size * 4;
     food.vx = 0;
@@ -101,19 +102,19 @@ PIXI.Assets.load([
     //水平和垂直速度
     left.press = () => {
         if (snake[index].mov_direction == 'left' || snake[index].mov_direction == 'right') return;
-        snake[index].mov_direction = 'left';
+        snake[index].next_mov_direction = 'left';
     };
     up.press = () => {
         if (snake[index].mov_direction == 'up' || snake[index].mov_direction == 'down') return;
-        snake[index].mov_direction = 'up';
+        snake[index].next_mov_direction = 'up';
     };
     right.press = () => {
         if (snake[index].mov_direction == 'left' || snake[index].mov_direction == 'right') return;
-        snake[index].mov_direction = 'right';
+        snake[index].next_mov_direction = 'right';
     };
     down.press = () => {
         if (snake[index].mov_direction == 'up' || snake[index].mov_direction == 'down') return;
-        snake[index].mov_direction = 'down';
+        snake[index].next_mov_direction = 'down';
     };
 
     app.ticker.minFPS = 90;
@@ -146,6 +147,7 @@ async function gameloop(delta) {//游戏循环
     score_num += Number(snake_count) / 5;
     score.text = "当前选择：" + (index + 1) + "\n分数：" + Math.floor(score_num);
 
+    console.log(snake[index].mov_direction)
     for (let i = 0; i < snake_count; i++) {
         // 碰撞检测
         if (CrossTheBoader(snake[i])) {
@@ -168,8 +170,8 @@ async function gameloop(delta) {//游戏循环
                     newsnake.next.zIndex = 100;
                     newsnake.next.hitbox = getFullHitBox(newsnake.next);
                     app.stage.addChild(newsnake.next);
-                    food.x = app.screen.width * Math.random();
-                    food.y = app.screen.height * Math.random();
+                    food.x = getRandomNumWithPadding(app.screen.width, 200);
+                    food.y = getRandomNumWithPadding(app.screen.height, 200);
                 }
             }
         });
@@ -189,6 +191,7 @@ async function gameloop(delta) {//游戏循环
                     snake[i].y += speed;
                     break;
             }
+            snake[i].mov_direction = snake[i].next_mov_direction;
             return;
         }).then(() => {
             app.stage.children.forEach(element => {
@@ -235,6 +238,7 @@ function gameover() {
         allowOutsideClick: false,
     }).then((result) => {
         if (result.isConfirmed) {
+            if (typeof (window.parent.minigame_result.play_count) != 'number') window.parent.minigame_result.play_count = 0;
             window.parent.minigame_result.play_count++;
             location.reload();
         } else if (result.isDismissed) {
@@ -242,7 +246,7 @@ function gameover() {
                 finished: true,
                 score: score_num,
                 strike_event: [
-                    `st,{"content": "*你的高考成绩中有${score_num}分是星穹铁道成绩！*"}`
+                    `st,{"content": "*你的高考成绩中有${Math.floor(score_num)}分是星穹铁道成绩！*"}`
                 ]
             };
             location.reload();
