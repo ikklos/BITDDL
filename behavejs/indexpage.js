@@ -285,10 +285,11 @@ fetch('../BGM/bgmdata.json')
             bgms.forEach(function (element) {
                 console.log("init volume");
                 element.volume = 0;
-                element.play();
+                // element.play();
             })
             bgmStarted = true;
             bgms[0].volume = currentVolume;
+            bgms[0].play();
             document.removeEventListener('click', startPlayBGM);
             document.removeEventListener('keydown', startPlayBGM);
             return false;

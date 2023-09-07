@@ -34,6 +34,13 @@
             "type": "audio/mpeg",
             "src": "/BGM/The Filthy Mind.mp3",
             "name": "The Filthy Mind"
+        },
+        {
+            "loop": "",
+            "preload": "auto",
+            "type": "audio/mpeg",
+            "src": "/BGM/Blood Coagulant.mp3",
+            "name": "Blood Coagulant"
         }
     ]
 }
