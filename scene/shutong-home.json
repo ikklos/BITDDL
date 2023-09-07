@@ -207,6 +207,52 @@
                             }
                         }
                     ]
+                },{
+                    "pre_list":[
+                        {
+                            "type": "event",
+                            "num":1,
+                            "list":[
+                                29,
+                                18
+                            ]
+                        }
+                    ],
+                    "content":"[某大学校园内出现人体器官贩卖事件，请各方面提高警惕！]",
+                    "options":[
+                        {
+                            "name":"继续",
+                            "content":"最近的新闻怎么都这么离谱",
+                            "next_text":{
+                                "content":"[某神秘组织已伤害多名大学生，受害者大脑受到严重损伤]",
+                                "options":[
+                                    {
+                                        "name":"什么?",
+                                        "content":"那个[智慧]……",
+                                        "next_text":{
+                                            "content":"*你看了一眼消息来源，刚好就是你所在的大学*",
+                                            "options":[
+                                                {
+                                                    "name":"离开",
+                                                    "content":"我必须去操场确认一下",
+                                                    "next_text":{
+                                                        "content":"*你想起了今天遇到的事，事不宜迟，不能让更多人受到伤害*",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,39",
+                                                            "qcc,dream,正义执行",
+                                                            "qc,dream,title,新闻",
+                                                            "qc,dream,word,你看到了新闻，联系到在操场上发生的事，你打算去一探究竟"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -255,12 +301,6 @@
                             "num": 1,
                             "list": [
                                 0
-                            ]
-                        },
-                        {
-                            "type": "no_event",
-                            "list": [
-                                1
                             ]
                         }
                     ],
@@ -547,6 +587,117 @@
                                     "esc,true_end1,1,100,test.jpg",
                                     "ess",
                                     "pkg,add,3,1"
+                                ]
+                            }
+                        }
+                    ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                42
+                            ]
+                        }
+                    ],
+                    "content":"*你打开桌上的日记，发现这本日记还夹着一页*",
+                    "options":[
+                        {
+                            "name":"继续",
+                            "content":"",
+                            "next_text":{
+                                "content":"*可能是某个解剖课的作业，上面画着某种生物的大脑*",
+                                "options":[
+                                    {
+                                        "name":"?",
+                                        "content":"",
+                                        "next_text":{
+                                            "content":"*你凑近了仔细看，旁边还有几个黑点*",
+                                            "options":[
+                                                {
+                                                    "name":"这是……",
+                                                    "content":"什么东西",
+                                                    "next_text":{
+                                                        "content":"*那是长着触手的大脑，正在被这个最大的大脑吞噬着*",
+                                                        "options":[
+                                                            {
+                                                                "name":"继续",
+                                                                "content":"",
+                                                                "next_text":{
+                                                                    "content":"*这些图画似乎动了起来，你想起少年在北湖那里说的话*",
+                                                                    "options":[
+                                                                        {
+                                                                            "name":"难不成",
+                                                                            "content":"那个[智慧]能够成长",
+                                                                            "next_text":{
+                                                                                "content":"*你发觉少年可能正在培养一个巨大的[智慧]*",
+                                                                                "options":[
+                                                                                    {
+                                                                                        "name":"必须立刻行动",
+                                                                                        "content":"",
+                                                                                        "next_text":{
+                                                                                            "content":"*你决定阻止他，匡扶正义*",
+                                                                                            "options":[],
+                                                                                            "strike_event":[
+                                                                                                "sf,43",
+                                                                                                "qcr,dream,正义执行正义执行正义执行",
+                                                                                                "qc,dream,title,正义执行正义执行正义执行正义执行",
+                                                                                                "qc,dream,word,正义执行正义执行正义执行正义执行正义执行正义执行"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                45
+                            ]
+                        }
+                    ],
+                    "content":"*你的脑子里尽是那少年的模样*",
+                    "options":[
+                        {
+                            "name":"先复习吧，",
+                            "content":"要考试了",
+                            "next_text":{
+                                "content":"*你复习了一会，大概没有什么问题了*",
+                                "options":[],
+                                "strike_event":[
+                                    "sf,48",
+                                    "qc,dream,title,先考试吧",
+                                    "qc,dream,word,你的座位在理教一楼教室东北角"
+                                ]
+                            }
+                        },{
+                            "name":"复习不下去……",
+                            "content":"那个[智慧]去哪了？",
+                            "next_text":{
+                                "content":"*（你还真的不复习）你的调查没有任何进展，而且挂科了*",
+                                "options":[],
+                                "strike_event":[
+                                    "sf,48",
+                                    "qc,dream,title,吔！我不要复习",
+                                    "qc,dream,word,你放弃了复习，最终挂科了"
                                 ]
                             }
                         }
