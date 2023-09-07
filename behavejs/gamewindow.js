@@ -115,7 +115,8 @@ async function AfterLoad() {
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
         keyp = keyboard("p", "e"),
-        keyl = keyboard("l", "q");
+        keyl = keyboard("l", "q"),
+        keyu = keyboard("u", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -185,6 +186,7 @@ async function AfterLoad() {
                                 wait_event.text = npc.text[i];
                                 window.parent.changeAvator(npc.portrait);
                                 wait_event.times = 0;
+                                i = npc.text.length
                             }
                         }
                     } else if (npc.type === "door") {
@@ -200,14 +202,13 @@ async function AfterLoad() {
     keyp.press = () => {
         showPackageBar();
     }
-    /*
-        command('qcc,testqst,Test');
-        command('qc,testqst,title,firstTitle');
-        command('qc,testqst,word,firstWord');
-    */
     keyl.press = () => {
         window.parent.uploadQuestBar(currentSave.quests);
         window.parent.triggerQuestBar();
+    }
+    keyu.press = () => {
+        console.log(story_status);
+        console.log(currentSave);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -865,7 +866,8 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
             }
         } else if (pre[i].type === "no_event") {
             for (let k = 0; k < pre[i].list.length; k++)
-                if (story_status[pre[i].list[k]] === 1) return false;
+                if (story_status[pre[i].list[k]] === 1)
+                    return false;
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) return true;
