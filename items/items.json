@@ -1,35 +1,46 @@
 {
-    "itemlist":[
+    "itemlist": [
         {
-            "name" : "绝密考试题",
-            "type" : "story",
-            "text" :"为什么你需要考试题，你觉得这里会有原题吗",
+            "name": "绝密考试题",
+            "type": "story",
+            "text": "为什么你需要考试题，你觉得这里会有原题吗",
             "src": "../items/img/53.png"
-        },{
+        },
+        {
             "name": "一点点智商",
-            "type" : "change_Attribute",
-            "text" : "这东西真的能吃吗，你兴许可以试试，没准真的可以提高智商呢",
-            "src":"../items/img/wisdom.png"
-        },{
-            "name":"开发者作弊小用具？",
-            "type" : "change_Attribute",
-            "text" : "我说你真要用吗",
-            "src":"../items/img/order.png"
-        },{
-            "name":"限定版不及格小标签",
-            "type":"can not use",
-            "text":"喜提不及格，或许确实应该留着做个纪念",
-            "src":"../items/img/wrong.png"
-        },{
-            "name":"破碎的黑笔",
-            "type":"story",
-            "text":"被你扔到地上又捡起来的笔",
-            "src":"../items/img/pen.png"
-        },{
-            "name":"刀片",
-            "type":"story",
-            "text":"或许将你杀掉……",
-            "src":"../items/img/knife.png"
+            "type": "change_Attribute",
+            "text": "这东西真的能吃吗，你兴许可以试试，没准真的可以提高智商呢",
+            "src": "../items/img/wisdom.png"
+        },
+        {
+            "name": "开发者作弊小用具？",
+            "type": "change_Attribute",
+            "text": "我说你真要用吗",
+            "src": "../items/img/order.png"
+        },
+        {
+            "name": "限定版不及格小标签",
+            "type": "can not use",
+            "text": "喜提不及格，确实应该留着做个纪念",
+            "src": "../items/img/wrong.png"
+        },
+        {
+            "name": "破碎的黑笔",
+            "type": "story",
+            "text": "被你扔到地上又捡起来的笔",
+            "src": "../items/img/pen.png"
+        },
+        {
+            "name": "刀片",
+            "type": "story",
+            "text": "或许将你杀掉……",
+            "src": "../items/img/knife.png"
+        },
+        {
+            "name": "胸针",
+            "type": "story",
+            "text": "一枚普通的胸针，被赋予了多余的含义。",
+            "src": "../items/img/teli.png"
         }
     ]
 }

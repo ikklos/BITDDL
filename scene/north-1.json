@@ -1,8 +1,8 @@
 {
-    "x":0,
-    "y":0,
-    "down":"../scene/images/north-1-down.png",
-    "up":"../scene/images/north-1-up.png",
+    "x": 0,
+    "y": 0,
+    "down": "../scene/images/north-1-down.png",
+    "up": "../scene/images/north-1-up.png",
     "banaries": [
         {
             "name": "1",
@@ -375,7 +375,6 @@
             "height": 24,
             "collideH": 1.0,
             "type": "door",
-            
             "nextx": 480,
             "nexty": 0,
             "nextmap": "../scene/north-2.json"
@@ -503,6 +502,270 @@
                                     }
                                 ]
                             }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "img": "../character/girl_wait_at_north/right.png",
+            "name": "girl_waiting",
+            "x": 505,
+            "y": 110,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/girl_wait_at_north/face.png",
+            "behave": [
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "random",
+                            "possibility": 0.2
+                        }
+                    ]
+                },
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1001
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "content": "*一位学姐站在岸边眺望北湖*",
+                    "strike_event": [
+                        "qcc,north_girls,北湖等待的学姐",
+                        "qc,north_girls,word,北湖岸边有一位学姐不知道在做什么"
+                    ],
+                    "options": [
+                        {
+                            "name": "[询问]",
+                            "content": "学姐，你在这里做什么？",
+                            "next_text": {
+                                "content": "*学姐好像突然注意到你*<br>同学，你好呀。我和朋友约在这里见面，但是她让我等了很久呢~",
+                                "options": [
+                                    {
+                                        "name": "[帮助]",
+                                        "content": "或许我可以帮你通知一下她..",
+                                        "next_text": {
+                                            "content": "如果这样的话，那就太好了~<br>她的名字叫张傲，可能在理教学习忘记时间了",
+                                            "options": [],
+                                            "strike_event": [
+                                                "qc,north_girls,word,学姐在等待她的朋友，似乎已经等待很久了",
+                                                "qc,north_girls,title,学姐的朋友可能在理教",
+                                                "sf,1000",
+                                                "sf,1001"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "[离开]",
+                                        "content": "希望你的朋友能早点过来。",
+                                        "next_text": {
+                                            "content": "非常感谢，我希望她能快点。",
+                                            "options": [],
+                                            "strike_event": [
+                                                "qc,north_girls,word,学姐在等待她的朋友，似乎已经等待很久了",
+                                                "sf,1000"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "*安静地离开*",
+                            "next_text": {
+                                "content": "*你安静地走开了*",
+                                "options": []
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "no_event",
+                            "num": 2,
+                            "list": [
+                                1000,
+                                1001
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "content": "*学姐仍然在这里*",
+                    "options": [
+                        {
+                            "name": "[询问]",
+                            "content": "学姐，你的朋友还没来吗？",
+                            "next_text": {
+                                "content": "同学，又是你呀。她好像确实有点拖沓呢。",
+                                "options": [
+                                    {
+                                        "name": "[帮助]",
+                                        "content": "或许我可以帮你通知一下她..",
+                                        "next_text": {
+                                            "content": "如果这样的话，那就太好了~<br>她可能在理教学习忘记时间了吧",
+                                            "options": [],
+                                            "strike_event": [
+                                                "qc,north_girls,word,学姐在等待她的朋友，似乎已经等待很久了",
+                                                "qc,north_girls,title,学姐的朋友可能在理教",
+                                                "sf,1001"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "[离开]",
+                                        "content": "希望你的朋友能早点过来。",
+                                        "next_text": {
+                                            "content": "非常感谢，我也这么希望。",
+                                            "options": []
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "*安静地离开*",
+                            "next_text": {
+                                "content": "*你安静地走开了*",
+                                "options": []
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "no_event",
+                            "num": 1,
+                            "list": [
+                                1001
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "content": "*学姐和朋友相谈甚欢*",
+                    "options": [
+                        {
+                            "name": "[走进]",
+                            "content": "...",
+                            "next_text": {
+                                "content": "同学，真是非常感谢你！没想到小傲她学习忘记时间了。",
+                                "options": [
+                                    {
+                                        "name": "",
+                                        "content": "我也没做什么事情。",
+                                        "next_text": {
+                                            "content": "但是你可帮了大忙了~我身上也没什么东西，就把这个给你吧。",
+                                            "options": [],
+                                            "strike_event": [
+                                                "pkg,add,6,1",
+                                                "qc,north_girls,title,学姐和朋友相聚了！",
+                                                "qcr,north_girls,北湖友人（完成）"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "",
+                                        "content": "那学姐你是不是要表示一下？",
+                                        "next_text": {
+                                            "content": "那是当然~可惜我身上也没什么东西，就把这个给你吧。",
+                                            "options": [],
+                                            "strike_event": [
+                                                "pkg,add,6,1",
+                                                "qc,north_girls,title,学姐和朋友相聚了！",
+                                                "qcr,north_girls,北湖友人（完成）"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "*安静地离开*",
+                            "next_text": {
+                                "content": "*我也算是做了件好事吧~*",
+                                "options": []
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1002
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "img": "../character/north_girl_friend/up.png",
+            "name": "girl_friend",
+            "x": 530,
+            "y": 132,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/north_girl_friend/face.png",
+            "behave": [
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1002
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "content": "*学姐和朋友相谈甚欢*",
+                    "options": [
+                        {
+                            "name": "[走进]",
+                            "content": "...",
+                            "next_text": {
+                                "content": "诶呀，同学，谢谢谢谢，我学习太入迷了，都忘记陪朋友了，真是的...",
+                                "options": []
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "*安静地离开*",
+                            "next_text": {
+                                "content": "*我也算是做了件好事吧~*",
+                                "options": []
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1002
+                            ]
                         }
                     ]
                 }

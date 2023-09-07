@@ -115,7 +115,8 @@ async function AfterLoad() {
         down = keyboard("ArrowDown", "s");
     let keyf = keyboard("f", ""),
         keyp = keyboard("p", "e"),
-        keyl = keyboard("l", "q");
+        keyl = keyboard("l", "q"),
+        keyu = keyboard("u", "");
     //水平和垂直速度
     let hori, vertical;
     hori = 1.8; vertical = 1.4;
@@ -185,6 +186,7 @@ async function AfterLoad() {
                                 wait_event.text = npc.text[i];
                                 window.parent.changeAvator(npc.portrait);
                                 wait_event.times = 0;
+                                i = npc.text.length
                             }
                         }
                     } else if (npc.type === "door") {
@@ -200,14 +202,14 @@ async function AfterLoad() {
     keyp.press = () => {
         showPackageBar();
     }
-    /*
-        command('qcc,testqst,Test');
-        command('qc,testqst,title,firstTitle');
-        command('qc,testqst,word,firstWord');
-    */
     keyl.press = () => {
-        window.parent.triggerQuestBar(currentSave.quests);
-        //showEndSlide();
+        window.parent.uploadQuestBar(currentSave.quests);
+        window.parent.triggerQuestBar();
+    }
+    keyu.press = () => {
+        console.log(story_status);
+        console.log(currentSave);
+        changeGameArea(3);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -367,10 +369,21 @@ function play(delta) {//基本所有的事件结算都在这里写
     }
 
     //lazy conclusions
-    if (lazycount > 100) {
+    if (lazycount > 200) {
         lazycount = 0;
         if (currentSave.buy_stationary_count == 5) window.top.makeAchievement("just_buy_stationeries");
         if (currentSave.boss_fight_death == 3) window.top.makeAchievement("noob_to_run");
+        //package
+        let pkg = [];
+        console.log(currentSave.savepackage, "currentSave.savepackage");
+        for (let i = 0; i < item_list.length; i++) {
+            if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
+            pkg.push({ id: i, num: currentSave.savepackage[i] });
+        }
+        window.parent.uploadPackage(pkg, item_list);
+
+        window.parent.uploadQuestBar(currentSave.quests);
+        uploadSave();
     }
     lazycount += delta;
 
@@ -403,6 +416,7 @@ function play(delta) {//基本所有的事件结算都在这里写
                 command(element);
             });
         changeGameArea(1);
+        window.top.currentBGM = 1;
     }
     if (wait_event.type === "npc" && (wait_event.times === 0 || window.parent.dialogResult !== -1)) {//结算npc对话
         // window.parent.changeAvator(npc.portrait);
@@ -734,6 +748,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
                 break;
             }
+            window.top.currentBGM = 4;
             changeGameArea(numi);
             break;
         case 'st':
@@ -852,7 +867,8 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
             }
         } else if (pre[i].type === "no_event") {
             for (let k = 0; k < pre[i].list.length; k++)
-                if (story_status[pre[i].list[k]] === 1) return false;
+                if (story_status[pre[i].list[k]] === 1)
+                    return false;
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) return true;
@@ -1012,7 +1028,8 @@ function showPackageBar() {
         if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
         pkg.push({ id: i, num: currentSave.savepackage[i] });
     }
-    window.parent.showPackageBar(pkg, item_list);
+    window.parent.uploadPackage(pkg, item_list);
+    window.parent.showPackageBar();
 }
 
 //切换主游戏和小程序
@@ -1025,12 +1042,19 @@ function changeGameArea(id) {
     window.minigame_result = { finished: false };
     document.getElementById("GameWindow").style.display = "none";
     document.getElementById("minigame_ut").style.display = "none";
+    document.getElementById("minigame_snake").style.display = "none";
     switch (id) {
         case 1:
             document.getElementById("GameWindow").style.display = "block"
             break;
         case 2:
             document.getElementById("minigame_ut").style.display = "block"
+            // 隐藏背包和日志系统
+            window.parent.hidPackageBarAndDiaryBar();
+            break;
+        case 3:
+            minigame_result.play_count = 0;
+            document.getElementById("minigame_snake").style.display = "block"
             // 隐藏背包和日志系统
             window.parent.hidPackageBarAndDiaryBar();
             break;
