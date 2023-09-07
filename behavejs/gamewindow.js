@@ -209,6 +209,7 @@ async function AfterLoad() {
     keyu.press = () => {
         console.log(story_status);
         console.log(currentSave);
+        changeGameArea(3);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1041,12 +1042,19 @@ function changeGameArea(id) {
     window.minigame_result = { finished: false };
     document.getElementById("GameWindow").style.display = "none";
     document.getElementById("minigame_ut").style.display = "none";
+    document.getElementById("minigame_snake").style.display = "none";
     switch (id) {
         case 1:
             document.getElementById("GameWindow").style.display = "block"
             break;
         case 2:
             document.getElementById("minigame_ut").style.display = "block"
+            // 隐藏背包和日志系统
+            window.parent.hidPackageBarAndDiaryBar();
+            break;
+        case 3:
+            minigame_result.play_count = 0;
+            document.getElementById("minigame_snake").style.display = "block"
             // 隐藏背包和日志系统
             window.parent.hidPackageBarAndDiaryBar();
             break;

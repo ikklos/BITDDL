@@ -1,8 +1,8 @@
 html,
 body {
     background-color: bisque;
-    min-width: 1080px;
-    min-height: 960px;
+    min-width: 800px;
+    min-height: 600px;
 }
 
 #minigame {

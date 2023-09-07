@@ -2,8 +2,8 @@ import { keyboard } from '../../behavejs/keyboard.js';
 import { HitTest, getFullHitBox } from '../../behavejs/collision.js';
 // 创建窗口
 var app = new PIXI.Application({
-    width: 1080,
-    height: 960,
+    width: 800,
+    height: 600,
     antialias: true,
     background: '#ffffff'
 });
@@ -41,8 +41,8 @@ PIXI.Assets.load([
     for (let i = 0; i < 4; i++) {
         snake[i] = PIXI.Sprite.from(`./img/snake_${i + 1}_head.png`);
         snake[i].anchor.set(0.5);
-        snake[i].x = getRandomNumWithPadding(app.screen.width, 20);
-        snake[i].y = getRandomNumWithPadding(app.screen.height, 20);
+        snake[i].x = getRandomNumWithPadding(app.screen.width, 100);
+        snake[i].y = getRandomNumWithPadding(app.screen.height, 100);
         snake[i].width = size;
         snake[i].height = size;
         if (snake[i].y < app.screen.height / 2)
@@ -55,8 +55,8 @@ PIXI.Assets.load([
 
     food = PIXI.Sprite.from(`./img/food.png`);
     food.anchor.set(0.5);
-    food.x = getRandomNumWithPadding(app.screen.width, 20);
-    food.y = getRandomNumWithPadding(app.screen.height, 20);
+    food.x = getRandomNumWithPadding(app.screen.width, 100);
+    food.y = getRandomNumWithPadding(app.screen.height, 100);
     food.width = size * 4;
     food.height = size * 4;
     food.vx = 0;
@@ -144,7 +144,7 @@ async function gameloop(delta) {//游戏循环
     if (deltacount < 15) return;
     deltacount = 0;
     score_num += Number(snake_count) / 5;
-    score.text = "当前选择：" + index + "\n分数：" + Math.floor(score_num);
+    score.text = "当前选择：" + (index + 1) + "\n分数：" + Math.floor(score_num);
 
     for (let i = 0; i < snake_count; i++) {
         // 碰撞检测
@@ -234,13 +234,14 @@ function gameover() {
         allowOutsideClick: false,
     }).then((result) => {
         if (result.isConfirmed) {
+            window.parent.minigame_result.play_count++;
             location.reload();
         } else if (result.isDismissed) {
             window.parent.minigame_result = {
                 finished: true,
                 score: score_num,
                 strike_event: [
-                    `st,{"content": "*你的高考成绩中有${Math.floor(time_counter / 10)}分是原神成绩！*"}`
+                    `st,{"content": "*你的高考成绩中有${score_num}分是星穹铁道成绩！*"}`
                 ]
             };
             location.reload();
