@@ -155,6 +155,9 @@ async function gameloop(delta) {//游戏循环
             gameover();
         }
         app.stage.children.forEach(element => {
+            if (element.snake_id == i) element.zIndex = 4;
+            else element.zIndex = 2;
+
             if (HitTest(snake[i], element)) {
                 if (element.snake_id == 10) {
                     score_num += 10 * snake_count * snake_count;
