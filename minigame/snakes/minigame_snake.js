@@ -149,7 +149,7 @@ async function gameloop(delta) {//游戏循环
     for (let i = 0; i < snake_count; i++) {
         // 碰撞检测
         if (CrossTheBoader(snake[i])) {
-            console.log(i)
+            console.log('game over because bourdery snake ' + (i + 1))
             gameover();
         }
         app.stage.children.forEach(element => {
@@ -194,6 +194,7 @@ async function gameloop(delta) {//游戏循环
             app.stage.children.forEach(element => {
                 if (HitTest(snake[i], element)) {
                     if (element.snake_id == i && element != snake[i]) {
+                        console.log('game over because snake ate it self')
                         console.log(element);
                         console.log(snake[i]);
                         gameover();
