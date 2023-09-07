@@ -235,24 +235,34 @@
                     "type": "appear",
                     "pre_list": [
                         {
-                            "type": "attribute",
+                            "type": "event",
+                            "num": 1,
                             "list": [
-                                {
-                                    "type": "more than",
-                                    "num": 1
-                                }
+                                0
                             ]
                         }
                     ]
                 },
                 {
-                    "type": "disappear",
-                    "pre_list": [
+                    "type":"disappear",
+                    "prelist":[
                         {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                15,
+                            "type":"event",
+                            "num":2,
+                            "list":[
+                                22,
+                                27
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"disappear",
+                    "prelist":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
                                 16,
                                 17
                             ]
@@ -260,13 +270,13 @@
                     ]
                 },
                 {
-                    "type": "appear",
-                    "pre_list": [
+                    "type":"appear",
+                    "prelist":[
                         {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                18
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                40
                             ]
                         }
                     ]
@@ -276,12 +286,10 @@
                 {
                     "pre_list": [
                         {
-                            "type": "attribute",
+                            "type": "event",
+                            "num": 1,
                             "list": [
-                                {
-                                    "type": "more than",
-                                    "num": 1
-                                }
+                                0
                             ]
                         },
                         {
@@ -360,146 +368,91 @@
                             }
                         }
                     ]
-                },
-                {
-                    "pre_list": [
+                },{
+                    "prelist":[
                         {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                14
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                40
                             ]
                         }
                     ],
-                    "content": "你不是要去卷吗，回来干什么",
-                    "options": [
+                    "content":"？你又来干嘛",
+                    "options":[
                         {
-                            "name": "没什么",
-                            "content": "你的复习进度到哪了",
-                            "next_text": {
-                                "content": "先不说那个了，有点其他的事，你想听我说说吗",
-                                "options": [
+                            "name":"这个叫智慧的东西",
+                            "content":"是哪来的",
+                            "next_text":{
+                                "content":"*他似乎明白了什么*待会来北湖一趟，我单独和你说吧",
+                                "options":[],
+                                "strike_event":[
+                                    "sf,41",
+                                    "qc,dream,word,少年希望在北湖单独对你说出[真相]"
+                                ]
+                            }
+
+                        }
+                    ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                43
+                            ]
+                        }
+                    ],
+                    "content":"你想通了？",
+                    "options":[
+                        {
+                            "name":"嗯",
+                            "content":"我决定加入组织",
+                            "next_text":{
+                                "content":"*少年愣在原地，你突然靠近，掏出了自己的刀*",
+                                "options":[
                                     {
-                                        "name": "好吧",
-                                        "content": "*你决定听听*",
-                                        "next_text": {
-                                            "content": "我一直都不太擅长数学之类的学科，但是这学期我确实很认真在学了",
-                                            "options": [
+                                        "name":"加入组织",
+                                        "content":"然后将其瓦解",
+                                        "next_text":{
+                                            "content":"*你一刀刺去，这刀扎扎实实地命中了他的要害*……",
+                                            "options":[
                                                 {
-                                                    "name": "然后呢",
-                                                    "content": "单论努力是没有什么值得夸耀的",
-                                                    "next_text": {
-                                                        "content": "的确如此，我几乎没有任何进步，尤其是与你相比，我与你相差得太悬殊了",
-                                                        "options": [
-                                                            {
-                                                                "name": "那就没什么意义了",
-                                                                "content": "我也……",
-                                                                "next_text": {
-                                                                    "content": "但我能感觉到我在缓慢地进步，每一个突破都让我心潮澎湃(*他的语气激动起来*)",
-                                                                    "options": [
-                                                                        {
-                                                                            "name": "菜就是菜啊",
-                                                                            "content": "努力只有自己会承认，你的挣扎不过是自我感动罢了",
-                                                                            "next_text": {
-                                                                                "content": "这...",
-                                                                                "options": [
-                                                                                    {
-                                                                                        "name": "你向往智慧",
-                                                                                        "content": "你的进步，你的登顶",
-                                                                                        "next_text": {
-                                                                                            "content": "我...",
-                                                                                            "options": [
-                                                                                                {
-                                                                                                    "name": "*你想起了*",
-                                                                                                    "content": "*眼前的一切都在扭曲变形*",
-                                                                                                    "next_text": {
-                                                                                                        "content": "*突然这种感觉停止了*",
-                                                                                                        "options": [
-                                                                                                            {
-                                                                                                                "name": "*你接着说*",
-                                                                                                                "content": "我们是怎么认识的",
-                                                                                                                "next_text": {
-                                                                                                                    "content": "我当初向往你的智慧，现在我不再嫉妒你了，我只把你当作朋友对待",
-                                                                                                                    "options": [
-                                                                                                                        {
-                                                                                                                            "name": "就是这个",
-                                                                                                                            "content": "只要想着登顶",
-                                                                                                                            "next_text": {
-                                                                                                                                "content": "",
-                                                                                                                                "options": [
-                                                                                                                                    {
-                                                                                                                                        "name": "*继续*",
-                                                                                                                                        "content": "身后就必然是尸横遍野",
-                                                                                                                                        "next_text": {
-                                                                                                                                            "content": "看来真正需要解脱的不是我，我的朋友",
-                                                                                                                                            "options": [
-                                                                                                                                                {
-                                                                                                                                                    "name": "一切",
-                                                                                                                                                    "content": "一切机会都是属于被打上“优等”的标签的人",
-                                                                                                                                                    "next_text": {
-                                                                                                                                                        "content": "你想说的是，在这场斗争中失败的人永远会越来越差，就像被判处了死刑",
-                                                                                                                                                        "options": [
-                                                                                                                                                            {
-                                                                                                                                                                "name": "是的",
-                                                                                                                                                                "content": "卷王手中握着别人脖子上的牵绳，别人的生存空间由他们决定",
-                                                                                                                                                                "next_text": {
-                                                                                                                                                                    "content": "究竟是否有你想象的这么残酷，让我们边走边看吧",
-                                                                                                                                                                    "options": [
-                                                                                                                                                                        {
-                                                                                                                                                                            "name": "*你的头疼了一下*",
-                                                                                                                                                                            "content": "*你打算先离开*",
-                                                                                                                                                                            "next_text": {
-                                                                                                                                                                                "content": "本来是不是应该你来开导我来着（那少年喃喃自语道）",
-                                                                                                                                                                                "options": [],
-                                                                                                                                                                                "strike_event": [
-                                                                                                                                                                                    "sf,21",
-                                                                                                                                                                                    "qc,illness_of_witness,word,我试图开导操场踢球的少年，但是突然犯病了",
-                                                                                                                                                                                    "qc,main_story,word,我在操场上突然犯病了，不知道说了什么"
-                                                                                                                                                                                ]
-                                                                                                                                                                            }
-                                                                                                                                                                        }
-                                                                                                                                                                    ]
-                                                                                                                                                                }
-                                                                                                                                                            }
-                                                                                                                                                        ]
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            ]
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                ]
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    ]
-                                                                                                                }
-                                                                                                            }
-                                                                                                        ]
-                                                                                                    }
-                                                                                                }
-                                                                                            ]
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
+                                                    "name":"继续",
+                                                    "content":"",
+                                                    "next_text":{
+                                                        "content":"*你的头突然痛了起来，你决定去北湖看看*",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,45",
+                                                            "qc,dream,title,去北湖看看",
+                                                            "qc,dream,word,去趟北湖，你突然有种不好的预感"
                                                         ]
                                                     }
                                                 }
                                             ]
                                         }
-                                    },
+                                    }
+                                ]
+                            }
+                        },{
+                            "name":"开玩笑",
+                            "content":"你是组织的头目吗",
+                            "next_text":{
+                                "content":"啊？",
+                                "options":[
                                     {
-                                        "name": "再不卷你就废辣",
-                                        "content": "哪有空给你emo啊",
-                                        "next_text": {
-                                            "content": "*你头也不回地离开了*",
-                                            "options": [],
-                                            "strike_event": [
-                                                "sf,22",
-                                                "qc,illness_of_witness,word,操场上踢球的少年有些心事，我没有理会"
+                                        "name":"继续",
+                                        "content":"",
+                                        "next_text":{
+                                            "content":"这这不能*少年嘟囔着，把你准备掏刀的手握住，拉着往北校区走去*",
+                                            "options":[],
+                                            "strike_event":[
+                                                "sf,48",
+                                                "qcc,dream,精神病？",
+                                                "qc,dream,title,精神病竟是我自己",
+                                                "qc,dream,word,没有酿成大错，但你的精神损伤太严重，似乎无法恢复了(END)"
                                             ]
                                         }
                                     }
@@ -520,22 +473,6 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/soccer.png",
-            "behave": [
-                {
-                    "type": "appear",
-                    "pre_list": [
-                        {
-                            "type": "attribute",
-                            "list": [
-                                {
-                                    "type": "more than",
-                                    "num": 1
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
             "text": [
                 {
                     "pre_list": [
@@ -559,12 +496,6 @@
                             "list": [
                                 29
                             ]
-                        },
-                        {
-                            "type": "no_event",
-                            "list": [
-                                29
-                            ]
                         }
                     ],
                     "content": "你来到这个一动不动的足球旁边",
@@ -576,17 +507,53 @@
                                 "content": "*你搬开了这个足球，发现下面是那种叫做[智慧]的商品，在校园里有这样的物品，听说吃了可以提高智商*",
                                 "options": [
                                     {
-                                        "name": "奇怪",
-                                        "content": "虽然我有听说过，但这东西为什么要埋在这里",
+                                        "name": "继续",
+                                        "content": "",
                                         "next_text": {
-                                            "content": "*你不清楚这个东西的来源或是制作工艺，它看起来真的不能算好看，有点令人反胃*",
-                                            "strike_event": [
-                                                "sf,18",
-                                                "qcr,illness_of_witness,智慧之疫",
-                                                "qc,illness_of_witness,title,智慧",
-                                                "qc,illness_of_witness,word,操场上的足球下压着一些[智慧]"
-                                            ],
-                                            "options": []
+                                            "content": "*接下来这堆东西的行为彻底让你崩溃了，捂着嘴差点就要吐出来*",
+                                            "options": [
+                                                {
+                                                    "name": "继续",
+                                                    "content": "",
+                                                    "next_text": {
+                                                        "content": "*它在蠕动，甚至在发出那种黏糊糊的液体滴落的声音*",
+                                                        "options": [
+                                                            {
+                                                                "name": "是谁",
+                                                                "content": "*你突然感到有人在身后*",
+                                                                "next_text": {
+                                                                    "content": "你也是来存放智慧的？",
+                                                                    "options": [
+                                                                        {
+                                                                            "name": "是的",
+                                                                            "content": "我想应该……",
+                                                                            "next_text": {
+                                                                                "content": "*他的声音很像那个踢足球的少年，但你看不清他的脸*",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "name": "赶紧",
+                                                                                        "content": "先跑吧",
+                                                                                        "next_text": {
+                                                                                            "content": "*你觉得不能在这里逗留，赶紧跑开了*",
+                                                                                            "options": [],
+                                                                                            "strike_event": [
+                                                                                                "sf,18",
+                                                                                                "qcr,illness_of_witness,智慧之疫",
+                                                                                                "qc,illness_of_witness,title,智慧",
+                                                                                                "qc,illness_of_witness,word,操场上的足球下压着一些[智慧]"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
                                         }
                                     }
                                 ]
@@ -642,6 +609,7 @@
                         {
                             "type": "no_event",
                             "list": [
+                                18,
                                 29
                             ]
                         }
@@ -649,22 +617,58 @@
                     "content": "*你带着那个[智慧]找到了这里，看起来的确一模一样，但此时你的身后又出现了一个人*",
                     "options": [
                         {
-                            "name": "回头",
-                            "content": "你是谁",
+                            "name": "搬开",
+                            "content": "看看底下有什么",
                             "next_text": {
-                                "content": "*显然就是那个踢足球的少年*你也是来存放智慧的吗，没想到你也需要这个东西",
+                                "content": "*你搬开了这个足球，发现下面是那种叫做[智慧]的商品，在校园里有这样的物品，听说吃了可以提高智商*",
                                 "options": [
                                     {
-                                        "name": "*你感到他有点不对劲*",
-                                        "content": "先离开吧",
+                                        "name": "继续",
+                                        "content": "",
                                         "next_text": {
-                                            "content": "*你什么也没有说，将[智慧]放在球底下就转身离开了*",
-                                            "options": [],
-                                            "strike_event": [
-                                                "sf,29",
-                                                "qcr,illness_of_witness,智慧之疫",
-                                                "qc,illness_of_witness,title,智慧",
-                                                "qc,illness_of_witness,word,你把[智慧]放在足球下被发现了，那个踢球少年发现了但是没有理会。"
+                                            "content": "*接下来这堆东西的行为彻底让你崩溃了，捂着嘴差点就要吐出来*",
+                                            "options": [
+                                                {
+                                                    "name": "继续",
+                                                    "content": "",
+                                                    "next_text": {
+                                                        "content": "*它在蠕动，甚至在发出那种黏糊糊的液体滴落的声音*",
+                                                        "options": [
+                                                            {
+                                                                "name": "是谁",
+                                                                "content": "*你突然感到有人在身后*",
+                                                                "next_text": {
+                                                                    "content": "你也是来存放智慧的？",
+                                                                    "options": [
+                                                                        {
+                                                                            "name": "是的",
+                                                                            "content": "我想应该……",
+                                                                            "next_text": {
+                                                                                "content": "*他的声音很像那个踢足球的少年，但你看不清他的脸*",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "name": "赶紧",
+                                                                                        "content": "先跑吧",
+                                                                                        "next_text": {
+                                                                                            "content": "*你觉得不能在这里逗留，赶紧跑开了*",
+                                                                                            "options": [],
+                                                                                            "strike_event": [
+                                                                                                "sf,29",
+                                                                                                "qcr,illness_of_witness,智慧之疫",
+                                                                                                "qc,illness_of_witness,title,智慧",
+                                                                                                "qc,illness_of_witness,word,你看到了足球下的[智慧]，同时遇到了一个与足球少年声音相似的人"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
                                             ]
                                         }
                                     }
@@ -672,6 +676,62 @@
                             }
                         }
                     ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                39
+                            ]
+                        }
+                    ],
+                    "content":"*你又来到了这里，搬开那个足球，下面的东西仍然存在，但这次你看清了，那分明就是大脑*",
+                    "options":[
+                        {
+                            "name":"但是",
+                            "content":"显然我并不是来看这个的",
+                            "next_text":{
+                                "content":"*你回头，仿佛早就知道一样，那个人出现在了身后，像幽灵一般*",
+                                "options":[
+                                    {
+                                        "name":"继续",
+                                        "content":"",
+                                        "next_text":{
+                                            "content":"*你拿起防身的刀，迅速刺了过去*",
+                                            "options":[
+                                                {
+                                                    "name":"得手了！",
+                                                    "content" :"……吗？",
+                                                    "next_text":{
+                                                        "content":"*那个人真的像幽灵一样，你的刀穿了过去，他抓住了你的手*",
+                                                        "options":[
+                                                            {
+                                                                "name":"完了",
+                                                                "content":"*你像认命一般闭上了眼睛*",
+                                                                "next_text":{
+                                                                    "content":"*但再睁开眼时还在床上*",
+                                                                    "options":[],
+                                                                    "strike_event":[
+                                                                        "sf,40",
+                                                                        "qcr,dream,正义执行？",
+                                                                        "qc,dream,title,还好只是梦",
+                                                                        "qc,dream,word,你觉得已经来不及了，但不能硬来，先调查一下吧"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+
                 }
             ]
         },

@@ -33,6 +33,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "..character/bolzano/face.png",
             "behave": [
                 {
                     "type": "appear",
