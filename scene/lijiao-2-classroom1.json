@@ -368,7 +368,7 @@
                     "options": [
                         {
                             "name": "[走进]",
-                            "content": "同学，请问你是张傲吗？",
+                            "content": "同学，请问你是张伊利吗？",
                             "next_text": {
                                 "content": "啊，是的是的，有什么事吗？",
                                 "options": [
