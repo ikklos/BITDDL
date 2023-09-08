@@ -241,6 +241,16 @@
             "type": "npc"
         },
         {
+            "img": "../scene/images/gamebox.png",
+            "name": "gamebox",
+            "x": 24,
+            "y": 456,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
             "img": "../character/soccerboy/soccerboy-excited.png",
             "name": "soccerboy",
             "x": 336,
