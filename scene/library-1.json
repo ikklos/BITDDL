@@ -123,7 +123,7 @@
         },
         {
             "name": "14",
-            "x": 364,
+            "x": 264,
             "y": 312,
             "width": 72,
             "height": 48,
@@ -245,7 +245,17 @@
             "nextmap": "../scene/north-2.json"
         },
         {
-            "img": "../character/bolzano/bolzano-happy.png",
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan1",
+            "x": 600,
+            "y": 192,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
+            "img": "../character/mathteacher/normal.png",
             "name": "math teacher",
             "x": 192,
             "y": 216,
@@ -253,7 +263,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/bolzano/face.png",
+            "portrait": "../character/mathteacher/face.png",
             "text": [
                 {
                     "pre_list": [

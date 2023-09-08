@@ -326,6 +326,36 @@
             "nextx": 480,
             "nexty": 552,
             "nextmap": "../scene/north-1.json"
+        },
+        {
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan1",
+            "x": 0,
+            "y": 168,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan2",
+            "x": 432,
+            "y": 144,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan3",
+            "x": 768,
+            "y": 144,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
         }
     ]
 }
