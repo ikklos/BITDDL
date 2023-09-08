@@ -1,5 +1,5 @@
 import { keyboard } from '../../behavejs/keyboard.js';
-import { HitTest, getFullHitBox } from '../../behavejs/collision.js';
+import { HitTest, getFullHitBox, getHitBox } from '../../behavejs/collision.js';
 // 创建窗口
 var app = new PIXI.Application({
     width: 800,
@@ -13,8 +13,12 @@ document.getElementById("minigame").appendChild(app.view);
 let snake = [], index = 0, time_counter = 0;
 let food = {};
 let ticker, score;
-let score_num = 0, snake_count = 1;
-const speed = 17, size = 16;
+let score_num = 0, snake_count = 1, bourdery_type = 1;
+let leftboader = 0;
+let upboader = 0;
+let rightboader = 800;
+let downboader = 600;
+const speed = 6, size = 16;
 
 let left = keyboard("ArrowLeft", "a"),
     up = keyboard("ArrowUp", "w"),
@@ -40,22 +44,21 @@ PIXI.Assets.load([
     // 方形主角
     for (let i = 0; i < 4; i++) {
         snake[i] = PIXI.Sprite.from(`./img/snake_${i + 1}_head.png`);
-        snake[i].anchor.set(0.5);
         snake[i].x = getRandomNumWithPadding(app.screen.width, 100);
         snake[i].y = getRandomNumWithPadding(app.screen.height, 100);
         snake[i].width = size;
         snake[i].height = size;
+        snake[i].zIndex = 5;
         if (snake[i].y < app.screen.height / 2)
             snake[i].mov_direction = 'down';
         else snake[i].mov_direction = 'up';
         snake[i].next_mov_direction = snake[i].mov_direction;
         snake[i].snake_id = i;
-        snake[i].hitbox = getFullHitBox(snake[i]);
+        snake[i].hitbox = getHitBox(6, 6, 4, 4);
     }
     index = 0;
 
     food = PIXI.Sprite.from(`./img/food.png`);
-    food.anchor.set(0.5);
     food.x = getRandomNumWithPadding(app.screen.width, 200);
     food.y = getRandomNumWithPadding(app.screen.height, 200);
     food.width = size * 4;
@@ -65,6 +68,7 @@ PIXI.Assets.load([
     food.zIndex = Infinity;
     food.snake_id = 10;
     food.hitbox = getFullHitBox(food);
+    console.log('1221', food.hitbox);
 
     score = new PIXI.Text('分数: 0', {
         fontFamily: 'Zpix',
@@ -117,14 +121,16 @@ PIXI.Assets.load([
         snake[index].next_mov_direction = 'down';
     };
 
-    app.ticker.minFPS = 90;
-    app.ticker.maxFPS = 120;
+    app.ticker.minFPS = 120;
+    app.ticker.maxFPS = 180;
     // startgame();
 
     document.getElementById('start_button').addEventListener('click', () => {
 
         let selectElem = document.getElementById('snakes_num_select');
         snake_count = selectElem.options[selectElem.selectedIndex].value;
+        selectElem = document.getElementById('bourdery_type_select');
+        bourdery_type = selectElem.options[selectElem.selectedIndex].value;
 
         for (let i = 0; i < snake_count; i++)app.stage.addChild(snake[i]);
         app.stage.addChild(food);
@@ -142,39 +148,56 @@ let deltacount = 0
 async function gameloop(delta) {//游戏循环
     deltacount += delta;
     app.stage.sortChildren();
-    if (deltacount < 15) return;
+    if (deltacount < 3) return;
     deltacount = 0;
-    score_num += Number(snake_count) / 5;
+    score_num += Number(snake_count) * bourdery_type * 0.1;
     score.text = "当前选择：" + (index + 1) + "\n分数：" + Math.floor(score_num);
 
-    console.log(snake[index].mov_direction)
     for (let i = 0; i < snake_count; i++) {
         // 碰撞检测
-        if (CrossTheBoader(snake[i])) {
-            console.log('game over because bourdery snake ' + (i + 1))
-            gameover();
+        let bdycollision = CrossTheBoader(snake[i]);
+        if (bdycollision > 0) {
+            if (bourdery_type != 1) {
+                console.log('game over because bourdery snake ' + (i + 1))
+                gameover();
+            } else {
+                switch (bdycollision) {
+                    case 1:
+                        snake[i].x = rightboader - 10;
+                        break;
+                    case 2:
+                        snake[i].y = downboader - 10;
+                        break;
+                    case 3:
+                        snake[i].x = 10;
+                        break;
+                    case 4:
+                        snake[i].y = 10;
+                        break;
+                }
+                console.log(bdycollision);
+            }
         }
         app.stage.children.forEach(element => {
             if (element.snake_id == i) element.zIndex = 4;
-            else element.zIndex = 2;
+            else if (element != score && element != food) element.zIndex = 2;
 
             if (HitTest(snake[i], element)) {
                 if (element.snake_id == 10) {
-                    score_num += 10 * snake_count * snake_count;
+                    score_num += 10 * snake_count * bourdery_type * bourdery_type;
                     let newsnake = snake[i];
                     while (typeof (newsnake.next) != 'undefined') newsnake = newsnake.next;
                     newsnake.next = PIXI.Sprite.from(`./img/snake_${i + 1}.png`);
-                    newsnake.next.anchor.set(0.5);
                     newsnake.next.x = newsnake.x;
                     newsnake.next.y = newsnake.y;
                     newsnake.next.width = size;
                     newsnake.next.height = size;
                     newsnake.next.snake_id = i;
-                    newsnake.next.zIndex = 100;
-                    newsnake.next.hitbox = getFullHitBox(newsnake.next);
+                    newsnake.next.zIndex = 1;
+                    newsnake.next.hitbox = getHitBox(6, 6, 4, 4);
                     app.stage.addChild(newsnake.next);
-                    food.x = getRandomNumWithPadding(app.screen.width, 200);
-                    food.y = getRandomNumWithPadding(app.screen.height, 200);
+                    food.x = getRandomNumWithPadding(app.screen.width, 100);
+                    food.y = getRandomNumWithPadding(app.screen.height, 100);
                 }
             }
         });
@@ -249,7 +272,7 @@ function gameover() {
                 finished: true,
                 score: score_num,
                 strike_event: [
-                    `st,{"content": "*你的高考成绩中有${Math.floor(score_num)}分是星穹铁道成绩！*"}`
+                    `st,{"content": "*你的四级成绩中有${Math.floor(score_num / 10)}分是星穹铁道成绩！*"}`
                 ]
             };
             location.reload();
@@ -259,26 +282,19 @@ function gameover() {
 
 //地图边界碰撞检测
 function CrossTheBoader(r) {
-    let over, leftboader, rightboader, upboader, downboader;
-    over = true;
-    let win = document.getElementById("minigame");
-    leftboader = 0;
-    upboader = 0;
-    rightboader = win.clientWidth;
-    downboader = win.clientHeight;
     //对于一个矩形碰撞箱，取第一个点为左上角，第二个点为右下角
     // console.log(r.width,r.height);
     // console.log(r.x,r.y)
-    r.firstnodeX = r.x - 18;
-    r.firstnodeY = r.y - 18;
-    r.secondnodeX = r.x + 18;
-    r.secondnodeY = r.y + 24;
+    r.firstnodeX = r.x + r.hitbox.dx;
+    r.firstnodeY = r.y + r.hitbox.dy;
+    r.secondnodeX = r.x + r.hitbox.dx + r.hitbox.width;
+    r.secondnodeY = r.y + r.hitbox.dx + r.hitbox.width;
     //alert(r.firstnodeX);
-    if (r.firstnodeX <= rightboader && r.firstnodeX >= leftboader
-        && r.firstnodeY >= upboader && r.firstnodeY <= downboader
-        && r.secondnodeX <= rightboader && r.secondnodeX >= leftboader
-        && r.secondnodeY >= upboader && r.secondnodeY <= downboader) {
-        over = false;
-    }
-    return over;
+    console.log(r.secondnodeX, rightboader);
+
+    if (r.firstnodeX <= leftboader) return 1;
+    if (r.firstnodeY <= upboader) return 2;
+    if (r.secondnodeX >= rightboader) return 3;
+    if (r.secondnodeY >= downboader) return 4;
+    return -1;
 }
