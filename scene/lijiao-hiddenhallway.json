@@ -8,7 +8,7 @@
             "name": "up1",
             "x": 0,
             "y": 240,
-            "width": 960,
+            "width": 2880,
             "height": 24,
             "type": "banary",
             "collideH": 1
@@ -17,8 +17,359 @@
             "name": "down1",
             "x": 0,
             "y": 408,
-            "width": 960,
+            "width": 2880,
             "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "1",
+            "x": 120,
+            "y": 264,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "2",
+            "x": 120,
+            "y": 384,
+            "width": 48,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "3",
+            "x": 168,
+            "y": 288,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "4",
+            "x": 192,
+            "y": 336,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "5",
+            "x": 216,
+            "y": 360,
+            "width": 94,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "6",
+            "x": 216,
+            "y": 264,
+            "width": 24,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "7",
+            "x": 264,
+            "y": 312,
+            "width": 96,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "8",
+            "x": 336,
+            "y": 360,
+            "width": 96,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "9",
+            "x": 384,
+            "y": 264,
+            "width": 24,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "10",
+            "x": 456,
+            "y": 264,
+            "width": 48,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "11",
+            "x": 480,
+            "y": 384,
+            "width": 552,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "12",
+            "x": 528,
+            "y": 312,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "13",
+            "x": 600,
+            "y": 264,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "14",
+            "x": 720,
+            "y": 312,
+            "width": 96,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "15",
+            "x": 840,
+            "y": 264,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "16",
+            "x": 888,
+            "y": 288,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "17",
+            "x": 984,
+            "y": 264,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "18",
+            "x": 1056,
+            "y": 312,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "19",
+            "x": 1104,
+            "y": 264,
+            "width": 48,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "20",
+            "x": 1176,
+            "y": 360,
+            "width": 72,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "21",
+            "x": 1200,
+            "y": 264,
+            "width": 168,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "22",
+            "x": 1320,
+            "y": 312,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "23",
+            "x": 1368,
+            "y": 360,
+            "width": 168,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "24",
+            "x": 1560,
+            "y": 288,
+            "width": 24,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "25",
+            "x": 1560,
+            "y": 264,
+            "width": 312,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "26",
+            "x": 1608,
+            "y": 312,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "27",
+            "x": 1656,
+            "y": 384,
+            "width": 120,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "28",
+            "x": 1800,
+            "y": 312,
+            "width": 24,
+            "height": 96,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "29",
+            "x": 1848,
+            "y": 288,
+            "width": 120,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "30",
+            "x": 1992,
+            "y": 336,
+            "width": 264,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "31",
+            "x": 1944,
+            "y": 360,
+            "width": 72,
+            "height": 48,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "32",
+            "x": 2232,
+            "y": 288,
+            "width": 144,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "33",
+            "x": 2328,
+            "y": 360,
+            "width": 192,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "34",
+            "x": 2520,
+            "y": 288,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "35",
+            "x": 2568,
+            "y": 288,
+            "width": 144,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "36",
+            "x": 2760,
+            "y": 336,
+            "width": 264,
+            "height": 24,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "37",
+            "x": 3048,
+            "y": 264,
+            "width": 24,
+            "height": 120,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "38",
+            "x": 3096,
+            "y": 288,
+            "width": 168,
+            "height": 72,
+            "type": "banary",
+            "collideH": 1
+        },
+        {
+            "name": "39",
+            "x": 3264,
+            "y": 360,
+            "width": 240,
+            "height": 48,
             "type": "banary",
             "collideH": 1
         }
