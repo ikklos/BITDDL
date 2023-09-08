@@ -54,6 +54,7 @@ PIXI.Assets.load([
         else snake[i].mov_direction = 'up';
         snake[i].next_mov_direction = snake[i].mov_direction;
         snake[i].snake_id = i;
+        snake[i].ishead = true;
         snake[i].hitbox = getHitBox(6, 6, 4, 4);
     }
     index = 0;
@@ -68,7 +69,6 @@ PIXI.Assets.load([
     food.zIndex = Infinity;
     food.snake_id = 10;
     food.hitbox = getFullHitBox(food);
-    console.log('1221', food.hitbox);
 
     score = new PIXI.Text('分数: 0', {
         fontFamily: 'Zpix',
@@ -147,11 +147,16 @@ async function startgame() {
 let deltacount = 0
 async function gameloop(delta) {//游戏循环
     deltacount += delta;
-    app.stage.sortChildren();
     if (deltacount < 3) return;
     deltacount = 0;
     score_num += Number(snake_count) * bourdery_type * 0.1;
     score.text = "当前选择：" + (index + 1) + "\n分数：" + Math.floor(score_num);
+
+    app.stage.children.forEach(element => {
+        if (element.snake_id == index && element.ishead == false) element.zIndex = 4;
+        else if (element != score && element != food) element.zIndex = 2;
+    });
+    app.stage.sortChildren();
 
     for (let i = 0; i < snake_count; i++) {
         // 碰撞检测
@@ -179,8 +184,6 @@ async function gameloop(delta) {//游戏循环
             }
         }
         app.stage.children.forEach(element => {
-            if (element.snake_id == i) element.zIndex = 4;
-            else if (element != score && element != food) element.zIndex = 2;
 
             if (HitTest(snake[i], element)) {
                 if (element.snake_id == 10) {
@@ -193,6 +196,7 @@ async function gameloop(delta) {//游戏循环
                     newsnake.next.width = size;
                     newsnake.next.height = size;
                     newsnake.next.snake_id = i;
+                    newsnake.ishead = false;
                     newsnake.next.zIndex = 1;
                     newsnake.next.hitbox = getHitBox(6, 6, 4, 4);
                     app.stage.addChild(newsnake.next);
