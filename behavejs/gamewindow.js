@@ -176,26 +176,34 @@ async function AfterLoad() {
     keyf.press = () => {
         console.log("f pressed!");
         if (wait_event.type === "null") {
-            npc_pool.forEach(npc => {
-                if (HitTest(neko, npc)) {
-                    console.log("in keyf", npc);
-                    if (npc.type === "npc") {
-                        for (let i = 0; i < npc.text.length; i++) {
-                            if (CheckPrelist(npc.text[i].pre_list)) {
-                                wait_event.type = "npc";
-                                wait_event.text = npc.text[i];
-                                window.parent.changeAvator(npc.portrait);
-                                wait_event.times = 0;
-                                i = npc.text.length
+            console.log("!!!");
+            var f = async () => {
+                for(let k = 0; k < npc_pool.length; k++){
+                    let npc = npc_pool[k];
+                    if (HitTest(neko, npc)) {
+                        console.log("in keyf", npc);
+                        if (npc.type === "npc") {
+                            for (let i = 0; i < npc.text.length; i++) {
+                                console.log(npc.text[i]);
+                                if (await CheckPrelist(npc.text[i].pre_list)) {
+                                    wait_event.type = "npc";
+                                    wait_event.text = npc.text[i];
+                                    console.log(wait_event.text);
+                                    window.parent.changeAvator(npc.portrait);
+                                    wait_event.times = 0;
+                                }
                             }
+                        } else if (npc.type === "door") {
+                            wait_event.type = "door";
+                            wait_event.nextmap = npc.nextmap;
+                            wait_event.door = npc;
                         }
-                    } else if (npc.type === "door") {
-                        wait_event.type = "door";
-                        wait_event.nextmap = npc.nextmap;
-                        wait_event.door = npc;
                     }
                 }
-            });
+
+                
+            }
+            f.call();
         }
 
     }
@@ -262,7 +270,16 @@ function play(delta) {//基本所有的事件结算都在这里写
         loaded = false;
         loadmap(currentSave.map);
     }
-
+    //bad end结局部分
+    if (story_status[49] === 1 && story_status[404] !== 1) {
+        story_status[404] = 1;
+        app.stage.removeChild(neko);
+        var f = async () => {
+            await loadhero('neko_down', 696, 360);
+            await loadmap("../scene/lijiao-1-classroom1-evil.json");
+        }
+        f.call();
+    }
     //boss fight part
     if (wait_event.type == "null") {
         if (currentSave.bossfight_flag == 1) {
@@ -811,7 +828,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
 }
 function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
-
+    console.log(npc);
     if (typeof (npc.behave) == "undefined") {
         console.log("什么")
         app.stage.addChild(npc);
@@ -819,10 +836,12 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     }
     let Arr = npc.behave;
     for (let i = 0; i < Arr.length; i++) {
-        console.log("check behave...");
+        console.log("check behave……", Arr[i]);
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             if (CheckPrelist(Arr[i].pre_list)) {
                 fin = true;
+            } else {
+                fin = false;
             }
         } else if (Arr[i].type === "disappear") {
             if (CheckPrelist(Arr[i].pre_list)) {
@@ -831,13 +850,15 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
                 fin = true;
             }
         }
+        console.log(fin);
     }
     console.log(fin);
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
-function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value //random
-    console.log(pre);
+async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_value //random
+    var res = true;
+    console.log("in prelist", pre);
     if (typeof (pre) == "undefined") return true;
     for (let i = 0; i < pre.length; i++) {
 
@@ -849,7 +870,7 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
             console.log(num);
 
             if (num > 0) {
-                return false;
+                res = false;
             }
         }
         else if (pre[i].type === "item") {
@@ -857,21 +878,21 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
             for (let k = 0; k < pre[i].list.length; k++) {
                 if (currentSave.savepackage[pre[i].list[k]] > 1) num--;
             }
-            if (num--) return false;
+            if (num--)res = false;
         } else if (pre[i].type === "multi_item") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
                 if (currentSave.savepackage[pre[i].list[k]] < num) {
-                    return false;
+                    res = false;
                 }
             }
         } else if (pre[i].type === "no_event") {
             for (let k = 0; k < pre[i].list.length; k++)
                 if (story_status[pre[i].list[k]] === 1)
-                    return false;
+                    res = false;
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
-            if (Math.random() < num) return true;
+            if (Math.random() < num) res = true;
         } else if (pre[i].type === "attribute") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -895,12 +916,12 @@ function CheckPrelist(pre) {//event no_event，//multi_item//item, attribute_val
                 }
             }
             if (num > 0) {
-                return false;
+                res = false;
             }
         }
     }
-
-    return true;
+    console.log(res);
+    return res;
 }
 // function CheckStoryList(id) {
 //     let condition = story_status[id].num;
@@ -945,7 +966,7 @@ function npc_speak(text) {
         window.parent.dialogResult = -1;
     }
 }
-function loadhero(url, x, y) {
+async function loadhero(url, x, y) {
     neko = new PIXI.AnimatedSprite(sheet.animations[url]);
     neko.name = "hero";
     neko.width = 24;
