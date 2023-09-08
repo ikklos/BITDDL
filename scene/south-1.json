@@ -265,7 +265,7 @@
                 },
                 {
                     "type":"disappear",
-                    "prelist":[
+                    "pre_list":[
                         {
                             "type":"event",
                             "num":2,
@@ -278,7 +278,7 @@
                 },
                 {
                     "type":"disappear",
-                    "prelist":[
+                    "pre_list":[
                         {
                             "type":"event",
                             "num":1,
@@ -291,12 +291,24 @@
                 },
                 {
                     "type":"appear",
-                    "prelist":[
+                    "pre_list":[
                         {
                             "type":"event",
                             "num":1,
                             "list":[
                                 40
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"disappear",
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                45
                             ]
                         }
                     ]
@@ -333,7 +345,7 @@
                                     "sf,14",
                                     "qcc,illness_of_witness,操场上的足球少年",
                                     "qc,illness_of_witness,title,足球少年",
-                                    "qc,illness_of_witness,word,我劝说操场上踢球的少年学习，他拒绝了"
+                                    "qc,illness_of_witness,word,少年因为我的拒绝不太高兴（再次与少年互动）"
                                 ]
                             }
                         },
@@ -388,8 +400,76 @@
                             }
                         }
                     ]
-                },{
-                    "prelist":[
+                },
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                14
+                            ]
+                        },
+                        {
+                            "type":"no_event",
+                            "list":[
+                                22,
+                                21
+                            ]
+                        }
+                    ],
+                    "content":"你不是去卷了吗？",
+                    "options":[
+                        {
+                            "name":"你真的不复习吗",
+                            "content":"",
+                            "next_text":{
+                                "content":"复习有什么用，你什么都会，我学了也不会，你自个学得了",
+                                "options":[
+                                    {
+                                        "name":"[开导]",
+                                        "content":"进步是比你最终的结果更重要的",
+                                        "next_text":{
+                                            "content":"再怎么进步也没用，反正挂科肯定是得挂",
+                                            "options":[
+                                                {
+                                                    "name":"至少不是像我一样",
+                                                    "content":"一直都在原地",
+                                                    "next_text":{
+                                                        "content":"你你你先别emo，我学，我学不行吗，哥你别emo",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,21",
+                                                            "qcc,kindness,日行一善",
+                                                            "qc,kindness,title,自爆式开导",
+                                                            "qc,kindness,word,你开导了一个少年，你真是大善人"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },{
+                                        "name":"[菜]",
+                                        "content":"菜就要多练",
+                                        "next_text":{
+                                            "content":"啊对对对，你多厉害，你赶紧爬吧",
+                                            "options":[],
+                                            "strike_event":[
+                                                "sf,22",
+                                                "qcc,kindness,日行一善？",
+                                                "qc,kindness,title,劝学",
+                                                "qc,kindness,word,你的开导似乎是进一步的中伤，算了先去商店看一眼吧"
+                                            ]
+                                        }
+                                    }
+                                ]
+                                
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list":[
                         {
                             "type":"event",
                             "num":1,
@@ -606,7 +686,8 @@
                         {
                             "type": "no_event",
                             "list": [
-                                29
+                                29,
+                                27
                             ]
                         }
                     ],

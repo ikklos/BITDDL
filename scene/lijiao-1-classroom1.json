@@ -476,6 +476,48 @@
                             }
                         }
                     ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                47
+                            ]
+                        }
+                    ],
+                    "content":"*考试开始的铃声响起，你开始做起了卷子*",
+                    "options":[
+                        {
+                            "name":"继续",
+                            "content":"",
+                            "next_text":{
+                                "content":"考试结束了，同学",
+                                "options":[
+                                    {
+                                        "name":"啊？",
+                                        "content":"不是刚开始吗",
+                                        "next_text":{
+                                            "content":"考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……",
+                                            "options":[
+                                                {
+                                                    "name":"继续",
+                                                    "content":"",
+                                                    "next_text":{
+                                                        "content":"*眼前不是老师在说话，你的头剧烈疼痛，身边的一切开始扭曲变形*",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,49"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         }
