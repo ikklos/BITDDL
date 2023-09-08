@@ -41,6 +41,13 @@
             "type": "audio/mpeg",
             "src": "/BGM/Blood Coagulant.mp3",
             "name": "Blood Coagulant"
+        },
+        {
+            "loop": "",
+            "preload": "auto",
+            "type": "audio/mpeg",
+            "src": "/BGM/Reach for the Summit.mp3",
+            "name": "Reach for the Summit"
         }
     ]
 }

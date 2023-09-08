@@ -765,7 +765,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
                 console.log(`command "${str}" cannot be invoked."${strs[1]}" is not an option!`);
                 break;
             }
-            window.top.currentBGM = 4;
+            window.top.currentBGM = 6;
             changeGameArea(numi);
             break;
         case 'st':
