@@ -221,6 +221,26 @@
             "nextmap": "../scene/lijiao-1.json"
         },
         {
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan1",
+            "x": 240,
+            "y": 72,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
+            "img": "../scene/images/trashcan.png",
+            "name": "trashcan2",
+            "x": 528,
+            "y": 192,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc"
+        },
+        {
             "img": "../character/soccerboy/soccerboy-excited.png",
             "name": "soccerboy",
             "x": 336,
