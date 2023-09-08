@@ -46,7 +46,7 @@
             "loop": "",
             "preload": "auto",
             "type": "audio/mpeg",
-            "src": "/BGM/Reach for the Summit.flac",
+            "src": "/BGM/Reach for the Summit.mp3",
             "name": "Reach for the Summit"
         }
     ]
