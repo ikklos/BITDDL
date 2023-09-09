@@ -252,7 +252,8 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "portrait": "../character/portrait/trashcan.png"
         },
         {
             "img": "../character/mathteacher/normal.png",
