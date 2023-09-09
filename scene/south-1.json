@@ -229,6 +229,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/trashcan.png",
             "text":[
                 {
                     "pre_list":[
@@ -303,6 +304,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/trashcan.png",
             "text":[
                 {
                     "content":"*这个垃圾桶怎么这么干净*",
@@ -314,19 +316,13 @@
         {
             "img": "../scene/images/gamebox.png",
             "name": "gamebox",
-            "x": 24,
+            "x": 0,
             "y": 456,
             "width": 48,
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
-                {
-                    "content":"*这个垃圾桶怎么这么干净*",
-                    "options":[]
-                }
-                
-            ]
+            "portrait": "../character/portrait/gamebox.png"
         },
         {
             "img": "../character/soccerboy/soccerboy-excited.png",
@@ -937,6 +933,17 @@
             "nextx": 480,
             "nexty": 552,
             "nextmap": "../scene/north-2.json"
+        },
+        {
+            "img": "../character/outshopone/normal.png",
+            "name": "out shop xuan chuan renyuan",
+            "x": 120,
+            "y": 480,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/outshopone/face.png"
         }
     ]
 }

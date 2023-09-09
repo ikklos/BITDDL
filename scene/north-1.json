@@ -388,6 +388,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/trashcan.png",
             "text":[
                 {
                     "pre_list":[
@@ -462,6 +463,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/trashcan.png",
             "text":[
                 {
                     "pre_list":[
@@ -536,6 +538,7 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/trashcan.png",
             "text":[
                 {
                     "pre_list":[

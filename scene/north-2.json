@@ -335,7 +335,8 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "portrait": "../character/portrait/trashcan.png"
         },
         {
             "img": "../scene/images/trashcan.png",
@@ -345,7 +346,8 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "portrait": "../character/portrait/trashcan.png"
         },
         {
             "img": "../scene/images/trashcan.png",
@@ -355,7 +357,30 @@
             "width": 24,
             "height": 24,
             "collideH": 1.0,
-            "type": "npc"
+            "type": "npc",
+            "portrait": "../character/portrait/trashcan.png"
+        },
+        {
+            "img": "../character/gameman/normal.png",
+            "name": "da sai bao ming chu",
+            "x": 72,
+            "y": 216,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/gameman/face.png"
+        },
+        {
+            "img": "../scene/images/gamebox.png",
+            "name": "gamebox",
+            "x": 96,
+            "y": 192,
+            "width": 48,
+            "height": 48,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/portrait/gamebox.png"
         }
     ]
 }

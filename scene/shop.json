@@ -154,6 +154,7 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
+            "portrait": "../character/portrait/gamebox.png",
             "text":[
                 {
                     "pre_list":[
