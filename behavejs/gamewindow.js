@@ -59,7 +59,8 @@ var currentSave = {//玩家状态
     is_noscore_end: false,
     is_true_end: false,
     buy_stationary_count: 0,
-    boss_fight_death: 0
+    boss_fight_death: 0,
+    bottle: 0
 };
 var boss_sprite = {};
 
@@ -67,7 +68,6 @@ var endslidesprite = {};
 var endslidesprite_last = {};
 var endslidelist = [];
 var endslideshowing = -1;
-var ends = [];
 let nowmap = {};
 let neko = {};
 let sheet;

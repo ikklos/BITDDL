@@ -286,7 +286,32 @@
             "collideH": 1.0,
             "type": "npc",
             "text":[
-
+                {
+                    "pre_list":[
+                        {
+                            "type":"no_event",
+                            "list":[
+                                403
+                            ]
+                        }
+                    ],
+                    "content":"嘎啊啊啊啊啊啊啊啊啊啊",
+                    "options":[
+                        {
+                            "name":"我（）",
+                            "content":"杀杀杀",
+                            "next_text":{
+                                "content":"*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
+                                "options":[
+                                    
+                                ],
+                                "strike_event":[
+                                    "sf,403"
+                                ]
+                            }
+                        }
+                    ]
+                }
             ]
         },
         {
