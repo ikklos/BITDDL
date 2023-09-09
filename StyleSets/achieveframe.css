@@ -1,13 +1,14 @@
 .achieve_list{
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.433);
+    background-color: rgba(255, 255, 255, 0.378);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
 }
 .achieve_list > div{
     height: 190px;
-    background-color: rgba(255, 255, 255, 0.47);
+    background-color: rgba(0, 0, 0, 0.47);
+    color: aliceblue;
     margin: 10px;
 }
 .achieve_list > div > p{
@@ -19,10 +20,13 @@
 }
 .achievetext_vis{
     display: none;
+    color: rgb(255, 162, 0);
+    font-weight: 900;
     font-size: 2rem
 }
 .achievetext_vis_desc{
+    color: black;
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     line-height: 2rem;
 }
