@@ -336,7 +336,14 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/portrait/trashcan.png"
+            "portrait": "../character/portrait/trashcan.png",
+            "text":[
+                {
+                    "content":"*这个垃圾桶怎么这么干净*",
+                    "options":[]
+                }
+                
+            ]
         },
         {
             "img": "../scene/images/trashcan.png",
@@ -347,7 +354,14 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/portrait/trashcan.png"
+            "portrait": "../character/portrait/trashcan.png",
+            "text":[
+                {
+                    "content":"*这个垃圾桶怎么这么干净*",
+                    "options":[]
+                }
+                
+            ]
         },
         {
             "img": "../scene/images/trashcan.png",
@@ -358,7 +372,14 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/portrait/trashcan.png"
+            "portrait": "../character/portrait/trashcan.png",
+            "text":[
+                {
+                    "content":"*这个垃圾桶怎么这么干净*",
+                    "options":[]
+                }
+                
+            ]
         },
         {
             "img": "../character/gameman/normal.png",
@@ -369,7 +390,80 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/gameman/face.png"
+            "portrait": "../character/gameman/face.png",
+            "text":[
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                53
+                            ]
+                        }
+                    ],
+                    "content":"您好同学，检测到您的星穷贴到浓度过高，请问是否有意向报名校赛呢？",
+                    "options":[
+                        {
+                            "name":"报，报名的钱我来出",
+                            "content":"，把你的手机给我",
+                            "next_text":{
+                                "content":"大哥，你这是网贷吧，我怕",
+                                "options":[
+                                    {
+                                        "name":"你说得对，",
+                                        "content":"但是……",
+                                        "next_text":{
+                                            "content":"好的同学，已经帮您报上名了，在旁边的机器即可进行比赛捏",
+                                            "options":[],
+                                            "strike_event":[
+                                                "sf,54",
+                                                "qcr,starrail,报名校赛",
+                                                "qc,starrail,title,报名成功！",
+                                                "qc,starrail,word,我必须考虑这是否是我此生仅有的机会，重铸贴到荣光，吾辈……（去打比赛罢）"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },{
+                            "name":"这报名校赛",
+                            "content":"多是一件美事啊",
+                            "next_text":{
+                                "content":"哎，tnnd，报，报啊！",
+                                "options":[
+                                    {
+                                        "name":"我滴任务",
+                                        "content":"完成辣",
+                                        "next_text":{
+                                            "content":"*拉住你准备拉开保险的手*好的同学，已经报名成功了，在旁边的机器比赛捏",
+                                            "options":[],
+                                            "strike_event":[
+                                                "sf,54",
+                                                "qcr,starrail,报名校赛",
+                                                "qc,starrail,title,报名成功！",
+                                                "qc,starrail,word,我必须考虑这是否是我此生仅有的机会，重铸贴到荣光，吾辈……（去打比赛罢）"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                54
+                            ]
+                        }
+                    ],
+                    "content":"您已经报名了，不能重复报名",
+                    "options":[]
+                }
+            ]
         },
         {
             "img": "../scene/images/gamebox.png",
@@ -380,7 +474,28 @@
             "height": 48,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/portrait/gamebox.png"
+            "portrait": "../character/portrait/gamebox.png",
+            "text":[
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                54
+                            ]
+                        }
+                    ],
+                    "content":"*你打开了街机，显然以你的天赋，闭着眼睛都能碾压校赛*",
+                    "options":[],
+                    "strike_event":[
+                        "sf,55",
+                        "qcr,starrail,星穷贴到！",
+                        "qc,starrail,title,我是星穷贴到大师",
+                        "qc,starrail,word,你赢下了校赛，并且远远地甩开第二名，下一步就是进军国赛了（真的有国赛吗）-彩蛋线END"
+                    ]
+                }
+            ]
         }
     ]
 }

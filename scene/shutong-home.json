@@ -278,13 +278,13 @@
             "portrait": "../character/friend1/face.png",
             "behave": [
                 {
-                    "type": "disappear",
+                    "type": "appear",
                     "pre_list": [
                         {
                             "type": "event",
                             "num": 1,
                             "list": [
-                                1
+                                0
                             ]
                         }
                     ]
