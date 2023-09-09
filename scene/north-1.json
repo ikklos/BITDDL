@@ -742,7 +742,7 @@
                     "pre_list": [
                         {
                             "type": "random",
-                            "possibility": 1
+                            "possibility": 0.2
                         }
                     ]
                 },

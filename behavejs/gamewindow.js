@@ -840,8 +840,6 @@ async function solve_npc_behave(npc) {//约定npc只有简单的行为，如出�
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
             if (await CheckPrelist(Arr[i].pre_list)) {
                 fin = true;
-            } else {
-                fin = false;
             }
         } else if (Arr[i].type === "disappear") {
             if (await CheckPrelist(Arr[i].pre_list)) {
@@ -893,6 +891,7 @@ async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribu
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) res = true;
+            else res = false;
         } else if (pre[i].type === "attribute") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
