@@ -1,3 +1,7 @@
+*{
+    transition: all .15s ease;
+}
+
 
 .title{
     font-size: 150%;
@@ -84,6 +88,7 @@ body {
 }
 .visible_gameframe{
     visibility: hidden;
+    opacity: 0;
 }
 #logged{
     margin: 0;
@@ -116,6 +121,7 @@ body {
 
 .save_list_frame {
     visibility: hidden;
+    opacity: 0;
     width: 80%;
     height: 80%;
     margin: auto;
@@ -128,6 +134,7 @@ body {
 
 .achieveframe{
     visibility: hidden;
+    opacity: 0;
     width: 80%;
     height: 80%;
     margin: auto;
@@ -150,6 +157,7 @@ body {
 
 .game {
     visibility: hidden;
+    opacity: 0;
     width: 90%;
     height: 90%;
     left: 50%; 
@@ -169,6 +177,7 @@ a{
     
     transform: translate(-50% -50%);
     visibility: hidden;
+    opacity: 0;
     width: 100%;
     height: 100%;
 }

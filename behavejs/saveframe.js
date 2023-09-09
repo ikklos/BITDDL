@@ -6,7 +6,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top',
     showConfirmButton: false,
-    timer: 1500,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -39,7 +39,10 @@ Array.from(document.getElementsByClassName('load')).forEach(function (element, i
                     window.parent.saveChanged = true;
                     Toast.fire({
                         title: "读档成功！",
-                        icon: "success"
+                        icon: "success",
+                        didClose: (toast) => {
+                            return window.parent.showGameFrame();
+                        }
                     })
 
                 }
@@ -101,7 +104,9 @@ Array.from(document.getElementsByClassName('save')).forEach(function (element, i
                         Toast.fire({
                             title: "保存成功！",
                             icon: "success"
+                            
                         })
+                        
                     }
                 })();
             }

@@ -51,36 +51,46 @@
     function showMainMenu() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
             element.style.visibility = 'visible'
+            element.style.opacity = 1
         })
         Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         window.currentBGM = 0;
     }
     function showGameFrame() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
             element.style.visibility = 'visible'
+            element.style.opacity = 1
         })
         Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         document.body.focus();
         document.getElementById("maingameframe").focus();
@@ -90,54 +100,69 @@
     function showSaveFrame() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
             element.style.visibility = 'visible'
+            element.style.opacity = 1
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         window.currentBGM = 1;
     }
     function showAchieveFrame() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'visible'
+            element.style.opacity = 1
         })
         window.currentBGM = 1;
     }
     function showAbout() {
         Array.from(document.getElementsByClassName("visible_mainmenu")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_gameframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_saveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         Array.from(document.getElementsByClassName("visible_about")).forEach(function (element) {
             element.style.visibility = 'visible'
+            element.style.opacity = 1
         })
         Array.from(document.getElementsByClassName("visible_achieveframe")).forEach(function (element) {
             element.style.visibility = 'hidden'
+            element.style.opacity = 0;
         })
         window.currentBGM = 0;
     }

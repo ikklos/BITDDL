@@ -66,8 +66,6 @@ html{
 }
 .name:hover{
     color: rgb(255, 0, 0);
-    flex: 5 40vh;
-    line-height: 10vh;
 }
 .changepage{
     position: absolute;
