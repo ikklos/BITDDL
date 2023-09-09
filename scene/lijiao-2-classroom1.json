@@ -367,6 +367,19 @@
                     "content": "*这位同学正在潜心学习*",
                     "options": [
                         {
+                            "name": "[离开]",
+                            "content": "*安静地离开*",
+                            "next_text": {
+                                "content": "*你安静地离开了*",
+                                "options": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "content": "*这位同学正在潜心学习*",
+                    "options": [
+                        {
                             "name": "[走进]",
                             "content": "同学，请问你是张伊利吗？",
                             "next_text": {
@@ -403,19 +416,6 @@
                             "list": [
                                 1001
                             ]
-                        }
-                    ]
-                },
-                {
-                    "content": "*这位同学正在潜心学习*",
-                    "options": [
-                        {
-                            "name": "[离开]",
-                            "content": "*安静地离开*",
-                            "next_text": {
-                                "content": "*你安静地离开了*",
-                                "options": []
-                            }
                         }
                     ]
                 }

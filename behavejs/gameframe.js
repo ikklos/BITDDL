@@ -122,7 +122,7 @@ function uploadQuestBar(quests) {
     qstlist.innerHTML = '';
     for (let item in quests) {
         item = quests[item];
-        console.log(item);
+        //console.log(item);
         let tmpdiv = document.createElement('div');
         let title = document.createElement('h1');
         title.innerHTML = item.name;
