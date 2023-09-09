@@ -277,6 +277,7 @@ async function gameloop(delta) {//游戏循环looooooooooooooooooooooooooooooooo
                     location.reload();
                 } else if (result.isDismissed) {
                     window.parent.minigame_result = {
+                        game_id:"ut",
                         finished: true,
                         score: Math.floor(time_counter / 10),
                         strike_event: [

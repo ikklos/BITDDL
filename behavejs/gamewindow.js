@@ -60,7 +60,8 @@ var currentSave = {//玩家状态
     is_true_end: false,
     buy_stationary_count: 0,
     boss_fight_death: 0,
-    bottle: 0
+    bottle: 0,
+    rail_max: 0
 };
 var boss_sprite = {};
 
@@ -178,7 +179,7 @@ async function AfterLoad() {
         if (wait_event.type === "null") {
             console.log("!!!");
             var f = async () => {
-                for(let k = 0; k < npc_pool.length; k++){
+                for (let k = 0; k < npc_pool.length; k++) {
                     let npc = npc_pool[k];
                     if (HitTest(neko, npc)) {
                         console.log("in keyf", npc);
@@ -201,7 +202,7 @@ async function AfterLoad() {
                     }
                 }
 
-                
+
             }
             f.call();
         }
@@ -217,7 +218,7 @@ async function AfterLoad() {
     keyu.press = () => {
         console.log(story_status);
         console.log(currentSave);
-        changeGameArea(3);
+        //changeGameArea(3);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -242,6 +243,13 @@ var nowframe = 0;
 var count = 0;
 var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
+    //星穷贴到
+    if(currentSave.rail_max >= 10000 && story_status[53] === 0){
+        story_status[53] = 1;
+        command("qcc,starrail,星穷贴到高手");
+        command("qc,starrail,title,你已经是星穷贴到高手了！");
+        command("qc,starrail,word,你已经打到了1w分的高分，是时候去报名参加比赛了（北校区npc处报名星穷贴到）");
+    }
     //成就检测部分
     if (typeof (window.top.achievements) !== 'undefined') {
         window.top.flash_ach();
@@ -392,7 +400,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         if (currentSave.boss_fight_death == 3) window.top.makeAchievement("noob_to_run");
         //package
         let pkg = [];
-        console.log(currentSave.savepackage, "currentSave.savepackage");
+        //console.log(currentSave.savepackage, "currentSave.savepackage");
         for (let i = 0; i < item_list.length; i++) {
             if (typeof (currentSave.savepackage[i]) == 'undefined' || currentSave.savepackage[i] == 0) continue;
             pkg.push({ id: i, num: currentSave.savepackage[i] });
@@ -425,8 +433,11 @@ function play(delta) {//基本所有的事件结算都在这里写
     //console.log(wait_event);
     //小游戏返回
     if (window.minigame_result.finished) {
-        if (window.minigame_result.score + 300 > currentSave.genshin_max) {
-            currentSave.genshin_max = window.minigame_result.score + 300;
+        if (window.minigame_result.score > currentSave.genshin_max && window.minigame_result.game_id == 'ut') {
+            currentSave.genshin_max = window.minigame_result.score;
+        }
+        if(window.minigame_result.score > currentSave.rail_max && window.minigame_result.game_id == 'snake'){
+            currentSave.rail_max = window.minigame_result.score;
         }
         if (typeof (window.minigame_result.strike_event) != 'undefined')
             window.minigame_result.strike_event.forEach(element => {
@@ -826,7 +837,7 @@ function command(str) {//不用额外判断，直接动行为就行，判断在�
             console.log(`command "${str}" cannot be invoked."${strs[0]}" cannot be recognized!`);
     }
 }
-function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
+async function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，消失，（先不考虑实现->固定速率行走，循环行走等更多行为）
     let fin = false;
     console.log(npc);
     if (typeof (npc.behave) == "undefined") {
@@ -838,16 +849,12 @@ function solve_npc_behave(npc) {//约定npc只有简单的行为，如出现，�
     for (let i = 0; i < Arr.length; i++) {
         console.log("check behave……", Arr[i]);
         if (Arr[i].type === "appear") {//在json中写这项的时候如果一个npc要重复出现消失，一定要将拓扑序靠后的节点放后面
-            if (CheckPrelist(Arr[i].pre_list)) {
+            if (await CheckPrelist(Arr[i].pre_list)) {
                 fin = true;
-            } else {
-                fin = false;
             }
         } else if (Arr[i].type === "disappear") {
-            if (CheckPrelist(Arr[i].pre_list)) {
+            if (await CheckPrelist(Arr[i].pre_list)) {
                 fin = false;
-            } else {
-                fin = true;
             }
         }
         console.log(fin);
@@ -878,7 +885,7 @@ async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribu
             for (let k = 0; k < pre[i].list.length; k++) {
                 if (currentSave.savepackage[pre[i].list[k]] > 1) num--;
             }
-            if (num--)res = false;
+            if (num--) res = false;
         } else if (pre[i].type === "multi_item") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -893,6 +900,7 @@ async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribu
         } else if (pre[i].type === "random") {
             let num = pre[i].possibility;
             if (Math.random() < num) res = true;
+            else res = false;
         } else if (pre[i].type === "attribute") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -943,20 +951,19 @@ async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribu
 function npc_speak(text) {
     console.log(text);
     wait_event.times++;
-    if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0)
-        for (let i = 0; i < text.strike_event.length; i++)
-            command(text.strike_event[i]);
     if (wait_event.times == 1) {
         window.parent.showDialog(wait_event.text);
-
-        wait_event.times = 1;
-        return;
-    }
-    if (window.parent.dialogResult != -1) {
+        if (typeof (text.strike_event) != "undefined" && text.strike_event.length > 0)
+            for (let i = 0; i < text.strike_event.length; i++)
+                command(text.strike_event[i]);
+    } else if (window.parent.dialogResult != -1) {
         if (typeof (text.options) != 'undefined' && window.parent.dialogResult < text.options.length) {
-            wait_event.type = "npc"
+            wait_event.type = "npc";
             wait_event.text = text.options[window.parent.dialogResult].next_text;
             window.parent.showDialog(wait_event.text);
+            if (typeof (text.options[window.parent.dialogResult].next_text.strike_event) != "undefined" && text.options[window.parent.dialogResult].next_text.strike_event.length > 0)
+                for (let i = 0; i < text.options[window.parent.dialogResult].next_text.strike_event.length; i++)
+                    command(text.options[window.parent.dialogResult].next_text.strike_event[i]);
         } else {
             wait_event.type = "null";
             wait_event.text = {};
@@ -1113,6 +1120,15 @@ currentSave{
 }
 */
 function createNewQuestChain(uid, qstname) {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        title: "日志有更新:" + qstname,
+        icon: 'info'
+    })
     if (typeof (currentSave.quests[uid]) != 'undefined') {
         console.log(`cannot create Quest "${uid}" because it's already defined!`);
         return;
@@ -1123,6 +1139,15 @@ function createNewQuestChain(uid, qstname) {
     });
 }
 function addQuestComment(uid, cmttype, comment) {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        title: "日志有更新:" + currentSave.quests[uid].name,
+        icon: 'info'
+    })
     if (typeof (currentSave.quests[uid]) == 'undefined') {
         console.log(`cannot add Quest to "${uid}" because it's undefined!`);
         return;
@@ -1137,6 +1162,15 @@ function addQuestComment(uid, cmttype, comment) {
     });
 }
 function changeQuestChainName(uid, qstname) {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        title: "日志有更新:" + currentSave.quests[uid].name,
+        icon: 'info'
+    })
     if (typeof (currentSave.quests[uid]) == 'undefined') {
         console.log(`cannot change "${uid}"'s name because it's undefined!`);
         return;

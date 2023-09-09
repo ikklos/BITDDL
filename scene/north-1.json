@@ -389,69 +389,67 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/trashcan.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"less than",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "less than",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*垃圾桶里有一大堆瓶子*",
-                    "options":[
+                    "content": "*垃圾桶里有一大堆瓶子*",
+                    "options": [
                         {
-                            "name":"拿一个",
-                            "content":"",
-                            "next_text":{
-                                "content":"*你为什么不多拿几个？因为没有多拿的选项*",
-                                "options":[],
-                                "strike_event":[
+                            "name": "拿一个",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你为什么不多拿几个？因为没有多拿的选项*",
+                                "options": [],
+                                "strike_event": [
                                     "attr,bottle,delta,1"
                                 ]
                             }
                         }
                     ]
-
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"equal",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "equal",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
-                    "options":[]
-
+                    "content": "*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
+                    "options": []
                 }
-                
             ]
         },
         {
@@ -464,69 +462,67 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/trashcan.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"less than",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "less than",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*垃圾桶里有一大堆瓶子*",
-                    "options":[
+                    "content": "*垃圾桶里有一大堆瓶子*",
+                    "options": [
                         {
-                            "name":"拿一个",
-                            "content":"",
-                            "next_text":{
-                                "content":"*你为什么不多拿几个？因为没有多拿的选项*",
-                                "options":[],
-                                "strike_event":[
+                            "name": "拿一个",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你为什么不多拿几个？因为没有多拿的选项*",
+                                "options": [],
+                                "strike_event": [
                                     "attr,bottle,delta,1"
                                 ]
                             }
                         }
                     ]
-
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"equal",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "equal",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
-                    "options":[]
-
+                    "content": "*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
+                    "options": []
                 }
-                
             ]
         },
         {
@@ -539,69 +535,67 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/trashcan.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"less than",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "less than",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*垃圾桶里有一大堆瓶子*",
-                    "options":[
+                    "content": "*垃圾桶里有一大堆瓶子*",
+                    "options": [
                         {
-                            "name":"拿一个",
-                            "content":"",
-                            "next_text":{
-                                "content":"*你为什么不多拿几个？因为没有多拿的选项*",
-                                "options":[],
-                                "strike_event":[
+                            "name": "拿一个",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你为什么不多拿几个？因为没有多拿的选项*",
+                                "options": [],
+                                "strike_event": [
                                     "attr,bottle,delta,1"
                                 ]
                             }
                         }
                     ]
-
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"equal",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "equal",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
-                    "options":[]
-
+                    "content": "*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
+                    "options": []
                 }
-                
             ]
         },
         {
@@ -779,7 +773,7 @@
                                         "name": "[帮助]",
                                         "content": "或许我可以帮你通知一下她..",
                                         "next_text": {
-                                            "content": "如果这样的话，那就太好了~<br>她可能在理教学习忘记时间了吧",
+                                            "content": "如果这样的话，那就太好了~                 她的名字叫张伊利，可能在理教学习忘记时间了",
                                             "options": [],
                                             "strike_event": [
                                                 "qc,north_girls,word,学姐在等待她的朋友，似乎已经等待很久了",
@@ -982,15 +976,6 @@
                                 "content": "*我也算是做了件好事吧~*",
                                 "options": []
                             }
-                        }
-                    ],
-                    "pre_list": [
-                        {
-                            "type": "event",
-                            "num": 1,
-                            "list": [
-                                1002
-                            ]
                         }
                     ]
                 }

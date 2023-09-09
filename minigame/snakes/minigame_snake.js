@@ -12,7 +12,7 @@ document.getElementById("minigame").appendChild(app.view);
 // 加载资源
 let snake = [], index = 0, time_counter = 0;
 let food = {};
-let ticker, score;
+let ticker, score,max_score = 0;
 let score_num = 0, snake_count = 1, bourdery_type = 1;
 let leftboader = 0;
 let upboader = 0;
@@ -151,7 +151,7 @@ async function gameloop(delta) {//游戏循环
     deltacount = 0;
     score_num += Number(snake_count) * bourdery_type * 0.1;
     score.text = "当前选择：" + (index + 1) + "\n分数：" + Math.floor(score_num);
-
+    max_score = Math.max(score_num,max_score);
     app.stage.children.forEach(element => {
         if (element.snake_id == index && element.ishead == false) element.zIndex = 4;
         else if (element != score && element != food) element.zIndex = 2;
@@ -273,10 +273,11 @@ function gameover() {
             location.reload();
         } else if (result.isDismissed) {
             window.parent.minigame_result = {
+                game_id: "snake",
                 finished: true,
-                score: score_num,
+                score: max_score,
                 strike_event: [
-                    `st,{"content": "*你的四级成绩中有${Math.floor(score_num / 10)}分是星穹铁道成绩！*"}`
+                    `st,{"content": "*你的四级成绩中有${Math.floor(max_score / 10)}分是星穷贴到成绩！*"}`
                 ]
             };
             location.reload();

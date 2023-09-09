@@ -314,17 +314,6 @@
             ]
         },
         {
-            "img": "../scene/images/gamebox.png",
-            "name": "gamebox",
-            "x": 0,
-            "y": 456,
-            "width": 48,
-            "height": 48,
-            "collideH": 1.0,
-            "type": "npc",
-            "portrait": "../character/portrait/gamebox.png"
-        },
-        {
             "img": "../character/soccerboy/soccerboy-excited.png",
             "name": "soccerboy",
             "x": 336,
@@ -343,6 +332,18 @@
                             "num": 1,
                             "list": [
                                 0
+                            ]
+                        }
+                    ]
+                },{
+                    "type":"disappear",
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                8,11,51
+                                
                             ]
                         }
                     ]
@@ -414,7 +415,9 @@
                                 14,
                                 15,
                                 17,
-                                51
+                                51,
+                                11,
+                                8
                             ]
                         }
                     ],
@@ -658,6 +661,32 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/soccer.png",
+            "behave":[
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        }
+                    ]
+                },{
+                    "type":"disappear",
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                8,11,51
+                                
+                            ]
+                        }
+                    ]
+                }
+            ],
             "text": [
                 {
                     "pre_list": [
@@ -943,7 +972,106 @@
             "height": 24,
             "collideH": 1.0,
             "type": "npc",
-            "portrait": "../character/outshopone/face.png"
+            "portrait": "../character/outshopone/face.png",
+            "text":[
+                {
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":1,
+                            "list":[
+                                0
+                            ]
+                        },{
+                            "type":"no_event",
+                            "list":[
+                                14,15,16,17,8,11,56
+                            ]
+                        }
+                    ],
+                    "content":"妈妈我要玩星穷贴到",
+                    "options":[
+                        {
+                            "name":"？",
+                            "content":"",
+                            "next_text":{
+                                "content":"玩，玩大个的，十次够吗",
+                                "options":[
+                                    {
+                                        "name":"啊这",
+                                        "content":"",
+                                        "next_text":{
+                                            "content":"够了，谢谢妈妈，妈妈真好",
+                                            "options":[
+                                                {
+                                                    "name":"新时代的……",
+                                                    "content":"行为艺术？",
+                                                    "next_text":{
+                                                        "content":"本店正在举行活动，进去看看吧同学",
+                                                        "options":[],
+                                                        "strike_event":[
+                                                            "sf,56",
+                                                            "qcc,behaveart,新时代行为艺术",
+                                                            "qc,behaveart,title,商店门口的宣传员",
+                                                            "qc,behaveart,word,非常迷惑的宣传方式，但不得不说非常吸引眼球，我不做评价.jpg"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                    
+                },{
+                    "pre_list":[
+                        {
+                            "type":"event",
+                            "num":2,
+                            "list":[
+                                0,56
+                            ]
+                        },{
+                            "type":"no_event",
+                            "list":[
+                                14,15,16,17,8,11
+                            ]
+                        }
+                    ],
+                    "content":"妈妈我要玩星穷贴到",
+                    "options":[
+                        {
+                            "name":"？",
+                            "content":"",
+                            "next_text":{
+                                "content":"玩，玩大个的，十次够吗",
+                                "options":[
+                                    {
+                                        "name":"啊这",
+                                        "content":"",
+                                        "next_text":{
+                                            "content":"够了，谢谢妈妈，妈妈真好",
+                                            "options":[
+                                                {
+                                                    "name":"新时代的……",
+                                                    "content":"行为艺术？",
+                                                    "next_text":{
+                                                        "content":"本店正在举行活动，进去看看吧同学",
+                                                        "options":[]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                    
+                }
+            ]
         }
     ]
 }

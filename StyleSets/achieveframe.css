@@ -20,12 +20,12 @@
 }
 .achievetext_vis{
     display: none;
-    color: rgb(176, 111, 0);
-    font-weight: 900;
+    color: rgba(255,204,25,0.97);
+    font-weight: 700;
     font-size: 2rem
 }
 .achievetext_vis_desc{
-    color: rgb(222, 145, 0);
+    color: rgb(255, 255, 255);
     display: none;
     font-size: 1.7rem;
     line-height: 2rem;
