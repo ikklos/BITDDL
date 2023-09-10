@@ -334,6 +334,30 @@
                             "type": "event",
                             "num": 1,
                             "list": [
+                                51
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                11,
+                                8,
+                                14,
+                                15,
+                                16,
+                                17
+                            ]
+                        }
+                    ],
+                    "content": "您好，本店正在举办环保活动，空瓶子换游戏币，可以在旁边试玩《星穷贴到》~Hello, the store is...",
+                    "options": []
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 17
                             ]
                         },
