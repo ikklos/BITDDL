@@ -1,4 +1,9 @@
-
+*{
+    cursor: url("../icon/cursor_1.png"),auto;
+}
+canvas{
+    cursor: url("../icon/cursor_1.png"),auto;
+}
 html,body{
     background-color: bisque;
     min-width: 480px;
