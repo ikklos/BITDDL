@@ -1,22 +1,22 @@
 {
     "badscore_lover": {
         "name": "究极不及格爰好者",
-        "icon": "test_achievement.png",
+        "icon": "badscore_lover.png",
         "text": "累计达成5次不及格结局"
     },
     "openworld_player": {
         "name": "原神, 启动!",
-        "icon": "test_achievement.png",
+        "icon": "genshin_start.jpg",
         "text": "在原神小游戏中打到500分"
     },
     "mad_killer": {
         "name": "wtm杀杀杀",
-        "icon": "test_achievement.png",
+        "icon": "all_kill.png",
         "text": "Bad end结局前杀掉场景中的所有怪物"
     },
     "genshin_lover": {
         "name": "原神一直在启动",
-        "icon": "test_achievement.png",
+        "icon": "genshin_impact.png",
         "text": "累计玩超过20次原神小游戏"
     },
     "true_end": {
@@ -26,22 +26,22 @@
     },
     "just_buy_stationeries": {
         "name": "纸笔才是我唯一的武器",
-        "icon": "test_achievement.png",
+        "icon": "stationary.png",
         "text": "在商店中买3次纸笔"
     },
     "noob_to_run": {
         "name": "逃跑菜鸟",
-        "icon": "test_achievement.png",
+        "icon": "exit.png",
         "text": "在boss战中死亡超过3次"
     },
     "lost_control": {
         "name": "狂笑着的杀人魔",
-        "icon": "test_achievement.png",
+        "icon": "multi_kill.png",
         "text": "达成Bad end结局"
     },
     "one_shot_one_kill": {
         "name": "我是仁慈的杀人魔？",
-        "icon": "test_achievement.png",
+        "icon": "one_kill.png",
         "text": "Bad end线最终只杀掉了最后考场中的一个怪物"
     }
 }
