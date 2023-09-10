@@ -432,12 +432,19 @@
                                                                                                                                                                         "qc,main_story,word,我在考场上再次犯病了，但是我战胜了我的梦魇",
                                                                                                                                                                         "qc,main_story,word,我的舍友帮助了我，果然原神玩家都是大好人",
                                                                                                                                                                         "attr,is_true_end,change,true",
-                                                                                                                                                                        "esc,true_end1,1,150,true_end_1.jpg",
-                                                                                                                                                                        "esc,true_end2,1,500,true_end_2.jpg",
-                                                                                                                                                                        "esc,true_end3,1,500,true_end_3.jpg",
-                                                                                                                                                                        "esc,true_end4,1,500,true_end_4.jpg",
-                                                                                                                                                                        "esc,true_end5,1,600,true_end_5.jpg",
-                                                                                                                                                                        "esc,true_end_thx,1,600,thanks.jpg",
+                                                                                                                                                                        "esc,true_end1,1,200,te1.png",
+                                                                                                                                                                        "esc,true_end2,1,200,te2.png",
+                                                                                                                                                                        "esc,true_end3,1,200,te3.png",
+                                                                                                                                                                        "esc,true_end4,1,200,te4.png",
+                                                                                                                                                                        "esc,true_end5,1,200,te5.png",
+                                                                                                                                                                        "esc,true_end6,1,200,te6.png",
+                                                                                                                                                                        "esc,true_end7,1,200,te7.png",
+                                                                                                                                                                        "esc,true_end8,1,200,te8.png",
+                                                                                                                                                                        "esc,true_end9,1,200,te9.png",
+                                                                                                                                                                        "esc,true_enda,1,200,tea.png",
+                                                                                                                                                                        "esc,true_endb,1,200,teb.png",
+                                                                                                                                                                        "esc,true_endc,1,200,tec.png",
+                                                                                                                                                                        "esc,thx,1,400,thanks.jpg",
                                                                                                                                                                         "ess"
                                                                                                                                                                     ]
                                                                                                                                                                 }
@@ -476,37 +483,38 @@
                             }
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 47
                             ]
                         }
                     ],
-                    "content":"*考试开始的铃声响起，你开始做起了卷子*",
-                    "options":[
+                    "content": "*考试开始的铃声响起，你开始做起了卷子*",
+                    "options": [
                         {
-                            "name":"继续",
-                            "content":"",
-                            "next_text":{
-                                "content":"考试结束了，同学",
-                                "options":[
+                            "name": "继续",
+                            "content": "",
+                            "next_text": {
+                                "content": "考试结束了，同学",
+                                "options": [
                                     {
-                                        "name":"啊？",
-                                        "content":"不是刚开始吗",
-                                        "next_text":{
-                                            "content":"考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……",
-                                            "options":[
+                                        "name": "啊？",
+                                        "content": "不是刚开始吗",
+                                        "next_text": {
+                                            "content": "考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……考试结束了……",
+                                            "options": [
                                                 {
-                                                    "name":"继续",
-                                                    "content":"",
-                                                    "next_text":{
-                                                        "content":"*眼前不是老师在说话，你的头剧烈疼痛，身边的一切开始扭曲变形*",
-                                                        "options":[],
-                                                        "strike_event":[
+                                                    "name": "继续",
+                                                    "content": "",
+                                                    "next_text": {
+                                                        "content": "*眼前不是老师在说话，你的头剧烈疼痛，身边的一切开始扭曲变形*",
+                                                        "options": [],
+                                                        "strike_event": [
                                                             "sf,49"
                                                         ]
                                                     }

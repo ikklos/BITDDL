@@ -418,7 +418,16 @@
                                     "sf,407",
                                     "attr,badend_kills,delta,1",
                                     "attr,is_bad_end,change,true",
-                                    "esc,true_end1,1,100,test.jpg",
+                                    "esc,badend1,1,200,badend_1.png",
+                                    "esc,badend2,1,200,badend_2.png",
+                                    "esc,badend3,1,200,badend_3.png",
+                                    "esc,badend4,1,200,badend_4.png",
+                                    "esc,badend5,1,200,badend_5.png",
+                                    "esc,badend6,1,200,badend_6.png",
+                                    "esc,badend7,1,200,badend_7.png",
+                                    "esc,badend8,1,200,badend_8.png",
+                                    "esc,badend9,1,200,badend_9.png",
+                                    "esc,thx,1,400,thanks.jpg",
                                     "ess"
                                 ]
                             }

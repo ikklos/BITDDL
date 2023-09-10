@@ -1,4 +1,4 @@
-import { HitTest, getHitBox, getPartHitBox } from "./collision.js";
+import { HitTest, getFullHitBox, getHitBox, getPartHitBox } from "./collision.js";
 import { keyboard } from './keyboard.js';
 import { LoadItems } from "./Load_items.js";
 //创建app对象，把预览加入DOM,app对象建议开全局
@@ -42,6 +42,7 @@ var story_status = [];
 var npc_pool = [];//npc池，这里的npc指一切的可交互对象
 var npc_raw_data = [];//也是npc池，但这里读入的并不是npc对象，而是npc的基本数据，需要将其转换为npc
 var BanariesPool = [];//banaries池
+var shadow_wall_pool = [];
 var currentSave = {//玩家状态
     playerName: '',
     saveDate: '',
@@ -292,6 +293,11 @@ function play(delta) {//基本所有的事件结算都在这里写
     //boss fight part
     if (wait_event.type == "null") {
         if (currentSave.bossfight_flag == 1) {
+            shadow_wall_pool.forEach(element => {
+                element.alpha += 0.02 * (Math.random() - 0.5);
+                if (element.alpha < 0) element.alpha = 0;
+                if (element.alpha > 0.2) element.alpha = 0.2;
+            });
             boss_sprite.x -= delta / 3;
             if (neko.x > boss_sprite.x) {
                 app.stage.removeChild(boss_sprite);
@@ -312,6 +318,11 @@ function play(delta) {//基本所有的事件结算都在这里写
                 command('st,{"content": "*你成功逃了出来，身后的墙也消失了，你将耳朵贴了上去*","options": [{"name": "继续","content": "*里面还是有声音，还有一个人的声音*","next_text": {"content": "可能还是要进去一趟"},"strike_event":["sf,30"]}]}');
             }
         } else if (currentSave.bossfight_flag == 3) {
+            shadow_wall_pool.forEach(element => {
+                element.alpha += 0.01 * (Math.random() - 0.5);
+                if (element.alpha < 0) element.alpha = 0;
+                if (element.alpha > 0.1) element.alpha = 0.05;
+            });
             boss_sprite.x -= delta;
             if (neko.x > boss_sprite.x) {
                 app.stage.removeChild(boss_sprite);
@@ -332,6 +343,11 @@ function play(delta) {//基本所有的事件结算都在这里写
                 command('st,{"content": "*你又走了出来，刚才的逃亡在你现在想来有些荒诞*","options": [{"name": "继续","content": "但是","next_text": {"content": "*你还是想要再见到他，波尔查诺帮了你太多了*"}}]}');
             }
         } else if (currentSave.bossfight_flag == 5) {
+            shadow_wall_pool.forEach(element => {
+                element.alpha += 0.01 * (Math.random() - 0.5);
+                if (element.alpha < 0) element.alpha = 0;
+                if (element.alpha > 0.05) element.alpha = 0.02;
+            });
             boss_sprite.x -= delta;
             if (neko.x > boss_sprite.x) {
                 app.stage.removeChild(boss_sprite);
@@ -356,7 +372,7 @@ function play(delta) {//基本所有的事件结算都在这里写
 
     //endslide part
     if (endslideshowing > -1) {
-        endslidesprite.alpha += 0.01 * delta;
+        endslidesprite.alpha += 0.02 * delta;
         if (endslidesprite.alpha > 1) {
             endslidesprite.alpha -= 0.01 * delta;
             app.stage.removeChild(endslidesprite_last);
@@ -552,7 +568,11 @@ async function loadmap(url) {
         console.log("removed 1");
         app.stage.removeChild(npc_pool[i]);
     }
+    shadow_wall_pool.forEach(element => {
+        app.stage.removeChild(element);
+    });
     npc_pool.length = 0;
+    shadow_wall_pool.length = 0;
     BanariesPool.length = 0;
     npc_raw_data.length = 0;
     if (typeof (nowmap.up) !== "undefined" && typeof (nowmap.down) !== "undefined") {
@@ -581,6 +601,19 @@ async function loadmap(url) {
             console.log(neko.x);
             console.log(neko.y);
             BanariesPool = result.banaries;
+            result.banaries.forEach(element => {
+                if (element.type == 'shadow_wall') {
+                    let npc = PIXI.Sprite.from(element.img);
+                    npc.name = element.name;
+                    npc.type = element.type;
+                    npc.x = element.x;
+                    npc.y = element.y;
+                    npc.height = element.height;
+                    npc.width = element.width;
+                    npc.hitbox = getFullHitBox(npc);
+                    shadow_wall_pool.push(npc);
+                }
+            });
             nowmap.down = PIXI.Sprite.from(result.down);
             nowmap.down.x = result.down.x = result.x;
             nowmap.down.y = result.down.y = result.y;
@@ -621,6 +654,9 @@ async function loadmap(url) {
                     app.stage.addChild(temp_npc_pool[i]);
                 }
             }
+            shadow_wall_pool.forEach(element => {
+                app.stage.addChild(element);
+            });
             for (let i = 1; i < app.stage.children.length; i++) {
                 app.stage.children[i].zIndex = app.stage.children[i].y + app.stage.children[i].height;
             }
