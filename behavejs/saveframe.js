@@ -160,6 +160,9 @@ let intervalID = setInterval(function () {
 }
     , 100)
 
+    setInterval(() => {
+        document.body.style.zoom = window.top.zoom;
+    }, 500);
 
 
 

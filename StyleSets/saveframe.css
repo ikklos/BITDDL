@@ -4,6 +4,7 @@ body{
     background-image: url("../backgrounds/savepage_bg.png");
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
 }
 /* #closeframebutton{
     background-image: url(../icon/symbolButton/buttonSymbols35.png);
@@ -29,7 +30,7 @@ body{
     gap: 1px;
     background-color: transparent;
     overflow: auto;
-    height: 100vh;
+    height: 100%;
 }
 
 .save_list > div{
