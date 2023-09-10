@@ -304,3 +304,6 @@ function CrossTheBoader(r) {
     return -1;
 }
 
+setInterval(() => {
+    document.body.style.zoom = window.top.zoom;
+}, 500);

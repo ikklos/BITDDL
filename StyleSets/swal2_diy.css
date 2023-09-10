@@ -1145,7 +1145,7 @@
     overflow: hidden;
   }
   body.swal2-height-auto {
-    height: auto !important;
+    height: 100% !important;
   }
   body.swal2-no-backdrop .swal2-container {
     background-color: transparent !important;

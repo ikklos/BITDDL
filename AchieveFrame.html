@@ -86,17 +86,9 @@
 
 <script>
     //auto zoom tool bar
-    function bodyScale() {
-        let devicewidth = document.documentElement.clientwidth;
-        let deviceheight = document.documentElement.clientHeight;
-        var scalex = devicewidth / 1100;
-        var scaley = deviceheight / 660;
-        scalex <= scaley
-            ? (document.body.style.zoom = scalex)
-            : (document.body.style.zoom = scaley);
-        console.log(document.body.style.zoom, "framezoom");
-    }
-    bodyScale();
+    setInterval(() => {
+    document.body.style.zoom = window.top.zoom;
+}, 500);
 </script>
 <script>
     function flash_achievement() {
