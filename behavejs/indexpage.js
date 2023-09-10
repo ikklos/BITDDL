@@ -376,11 +376,11 @@ function bodyScale() {
     let deviceheight = document.documentElement.clientHeight;
     var scalex = devicewidth / 1200;
     var scaley = deviceheight / 880;
-    console.log(scalex,scaley);
+    //console.log(scalex, scaley);
     return scalex <= scaley ? scalex : scaley;
 }
 setInterval(() => {
-    console.log(window.zoom);
+    //console.log(window.zoom);
     window.zoom = bodyScale();
     document.body.style.zoom = window.zoom;
 }, 500);

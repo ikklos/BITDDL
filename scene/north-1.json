@@ -959,6 +959,15 @@
             ],
             "text": [
                 {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1002
+                            ]
+                        }
+                    ],
                     "content": "*学姐和朋友相谈甚欢*",
                     "options": [
                         {

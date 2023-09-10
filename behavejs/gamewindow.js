@@ -183,7 +183,7 @@ async function AfterLoad() {
             var f = async () => {
                 for (let k = 0; k < npc_pool.length; k++) {
                     let npc = npc_pool[k];
-                    if (HitTest(neko, npc)) {
+                    if (npc.visible == true && HitTest(neko, npc)) {
                         console.log("in keyf", npc);
                         if (npc.type === "npc") {
                             for (let i = 0; i < npc.text.length; i++) {
@@ -903,6 +903,7 @@ async function solve_npc_behave(npc) {//约定npc只有简单的行为，如出�
         console.log(fin);
     }
     console.log(fin);
+    npc.visible = fin;
     if (fin) app.stage.addChild(npc);
     else app.stage.removeChild(npc);
 }
