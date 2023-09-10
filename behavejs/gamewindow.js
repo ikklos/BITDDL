@@ -57,10 +57,12 @@ var currentSave = {//玩家状态
     endslide: {},
     is_noscore_end: false,
     is_true_end: false,
+    is_bad_end: false,
     buy_stationary_count: 0,
     boss_fight_death: 0,
     bottle: 0,
-    rail_max: 0
+    rail_max: 0,
+    badend_kills: 0
 };
 var boss_sprite = {};
 
@@ -373,6 +375,12 @@ function play(delta) {//基本所有的事件结算都在这里写
 
                 if (currentSave.is_true_end) {//TE成就
                     window.top.makeAchievement("true_end");
+                }
+
+                if (currentSave.is_bad_end) {
+                    window.top.makeAchievement("lost_control");
+                    if (currentSave.badend_kills == 1) window.top.makeAchievement("one_shot_one_kill");
+                    if (currentSave.badend_kills == 5) window.top.makeAchievement("mad_killer");
                 }
 
                 endslideshowing = -100;

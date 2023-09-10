@@ -1,8 +1,8 @@
 {
-    "x":240,
-    "y":144,
-    "down":"../scene/images/lijiao-1-classroom1-evil-down.png",
-    "up":"../scene/images/lijiao-1-classroom1-evil-up.png",
+    "x": 240,
+    "y": 144,
+    "down": "../scene/images/lijiao-1-classroom1-evil-down.png",
+    "up": "../scene/images/lijiao-1-classroom1-evil-up.png",
     "banaries": [
         {
             "name": "up1",
@@ -285,28 +285,27 @@
             "height": 53,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 403
                             ]
                         }
                     ],
-                    "content":"嘎啊啊啊啊啊啊啊啊啊啊",
-                    "options":[
+                    "content": "嘎啊啊啊啊啊啊啊啊啊啊",
+                    "options": [
                         {
-                            "name":"我（）",
-                            "content":"杀杀杀",
-                            "next_text":{
-                                "content":"*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
-                                "options":[
-                                    
-                                ],
-                                "strike_event":[
-                                    "sf,403"
+                            "name": "我（）",
+                            "content": "杀杀杀",
+                            "next_text": {
+                                "content": "*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,403",
+                                    "attr,badend_kills,delta,1"
                                 ]
                             }
                         }
@@ -323,28 +322,27 @@
             "height": 65,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 405
                             ]
                         }
                     ],
-                    "content":"嘎啊啊啊啊啊啊啊啊啊啊",
-                    "options":[
+                    "content": "嘎啊啊啊啊啊啊啊啊啊啊",
+                    "options": [
                         {
-                            "name":"我（）",
-                            "content":"杀杀杀",
-                            "next_text":{
-                                "content":"*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
-                                "options":[
-                                    
-                                ],
-                                "strike_event":[
-                                    "sf,405"
+                            "name": "我（）",
+                            "content": "杀杀杀",
+                            "next_text": {
+                                "content": "*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,405",
+                                    "attr,badend_kills,delta,1"
                                 ]
                             }
                         }
@@ -361,28 +359,27 @@
             "height": 34,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 406
                             ]
                         }
                     ],
-                    "content":"嘎啊啊啊啊啊啊啊啊啊啊",
-                    "options":[
+                    "content": "嘎啊啊啊啊啊啊啊啊啊啊",
+                    "options": [
                         {
-                            "name":"我（）",
-                            "content":"杀杀杀",
-                            "next_text":{
-                                "content":"*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
-                                "options":[
-                                    
-                                ],
-                                "strike_event":[
-                                    "sf,406"
+                            "name": "我（）",
+                            "content": "杀杀杀",
+                            "next_text": {
+                                "content": "*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,406",
+                                    "attr,badend_kills,delta,1"
                                 ]
                             }
                         }
@@ -399,28 +396,30 @@
             "height": 30,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 407
                             ]
                         }
                     ],
-                    "content":"嘎啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
-                    "options":[
+                    "content": "嘎啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
+                    "options": [
                         {
-                            "name":"我（）",
-                            "content":"杀杀杀",
-                            "next_text":{
-                                "content":"*你轻松地杀掉了这个怪物，但似乎有什么不对劲*",
-                                "options":[
-                                    
-                                ],
-                                "strike_event":[
-                                    "sf,407"
+                            "name": "我（）",
+                            "content": "杀杀杀",
+                            "next_text": {
+                                "content": "*你轻松地杀掉了这个怪物，但似乎有什么不对劲*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,407",
+                                    "attr,badend_kills,delta,1",
+                                    "attr,is_bad_end,change,true",
+                                    "esc,true_end1,1,100,test.jpg",
+                                    "ess"
                                 ]
                             }
                         }
@@ -437,28 +436,27 @@
             "height": 42,
             "collideH": 1.0,
             "type": "npc",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 408
                             ]
                         }
                     ],
-                    "content":"嘎啊啊啊啊啊啊啊啊啊啊",
-                    "options":[
+                    "content": "嘎啊啊啊啊啊啊啊啊啊啊",
+                    "options": [
                         {
-                            "name":"我（）",
-                            "content":"杀杀杀",
-                            "next_text":{
-                                "content":"*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
-                                "options":[
-                                    
-                                ],
-                                "strike_event":[
-                                    "sf,408"
+                            "name": "我（）",
+                            "content": "杀杀杀",
+                            "next_text": {
+                                "content": "*怪物完全没有反抗的机会，你用你随身带的小刀轻松地将其一刀两断*",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,408",
+                                    "attr,badend_kills,delta,1"
                                 ]
                             }
                         }
