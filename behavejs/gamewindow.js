@@ -1124,7 +1124,7 @@ function createNewQuestChain(uid, qstname) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 3000,
         timerProgressBar: true,
         title: "日志有更新:" + qstname,
         icon: 'info'
@@ -1143,7 +1143,7 @@ function addQuestComment(uid, cmttype, comment) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 1000,
+        timer: 3000,
         timerProgressBar: true,
         title: "日志有更新:" + currentSave.quests[uid].name,
         icon: 'info'
@@ -1166,7 +1166,7 @@ function changeQuestChainName(uid, qstname) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 3000,
         timerProgressBar: true,
         title: "日志有更新:" + currentSave.quests[uid].name,
         icon: 'info'

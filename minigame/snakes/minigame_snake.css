@@ -1,5 +1,13 @@
+*{
+    cursor: url("../icon/cursor_1.png"),auto;
+    font-family: "Zpix";
+}
+canvas{
+    cursor: url("../icon/cursor_1.png"),auto;
+}
 html,
 body {
+    font-family: "Zpix";
     background-color: bisque;
     min-width: 800px;
     min-height: 600px;
