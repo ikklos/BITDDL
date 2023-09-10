@@ -155,51 +155,53 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/gamebox.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"equal",
-                                    "attrid":"bottle",
-                                    "value":1
-                                },{
-                                    "type":"more than",
-                                    "attrid":"bottle",
-                                    "value":1
+                                    "type": "equal",
+                                    "attrid": "bottle",
+                                    "value": 1
+                                },
+                                {
+                                    "type": "more than",
+                                    "attrid": "bottle",
+                                    "value": 1
                                 }
                             ]
                         }
                     ],
-                    "content":"星穷贴到，启动？",
-                    "options":[
+                    "content": "星穷贴到，启动？",
+                    "options": [
                         {
-                            "name":"启动！",
-                            "content":"",
-                            "next_text":{
-                                "content":"我喜欢玩星穷贴到！",
-                                "options":[],
-                                "strike_event":[
+                            "name": "启动！",
+                            "content": "",
+                            "next_text": {
+                                "content": "我喜欢玩星穷贴到！",
+                                "options": [],
+                                "strike_event": [
                                     "attr,bottle,delta,-1",
                                     "mg,3"
                                 ]
                             }
-                        },{
-                            "name":"等会再说",
-                            "content":"",
-                            "next_text":{
-                                "content":"*你似乎有别的事，先离开了*",
-                                "options":[]
+                        },
+                        {
+                            "name": "等会再说",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你似乎有别的事，先离开了*",
+                                "options": []
                             }
                         }
                     ]
@@ -225,11 +227,61 @@
                             "list": [
                                 0
                             ]
+                        }
+                    ],
+                    "content": "您好，有什么需要的吗？",
+                    "options": [
+                        {
+                            "name": "[纸巾]",
+                            "content": "我要购买一包纸巾。",
+                            "next_text": {
+                                "content": "好的，请在这边刷卡~",
+                                "options": [],
+                                "strike_event": [
+                                    "pkg,add,7,1"
+                                ]
+                            }
                         },
                         {
-                            "type":"no_event",
-                            "list":[
-                                11,8,14,15,16,17
+                            "name": "[饮料]",
+                            "content": "我要购买一瓶能量饮料。",
+                            "next_text": {
+                                "content": "好的，请在这边刷卡~",
+                                "options": [],
+                                "strike_event": [
+                                    "pkg,add,8,1"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "不了，我就看看。",
+                            "next_text": {
+                                "content": "*欢迎下次再来~*",
+                                "options": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                0
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                11,
+                                8,
+                                14,
+                                15,
+                                16,
+                                17,
+                                51
                             ]
                         }
                     ],
@@ -239,27 +291,28 @@
                             "name": "私密马赛~",
                             "content": "英格力士no need please",
                             "next_text": {
-                                "content":"呦西呦西，你滴，参加活动滴可以？",
-                                "options":[
+                                "content": "呦西呦西，你滴，参加活动滴可以？",
+                                "options": [
                                     {
-                                        "name":"我趣！",
-                                        "content":"我喜欢玩星穷贴到",
-                                        "next_text":{
-                                            "content":"好的，提前感谢您对校园环境做出的一份贡献~",
-                                            "options":[],
-                                            "strike_event":[
+                                        "name": "我趣！",
+                                        "content": "我喜欢玩星穷贴到",
+                                        "next_text": {
+                                            "content": "好的，提前感谢您对校园环境做出的一份贡献~",
+                                            "options": [],
+                                            "strike_event": [
                                                 "sf,51",
                                                 "qcc,no_studying,我要成为星穷贴到大师",
                                                 "qc,no_studying,title,环保活动",
                                                 "qc,no_studying,word,我觉得应该去翻翻垃圾桶找点瓶子，地上的瓶子已经被别人捡光了，我趣，我是天才"
                                             ]
                                         }
-                                    },{
-                                        "name":"我觉得不行，",
-                                        "content":"玩星穷贴到，只能在下水道里度过一个相对失败的人生",
-                                        "next_text":{
-                                            "content":"吔！是laks班纳帝皇，大家快退口牙！",
-                                            "options":[]
+                                    },
+                                    {
+                                        "name": "我觉得不行，",
+                                        "content": "玩星穷贴到，只能在下水道里度过一个相对失败的人生",
+                                        "next_text": {
+                                            "content": "吔！是laks班纳帝皇，大家快退口牙！",
+                                            "options": []
                                         }
                                     }
                                 ]
@@ -274,6 +327,30 @@
                             }
                         }
                     ]
+                },
+                {
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                51
+                            ]
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                11,
+                                8,
+                                14,
+                                15,
+                                16,
+                                17
+                            ]
+                        }
+                    ],
+                    "content": "您好，本店正在举办环保活动，空瓶子换游戏币，可以在旁边试玩《星穷贴到》~Hello, the store is...",
+                    "options": []
                 },
                 {
                     "pre_list": [

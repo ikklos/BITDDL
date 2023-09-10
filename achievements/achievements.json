@@ -39,7 +39,7 @@
         "icon": "test_achievement.png",
         "text": "达成Bad end结局"
     },
-    "control_myself": {
+    "one_shot_one_kill": {
         "name": "我是仁慈的杀人魔？",
         "icon": "test_achievement.png",
         "text": "Bad end线最终只杀掉了最后考场中的一个怪物"

@@ -230,69 +230,67 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/trashcan.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"less than",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "less than",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*垃圾桶里有一大堆瓶子*",
-                    "options":[
+                    "content": "*垃圾桶里有一大堆瓶子*",
+                    "options": [
                         {
-                            "name":"拿一个",
-                            "content":"",
-                            "next_text":{
-                                "content":"*你为什么不多拿几个？因为没有多拿的选项*",
-                                "options":[],
-                                "strike_event":[
+                            "name": "拿一个",
+                            "content": "",
+                            "next_text": {
+                                "content": "*你为什么不多拿几个？因为没有多拿的选项*",
+                                "options": [],
+                                "strike_event": [
                                     "attr,bottle,delta,1"
                                 ]
                             }
                         }
                     ]
-
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 51
                             ]
                         },
                         {
-                            "type":"attribute",
-                            "num":1,
-                            "list":[
+                            "type": "attribute",
+                            "num": 1,
+                            "list": [
                                 {
-                                    "type":"equal",
-                                    "attrid":"bottle",
-                                    "value":10
+                                    "type": "equal",
+                                    "attrid": "bottle",
+                                    "value": 10
                                 }
                             ]
                         }
                     ],
-                    "content":"*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
-                    "options":[]
-
+                    "content": "*拿不下了，为了让你多跑几遍，你只有一个小号的袋子用来装瓶子*",
+                    "options": []
                 }
-                
             ]
         },
         {
@@ -305,12 +303,11 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/trashcan.png",
-            "text":[
+            "text": [
                 {
-                    "content":"*这个垃圾桶怎么这么干净*",
-                    "options":[]
+                    "content": "*这个垃圾桶怎么这么干净*",
+                    "options": []
                 }
-                
             ]
         },
         {
@@ -335,26 +332,28 @@
                             ]
                         }
                     ]
-                },{
-                    "type":"disappear",
-                    "pre_list":[
+                },
+                {
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
-                                8,11,51
-                                
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                8,
+                                11,
+                                51
                             ]
                         }
                     ]
                 },
                 {
-                    "type":"disappear",
-                    "pre_list":[
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":2,
-                            "list":[
+                            "type": "event",
+                            "num": 2,
+                            "list": [
                                 22,
                                 27
                             ]
@@ -362,12 +361,12 @@
                     ]
                 },
                 {
-                    "type":"disappear",
-                    "pre_list":[
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 16,
                                 17
                             ]
@@ -375,24 +374,24 @@
                     ]
                 },
                 {
-                    "type":"appear",
-                    "pre_list":[
+                    "type": "appear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 40
                             ]
                         }
                     ]
                 },
                 {
-                    "type":"disappear",
-                    "pre_list":[
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 45
                             ]
                         }
@@ -490,43 +489,43 @@
                     ]
                 },
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 14
                             ]
                         },
                         {
-                            "type":"no_event",
-                            "list":[
+                            "type": "no_event",
+                            "list": [
                                 22,
                                 21
                             ]
                         }
                     ],
-                    "content":"你不是去卷了吗？",
-                    "options":[
+                    "content": "你不是去卷了吗？",
+                    "options": [
                         {
-                            "name":"你真的不复习吗",
-                            "content":"",
-                            "next_text":{
-                                "content":"复习有什么用，你什么都会，我学了也不会，你自个学得了",
-                                "options":[
+                            "name": "你真的不复习吗",
+                            "content": "",
+                            "next_text": {
+                                "content": "复习有什么用，你什么都会，我学了也不会，你自个学得了",
+                                "options": [
                                     {
-                                        "name":"[开导]",
-                                        "content":"进步是比你最终的结果更重要的",
-                                        "next_text":{
-                                            "content":"再怎么进步也没用，反正挂科肯定是得挂",
-                                            "options":[
+                                        "name": "[开导]",
+                                        "content": "进步是比你最终的结果更重要的",
+                                        "next_text": {
+                                            "content": "再怎么进步也没用，反正挂科肯定是得挂",
+                                            "options": [
                                                 {
-                                                    "name":"至少不是像我一样",
-                                                    "content":"一直都在原地",
-                                                    "next_text":{
-                                                        "content":"你你你先别emo，我学，我学不行吗，哥你别emo",
-                                                        "options":[],
-                                                        "strike_event":[
+                                                    "name": "至少不是像我一样",
+                                                    "content": "一直都在原地",
+                                                    "next_text": {
+                                                        "content": "你你你先别emo，我学，我学不行吗，哥你别emo",
+                                                        "options": [],
+                                                        "strike_event": [
                                                             "sf,21",
                                                             "qcc,kindness,日行一善",
                                                             "qc,kindness,title,自爆式开导",
@@ -536,13 +535,14 @@
                                                 }
                                             ]
                                         }
-                                    },{
-                                        "name":"[菜]",
-                                        "content":"菜就要多练",
-                                        "next_text":{
-                                            "content":"啊对对对，你多厉害，你赶紧爬吧",
-                                            "options":[],
-                                            "strike_event":[
+                                    },
+                                    {
+                                        "name": "[菜]",
+                                        "content": "菜就要多练",
+                                        "next_text": {
+                                            "content": "啊对对对，你多厉害，你赶紧爬吧",
+                                            "options": [],
+                                            "strike_event": [
                                                 "sf,22",
                                                 "qcc,kindness,日行一善？",
                                                 "qc,kindness,title,劝学",
@@ -551,68 +551,67 @@
                                         }
                                     }
                                 ]
-                                
                             }
                         }
                     ]
                 },
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 40
                             ]
                         }
                     ],
-                    "content":"？你又来干嘛",
-                    "options":[
+                    "content": "？你又来干嘛",
+                    "options": [
                         {
-                            "name":"这个叫智慧的东西",
-                            "content":"是哪来的",
-                            "next_text":{
-                                "content":"*他似乎明白了什么*待会来北湖一趟，我单独和你说吧",
-                                "options":[],
-                                "strike_event":[
+                            "name": "这个叫智慧的东西",
+                            "content": "是哪来的",
+                            "next_text": {
+                                "content": "*他似乎明白了什么*待会来北湖一趟，我单独和你说吧",
+                                "options": [],
+                                "strike_event": [
                                     "sf,41",
                                     "qc,dream,word,少年希望在北湖单独对你说出[真相]"
                                 ]
                             }
-
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 43
                             ]
                         }
                     ],
-                    "content":"你想通了？",
-                    "options":[
+                    "content": "你想通了？",
+                    "options": [
                         {
-                            "name":"嗯",
-                            "content":"我决定加入组织",
-                            "next_text":{
-                                "content":"*少年愣在原地，你突然靠近，掏出了自己的刀*",
-                                "options":[
+                            "name": "嗯",
+                            "content": "我决定加入组织",
+                            "next_text": {
+                                "content": "*少年愣在原地，你突然靠近，掏出了自己的刀*",
+                                "options": [
                                     {
-                                        "name":"加入组织",
-                                        "content":"然后将其瓦解",
-                                        "next_text":{
-                                            "content":"*你一刀刺去，这刀扎扎实实地命中了他的要害*……",
-                                            "options":[
+                                        "name": "加入组织",
+                                        "content": "然后将其瓦解",
+                                        "next_text": {
+                                            "content": "*你一刀刺去，这刀扎扎实实地命中了他的要害*……",
+                                            "options": [
                                                 {
-                                                    "name":"继续",
-                                                    "content":"",
-                                                    "next_text":{
-                                                        "content":"*你的头突然痛了起来，你决定去北湖看看*",
-                                                        "options":[],
-                                                        "strike_event":[
+                                                    "name": "继续",
+                                                    "content": "",
+                                                    "next_text": {
+                                                        "content": "*你的头突然痛了起来，你决定去北湖看看*",
+                                                        "options": [],
+                                                        "strike_event": [
                                                             "sf,45",
                                                             "qc,dream,title,去北湖看看",
                                                             "qc,dream,word,去趟北湖，你突然有种不好的预感"
@@ -624,19 +623,20 @@
                                     }
                                 ]
                             }
-                        },{
-                            "name":"开玩笑",
-                            "content":"你是组织的头目吗",
-                            "next_text":{
-                                "content":"啊？",
-                                "options":[
+                        },
+                        {
+                            "name": "开玩笑",
+                            "content": "你是组织的头目吗",
+                            "next_text": {
+                                "content": "啊？",
+                                "options": [
                                     {
-                                        "name":"继续",
-                                        "content":"",
-                                        "next_text":{
-                                            "content":"这这不能*少年嘟囔着，把你准备掏刀的手握住，拉着往北校区走去*",
-                                            "options":[],
-                                            "strike_event":[
+                                        "name": "继续",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "这这不能*少年嘟囔着，把你准备掏刀的手握住，拉着往北校区走去*",
+                                            "options": [],
+                                            "strike_event": [
                                                 "sf,48",
                                                 "qcc,dream,精神病？",
                                                 "qc,dream,title,精神病竟是我自己",
@@ -661,7 +661,7 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/portrait/soccer.png",
-            "behave":[
+            "behave": [
                 {
                     "type": "appear",
                     "pre_list": [
@@ -673,15 +673,17 @@
                             ]
                         }
                     ]
-                },{
-                    "type":"disappear",
-                    "pre_list":[
+                },
+                {
+                    "type": "disappear",
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
-                                8,11,51
-                                
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                8,
+                                11,
+                                51
                             ]
                         }
                     ]
@@ -891,43 +893,44 @@
                             }
                         }
                     ]
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 39
                             ]
                         }
                     ],
-                    "content":"*你又来到了这里，搬开那个足球，下面的东西仍然存在，但这次你看清了，那分明就是大脑*",
-                    "options":[
+                    "content": "*你又来到了这里，搬开那个足球，下面的东西仍然存在，但这次你看清了，那分明就是大脑*",
+                    "options": [
                         {
-                            "name":"但是",
-                            "content":"显然我并不是来看这个的",
-                            "next_text":{
-                                "content":"*你回头，仿佛早就知道一样，那个人出现在了身后，像幽灵一般*",
-                                "options":[
+                            "name": "但是",
+                            "content": "显然我并不是来看这个的",
+                            "next_text": {
+                                "content": "*你回头，仿佛早就知道一样，那个人出现在了身后，像幽灵一般*",
+                                "options": [
                                     {
-                                        "name":"继续",
-                                        "content":"",
-                                        "next_text":{
-                                            "content":"*你拿起防身的刀，迅速刺了过去*",
-                                            "options":[
+                                        "name": "继续",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "*你拿起防身的刀，迅速刺了过去*",
+                                            "options": [
                                                 {
-                                                    "name":"得手了！",
-                                                    "content" :"……吗？",
-                                                    "next_text":{
-                                                        "content":"*那个人真的像幽灵一样，你的刀穿了过去，他抓住了你的手*",
-                                                        "options":[
+                                                    "name": "得手了！",
+                                                    "content": "……吗？",
+                                                    "next_text": {
+                                                        "content": "*那个人真的像幽灵一样，你的刀穿了过去，他抓住了你的手*",
+                                                        "options": [
                                                             {
-                                                                "name":"完了",
-                                                                "content":"*你像认命一般闭上了眼睛*",
-                                                                "next_text":{
-                                                                    "content":"*但再睁开眼时还在床上*",
-                                                                    "options":[],
-                                                                    "strike_event":[
+                                                                "name": "完了",
+                                                                "content": "*你像认命一般闭上了眼睛*",
+                                                                "next_text": {
+                                                                    "content": "*但再睁开眼时还在床上*",
+                                                                    "options": [],
+                                                                    "strike_event": [
                                                                         "sf,40",
                                                                         "qcr,dream,正义执行？",
                                                                         "qc,dream,title,还好只是梦",
@@ -936,7 +939,6 @@
                                                                 }
                                                             }
                                                         ]
-                                                    
                                                     }
                                                 }
                                             ]
@@ -946,7 +948,6 @@
                             }
                         }
                     ]
-
                 }
             ]
         },
@@ -973,43 +974,50 @@
             "collideH": 1.0,
             "type": "npc",
             "portrait": "../character/outshopone/face.png",
-            "text":[
+            "text": [
                 {
-                    "pre_list":[
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":1,
-                            "list":[
+                            "type": "event",
+                            "num": 1,
+                            "list": [
                                 0
                             ]
-                        },{
-                            "type":"no_event",
-                            "list":[
-                                14,15,16,17,8,11,56
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                14,
+                                15,
+                                16,
+                                17,
+                                8,
+                                11,
+                                56
                             ]
                         }
                     ],
-                    "content":"妈妈我要玩星穷贴到",
-                    "options":[
+                    "content": "妈妈我要玩星穷贴到",
+                    "options": [
                         {
-                            "name":"？",
-                            "content":"",
-                            "next_text":{
-                                "content":"玩，玩大个的，十次够吗",
-                                "options":[
+                            "name": "？",
+                            "content": "",
+                            "next_text": {
+                                "content": "玩，玩大个的，十次够吗",
+                                "options": [
                                     {
-                                        "name":"啊这",
-                                        "content":"",
-                                        "next_text":{
-                                            "content":"够了，谢谢妈妈，妈妈真好",
-                                            "options":[
+                                        "name": "啊这",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "够了，谢谢妈妈，妈妈真好",
+                                            "options": [
                                                 {
-                                                    "name":"新时代的……",
-                                                    "content":"行为艺术？",
-                                                    "next_text":{
-                                                        "content":"本店正在举行活动，进去看看吧同学",
-                                                        "options":[],
-                                                        "strike_event":[
+                                                    "name": "新时代的……",
+                                                    "content": "行为艺术？",
+                                                    "next_text": {
+                                                        "content": "本店正在举行活动，进去看看吧同学",
+                                                        "options": [],
+                                                        "strike_event": [
                                                             "sf,56",
                                                             "qcc,behaveart,新时代行为艺术",
                                                             "qc,behaveart,title,商店门口的宣传员",
@@ -1024,42 +1032,49 @@
                             }
                         }
                     ]
-                    
-                },{
-                    "pre_list":[
+                },
+                {
+                    "pre_list": [
                         {
-                            "type":"event",
-                            "num":2,
-                            "list":[
-                                0,56
+                            "type": "event",
+                            "num": 2,
+                            "list": [
+                                0,
+                                56
                             ]
-                        },{
-                            "type":"no_event",
-                            "list":[
-                                14,15,16,17,8,11
+                        },
+                        {
+                            "type": "no_event",
+                            "list": [
+                                14,
+                                15,
+                                16,
+                                17,
+                                8,
+                                11
                             ]
                         }
                     ],
-                    "content":"妈妈我要玩星穷贴到",
-                    "options":[
+                    "content": "妈妈我要玩星穷贴到",
+                    "options": [
                         {
-                            "name":"？",
-                            "content":"",
-                            "next_text":{
-                                "content":"玩，玩大个的，十次够吗",
-                                "options":[
+                            "name": "？",
+                            "content": "",
+                            "next_text": {
+                                "content": "玩，玩大个的，十次够吗",
+                                "options": [
                                     {
-                                        "name":"啊这",
-                                        "content":"",
-                                        "next_text":{
-                                            "content":"够了，谢谢妈妈，妈妈真好",
-                                            "options":[
+                                        "name": "啊这",
+                                        "content": "",
+                                        "next_text": {
+                                            "content": "够了，谢谢妈妈，妈妈真好",
+                                            "options": [
                                                 {
-                                                    "name":"新时代的……",
-                                                    "content":"行为艺术？",
-                                                    "next_text":{
-                                                        "content":"本店正在举行活动，进去看看吧同学",
-                                                        "options":[]
+                                                    "name": "新时代的……",
+                                                    "content": "行为艺术？",
+                                                    "next_text": {
+                                                        "content": "本店正在举行活动，进去看看吧同学",
+                                                        "options": []
                                                     }
                                                 }
                                             ]
@@ -1069,7 +1084,100 @@
                             }
                         }
                     ]
-                    
+                }
+            ]
+        },
+        {
+            "img": "../character/tiansann/left.png",
+            "name": "tiansann",
+            "x": 413,
+            "y": 421,
+            "width": 24,
+            "height": 24,
+            "collideH": 1.0,
+            "type": "npc",
+            "portrait": "../character/tiansann/face.png",
+            "behave": [
+                {
+                    "type": "appear",
+                    "pre_list": [
+                        {
+                            "type": "random",
+                            "possibility": 0.5
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "content": "哈啊，哈啊，上不来气了哥们，能不能帮我买瓶脉静过来。",
+                    "strike_event": [
+                        "qcc,drinker_againly,跑步的少年",
+                        "qc,drinker_againly,word,操场上一位少年想让我帮他买饮料。"
+                    ],
+                    "options": [
+                        {
+                            "name": "[协助]",
+                            "content": "行，你先在这缓缓。",
+                            "next_text": {
+                                "content": "*大口喘气*呼，呼。",
+                                "options": [],
+                                "strike_event": [
+                                    "sf,1003",
+                                    "qc,drinker_againly,word,我同意帮他买饮料。"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "不了，我还有事",
+                            "next_text": {
+                                "content": "*大口喘气*呼，呼。",
+                                "options": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "content": "谢谢你，刚刚跑步跑上头了，真是麻烦你了。",
+                    "options": [
+                        {
+                            "name": "[协助]",
+                            "content": "*你把饮料交到这个同学手上*",
+                            "next_text": {
+                                "content": "*同学一口气喝掉了饮料*听说小卖部在举行什么要瓶子的活动，我这里刚好也有几个，一起给你吧。",
+                                "options": [],
+                                "strike_event": [
+                                    "pkg,remove,8,1",
+                                    "attr,bottle,delta,3",
+                                    "qc,drinker_againly,word,他给了我几个瓶子。"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[离开]",
+                            "content": "不了，我还有事",
+                            "next_text": {
+                                "content": "*大口喘气*诶呀你这是...呼，呼。",
+                                "options": []
+                            }
+                        }
+                    ],
+                    "pre_list": [
+                        {
+                            "type": "event",
+                            "num": 1,
+                            "list": [
+                                1003
+                            ]
+                        },
+                        {
+                            "type": "item",
+                            "list": [
+                                8
+                            ]
+                        }
+                    ]
                 }
             ]
         }
