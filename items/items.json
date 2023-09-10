@@ -41,6 +41,18 @@
             "type": "story",
             "text": "一枚普通的胸针，被赋予了多余的含义。",
             "src": "../items/img/teli.png"
+        },
+        {
+            "name": "纸巾",
+            "type": "story",
+            "text": "一包普通的纸巾，闻起来有茉莉花的清香。",
+            "src": "../items/img/tissue.png"
+        },
+        {
+            "name": "能量饮料",
+            "type": "story",
+            "text": "一瓶运动能量饮料，据说能让人“脉静”回来。",
+            "src": "../items/img/energy_drink.png"
         }
     ]
 }

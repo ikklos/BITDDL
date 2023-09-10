@@ -244,7 +244,7 @@ var count = 0;
 var lazycount = 0;
 function play(delta) {//基本所有的事件结算都在这里写
     //星穷贴到
-    if(currentSave.rail_max >= 10000 && story_status[53] === 0){
+    if (currentSave.rail_max >= 10000 && story_status[53] === 0) {
         story_status[53] = 1;
         command("qcc,starrail,星穷贴到高手");
         command("qc,starrail,title,你已经是星穷贴到高手了！");
@@ -436,7 +436,7 @@ function play(delta) {//基本所有的事件结算都在这里写
         if (window.minigame_result.score > currentSave.genshin_max && window.minigame_result.game_id == 'ut') {
             currentSave.genshin_max = window.minigame_result.score;
         }
-        if(window.minigame_result.score > currentSave.rail_max && window.minigame_result.game_id == 'snake'){
+        if (window.minigame_result.score > currentSave.rail_max && window.minigame_result.game_id == 'snake') {
             currentSave.rail_max = window.minigame_result.score;
         }
         if (typeof (window.minigame_result.strike_event) != 'undefined')
@@ -885,7 +885,7 @@ async function CheckPrelist(pre) {//event no_event，//multi_item//item, attribu
             for (let k = 0; k < pre[i].list.length; k++) {
                 if (currentSave.savepackage[pre[i].list[k]] > 1) num--;
             }
-            if (num--) res = false;
+            if (num > 0) res = false;
         } else if (pre[i].type === "multi_item") {
             let num = pre[i].num;
             for (let k = 0; k < pre[i].list.length; k++) {
@@ -1153,7 +1153,7 @@ function addQuestComment(uid, cmttype, comment) {
         return;
     }
     if (cmttype != 'title' && cmttype != 'word') {
-        console.log(`cannot add "${type}" to "${uid}" because it's not an option!`);
+        console.log(`cannot add "${cmttype}" to "${uid}" because it's not an option!`);
         return;
     }
     currentSave.quests[uid].list.push({
